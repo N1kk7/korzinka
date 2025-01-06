@@ -299,6 +299,12 @@ const observer = new IntersectionObserver(
             height: 100%;
             min-width: 50%;
             flex: 1;
+            @media screen  and (max-width: 768px){
+                justify-content: flex-start;
+                margin-top: 20px;
+
+                
+            }
             @include mixins.titleText;
             h1{
                 width: 100%;
