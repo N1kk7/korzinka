@@ -65,7 +65,7 @@
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   
 
-  gsap.registerPlugin(ScrollTrigger);
+  // gsap.registerPlugin(ScrollTrigger);
   
 
   const statsWrapper = ref(null);
