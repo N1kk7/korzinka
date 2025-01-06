@@ -304,24 +304,8 @@
   </div>
 </template>
 
+
 <script setup>
-
-  import LinkBlock from '@/components/shared/LinkBlock.vue';
-  import { Marker, InfoWindow }  from 'vue3-google-map'
-  // import { AdvancedMarkerElement, InfoWindow }  from 'vue3-google-map'
-
-  import SvgIcon from '@/components/shared/SvgIcon.vue';
-
-const center = { lat: 50.00321326656911, lng: 36.30118217658963 }
-const markerOptions = { position: center, label: 'Korzinka', title: 'Korzinka', clickable: true }
-
-
-
-
-
-</script>
-
-<!-- <script setup>
 import { onMounted } from 'vue';
 import LinkBlock from '@/components/shared/LinkBlock.vue';
 import SvgIcon from '@/components/shared/SvgIcon.vue';
