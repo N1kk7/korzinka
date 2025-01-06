@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="map flex items-start justify-center">
-          <GoogleMap
+          <!-- <GoogleMap
 
 
             api-key="AIzaSyAuzTR9g-8CFF-vieFvZ6akRU5CYhdLxo8"
@@ -129,7 +129,8 @@
               </InfoWindow>
             </Marker>
         
-          </GoogleMap>
+          </GoogleMap> -->
+          <div id="map" style="height: 500px; width: 100%;"></div>
 
         </div>
         
@@ -305,7 +306,7 @@
 </template>
 
 
-<script setup>
+<!-- <script setup>
 import { onMounted } from 'vue';
 import LinkBlock from '@/components/shared/LinkBlock.vue';
 import SvgIcon from '@/components/shared/SvgIcon.vue';
@@ -339,7 +340,9 @@ const initMap = () => {
     center: center,
   });
 
-  const marker = new google.maps.marker.AdvancedMarkerElement({
+  // const marker = new google.maps.marker.AdvancedMarkerElement({
+    const marker = new google.maps.Marker({
+
     position: center,
     map: map,
     title: markerOptions.title,
@@ -353,6 +356,70 @@ const initMap = () => {
 
   marker.addListener("click", () => {
     infowindow.open(map, marker);
+  });
+};
+</script> -->
+
+<script setup>
+import { onMounted } from 'vue';
+import LinkBlock from '@/components/shared/LinkBlock.vue';
+import SvgIcon from '@/components/shared/SvgIcon.vue';
+
+const center = { lat: 50.00321326656911, lng: 36.30118217658963 };
+const markerOptions = { 
+  position: center, 
+  label: 'Korzinka', 
+  title: 'Korzinka', 
+  clickable: true 
+};
+
+onMounted(() => {
+  if (window.google && window.google.maps) {
+    initMap();
+  } else {
+    loadGoogleMapsApi().then(() => {
+      initMap();
+    }).catch((error) => {
+      console.error("Ошибка при загрузке Google Maps API:", error);
+    });
+  }
+});
+
+const loadGoogleMapsApi = () => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAuzTR9g-8CFF-vieFvZ6akRU5CYhdLxo8&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+const initMap = () => {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: center,
+  });
+
+  const marker = new google.maps.Marker({
+    position: center,
+    map: map,
+    title: markerOptions.title,
+    label: markerOptions.label,
+    clickable: markerOptions.clickable,
+  });
+
+  const infowindow = new google.maps.InfoWindow({
+    content: "<p>Information about Korzinka</p>",
+  });
+
+  marker.addListener("click", () => {
+    infowindow.open({
+      map: map,
+      position: center,
+    });
   });
 };
 </script>

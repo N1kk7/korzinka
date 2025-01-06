@@ -93,15 +93,16 @@
 
                 </div>
                 <ul class="middle-section">
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/')">
-                            <span>
-                                Головна
-                            </span>
+                        <NuxtLink :to="localePath('/')" @click="showMenu(false)">
+                            <li >
+                                <span>
+                                    Головна
+                                </span>
+                            </li>
+
                         </NuxtLink>
 
                        
-                    </li>
                     <li @click="listControl('productList')">
                         <span>
                             Товари
@@ -183,46 +184,50 @@
                         </li>
 
                     </ul>
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/about')">
-                            <span>
-                                Про компанію
-                            </span>
+                        <NuxtLink :to="localePath('/about')" @click="showMenu(false)">
+                            <li >
+
+                                <span>
+                                    Про компанію
+                                </span>
+                            </li>
+
                         </NuxtLink>
                        
-                    </li>
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/pay-delivery') ">
+                        <NuxtLink :to="localePath('/pay-delivery') " @click="showMenu(false)">
+                            <li >
+
                             <span>
                                 Оплата та доставка
                             </span>
+                            </li>
+
                         </NuxtLink>
                      
-                    </li>
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/help') ">
-                            <span>
-                                Покупцю
-                            </span>
+                        <NuxtLink :to="localePath('/help')" @click="showMenu(false)">
+                            <li >
+                                <span>
+                                    Покупцю
+                                </span>
+                            </li>
                         </NuxtLink>
                      
-                    </li>
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/news') ">
-                            <span>
-                                Новини
-                            </span>
+                        <NuxtLink :to="localePath('/news')" @click="showMenu(false)">
+                            <li >
+                                <span>
+                                    Новини
+                                </span>
+                            </li>
+
                         </NuxtLink>
-                    </li>
-                    <li @click="showMenu(false)">
-                        <NuxtLink :to="localePath('/contact') ">
-                            <span>
-                                Контакти
-                            </span>
+                        <NuxtLink :to="localePath('/contact')" @click="showMenu(false)">
+                            <li >
+                                <span>
+                                    Контакти
+                                </span>
+                            </li>
                         </NuxtLink>
                        
-                    </li>
-
                 </ul>
                 <div class="bottom-section">
                     <div class="btn lang-btn">
