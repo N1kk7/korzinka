@@ -186,6 +186,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                flex: 1;
                 border-radius: 10px;
                 box-shadow:  20px 20px 60px #bebebe,
                         -20px -20px 60px #ffffff;
@@ -208,6 +209,7 @@
                     font-size: clamp(0.7rem, 2vw, 1.2rem);
                     font-weight: 500;
                     color: var(--primary-color);
+                    white-space: nowrap;
                 }
             }
         }

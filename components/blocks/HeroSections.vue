@@ -302,9 +302,10 @@ const observer = new IntersectionObserver(
             @include mixins.titleText;
             h1{
                 width: 100%;
-                font-size: 2em;
+                font-size: clamp(1.2em, 6vw, 2em);
                 white-space: nowrap;
                 font-weight: 600;
+                
             }
             .promo-block {
                 // display: flex;
@@ -321,7 +322,8 @@ const observer = new IntersectionObserver(
                     justify-content: center;
                     gap: 10px;
                     span{
-                        font-size: 1.5rem;
+                        // font-size: 1.5rem;
+                        font-size: clamp(0.6em, 3vw, 1.5em);
                     }
                 }
             }
@@ -389,6 +391,7 @@ const observer = new IntersectionObserver(
             flex-direction: column-reverse;
             .title-text, .mobile-gallery{
                 flex: 1;
+                height: 50vh;
             }
         }
 
