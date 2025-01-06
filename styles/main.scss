@@ -1,0 +1,157 @@
+// Пример глобальных стилей SCSS
+$primary-color: #3490dc;
+@use './/styles/mixins.scss' as mixins;
+
+
+:root{
+
+  // Colors
+  --dark-color: #1C2E40;
+  --dark-blue: rgb(31 41 55);
+  --primary-color: #2C4E72;
+  --secondary-color: #567A9A;
+  --light-color: #A5BDD3;
+  --bg-color: #E5EFF5;
+
+  --border-color: #D9DBE0;
+
+  --logo-main-color: #294b74;
+  --logo-sub-color: #2f7490;
+
+  --btn-color: var(--dark-color);
+  --active-btn: rgb(225 29 72);
+
+  --main-accent: rgb(246 158 12);
+
+  --main-dark-color: #121A24;
+  --base-dark-color: #1A1A1A;
+  --dark-light-color: #2A3B4A;
+  --soft-dark: #3D4E5A;
+
+
+
+  --accent-warm: #FF6F3C; // Теплый оранжевый
+  --accent-cold: #3C91E6; // Насыщенный синий
+  --accent-green: #4CAF50; // Яркий зеленый
+
+  // --text-color: ;
+
+  // Fonts
+  $font-size-base: 1rem; // Базовый размер шрифта
+  $font-size-small: 0.8rem;
+  $font-size-large: 1.3rem;
+
+  $line-height-base: 1.5; // Базовый межстрочный интервал
+  $line-height-small: 1.2;
+  $line-height-large: 1.8;
+
+  // Spacing
+  $spacing-xs: 4px;
+  $spacing-sm: 8px;
+  $spacing-md: 16px;
+  $spacing-lg: 24px;
+  $spacing-xl: 32px;
+
+  // Breakpoints
+  $breakpoint-xs: 480px;
+  $breakpoint-sm: 768px;
+  $breakpoint-md: 1024px;
+  $breakpoint-lg: 1200px;
+  $breakpoint-xl: 1440px;
+  
+}
+
+// *{
+//   border: 1px solid black;
+// }
+
+// * {
+//   border: 1px solid red;
+// }
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #E3E8EB;
+  color: $primary-color;
+}
+
+.container {
+  // width: 1200px;
+  width: clamp(300px, 85vw, 1700px);
+  margin: 0 auto;
+  padding: 20px;
+  @media screen and (max-width: 1024px) {
+    width: clamp(320px, 90vw, 1700px);
+  }
+  @media screen and (max-width: 768px) {
+    max-width: unset !important;
+    width: clamp(200px, 95vw, 1700px);
+    padding: 10px;
+  }
+}
+.page{
+  @media screen and (max-width: 768px) {
+    margin-top: 50px;
+  }
+}
+
+.title {
+  h1{
+    @include mixins.titleText;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 2vw;
+    }
+  }
+}
+
+// .mobile-bar{
+//   display: none;
+// }
+// @media screen and (max-width: 1024px) {
+//   .mobile-bar{
+//       display: block;
+//       position: sticky;
+//       top: 55px;
+//       height: auto;
+//       z-index: 50;
+//       background: rgba(var(--bg-color), 0.3);
+//       border-bottom: 1px solid var(--border-color);
+//       backdrop-filter: blur(5px);
+//       padding-block: 5px;
+//       @media screen and (max-width: 764px) {
+//         &{
+//           top: 0;
+//         }
+//       }
+//       ul{
+//         display: flex;
+//         justify-content: flex-start;
+//         overflow-x: scroll;
+//         flex-direction: row;
+//         align-items: flex-start;
+//         padding: 5px 10px ;
+//         li{
+//           border: 1px solid var(--dark-color);
+//           background: var(--bg-color);
+//           border-radius: 10px;
+//           padding: 5px 10px;
+//         }
+//       }
+     
+
+//     }
+//   .products-main{
+//     display: flex;
+//     flex-direction: column;
+//     .categories{
+//       display: none;
+//     }
+   
+//     main{
+//       margin-top: 0;
+//     }
+//   }
+
+
+  
+// }

@@ -1,0 +1,389 @@
+<template>
+  <div class="section contact-section max-md:mt-12">
+    <div class="container">
+      <LinkBlock pageName="Контакти"/>
+      <div class="page-title border-b-[1px] border-[#d9dbe0] py-2">
+        <h1
+          class="
+            text-[var(--dark-color)]
+            font-bold
+            text-2xl
+            mb-5
+          "
+          >Контакти
+        </h1>
+        <p
+          class="text-[var(--dark-color)] font-medium text-lg mb-2"
+        
+        >
+          Ми завжди раді допомогти вам! Зв'яжіться з нами зручним для вас
+          способом.
+            </p>
+      </div>
+     
+      <section class="contact-section grid grid-cols-[1fr_3fr] gap-5 mt-10 max-md:flex max-md:flex-col-reverse">
+        
+        <div class="info-section border-r-[1px] border-[#d9dbe0] pr-4 py-2 max-md:flex max-md:flex-wrap max-md:gap-5 ">
+          <div class="contact-block payment ">
+            <div class="text-block">
+              <div class="contact-title flex items-center justify-start gap-3 mb-2">
+                <SvgIcon name="location" size="small" fill="red"/>
+                <h2
+                  class="text-[var(--dark-color)] font-bold text-lg"
+                >
+                  Адреса:
+                </h2>
+              </div>
+              <p
+                class="text-[var(--dark-color)] font-medium text-sm mb-2"
+              >
+                Наш головний магазин розташований за адресою:
+              </p>
+              <ul class="block-list">
+                <li>
+                  <span
+                    class="text-[#4b839f] font-semibold text-sm mb-2"
+                  >
+                    korzinka.in.ua
+                  </span>
+                </li>
+                <li>
+                  <p
+                    class="text-[var(--dark-color)] font-medium text-sm mb-2"
+                  >Місто: Харків,<br/> ринок Барабашово</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="contact-block payment">
+            <div class="text-block">
+              <div class="contact-title flex items-center justify-start gap-3 mb-2">
+                <SvgIcon name="time-icon" size="micro" fill="green"/>
+                <h2
+                  class="text-[var(--dark-color)] font-bold text-lg"
+                >
+                  Час роботи магазину:
+                </h2>
+              </div>
+              <p
+                class="text-[var(--dark-color)] font-medium text-sm mb-2"
+              >
+                Наш магазин працює щодня з:
+              </p>
+              <ul class="block-list">
+                <li>
+                  <p
+                    class="text-[var(--dark-color)] font-medium text-sm mb-2"
+                  >9:00 - 18:00</p>
+                </li>
+                <li>
+                  <p
+                    class="text-[var(--dark-color)] font-medium text-sm mb-2"
+                  ><strong>Вихідні</strong><br/> Неділя, Понеділок</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="contact-block delivery ">
+            <div class="text-block">
+              <div class="contact-title flex items-center justify-start gap-3 mb-2">
+                <SvgIcon name="phone-icon" size="small" fill="blue"/>
+                <h2
+                  class="text-[var(--dark-color)] font-bold text-lg"
+                >
+                  Телефони:
+                </h2>
+              </div>
+              <ul class="block-list">
+                <li>
+                  <p
+                    class="text-[var(--dark-color)] font-medium text-sm mb-2"
+                  >Відділ продажу: ,<br/> +38 (068) 000-00-00</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="contact-block condition-delivery">
+            <div class="text-block">
+              <p class="text-[var(--dark-color)] font-medium text-sm">
+                <strong>
+                  Електронні замовлення:
+                </strong> <br/>Приймаємо 24/7:</p>
+            </div>
+          </div>
+        </div>
+        <div class="map flex items-start justify-center">
+          <GoogleMap
+
+
+            api-key="AIzaSyAuzTR9g-8CFF-vieFvZ6akRU5CYhdLxo8"
+            :center="{ lat: 50.00321326656911, lng: 36.30118217658963 }"
+            :zoom="15"
+            style="width: 100%; height: 400px;"
+
+          >
+            <Marker :options="markerOptions">
+              <InfoWindow v-model="infowindow">
+                <div id="content">This is the infowindow content</div>
+              </InfoWindow>
+            </Marker>
+        
+          </GoogleMap>
+
+        </div>
+        
+
+      </section>
+
+      <section class="mb-32 max-md:mb-8">
+
+        <div class="flex justify-center mt-12">
+            <div class="text-center md:max-w-xl lg:max-w-3xl">
+                <h2 class="mb-12 max-md:mb-[3vw] px-6 text-3xl font-bold text-[var(--dark-color)]">
+                    Зв'яжіться з нами
+                </h2>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap">
+
+            <div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12 mt-5 relative ">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
+                  <div class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]">
+
+                        <div class="flex items-start">
+                            <div class="shrink-0">
+                              <!-- padding: 1vw 0.5vw; -->
+                                <div class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" width="24" height="24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-0.5 text-center grow">
+                                <p class="mb-2 font-bold text-[var(--dark-color)]">
+                                    Technical support
+                                </p>
+                                <p class="text-neutral-500 text-[1.3vw]">
+                                    support@example.com
+                                </p>
+                                <p class="text-neutral-500 ">
+                                    +1 234-567-89
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]">
+
+                        <div class="flex items-start">
+                            <div class="shrink-0">
+                                <div class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" width="24" height="24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-0.5 text-center grow">
+                                <p class="mb-2 font-bold text-[var(--dark-color)]">
+                                    Technical support
+                                </p>
+                                <p class="text-neutral-500 text-[1.5vw]">
+                                    support@example.com
+                                </p>
+                                <p class="text-neutral-500 ">
+                                    +1 234-567-89
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]">
+                        <div class="flex items-start">
+                            <div class="shrink-0">
+                                <div class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" width="24" height="24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-0.5 text-center grow">
+                                <p class="mb-2 font-bold text-[var(--dark-color)]">
+                                    Technical support
+                                </p>
+                                <p class="text-neutral-500 text-[1.5vw]">
+                                    support@example.com
+                                </p>
+                                <p class="text-neutral-500 ">
+                                    +1 234-567-89
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]">
+                        <div class="flex items-start">
+                            <div class="shrink-0">
+                                <div class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" width="24" height="24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-0.5 text-center grow">
+                                <p class="mb-2 font-bold text-[var(--dark-color)]">
+                                    Technical support
+                                </p>
+                                <p class="text-neutral-500 text-[1.5vw]">
+                                    support@example.com
+                                </p>
+                                <p class="text-neutral-500 ">
+                                    +1 234-567-89
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg absolute bottom-[-50px] z-100">
+                      <img src="@/public/img/contacts.png" alt="contact">
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <form class="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
+
+              <div class="mb-3 w-full">
+                  <label class="block font-medium mb-[2px] text-[var(--dark-color)]" htmlFor="exampleInput90">
+                          Ім'я
+                  </label>
+                  <input type="text" class="px-2 py-2 border w-full outline-none rounded-md bg-white text-[var(--dark-color)]" id="exampleInput90" placeholder="Ім'я і прізвище" />
+              </div>
+
+              <div class="mb-3 w-full">
+                  <label class="block font-medium mb-[2px] text-[var(--dark-color)]" htmlFor="exampleInput90">
+                          Email
+                  </label>
+                  <input type="email" class="px-2 py-2 border w-full outline-none rounded-md bg-white text-[var(--dark-color)]" id="exampleInput90"
+                          placeholder="Введіть вашу електронну пошту" />
+              </div>
+
+              <div class="mb-3 w-full">
+                  <label class="block font-medium mb-[2px] text-[var(--dark-color)]" htmlFor="exampleInput90">
+                          Повідомлення
+                  </label>
+                  <textarea class="px-2 py-2 border rounded-[5px] w-full outline-none bg-white text-[var(--dark-color)] min-h-36" name="" id=""></textarea>
+              </div>
+
+              <button type="button"
+                      class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md">
+                      Відправити
+              </button>
+
+            </form>
+
+        </div>
+        </section>
+
+
+      <section class="summary mb-12">
+        <div class="text-block font-bold text-center text-[var(--dark-color)]">
+          <p class="text-lg">
+            Ми цінуємо вашу думку і завжди готові зробити Ваш досвід взаємодії з
+            нами краще!
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+
+<script setup>
+
+  import LinkBlock from '@/components/shared/LinkBlock.vue';
+  import { Marker, InfoWindow }  from 'vue3-google-map'
+  // import { AdvancedMarkerElement, InfoWindow }  from 'vue3-google-map'
+
+  import SvgIcon from '@/components/shared/SvgIcon.vue';
+
+const center = { lat: 50.00321326656911, lng: 36.30118217658963 }
+const markerOptions = { position: center, label: 'Korzinka', title: 'Korzinka', clickable: true }
+
+
+
+
+
+</script>
+
+<!-- <script setup>
+import { onMounted } from 'vue';
+import LinkBlock from '@/components/shared/LinkBlock.vue';
+import SvgIcon from '@/components/shared/SvgIcon.vue';
+
+const center = { lat: 50.00321326656911, lng: 36.30118217658963 };
+const markerOptions = { 
+  position: center, 
+  label: 'Korzinka', 
+  title: 'Korzinka', 
+  clickable: true 
+};
+
+onMounted(() => {
+  loadMap();
+});
+
+
+const loadMap = () => {
+
+  if (window.google && window.google.maps) {
+    initMap();
+  } else {
+    console.error("Google Maps API не загружен.");
+  }
+};
+
+
+const initMap = () => {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: center,
+  });
+
+  const marker = new google.maps.marker.AdvancedMarkerElement({
+    position: center,
+    map: map,
+    title: markerOptions.title,
+    label: markerOptions.label,
+    clickable: markerOptions.clickable,
+  });
+
+  const infowindow = new google.maps.InfoWindow({
+    content: "<p>Information about Korzinka</p>",
+  });
+
+  marker.addListener("click", () => {
+    infowindow.open(map, marker);
+  });
+};
+</script>
+
+
+
+<style lang="scss" scoped>
+  .contact-section{
+    font-family: 'Montserrat', sans-serif;
+  }
+  .contact-block{
+    flex: 1;
+    // flex-grow: 1;
+    flex-basis: 250px;
+  }
+
+
+</style>
