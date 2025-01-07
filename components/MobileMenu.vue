@@ -1,23 +1,27 @@
 <template>
     <div class="mobile-menu-section">
         
+        
         <section class="mobile-menu">
-            <div class="search-section" v-show="searchBlock">
-                <input type="text" placeholder="Пошук">
-                <div class="button-wrapper">
-                    <button class="search-btn">
-                        <SvgIcon name="mobile-search" size="micro" fill="var(--main-accent)"/>
-                        
-                    </button>
-                    <button class="clear-btn" @click="searchControl()">
-                        <SvgIcon name="close-btn" size="micro" fill="var(--main-accent)"/>
-                    </button>
+            <div :class="{'search-section': true, 'active-searchSection': searchBlock}">
+                <div class="search-wrapper">
+                    <input type="text" placeholder="Пошук">
+                    <div class="button-wrapper">
+                        <button class="search-btn">
+                            <SvgIcon name="mobile-search" size="micro" fill="var(--main-accent)"/>
+                            
+                        </button>
+                        <button class="clear-btn" @click="searchControl()">
+                            <SvgIcon name="close-btn" size="micro" fill="var(--main-accent)"/>
+                        </button>
+                    </div>
                 </div>
+               
                
             </div>
             <ul class="list-menu">
                 
-                <li>
+                <li @click="searchBlock ? searchBlock = false : null">
                     <NuxtLink :to="localePath('/') ">
                         <SvgIcon name="mobile-home" size="medium" fill="var(--light-color)"/>
                         <span>
@@ -26,7 +30,7 @@
                     </NuxtLink>
                        
                 </li>
-                <li>
+                <li @click="searchBlock ? searchBlock = false : null">
                     <NuxtLink :to="localePath('/products') ">
 
                         <SvgIcon name="mobile-category" size="medium" fill="var(--light-color)"/>
@@ -45,7 +49,7 @@
 
 
                 </li>
-                <li>
+                <li @click="searchBlock ? searchBlock = false : null">
                     <NuxtLink :to="localePath('/cart') ">
                         <SvgIcon name="cart-icon" size="medium" fill="var(--light-color)"/>
                         <span>
@@ -54,7 +58,10 @@
                     </NuxtLink>
                  
                 </li>
-                <li @click="showMenu(true)">
+                <li @click="
+                        showMenu(true),
+                        searchBlock ? searchBlock = false : null
+            ">
                     <SvgIcon name="burger-menu" size="medium" fill="var(--light-color)"/>
                     <span>
                         Меню
@@ -268,6 +275,8 @@
 // import { useLocalePath } from '@/.nuxt/imports';
 // import { NuxtLink } from '@/.nuxt/components';
 import SvgIcon from '@/shared/SvgIcon.vue';
+import gsap from 'gsap';
+import { ref, watch } from 'vue';
 
     let openMenu = ref(false);
 
@@ -306,9 +315,6 @@ import SvgIcon from '@/shared/SvgIcon.vue';
         searchBlock.value = !searchBlock.value
     }
 
-
-
-
 </script>
 
 
@@ -333,48 +339,72 @@ import SvgIcon from '@/shared/SvgIcon.vue';
             bottom: 0;
             left: 0;
             background: var(--main-dark-color);
-            border-top: 1px solid var(--main-accent);
+            transition: all ease 0.3s;
             z-index: 50;
             height: fit-content;
-            padding: 1.2vh 1vw;
             .search-section{
-                width: 80%;
-                height: 35px;
-                background: var(--light-color);
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 0 auto 1.2vh;
-                position: relative;
-                input{
-                    padding: 5px 10px;
-                    @include mixins.descriptionText(500, var(--base-dark-color));
-                    &::placeholder{
-                        @include mixins.descriptionText(500, var(--base-dark-color));
-                    }
-                    
-                }
-                .button-wrapper{
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: relative;
-                        height: inherit;
-                        button{
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background: var(--dark-color);
-                            height: inherit;
-                            padding-inline: 10px;
-                            border: 1px solid var(--light-color)
+                border-top: 1px solid var(--main-accent);
+                transition: all ease 0.3s;
+                padding-block: 1.2vh;
+                height: -moz-fit-content;
+                height: fit-content;
+                position: absolute;
+                width: 100%;
+                background: var(--main-dark-color);
+                left: 0;
+                bottom: 0;
+                height: fit-content;
+                z-index: -1;
 
+                .search-wrapper{
+                    justify-content: space-between;
+                    background: var(--light-color);
+                    align-items: center;
+                    display: flex;
+                    width: 80%;
+                    height: 35px;
+                    margin: 0 auto;
+
+                    input{
+                        padding: 5px 10px;
+                        @include mixins.descriptionText(500, var(--base-dark-color));
+                        &::placeholder{
+                            @include mixins.descriptionText(500, var(--base-dark-color));
+                        }
+                        
+                    }
+                    .button-wrapper{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: relative;
+                            height: inherit;
+                            button{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: var(--dark-color);
+                                height: inherit;
+                                padding-inline: 10px;
+                                border: 1px solid var(--light-color)
+
+                            }
                         }
                     }
+              
+            }
+            .active-searchSection{
+                bottom: 100%;
+                transition: all ease 0.3s;
             }
             .list-menu{
                 display: flex;
                 justify-content: space-around;
+            border-top: 1px solid var(--main-accent);
+            background: var(--main-dark-color);
+
+            padding-top: 10px;
+
                 // border-top: 1px solid var(--main-accent);
                 // padding-top: 1.2vh;
 
