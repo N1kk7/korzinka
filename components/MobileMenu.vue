@@ -71,9 +71,12 @@
 
 
             </section>
+            <!-- class="burger-menu " -->
+            <!-- v-if="openMenu" -->
+
+
             <div 
-                class="burger-menu"
-                v-if="openMenu"
+                :class="{'burger-menu': true, 'active-burgerMenu': openMenu}"
                 ref="mobileMenu"
             >
                 <div class="top-section">
@@ -431,10 +434,12 @@ import { ref, watch } from 'vue';
         .burger-menu{
             position: fixed;
             top: 0;
-            left: 0;
+            left: 100%;
             width: 100%;
             height: 100%;
             background: var(--main-dark-color);
+            transition: all ease 0.3s;
+
             opacity: 0.97;
             z-index: 100;
             display: flex;
@@ -542,6 +547,10 @@ import { ref, watch } from 'vue';
                 align-items: center;
                 padding: 15px 20px;
             }
+        }
+        .active-burgerMenu{
+            left: 0;
+            transition: all ease 0.3s;
         }
     }
 
