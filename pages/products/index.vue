@@ -327,6 +327,8 @@
 
     import { ref, computed, onMounted } from 'vue';
 
+    import { useFetch } from 'nuxt/app';
+
     // import ProductsSlider from "@/components/ProductsSlider.vue";
     // import PaginatedProducts from "@/components/PaginatedProducts.vue";
 
@@ -338,6 +340,17 @@
     import ItemCard from '@/components/ItemCard.vue';
 
     import products from '@/data/Products/products.ts';
+
+
+    const { data, error } = await useFetch('/api/products');
+
+    const fetchedProducts = computed(() => data.value.data[0].products);
+
+    fetchedProducts.value.forEach((product) => {
+      console.log(product
+      );
+    })
+    // console.log(data.value.data[0].products);
 
     const productsArr = ref(products);
 
@@ -369,7 +382,7 @@
         activeCategory.value.push(list);
       }
     });
-    console.log(activeCategory);
+    // console.log(activeCategory);
     
   } else {
     
@@ -386,7 +399,7 @@
   return acc;
 }, []);
 
-    console.log(activeCategory.value);
+    // console.log(activeCategory.value);
   }
 
  
