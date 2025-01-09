@@ -2,6 +2,9 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "prisma": {
+    "seed": "ts-node --require tsconfig-paths/register prisma/seed.js"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -14,7 +17,10 @@
     "@nuxtjs/i18n": "^9.0.0-rc.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.9.0",
+    "@prisma/client": "^5.22.0",
     "@splidejs/splide": "^4.1.4",
+    "@supabase/supabase-js": "^2.47.11",
+    "express": "^4.21.2",
     "gsap": "^3.12.5",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
@@ -28,9 +34,12 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "prisma": "^5.22.0",
     "sass": "^1.83.0",
     "scss": "^0.2.4",
     "tailwindcss": "^3.4.17",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   }

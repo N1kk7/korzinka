@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     '~/styles/tailwind.css',
     '~/styles/main.scss',
   ],
+  
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -49,6 +50,9 @@ export default defineNuxtConfig({
       viewer: true,
     }
   ], '@pinia/nuxt', '@nuxtjs/i18n'],
+  // prisma: {
+  //   autoSetupPrisma: true,
+  // },
   i18n: {
     lazy: true,
     langDir: "locales",
@@ -91,5 +95,8 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: false,
+  },
+  experimental: {
+    componentIslands: true,
   },
 });

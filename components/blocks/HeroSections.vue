@@ -290,7 +290,7 @@ const observer = new IntersectionObserver(
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            justify-content: center;
+            // justify-content: center;
             margin-top: 10vw;
             background-color: var(--light-color);
             padding-inline: 2rem;
@@ -300,23 +300,23 @@ const observer = new IntersectionObserver(
             min-width: 50%;
             flex: 1;
             @media screen  and (max-width: 768px){
-                justify-content: flex-start;
-                margin-top: 20px;
+       
+                // @include mixins.titleText(20px, flex-start, 700);
 
                 
             }
-            @include mixins.titleText;
             h1{
                 width: 100%;
-                font-size: clamp(1.2em, 6vw, 2em);
                 white-space: nowrap;
                 font-weight: 600;
+                @include mixins.titleText(10vw, center, 700);
+                font-size: clamp(1.2em, 6vw, 2em);
+
+
                 
             }
             .promo-block {
-                // display: flex;
-                // align-items: center;
-                // justify-content: space-around;
+           
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;

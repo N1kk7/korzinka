@@ -329,7 +329,7 @@ import { ref, watch } from 'vue';
 
 
 
-    .mobile-menu{
+    .mobile-menu, .burger-menu{
         display: none;
     }
 
@@ -432,6 +432,7 @@ import { ref, watch } from 'vue';
             }
         }
         .burger-menu{
+            display: block;
             position: fixed;
             top: 0;
             left: 100%;

@@ -1,12 +1,21 @@
-@mixin titleText {
+@mixin titleText ($mt: null, $align: null, $f-weight: 700) {
 
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-size: clamp(1.2rem, 1.8vw, 2rem);
-
+    justify-content: $align;
+    // margin-top: $mt;
     margin-bottom: 40px;
-    font-weight: 700;
+    font-weight: $f-weight;
     color: var(--dark-color);
+    @if $mt != null {
+      margin-top: $mt;
+  }
+
+
+  @if $align != null {
+      justify-content: $align;
+  }
 
 }
 

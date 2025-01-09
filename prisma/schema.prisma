@@ -4,11 +4,63 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
 generator client {
   provider = "prisma-client-js"
 }
 
+
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+
+model Category {
+  id     Int     @id @default(autoincrement())
+  group  String  @unique
+  title  String
+  visible Boolean
+  products Product[]
+}
+
+model Product {
+  id                 Int     @id @default(autoincrement())
+  group_name         String
+  title              String
+  visible            Boolean
+  img                String?
+  price              String?
+  discountPrice      Float?
+  wholesalePrice     String?
+  wholesaleDescription String?
+  counterQuantity    Int?
+  wholesaleOnly      Boolean?
+  category           Category @relation(fields: [group_name], references: [group])
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model News {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  visible   Boolean
+  createdAt DateTime @default(now())
 }

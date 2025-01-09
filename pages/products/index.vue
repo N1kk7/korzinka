@@ -278,10 +278,11 @@
 
                 <!-- <div v-if="item.groupProducts && item.groupProducts.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4"> -->
                 <div v-if="item.groupProducts && item.groupProducts.length" class=" mt-4">
+                  <!-- class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]" -->
 
                   <div 
                     v-for="(groupProduct, groupIndex) in item.groupProducts" 
-                    class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]"
+                    class="card-wrapper bg-gray-200 h-fit "
 
                     :key="groupIndex"
                   >
@@ -301,13 +302,14 @@
                 </div>
 
 
-                <!-- <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4"> -->
                 <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
+                  <!-- class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]" -->
 
                   <div 
+
                     v-for="(product, productIndex) in item.products" 
                     :key="productIndex" 
-                    class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]"
+                    class="card-wrapper bg-gray-200 h-fit"
                   >
                     <ItemCard :product="product" :group="item.group"/>
                   </div>
@@ -474,26 +476,7 @@ onMounted(() => {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            // background: linear-gradient(145deg, #cacaca, #f0f0f0);
-            // box-shadow:  20px 20px 60px #bebebe,
-            //             -20px -20px 60px #ffffff;
-
-            // border: 1px solid var(--primary-color);
-            // background: var(--light-color);
-
-            // border-radius: 50px;
-//             border-radius: 50px;
-// background: #CCD6D8;
-// box-shadow:  20px 20px 60px #adb6b8,
-//              -20px -20px 60px #ebf6f8;
-// border-radius: 58px;
-// background: #CCD6D8;
-// box-shadow:  15px 15px 33px #979ea0,
-//              -15px -15px 33px #ffffff;
-// border-radius: 58px;
-// background: var(--light-color); /* Сделано темнее */
-// box-shadow:  10px 10px 20px #81888A, /* Меньше размытия */
-//              -10px -10px 20px #E6EAEA; /* Меньше размытия */
+ 
 
             cursor: pointer;
             border-radius: 10px;
@@ -525,6 +508,11 @@ onMounted(() => {
           }
         }
         
+    }
+
+    .card-wrapper{
+      box-shadow:  20px 20px 60px #bebebe,
+          -20px -20px 60px #ffffff;
     }
 
   </style>
