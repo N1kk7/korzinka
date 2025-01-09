@@ -24,4 +24,4 @@ logs
 !.env.example
 
 # DB
-supabase.js
+supabase.ts
