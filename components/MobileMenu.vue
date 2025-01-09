@@ -91,14 +91,12 @@
                         </span>
 
                     </div>
-                    <div class="btn cancel-btn" @click="showMenu(false)">
-                        <span>
-                            Закрити
-                        </span>
+                    <div class="btn lang-btn">
+                        <SvgIcon name="lang-icon" size="micro" fill="var(--main-accent)"/>
                         <div class="separator"></div>
-                        <SvgIcon name="close-btn" size="micro" fill="var(--main-accent)"/>
-
-                       
+                        <span>
+                            Українська
+                        </span>
                     </div>
 
                 </div>
@@ -240,19 +238,22 @@
                        
                 </ul>
                 <div class="bottom-section">
-                    <div class="btn lang-btn">
-                        <SvgIcon name="lang-icon" size="micro" fill="var(--main-accent)"/>
-                        <div class="separator"></div>
-                        <span>
-                            Українська
-                        </span>
-                    </div>
+                  
                     <div class="btn profile-btn">
                         <SvgIcon name="default-user" size="micro" fill="var(--main-accent)"/>
                         <div class="separator"></div>
                         <span>
                             Профіль
                         </span>
+                    </div>
+                    <div class="btn cancel-btn" @click="showMenu(false)">
+                        <span>
+                            Закрити
+                        </span>
+                        <div class="separator"></div>
+                        <SvgIcon name="close-btn" size="micro" fill="var(--main-accent)"/>
+
+                       
                     </div>
 
                 </div>
