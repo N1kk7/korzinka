@@ -6,11 +6,11 @@
     "seed": "ts-node --require tsconfig-paths/register prisma/seed.js"
   },
   "scripts": {
-    "build": "nuxt build",
+    "build": "prisma generate && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare && prisma generate"
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
