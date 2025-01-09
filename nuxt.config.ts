@@ -23,6 +23,27 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
   // srcDir: 'src/',
+  // runtimeConfig: {
+  //   public: {
+  //     supabaseUrl: process.env.DATABASE_URL,
+  //     supabaseDirect: process.env.DIRECT_URL,
+  //   },
+  //   databaseUrl: process.env.DATABASE_URL,
+  // },
+  // runtimeConfig: {
+  //   databaseUrl: process.env.NUXT_DATABASE_URL,
+  //   directUrl: process.env.NUXT_DIRECT_URL,
+  //   supabaseUrl: process.env.NUXT_SUPABASE_URL,
+  //   supabaseKey: process.env.NUXT_SUPABASE_KEY
+  // },
+  runtimeConfig: {
+    apiSecretPath: 'NUXT_API_SECRET_PATH',
+    apiSecretKey: 'NUXT_API_SECRET_KEY',
+    public: {
+        apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
+        apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
+    }
+},
   app: {
     baseURL: '/korzinka', 
   },

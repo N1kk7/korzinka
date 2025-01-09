@@ -21,8 +21,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl         = env("DIRECT_URL")
+  url = env("NUXT_API_SECRET_PATH")
+  // directUrl         = env("NUXT_DIRECT_URL")
 }
 
 

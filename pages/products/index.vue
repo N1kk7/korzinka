@@ -326,6 +326,7 @@
   <script setup >
 
     import { ref, computed, onMounted } from 'vue';
+    import { useAsyncData } from 'nuxt/app'
 
     import { useFetch } from 'nuxt/app';
 
@@ -340,11 +341,31 @@
     import ItemCard from '@/components/ItemCard.vue';
 
     import products from '@/data/Products/products.ts';
-    const { data, error } = await useFetch('/api/products');
+    // const { data, error } = await useFetch('/api/products');
 
-    const fetchedProducts = data.value
+    // const fetchedProducts = data.value
 
-    console.log(fetchedProducts);
+    // console.log(fetchedProducts);
+
+    const fetchedProducts = ref([]);
+
+    onMounted(async () => {
+  try {
+    const response = await $fetch('/api/products'); // Ваш API
+    fetchedProducts.value = response;
+    console.log(fetchedProducts.value);
+    
+  } catch (error) {
+    console.error('Error fetching data зкщв:', error);
+  }
+});
+
+    // const { data, pending, error } = await useAsyncData('fetchProducts', async () => {
+    //   const response = await $fetch('/api/products') // или вызов вашей функции Prisma
+    //   return response
+    // })
+
+    // console.log(data.value) 
     
 
 
