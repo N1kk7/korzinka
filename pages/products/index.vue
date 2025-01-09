@@ -340,16 +340,27 @@
     import ItemCard from '@/components/ItemCard.vue';
 
     import products from '@/data/Products/products.ts';
-
-
     const { data, error } = await useFetch('/api/products');
 
-    const fetchedProducts = computed(() => data.value.data[0].products);
+    const fetchedProducts = data.value
 
-    fetchedProducts.value.forEach((product) => {
-      console.log(product
-      );
-    })
+    console.log(fetchedProducts);
+    
+
+
+    // onMounted(() => {
+    
+
+    // const fetchedProducts = data.value.data[0].products;
+    // fetchedProducts.value.forEach((product) => {
+    //   console.log(product
+    //   );
+    // })
+      
+    // })
+
+
+   
     // console.log(data.value.data[0].products);
 
     const productsArr = ref(products);
