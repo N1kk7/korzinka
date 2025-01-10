@@ -249,7 +249,7 @@
 
     }
     .page-layout{
-      background: var(--secondary-color);
+      background: var(--bg-color);
     }
 
   }
