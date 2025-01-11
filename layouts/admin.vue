@@ -3,122 +3,126 @@
 
   
 
-      <div class="sidebar">
-        <div class="title-section">
-          <img src="@/public/img/icons/user-gear.png" alt="admin-img">
+      <div class="sidebar fixed left-0 top-0">
+        <div class="sidebar-wrapper">
+          <div class="title-section">
+          <img src="@/public/img/only-dog.png" alt="admin-img">
           <h1>
-            Привіт 
+            Адмін
             <strong>
-              Марина!
+              Панель
             </strong>
           </h1>
           <span>
             https://www.korzinka.in.ua
           </span>
 
-        </div>
-        <hr>
-        <ul class="list-options">
-          <li>
+          </div>
+          <hr>
+          <ul class="list-options">
+            <li>
 
-            <NuxtLink to="/admin/">
-              <img src="@/public/img/icons/house.png" alt="option">
-              <span>
-                Головна
-              </span>
-            </NuxtLink>
-           
-          </li>
-          <!--<hr>-->
-          <li>
-
-            <NuxtLink to="/admin/analytics">
-
-              <img src="@/public/img/icons/analysis.png" alt="option">
-              <span>
-                Аналітика
-              </span>
-            </NuxtLink>
-          </li>
-          <!--<hr>-->
-
-          <li>
-            <NuxtLink to="/admin/buyers">
-              <img src="@/public/img/icons/buying.png" alt="option">
-              <span>
-                Покупці
-              </span>
-            </NuxtLink>
-          </li>
-          <!--<hr>-->
-
-          <li>
-            <NuxtLink to="/admin/notifications">
-              <img src="@/public/img/icons/notification.png" alt="option">
-              <span>
-                Повідомлення
-              </span>
-            </NuxtLink>
-          </li>
-          <!--<hr>-->
-
-          <li>
-            <NuxtLink to="/admin/orders">
-              <img src="@/public/img/icons/order.png" alt="option">
+              <NuxtLink to="/admin/">
+                <img src="@/public/img/icons/house.png" alt="option">
                 <span>
-                  Замовлення
+                  Головна
                 </span>
-                <div class="label">
-                <strong>
-                  10
-                </strong>
-                <!-- <span>10</span> -->
-              </div>
-            </NuxtLink>
-         
-          </li>
-          <!--<hr>-->
+              </NuxtLink>
+            
+            </li>
+            <!--<hr>-->
+            <li>
 
-          <li>
-            <NuxtLink to="/admin/payment">
-              <img src="@/public/img/icons/cash-payment.png" alt="option">
+              <NuxtLink to="/admin/analytics">
+
+                <img src="@/public/img/icons/analysis.png" alt="option">
+                <span>
+                  Аналітика
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/buyers">
+                <img src="@/public/img/icons/buying.png" alt="option">
+                <span>
+                  Покупці
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/notifications">
+                <img src="@/public/img/icons/notification.png" alt="option">
+                <span>
+                  Повідомлення
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/orders">
+                <img src="@/public/img/icons/order.png" alt="option">
+                  <span>
+                    Замовлення
+                  </span>
+                  <div class="label">
+                  <strong>
+                    10
+                  </strong>
+                  <!-- <span>10</span> -->
+                </div>
+              </NuxtLink>
+          
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/payment">
+                <img src="@/public/img/icons/cash-payment.png" alt="option">
+                <span>
+                  Оплата
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/products">
+                <img src="@/public/img/icons/cubes.png" alt="option">
+                <span>
+                  Товари
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+            <li>
+              <NuxtLink to="/admin/settings">
+                <img src="@/public/img/icons/setting.png" alt="option">
+                <span>
+                  Налаштування
+                </span>
+              </NuxtLink>
+            </li>
+            <!--<hr>-->
+
+
+          </ul>
+          <div class="exit-btn">
+            <NuxtLink to="/">
+              <img src="@/public/img/icons/exit.png" alt="exit">
               <span>
-                Оплата
+                Вихід
               </span>
             </NuxtLink>
-          </li>
-          <!--<hr>-->
+          </div>
 
-          <li>
-            <NuxtLink to="/admin/products">
-              <img src="@/public/img/icons/cubes.png" alt="option">
-              <span>
-                Товари
-              </span>
-            </NuxtLink>
-          </li>
-          <!--<hr>-->
-
-          <li>
-            <NuxtLink to="/admin/settings">
-              <img src="@/public/img/icons/setting.png" alt="option">
-              <span>
-                Налаштування
-              </span>
-            </NuxtLink>
-          </li>
-          <!--<hr>-->
-
-
-        </ul>
-        <div class="exit-btn">
-          <NuxtLink to="/">
-            <img src="@/public/img/icons/exit.png" alt="exit">
-            <span>
-              Вихід
-            </span>
-          </NuxtLink>
         </div>
+       
       </div>
   
       <main class="page-layout">
@@ -135,12 +139,27 @@
 <style lang="scss">
 
   .admin-layout {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
+    // display: grid;
+    // grid-template-columns: minmax(200px, 1fr) 4fr;
+    display: flex;
+
     height: 100vh;
+    position: relative;
+
     .sidebar{
       background: var(--dark-color);
-    position: relative;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 250px;
+      z-index: 100;
+    }
+    .sidebar-wrapper{
+      width: 100%;
+      height: 100%;
+      position: sticky;
+      overflow-y: auto;
 
       .title-section{
         display: flex;
@@ -153,6 +172,8 @@
         img{
           width: 5vw;
           margin: 1em;
+          background: var(--light-color);
+          border-radius: 30%
         }
         h1{
           font-size: 1.5rem;
@@ -246,13 +267,20 @@
         transition: all ease 0.3s;
         // border-left: 5px solid white;
       }
+    }
+
+      
 
     }
     .page-layout{
       background: var(--bg-color);
+      height: 150vh;
+      margin-left: 250px;
+      flex-grow: 1;
+      overflow: auto;
     }
 
-  }
+  
 
 </style>
 

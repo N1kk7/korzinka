@@ -22,6 +22,10 @@ import { useModalStore } from '#imports';
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
 
+// ADMIN
+
+import AddProduct from './admin/AddProduct.vue';
+
 const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
 const currentModal = computed(() => modalStore.currentModal);
