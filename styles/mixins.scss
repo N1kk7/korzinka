@@ -107,3 +107,8 @@
         
       }
 }
+
+@mixin defaultShadow {
+  border-radius: 10px;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #fff;
+}

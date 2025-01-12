@@ -12,6 +12,8 @@ export const useModalStore = defineStore('modal', {
     actions: {
 
         showModal(modalName: string) {
+            console.log('modalName', modalName);
+            
             this.isVisible = true;
             this.currentModal = modalName;
             // this.modalProps = props;

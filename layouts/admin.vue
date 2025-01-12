@@ -128,11 +128,32 @@
       <main class="page-layout">
         <!-- Страница будет рендериться здесь -->
         <slot />
+        <Tooltips/>
+
       </main>
+      <Modal>
+          <template #default="{ openModal, closeModal}">
+            <component
+              :is="currentModal"
+              v-bind="modalProps"
+              :openModal="openModal"
+              :closeModal="closeModal"
+            />
+          </template>
+        </Modal>
     </div>
 </template>
 
 <script setup>
+    import Modal from '~/components/Modals/Modal.vue';
+    import Tooltips from '~/components/shared/Tooltips.vue';  
+    import { useModalStore } from "#imports";
+
+    const modalStore = useModalStore();
+    const currentModal = computed(() => modalStore.currentModal);
+    const modalProps = computed(() => modalStore.modalProps);
+
+
 
 </script>
 

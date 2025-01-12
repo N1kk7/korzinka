@@ -56,10 +56,13 @@
                 
                 </div>
                 <div class="settings-block flex justify-end items-stretch gap-5">
-                    <button>
+                    <button
+                    >
                         Додати категорію
                     </button>
-                    <button>
+                    <button
+                        @click="addProductPopup"
+                    >
                         Додати товар
                     </button>
                     <button>
@@ -83,6 +86,15 @@
 <script setup >
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
+    import { useModalStore } from '#imports';
+
+    const modalStore = useModalStore();
+
+
+    const addProductPopup = () => {
+        console.log('call button')
+        modalStore.showModal('AddProduct');
+    }
 
     definePageMeta({
         layout: 'admin'

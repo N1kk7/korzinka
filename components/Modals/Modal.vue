@@ -1,8 +1,8 @@
 <template>
     <div v-if="isVisible" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
-      <p>Current Modal: {{ currentModal }}</p>
-      <p>Modal Props: {{ modalProps }}</p>
+      <!-- <p>Current Modal: {{ currentModal }}</p>
+      <p>Modal Props: {{ modalProps }}</p> -->
         <slot :openModal="openModal" :closeModal="closeModal" />
         <component
           v-if="currentModal"
@@ -21,10 +21,11 @@ import { useModalStore } from '#imports';
 
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
+// import ProductModal from '~/components/Modals/admin/AddProduct.vue';
 
 // ADMIN
 
-import AddProduct from './admin/AddProduct.vue';
+import AddProduct from '~/components/Modals/admin/AddProduct.vue';
 
 const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
@@ -33,7 +34,8 @@ const modalProps = computed(() => modalStore.modalProps);
 
 const modalComponents = {
   LangModal,
-  ThemeModal
+  ThemeModal,
+  AddProduct,
 }
 
 
@@ -65,5 +67,6 @@ const openModal = (modalName, props = {}) => {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  overflow: hidden;
 }
 </style>
