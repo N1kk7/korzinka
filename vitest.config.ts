@@ -15,6 +15,7 @@ export default defineConfig({
     // ],
     alias: {
       '~': path.resolve(__dirname, './')
+      // '#imports': path.resolve(__dirname, 'src'),
     }
 
   },

@@ -10,6 +10,7 @@
           v-bind="modalProps"
           :openModal="openModal"
           :closeModal="closeModal"
+          @addNewItem="addNewItem"
         />
       </div>
     </div>
@@ -17,6 +18,7 @@
 
 <script setup>
 // import { useModalStore } from '@/stores/modal-store';
+import { defineEmits} from 'vue';
 import { useModalStore } from '#imports';
 
 import LangModal from '~/components/Modals/LangModal.vue';
@@ -32,11 +34,20 @@ const isVisible = computed(() => modalStore.isVisible);
 const currentModal = computed(() => modalStore.currentModal);
 const modalProps = computed(() => modalStore.modalProps);
 
+const emit = defineEmits(['addNewItem']);
+
 const modalComponents = {
   LangModal,
   ThemeModal,
   AddProduct,
 }
+
+const addNewItem = (obj) => {
+        emit('addNewItem', obj);
+
+    };
+
+
 
 
 

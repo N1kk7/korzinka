@@ -9,7 +9,8 @@
       "~/*": ["./*"],
       "#app": [".nuxt/types/app/index.d.ts"],
       "#imports": [".nuxt/types/app/imports.d.ts"],
-      "#components": [".nuxt/types/app/components.d.ts"]
+      "#components": [".nuxt/types/app/components.d.ts"],
+      // "#imports/*": ["src/*"]
     }
   }
 }

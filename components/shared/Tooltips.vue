@@ -1,71 +1,64 @@
+
+
 <template>
-
-    <div class="tooltip border-b-4 p-4 bg-red-200 border-red-600 text-red-600">
-        <div class="text-wrapper">
-
-        </div>
-        <p class="font-bold">
-            Success
-            <!-- {{ tooltipStatus }} -->
-        </p>
-        <p>
-            Congratulations, you are the best player.
-            <!-- {{ tooltipMessage }} -->
-        </p>
+    <div :class="`tooltip border-b-4 p-4 ${tooltipStyle}`">
+      <div class="text-wrapper">
+        <p class="font-bold">{{ tooltipType }}</p>
+        <!-- <p>{{ tooltipMessage }}</p> -->
+        <slot />
+      </div>
+     
     </div>
+  </template>
+
+<script setup>
+import { watch, onMounted } from 'vue';
+
+// const tooltipStore = useTooltipStore();
+
+const tooltipStyle = ref('');
+const showTooltip = ref(false);
+const tooltipMessage = ref('');
+const tooltipType = ref('');
+
+const props = defineProps({
+    tooltipStatus: {
+        type: String,
+        default: 'success',
+    },
+
+    
+})
+
+const setTooltip = (type) => {
+    console.log('type', type);
+    
+  switch (type) {
+    case 'success':
+        
+      tooltipStyle.value = 'bg-green-200 border-green-600 text-green-600';
+      break;
+    case 'info':
+        tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
+        break;
+    case 'warning':
+        tooltipStyle.value = 'bg-yellow-200 border-yellow-600 text-yellow-600';
+        break;
+    case 'error':
+        tooltipStyle.value = 'bg-red-200 border-red-600 text-red-600';
+        break;
+    default:
+        tooltipType.value = 'Повідомлення';
+        tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
+      break;
+  }
+};
 
 
-</template>
-
-
-<script setup lang="ts">
-
-    import { ref, onMounted } from 'vue';
-
-
-    const tooltipStyle = ref('');
-    const tooltipType = ref('');
-
-    const {tooltipStatus, tooltipMessage} = defineProps(['tooltipStatus', 'tooltipMessage']);
-
-    // defineProps({
-    //     tooltipStatus: {
-    //         type: String,
-    //         required: true,
-    //     },
-    //     tooltipMessage: {
-    //         type: String,
-    //         required: true,
-    //     }
-    // })
-
-    const setTooltip = (type: string) => {
-
-        switch(type) {
-            case 'success':
-                tooltipStyle.value = 'bg-green-200 border-green-600 text-green-600';
-                return 'Success';
-            break;
-            case 'info':
-                tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
-                return 'Info';
-            break;
-            case 'warning':
-                tooltipStyle.value = 'bg-yellow-200 border-yellow-600 text-yellow-600';
-                return 'Warning';
-            break;
-            case 'error':
-                tooltipStyle.value = 'bg-red-200 border-red-600 text-red-600';
-                return 'Warning';
-            break;
-        }
-
-    }
-
-    onMounted(() => {
-        tooltipType.value = setTooltip(tooltipStatus);
-    })
-
+onMounted(() => {
+    tooltipType.value = props.tooltipStatus;
+    setTooltip(props.tooltipStatus);
+})
 
 </script>
 
@@ -77,15 +70,29 @@
         text-align: center;
         position: absolute;
         padding-left: 250px;
-        top: 0;
+        top: 20px;
         right: 0;
+        animation: tooltipAnimation 5s ease-in-out forwards; 
+        z-index: 1010;
 
-        // pos
     }
 
     @keyframes tooltipAnimation {
+        0% {
+            top: -100%; 
+            opacity: 0; 
+        }
         10% {
-            
+            top: 0; 
+            opacity: 1;
+        }
+        90% {
+            top: 0;
+            opacity: 1;
+        }
+        100% {
+            top: -100%;
+            opacity: 0;
         }
         
     }

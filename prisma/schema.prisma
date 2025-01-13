@@ -41,6 +41,7 @@ model Product {
   visible            Boolean
   img                String?
   price              String?
+  stock              Int?     @default(0)
   discountPrice      Float?
   wholesalePrice     String?
   wholesaleDescription String?

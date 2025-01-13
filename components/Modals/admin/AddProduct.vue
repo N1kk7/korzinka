@@ -120,7 +120,10 @@
                     <button class="clearForm">
                         Очистити форму
                     </button>
-                    <button class="addItem bg-[var(--dark-color)]">
+                    <button 
+                        class="addItem bg-[var(--dark-color)]"
+                        @click="addNewItem"
+                    >
                         Додати товар
                     </button>
                 </div>
@@ -133,12 +136,17 @@
 </template>
 
 <script setup>
-    import {ref} from 'vue';
+    import {ref, defineEmits} from 'vue';
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
+    // import { useTooltipStore } from '@/stores/tooltip-store.ts';
+
 
     const modalStore = useModalStore();
+    // const tooltipStore = useTooltipStore();
+
+    const emit = defineEmits(['addNewItem']);
 
 
 
@@ -158,13 +166,27 @@
     }
 
     const clearForm = () => {
-        
+
 
     }
 
     const addNewItem = () => {
-
-    }
+        emit('addNewItem', {
+            status: 'errbsdor',
+            message: 'Товар успішно додано'
+        });
+    // try {
+    //     console.log('add new item', tooltipStore);
+        
+    //     tooltipStore.showTooltip({
+    //         tooltipStatus: 'success',
+    //         tooltipMessage: 'Товар успішно додано',
+    //         showTooltip: true
+    //     });
+    // } catch (error) {
+    //     console.error('Error adding new item:', error);
+    // }
+    };
 
 
 </script>
@@ -174,12 +196,7 @@
 
 
     @use './/styles/mixins.scss' as mixins;
-    // button{
-    //         margin: 50px 0 20px;
-    //         @include mixins.defaultShadow;
-    //         @include mixins.descriptionText(500, var(--dark-color));
-    //         padding: 10px 20px;
-    //     }
+   
 
     .add-image{
         // width: 50%;

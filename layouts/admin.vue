@@ -128,10 +128,20 @@
       <main class="page-layout">
         <!-- Страница будет рендериться здесь -->
         <slot />
-        <Tooltips/>
+        <!-- <Tooltips :props="tooltipProps"/> -->
+        <Tooltips 
+          v-if="showTooltip"
+          :tooltipStatus="tooltipStatus"
+
+
+
+        >
+        {{ tooltipMessage }}
+        </Tooltips>
+        <!-- :tooltipProps="tooltipProps"  -->
 
       </main>
-      <Modal>
+      <Modal @addNewItem="addNewItem">
           <template #default="{ openModal, closeModal}">
             <component
               :is="currentModal"
@@ -145,13 +155,53 @@
 </template>
 
 <script setup>
+    import { computed, toRefs, watch, ref} from 'vue';
     import Modal from '~/components/Modals/Modal.vue';
     import Tooltips from '~/components/shared/Tooltips.vue';  
     import { useModalStore } from "#imports";
 
+
+    const showTooltip = ref(false);
+    const tooltipStatus = ref('');
+    const tooltipMessage = ref('');
+
+
+
+
     const modalStore = useModalStore();
+    // const tooltipStore = useTooltipStore();
     const currentModal = computed(() => modalStore.currentModal);
     const modalProps = computed(() => modalStore.modalProps);
+    // const tooltipProps = computed(() => tooltipStore.tooltipProps);
+    // const tooltipProps = computed(() => tooltipStore.tooltipProps);
+//     watch(tooltipStore, (newVal, oldVal) => {
+//     console.log('tooltipProps изменился:', newVal.tooltipProps);
+// });
+    // const { tooltipProps } = toRefs(tooltipStore);
+
+    // console.log('tooltipProps-admin', tooltipStore.tooltipProps);
+
+    // Следим за изменениями tooltipProps, чтобы логировать изменения
+// watch(tooltipProps, (newVal, oldVal) => {
+//   console.log('tooltipProps изменился: from admin', newVal);
+// });
+
+const addNewItem = (obj) => {
+  console.log(obj);
+  const {status, message} = obj;
+  
+  tooltipStatus.value = status;
+  tooltipMessage.value = message;
+  showTooltip.value = true;
+  setTimeout(() => {
+    showTooltip.value = false;
+
+
+  }, 3000)
+    
+  
+}
+    
 
 
 
