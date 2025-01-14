@@ -141,7 +141,7 @@
         <!-- :tooltipProps="tooltipProps"  -->
 
       </main>
-      <Modal @addNewItem="addNewItem">
+      <Modal @tooltip="tooltip">
           <template #default="{ openModal, closeModal}">
             <component
               :is="currentModal"
@@ -186,8 +186,8 @@
 //   console.log('tooltipProps изменился: from admin', newVal);
 // });
 
-const addNewItem = (obj) => {
-  console.log(obj);
+const tooltip = (obj) => {
+  // console.log(obj);
   const {status, message} = obj;
   
   tooltipStatus.value = status;

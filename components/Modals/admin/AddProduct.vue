@@ -171,7 +171,7 @@
     }
 
     const addNewItem = () => {
-        emit('addNewItem', {
+        emit('tooltip', {
             status: 'errbsdor',
             message: 'Товар успішно додано'
         });

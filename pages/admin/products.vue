@@ -57,11 +57,12 @@
                 </div>
                 <div class="settings-block flex justify-end items-stretch gap-5">
                     <button
+                        @click="openPopup('AddCategory')"
                     >
                         Додати категорію
                     </button>
                     <button
-                        @click="addProductPopup"
+                        @click="openPopup('AddProduct')"
                     >
                         Додати товар
                     </button>
@@ -91,9 +92,17 @@
     const modalStore = useModalStore();
 
 
-    const addProductPopup = () => {
-        console.log('call button')
-        modalStore.showModal('AddProduct');
+    const openPopup = (modal) => {
+        switch (modal) {
+            case 'AddProduct':
+                modalStore.showModal('AddProduct');
+                break;
+            case 'AddCategory':
+                modalStore.showModal('AddCategory');
+                break;
+        }
+
+        // modalStore.showModal('AddProduct');
     }
 
     definePageMeta({

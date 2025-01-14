@@ -9,6 +9,7 @@ async function main() {
       group: 'electronics',
       title: 'Electronics',
       visible: true,
+      categoryImg: "",
       products: {
         create: [
           {

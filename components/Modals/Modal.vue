@@ -10,7 +10,7 @@
           v-bind="modalProps"
           :openModal="openModal"
           :closeModal="closeModal"
-          @addNewItem="addNewItem"
+          @tooltip="tooltip"
         />
       </div>
     </div>
@@ -28,6 +28,7 @@ import ThemeModal from '~/components/Modals/ThemeModal.vue';
 // ADMIN
 
 import AddProduct from '~/components/Modals/admin/AddProduct.vue';
+import AddCategory from '~/components/Modals/admin/AddCategory.vue';
 
 const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
@@ -40,10 +41,11 @@ const modalComponents = {
   LangModal,
   ThemeModal,
   AddProduct,
+  AddCategory,
 }
 
-const addNewItem = (obj) => {
-        emit('addNewItem', obj);
+const tooltip = (obj) => {
+        emit('tooltip', obj);
 
     };
 
