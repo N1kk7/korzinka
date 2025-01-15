@@ -5,6 +5,8 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
+      // "@utils/*": ["./utils/*"],
+      "@utils/*": ["./utils/*"],
       "@/*": ["./*"],
       "~/*": ["./*"],
       "#app": [".nuxt/types/app/index.d.ts"],

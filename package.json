@@ -21,6 +21,7 @@
     "@splidejs/splide": "^4.1.4",
     "@supabase/supabase-js": "^2.47.11",
     "express": "^4.21.2",
+    "formidable": "^3.5.2",
     "gsap": "^3.12.5",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
@@ -32,6 +33,7 @@
     "vue3-google-map": "^0.21.0"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "prisma": "^5.22.0",

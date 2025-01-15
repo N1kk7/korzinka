@@ -76,13 +76,13 @@
                     Назва категорії
                 </span>
                
-                <input class="" type="text" placeholder="Введіть назву категорії">
+                <input v-model="categoryName" class="" type="text" placeholder="Введіть назву категорії">
 
             </div>
         </div>
         <div class="button-group flex justify-end items-center gap-2 w-full">
             <button
-                @click="resetForm"
+                @click="shareData"
             >
                 Скасувати
             </button>
@@ -98,10 +98,12 @@
 <script setup>
     import { ref, defineEmits } from 'vue';
     import { useModalStore } from '#imports';
+    import { useFetch, useAsyncData } from 'nuxt/app'
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
 
 
+    // const asyncData = useAsyncData()
 
 
     const modalStore = useModalStore();
@@ -112,6 +114,7 @@
     const filePreview = ref(null);
     const uploadProgress = ref(null);
     const uploadStatus = ref('');
+    const categoryName = ref('')
 
 
     const handleFileUpload = (event) => {
@@ -161,6 +164,89 @@
         setTimeout(() => {
             modalStore.closeModal();
         }, 1000);
+    }
+
+    // console.log(categoryName, 'category name')
+
+
+
+    const shareData = async () => {
+
+        // try {
+        //     const response = await $fetch('/api/upload', {
+        //     method: 'POST',
+        //     body: formData,
+        //     });
+            
+        //     if (response.error) {
+        //     alert(response.error);
+        //     } else {
+        //     imageUrl.value = response.imageUrl;
+        //     }
+        // } catch (err) {
+        //     console.error('Error:', err);
+        // }
+
+        // const fetch = useFetch();
+        const newCategory = {
+  group: 'new-category', // Пример нового имени группы
+  title: 'New Category', // Заголовок новой категории
+  visible: true, // Видимость
+};
+
+// const { data, error } = await useFetch('/api/categories/categories', {
+//   method: 'GET',
+// //   body: JSON.stringify(newCategory),
+// //   headers: {
+// //     'Content-Type': 'application/json',
+// //   },
+// })
+
+// const { data, error } = await $fetch('/api/categories/categories');
+
+
+
+
+
+// const res = await $fetch('/api/categories/categories');
+
+// console.log(res);
+
+
+const res = await $fetch('/api/users',
+{
+    method: 'POST',
+    body: {
+        name: 'Vasiliy',
+        age: 22,
+        dateOfBirth: '22.02.1990'
+    }
+
+})
+
+console.log(res);
+
+
+// res.data[0].products.forEach((elem) => {
+//     console.log(elem.title)
+// });
+
+
+
+
+
+// const { data, error } = await useFetch('/api/categories/categories')
+
+// if (error) {
+// console.error('Ошибка при добавлении категории:', error);
+// } else {
+// console.log('Категория успешно добавлена:', data);
+// }
+
+    
+
+
+
     }
 
 
