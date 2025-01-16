@@ -212,15 +212,25 @@
 
 // console.log(res);
 
+// handleFileUpload();
+// console.log(file.value)
+// const formData = new FormData();
+// formData.append('image', file.value);
+// formData.append('message', 'ololo')
 
-const res = await $fetch('/api/users',
+// console.log(formData);
+
+const res = await $fetch('/api/products',
 {
     method: 'POST',
-    body: {
-        name: 'Vasiliy',
-        age: 22,
-        dateOfBirth: '22.02.1990'
-    }
+
+    body: file.value,
+    // body: {
+    //     name: 'Vasiliy',
+    //     age: 22,
+    //     dateOfBirth: '22.02.1990',
+    //     file: formData,
+    // }
 
 })
 
