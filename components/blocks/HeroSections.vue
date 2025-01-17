@@ -299,6 +299,18 @@ const observer = new IntersectionObserver(
             height: 100%;
             min-width: 50%;
             flex: 1;
+            @media screen and (max-width: 1024px) {
+                z-index: 10;
+                // background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 100%);
+                background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 50%, rgba(0,0,0,1) 100%);
+                svg{
+                    fill: var(--light-color);
+                    width: clamp(20px, 10vw, 50px);
+                }
+                &{
+                    padding-inline: 5vw;
+                }
+            }
             @media screen  and (max-width: 768px){
        
                 // @include mixins.titleText(20px, flex-start, 700);
@@ -311,6 +323,13 @@ const observer = new IntersectionObserver(
                 font-weight: 600;
                 @include mixins.titleText(10vw, center, 700);
                 font-size: clamp(1.2em, 6vw, 2em);
+                @media screen and (max-width: 768px) {
+                    font-size: clamp(1.3em, 7vw, 2.1em);
+                    margin-bottom: 10px;
+                    position: relative;
+                    top: 10%;
+                    color: var(--bg-color)
+                }
 
 
                 
@@ -330,6 +349,25 @@ const observer = new IntersectionObserver(
                     span{
                         // font-size: 1.5rem;
                         font-size: clamp(0.6em, 3vw, 1.5em);
+                    }
+                }
+                @media screen and (max-width: 768px) {
+                    &{
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                    li{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        position: relative;
+
+                    }
+                    span{
+                        color: white;
+                        font-size: clamp(1rem, 1.7vw, 1.5rem);
+                        font-weight: 700;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -395,6 +433,7 @@ const observer = new IntersectionObserver(
         }
         @media screen and (max-width: 1024px) {
             flex-direction: column-reverse;
+            height: 50vh;
             .title-text, .mobile-gallery{
                 flex: 1;
                 height: 50vh;
@@ -404,7 +443,11 @@ const observer = new IntersectionObserver(
         .mobile-gallery{
             height: 50vh;
             width: -webkit-fill-available;
+            position: absolute;
+            top: 0;
+            left: 0;
             overflow: hidden;
+
             .wrapper{
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
@@ -446,7 +489,6 @@ const observer = new IntersectionObserver(
                 
                 img{
                     width: clamp(80px, 40%, 150px);
-                    // height: auto
                     height: 70px;
                     object-fit: cover;
                     
