@@ -213,6 +213,15 @@
                 }
             }
         }
+        @media screen and (max-width: 768px) {
+          &{
+            border-top-left-radius: 20px;
+
+          }
+          .title{
+            padding: 10px 0 5px;
+          }
+        }
     }
 
 
