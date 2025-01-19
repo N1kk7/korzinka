@@ -15,8 +15,8 @@ router.get('/categories', defineEventHandler(() => {
 
 export default useBase('/api/categories', router.handler)
 
-// const filePath = path.resolve(process.cwd(), 'utils/supabase.ts');
-// console.log('Resolved path to supabase.ts:', filePath);
+const filePath = path.resolve(process.cwd(), 'utils/supabase.ts');
+console.log('Resolved path to supabase.ts:', filePath);
 
 
 // export default defineEventHandler(async(event) => {

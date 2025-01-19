@@ -35,7 +35,7 @@ const isVisible = computed(() => modalStore.isVisible);
 const currentModal = computed(() => modalStore.currentModal);
 const modalProps = computed(() => modalStore.modalProps);
 
-const emit = defineEmits(['addNewItem']);
+const emit = defineEmits(['addNewItem', 'tooltip']);
 
 const modalComponents = {
   LangModal,

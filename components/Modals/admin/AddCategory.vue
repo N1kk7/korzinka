@@ -63,6 +63,21 @@
                 </div>
                
             </div>
+            <div class="add-description flex flex-col">
+                <span
+                    class="
+                         text-[var(--dark-color)]
+                        font-sm
+                        text-base
+                        pb-2
+                    "
+                >
+                    Назва групи (англійською) 
+                </span>
+               
+                <input v-model="categoryGroup" class="" type="text" placeholder="Введіть назву групи">
+
+            </div>
             
             <div class="add-description flex flex-col">
                 <span
@@ -77,6 +92,21 @@
                 </span>
                
                 <input v-model="categoryName" class="" type="text" placeholder="Введіть назву категорії">
+
+            </div>
+            <div class="flex flex-col">
+                <span
+                    class="
+                         text-[var(--dark-color)]
+                        font-sm
+                        text-base
+                        pb-2
+                    "
+                >
+                    Показувати групу на сайті? (опціонально)
+                </span>
+               
+                <input v-model="categoryVisible" class="checkbox-input" type="checkbox">
 
             </div>
         </div>
@@ -114,7 +144,17 @@
     const filePreview = ref(null);
     const uploadProgress = ref(null);
     const uploadStatus = ref('');
-    const categoryName = ref('')
+    const categoryName = ref('');
+    const categoryGroup = ref('');
+    const categoryVisible = ref(false);
+
+    // watch(categoryVisible, (newVal) => {
+    //     console.log(newVal);
+    // })
+
+
+
+
 
 
     const handleFileUpload = (event) => {
@@ -155,6 +195,12 @@
         uploadStatus.value = '';
     };
 
+    const resetTextFields = () => {
+        categoryName.value = '';
+        categoryGroup.value = '';   
+        categoryVisible.value = false;
+    }
+
     const sendData = () => {
         resetForm();
         emit('tooltip', {
@@ -172,88 +218,49 @@
 
     const shareData = async () => {
 
-        // try {
-        //     const response = await $fetch('/api/upload', {
-        //     method: 'POST',
-        //     body: formData,
-        //     });
-            
-        //     if (response.error) {
-        //     alert(response.error);
-        //     } else {
-        //     imageUrl.value = response.imageUrl;
-        //     }
-        // } catch (err) {
-        //     console.error('Error:', err);
-        // }
 
-        // const fetch = useFetch();
-        const newCategory = {
-  group: 'new-category', // Пример нового имени группы
-  title: 'New Category', // Заголовок новой категории
-  visible: true, // Видимость
-};
+        // CHECK DATA BLOCK
 
-// const { data, error } = await useFetch('/api/categories/categories', {
-//   method: 'GET',
-// //   body: JSON.stringify(newCategory),
-// //   headers: {
-// //     'Content-Type': 'application/json',
-// //   },
-// })
-
-// const { data, error } = await $fetch('/api/categories/categories');
+        if (categoryName.value.length < 1 && categoryGroup.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть всі поля'
+            });
+            return;
+        } else if (categoryName.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву категорії'
+            });
+            return;
+        } else if (categoryGroup.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву групи'
+            });
+            return;
+        }
 
 
+        const formData = new FormData();
+        formData.append('image', file.value);
+        formData.append('group', categoryGroup.value.toLowerCase());
+        formData.append('title', categoryName.value.toLowerCase());
+        formData.append('visible', categoryVisible.value);
 
 
+        const res = await $fetch('/api/products',
+        {
+            method: 'POST',
 
-// const res = await $fetch('/api/categories/categories');
+            body: formData,
 
-// console.log(res);
+        })
+        resetForm();
 
-// handleFileUpload();
-// console.log(file.value)
-// const formData = new FormData();
-// formData.append('image', file.value);
-// formData.append('message', 'ololo')
+        resetTextFields();
 
-// console.log(formData);
-
-const res = await $fetch('/api/products',
-{
-    method: 'POST',
-
-    body: file.value,
-    // body: {
-    //     name: 'Vasiliy',
-    //     age: 22,
-    //     dateOfBirth: '22.02.1990',
-    //     file: formData,
-    // }
-
-})
-
-console.log(res);
-
-
-// res.data[0].products.forEach((elem) => {
-//     console.log(elem.title)
-// });
-
-
-
-
-
-// const { data, error } = await useFetch('/api/categories/categories')
-
-// if (error) {
-// console.error('Ошибка при добавлении категории:', error);
-// } else {
-// console.log('Категория успешно добавлена:', data);
-// }
-
-    
+        console.log(res, 'res from client');
 
 
 
@@ -292,6 +299,9 @@ console.log(res);
             padding: 5px 10px;
             width: 100%;
             color: var(--dark-color);
+        }
+        .checkbox-input{
+            width: fit-content;
         }
         .label-wrapper{
             .icon-label {
