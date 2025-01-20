@@ -216,6 +216,7 @@ const tooltip = (obj) => {
 
     height: 100vh;
     position: relative;
+    overflow: hidden;
 
     .sidebar{
       background: var(--dark-color);
@@ -345,7 +346,7 @@ const tooltip = (obj) => {
     }
     .page-layout{
       background: var(--bg-color);
-      height: 150vh;
+      height: 100vh;
       margin-left: 250px;
       flex-grow: 1;
       overflow: auto;

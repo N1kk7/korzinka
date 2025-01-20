@@ -1,7 +1,7 @@
 <template>
 
     <div class="items-section h-[100vh]">
-        <div class="admin-container mx-2 my-1 flex flex-col ">
+        <div class="admin-container mx-2 pb-2 flex flex-col ">
             <div class="top-block flex justify-between items-center mt-5">
                 <div class="page-name">
                     <h1 class="mb-0">
@@ -12,15 +12,15 @@
                     <ul class="flex items center gap-1">
                         <li class="el-active">
                             <span>
-                                Всі товари
+                                Товари
                             </span>
                         </li>
                         <li>
                             <span>
-                                Пакети майка
+                                Категорії
                             </span>
                         </li>
-                        <li>
+                        <!-- <li>
                             <span>
                                 Пакети для сміття
                             </span>
@@ -39,7 +39,7 @@
                             <span>
                                 Рукавички 
                             </span>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </div>
@@ -75,6 +75,54 @@
             </div>
 
         <div class="items-window bg-white rounded-lg h-full flex-1">
+            <ul class="item-wrapper px-2 py-3 flex flex-col justify-center gap-2 items-center">
+                <li class="grid grid-cols-[50px_150px_1fr_1fr_50px_50px_50px] items-center gap-2 border-[1px] border-[var(--dark-color)] p-2 rounded-lg w-full"
+                    v-for="(item, index) in fetchedCategories" :key="index">
+                    <div class="img-content ">
+                        <div class="img-wrapper bg-[var(--bg-color)] w-10 h-10 flex justify-center items-center rounded-sm">
+                            <img :src="item.categoryImg" class="data-img w-8 h-8"/>
+
+                        </div>
+
+                    </div>
+                    <div v-if="item.language">
+                        <span>
+                            {{ item.language.title }}
+                        </span>
+                    </div>
+                    <div class="checkbox-wrapper flex flex-col gap-2 items-center justify-center">
+                        <input type="checkbox" :checked="item.visible">
+                        <span>
+                            Показувати категорію
+                        </span>
+                    </div>
+                    
+                    <!-- <div class="button-wrapper ">
+                        <div class="button-tooltip">
+                            <div class="tooltip-text">
+                                <span>
+                                    Додати вкладену категорію
+                                </span>
+                            </div>
+                            <div class="tooltip-arrow"></div>
+                        </div>
+                    </div> -->
+                    <button class="bg-[#d5ddeb] py-2 px-3 rounded-lg border-[0px]">
+                        Додати вкладену категорію
+
+                    </button>
+                    <button class="bg-yellow-400">
+                        <SvgIcon name="edit-btn" size="micro" fill="var(--dark-color)"/>
+                    </button>
+                    <button class="bg-green-500">
+                        <SvgIcon name="save-btn" size="micro" fill="var(--dark-color)"/>
+                    </button>
+                    <button class="bg-red-500">
+                        <SvgIcon name="close-btn" size="micro" fill="white"/>
+                    </button>
+                </li>
+
+            </ul>
         </div>
         </div>
        
@@ -86,10 +134,13 @@
 
 <script setup >
 
+    import { onMounted, ref } from 'vue';
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
 
     const modalStore = useModalStore();
+
+    const fetchedCategories = ref([]);
 
 
     const openPopup = (modal) => {
@@ -108,6 +159,27 @@
     definePageMeta({
         layout: 'admin'
     })
+
+    onMounted( async () => {
+        try {
+            const getCategories = await $fetch('/api/category');
+            // console.log('log fetch');
+            
+            if (getCategories.data.length > 0) {
+                fetchedCategories.value = getCategories.data.map((item) => ({
+                    ...item,
+                    language: item.translations.find(translation => translation.language === 'uk')
+                }))
+            }
+            // console.log(fetchedCategories.success, 'fetchedCategories from getCategories')
+
+        } catch (error) {
+
+            console.log(error, 'error from getCategories')
+        }
+    })
+
+    // console.log(fetchedCategories.value, 'fetchedCategories')
    
 
 </script>
