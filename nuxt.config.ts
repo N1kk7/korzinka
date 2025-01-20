@@ -52,7 +52,9 @@ export default defineNuxtConfig({
     '~/styles/tailwind.css',
     '~/styles/main.scss',
   ],
-  
+  imports: {
+    dirs: ['helpers']
+  },
   postcss: {
     plugins: {
       tailwindcss: {},

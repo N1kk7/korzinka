@@ -12,30 +12,137 @@ datasource db {
 }
 
 
+// model Category {
+//   id     Int     @id @default(autoincrement())
+//   group  String  @unique
+//   title  String
+//   visible Boolean
+//   categoryImg String
+//   products Product[]
+// }
+// model Category {
+//   id          Int                  @id @default(autoincrement())
+//   group       String
+//   visible     Boolean
+//   translations CategoryTranslation[]
+// }
+
+// model CategoryTranslation {
+//   id          Int       @id @default(autoincrement())
+//   categoryId  Int       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   language    String    // Язык перевода (например, "en", "ru")
+//   title       String    // Переведенное название категории
+//   description String?   // Описание (опционально)
+//   Category    Category  @relation(fields: [categoryId], references: [id])
+// }
+
+// model Product {
+//   id                 Int     @id @default(autoincrement())
+//   group_name         String
+//   title              String
+//   visible            Boolean
+//   img                String?
+//   price              String?
+//   stock              Int?     @default(0)
+//   discountPrice      Float?
+//   wholesalePrice     String?
+//   wholesaleDescription String?
+//   counterQuantity    Int?
+//   wholesaleOnly      Boolean?
+//   category           Category @relation(fields: [group_name], references: [group])
+// }
+
+// model Category {
+//   id          Int                  @id @default(autoincrement())
+//   group       String               @unique
+//   visible     Boolean
+//   translations CategoryTranslation[]
+//   products    Product[]
+// }
+
+// model CategoryTranslation {
+//   id          Int      @id @default(autoincrement())
+//   categoryId  Int      // Поле внешнего ключа
+//   language    String   // Язык перевода (например, "en", "ru", "uk")
+//   title       String   // Переведенное название категории
+//   description String?  // Переведенное описание категории
+//   Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+// }
+
+// model Product {
+//   id                 Int                  @id @default(autoincrement())
+//   categoryId         Int                  // Поле внешнего ключа для связи с Category
+//   title              String               // Основное название товара
+//   visible            Boolean
+//   img                String?
+//   price              String?
+//   stock              Int?                 @default(0)
+//   discountPrice      Float?
+//   wholesalePrice     String?
+//   counterQuantity    Int?
+//   wholesaleOnly      Boolean?
+//   translations       ProductTranslation[] // Связь с переводами
+//   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+// }
+
+// model ProductTranslation {
+//   id                 Int      @id @default(autoincrement())
+//   productId          Int      // Поле внешнего ключа
+//   language           String   // Язык перевода (например, "en", "ru", "uk")
+//   title              String   // Переведенное название товара
+//   productDescription String?  // Переведенное описание товара
+//   wholesaleDescription String? // Переведенное оптовое описание
+//   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
+
 model Category {
-  id     Int     @id @default(autoincrement())
-  group  String  @unique
-  title  String
-  visible Boolean
+  id           Int                  @id @default(autoincrement())
+  group        String               @unique
+  visible      Boolean
   categoryImg String
-  products Product[]
+  parentId     Int?                 // ID родительской категории (null для корневых категорий)
+  parent       Category?            @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Cascade) // Связь с родительской категорией
+  subcategories Category[]          @relation("CategoryParent") // Связь с подкатегориями
+  translations CategoryTranslation[]
+  products     Product[]
+}
+
+model CategoryTranslation {
+  id          Int      @id @default(autoincrement())
+  categoryId  Int      // Поле внешнего ключа
+  language    String   // Язык перевода (например, "en", "ru", "uk")
+  title       String   // Переведенное название категории
+  description String?  // Переведенное описание категории
+  Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model Product {
-  id                 Int     @id @default(autoincrement())
-  group_name         String
-  title              String
+  id                 Int                  @id @default(autoincrement())
+  categoryId         Int                  // Поле внешнего ключа для связи с Category
+  title              String               // Основное название товара
   visible            Boolean
   img                String?
   price              String?
-  stock              Int?     @default(0)
+  stock              Int?                 @default(0)
   discountPrice      Float?
   wholesalePrice     String?
-  wholesaleDescription String?
   counterQuantity    Int?
   wholesaleOnly      Boolean?
-  category           Category @relation(fields: [group_name], references: [group])
+  translations       ProductTranslation[] // Связь с переводами
+  category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
+
+model ProductTranslation {
+  id                 Int      @id @default(autoincrement())
+  productId          Int      // Поле внешнего ключа
+  language           String   // Язык перевода (например, "en", "ru", "uk")
+  title              String   // Переведенное название товара
+  productDescription String?  // Переведенное описание товара
+  wholesaleDescription String? // Переведенное оптовое описание
+  Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+
 
 model User {
   id        Int      @id @default(autoincrement())

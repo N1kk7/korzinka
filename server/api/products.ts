@@ -62,6 +62,8 @@ export default defineEventHandler(async (event) => {
                 const textFields: Record<string, string> = {};
                 const uploadedFiles = [];
 
+                const date = new Date();
+
             
                 for (const item of files) {
                     if (item.type) {
@@ -73,7 +75,9 @@ export default defineEventHandler(async (event) => {
                     }
                 }
 
-                const title = textFields.title;
+                const titleUk = textFields.titleUk;
+                const titleEn = textFields.titleEn;
+                const titleRu = textFields.titleRu;
                 const group = textFields.group;
                 const visible = textFields.visible === 'true';
     
@@ -101,9 +105,9 @@ export default defineEventHandler(async (event) => {
 
                 const bucketName = 'Images';
                 const categoryFolder = 'categoryImg';
-                const storagePath = `${categoryFolder}/${fileName}`
+                const storagePath = `${categoryFolder}/${date.getTime()}${fileName}`
 
-                // return { message: blob}
+                // return { message: titleEn, titleRu, titleUk}
 
                 const {data, error} = await supabase.storage
                     .from(bucketName)
@@ -126,16 +130,31 @@ export default defineEventHandler(async (event) => {
                 const newCategory = await prisma.category.create({
                     data: {
                         group,
-                        title,
                         visible: visible, // По умолчанию true
+                        translations: {
+                            create: [
+                                {
+                                    language: 'uk',
+                                    title: titleUk
+                                },
+                                {
+                                    language: 'en',
+                                    title: titleEn,
+                                },
+                                {
+                                    language: 'ru',
+                                    title: titleRu
+                                }
+                            ]
+                        },
                         categoryImg: publicUrl
                     }
                 })
 
 
                 return {
-
-                    message: 'Category created successfully',
+                    tooltipStatus: 'success',
+                    message: 'Категорія створена успішно',
                     category: newCategory,
                     imageUrl: publicUrl,
                 }

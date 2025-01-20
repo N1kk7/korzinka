@@ -72,10 +72,25 @@
                         pb-2
                     "
                 >
-                    Назва групи (англійською) 
+                    Назва категорії (англійською) 
                 </span>
                
-                <input v-model="categoryGroup" class="" type="text" placeholder="Введіть назву групи">
+                <input v-model="categoryNameEn" class="" type="text" placeholder="Введіть назву категорії">
+
+            </div>
+            <div class="add-description flex flex-col">
+                <span
+                    class="
+                         text-[var(--dark-color)]
+                        font-sm
+                        text-base
+                        pb-2
+                    "
+                >
+                    Назва категорії (російською) 
+                </span>
+               
+                <input v-model="categoryNameRu" class="" type="text" placeholder="Введіть назву категорії">
 
             </div>
             
@@ -88,10 +103,10 @@
                         pb-2
                     "
                 >
-                    Назва категорії
+                    Назва категорії (українською)
                 </span>
                
-                <input v-model="categoryName" class="" type="text" placeholder="Введіть назву категорії">
+                <input v-model="categoryNameUk" class="" type="text" placeholder="Введіть назву категорії">
 
             </div>
             <div class="flex flex-col">
@@ -111,6 +126,11 @@
             </div>
         </div>
         <div class="button-group flex justify-end items-center gap-2 w-full">
+            <button
+                @click="getData"
+            >
+                get cat
+            </button>
             <button
                 @click="shareData"
             >
@@ -144,8 +164,11 @@
     const filePreview = ref(null);
     const uploadProgress = ref(null);
     const uploadStatus = ref('');
-    const categoryName = ref('');
-    const categoryGroup = ref('');
+    const categoryNameUk = ref('');
+    const categoryNameEn = ref('');
+    const categoryNameRu = ref('');
+
+    // const categoryGroup = ref('');
     const categoryVisible = ref(false);
 
     // watch(categoryVisible, (newVal) => {
@@ -196,8 +219,10 @@
     };
 
     const resetTextFields = () => {
-        categoryName.value = '';
-        categoryGroup.value = '';   
+        categoryNameUk.value = '';
+        categoryNameEn.value = '';
+        categoryNameRu.value = '';
+        // categoryGroup.value = '';   
         categoryVisible.value = false;
     }
 
@@ -218,25 +243,56 @@
 
     const shareData = async () => {
 
+        const translitString = transliterate(categoryNameUk.value)
 
+        // const date = new Date()
+
+        // console.log(date.getTime());
+        // if (file.value) {
+        //     console.log(file.value, 'file value true')
+
+        // } else {
+        //     console.log(file.value, 'file value false')
+
+        // }
+
+
+        // return 
         // CHECK DATA BLOCK
 
-        if (categoryName.value.length < 1 && categoryGroup.value.length < 1) {
+        if (categoryNameUk.value.length < 1 
+            && 
+            categoryNameEn.value.length < 1
+            &&
+            categoryNameRu.value.length < 1)
+        {
             emit('tooltip', {
                 status: 'error',
                 message: 'Заповніть всі поля'
             });
             return;
-        } else if (categoryName.value.length < 1) {
+        } else if (categoryNameUk.value.length < 1) {
             emit('tooltip', {
                 status: 'error',
-                message: 'Заповніть назву категорії'
+                message: 'Заповніть назву категорії Українською'
             });
             return;
-        } else if (categoryGroup.value.length < 1) {
+        } else if (categoryNameEn.value.length < 1) {
             emit('tooltip', {
                 status: 'error',
-                message: 'Заповніть назву групи'
+                message: 'Заповніть назву категорії Англійською'
+            });
+            return;
+        } else if (categoryNameRu.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву категорії Російською'
+            });
+            return;
+        } else if (!file.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Оберіть іконку для обраної категорії'
             });
             return;
         }
@@ -244,8 +300,10 @@
 
         const formData = new FormData();
         formData.append('image', file.value);
-        formData.append('group', categoryGroup.value.toLowerCase());
-        formData.append('title', categoryName.value.toLowerCase());
+        formData.append('group', translitString.toLowerCase());
+        formData.append('titleUk', categoryNameUk.value.toLowerCase());
+        formData.append('titleEn', categoryNameEn.value.toLowerCase());
+        formData.append('titleRu', categoryNameRu.value.toLowerCase());
         formData.append('visible', categoryVisible.value);
 
 
@@ -260,10 +318,26 @@
 
         resetTextFields();
 
+        emit('tooltip', {
+            status: res.tooltipStatus,
+            message: `Категорія ${res.message} успішно створена`
+        })
+
         console.log(res, 'res from client');
 
 
 
+    }
+
+    const getData = async () => {
+        try {
+            const resData = await $fetch('/api/category')
+            console.log(resData, 'resData from getData');
+
+        } catch (error) {
+            console.log(error.message, 'error from getData')
+        }
+ 
     }
 
 
