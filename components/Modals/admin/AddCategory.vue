@@ -30,6 +30,7 @@
 
                         </label>
                         <input type="file" id="file_out" class="icon-file" @change="handleFileUpload">
+
                     </div>
                     <div class="icon-preview flex items-center justify-center">
                         <!-- <SvgIcon name="default-picture" size="big" fill="var(--dark-color)"/> -->
@@ -378,25 +379,7 @@
             width: fit-content;
         }
         .label-wrapper{
-            .icon-label {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 5px;
-                height: 32px;
-                padding: 8px 20px 7px;
-                border-radius: 5px;
-                font-size: 12px;
-                text-align: center;
-                background-color: #f5f6f7;
-                border: 1px solid var(--dark-color);
-                color: #282828;
-                cursor: pointer;
-            }
-
-            .icon-file {
-                display: none;
-            }
+            @include mixins.labelFile
         }
         
 

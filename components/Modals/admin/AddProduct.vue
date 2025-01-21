@@ -1,34 +1,33 @@
 <template>
 
-    <div class="add-product-wrapper grid grid-cols-[1fr_2fr] gap-5 h-[100vh] w-full py-10">
-        <div class="add-image flex relative flex-col gap-5">
-            <div class="add-image-content border-[2px] border-dashed border-[var(--main-dark-color)] rounded-lg p-5  w-full h-full flex items-center justify-center">
-                <div class="add-image-wrapper flex items-center justify-center flex-col relative top-10 w-4/5">
-                    <div class="picture-container relative mb-5">
-                        <div class="picture first"> </div>
-                        <div class="picture second"> </div>
-                        <div class="picture third"> </div>
+    <div class="add-product-wrapper flex items-center justify-center w-full h-[100vh]">
+            <div class="grid grid-cols-[1fr_2fr] gap-5  height-[90vh] relative">
+                <div class="add-image flex relative flex-col gap-5 h-[90vh]">
+                    <div class="add-image-content border-[2px] border-dashed border-[var(--main-dark-color)] rounded-lg p-5  w-full h-full flex items-center justify-center">
+                        <div class="add-image-wrapper flex items-center justify-center flex-col relative top-10 w-4/5">
+                            <div class="picture-container relative mb-5">
+                                <div class="picture first"> </div>
+                                <div class="picture second"> </div>
+                                <div class="picture third"> </div>
+                            </div>
+                            <h2 class="img-title text-center">
+                                Завантажте файли зображення
+                            </h2>
+                            <span class="text-center">
+                                Зображення повинні бути в форматі .jpg, .png, .jpeg
+                            </span>
+                            <button>
+                                Вибрати
+                            </button>
+                        </div>
                     </div>
-                    <h2 class="img-title text-center">
-                        Завантажте файли зображення
-                    </h2>
-                    <span class="text-center">
-                        Зображення повинні бути в форматі .jpg, .png, .jpeg
-                    </span>
-                    <button>
-                        Вибрати
-                    </button>
+                    
+                    <div class="prewiev-block flex justify-center items-center">
+                        <SvgIcon name="default-picture" size="large" fill="var(--dark-color)"/>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="prewiev-block flex justify-center items-center">
-                <SvgIcon name="default-picture" size="large" fill="var(--dark-color)"/>
-            </div>
-            
-
-        </div>
-        <div class="add-info">
-            <div class="top-content flex items-center justify-between ">
+                <div class="add-info h-[90vh]">
+                    <div class="top-content flex items-center justify-between ">
                 <h2 class="
                     text-[var(--dark-color)]
                     font-bold
@@ -53,7 +52,7 @@
                     Основна інформація картки товару
                 </span>
             </div>
-            <div class="options mt-4 flex flex-col justify-between w-full h-4/5 gap-3 border-[1px] border-[var(--dark-color)] rounded-lg px-4 pb-6 pt-4 overflow-scroll">
+            <div class="options mt-4 flex flex-col justify-between w-full h-auto max-h-[85%] overflow-y-scroll gap-3 border-[1px] border-[var(--dark-color)] rounded-lg px-4 pb-6 pt-4">
                 <div class="option">
                     <h4 class="option-title">
                         Оберіть категорію товару:
@@ -153,7 +152,7 @@
                     <h4 class="option-title">
                         Опції товару
                     </h4>
-                    <div class="text-wrapper">
+                    <div class="text-wrapper items-stretch">
                         <div class="wrapper">
                             <span>
                                 Вкажіть тип фасування товару
@@ -168,18 +167,12 @@
                             <span>
                                 Відображати товар на сайті
                             </span>
-                            <input type="checkbox">
+                            <div class="checkbox-wrap flex items-center justify-start">
+                                <input class="checkbox" type="checkbox">
+
+                            </div>
                         </div>
-                        <div class="wrapper">
-                            <span>
-                                Опції товару
-                            </span>
-                            <select name="wholesaleType" id="wholesaleType">
-                                <option value="Bag">Мішок</option>
-                                <option value="Role">Рулон</option>
-                                <option value="Package">Упаковка</option>
-                            </select>
-                        </div>
+                        
                         
                         
                     </div>
@@ -213,6 +206,61 @@
                         </div>
                     </div>
                 </div>
+                <div class="option">
+                            <h4>
+                                Додати опцію товару
+                            </h4>
+                            <div class="add-option-wrap flex items-end justify-between gap-2">
+                                <div class="add-option">
+                                    <span class="text-[0.8rem] text-nowrap">
+                                        Додати файл
+                                    </span>
+                                    <div class="label-wrapper">
+                                        <label for="file-upload" class="icon-label">
+                                            <span>
+                                                Оберіть файл
+                                            </span>
+                                            <SvgIcon name="download-btn" size="micro" fill="var(--dark-color)"/>
+                                        </label>
+                                        <input type="file" id="file-upload" class="icon-file" @change="handleFileUpload">
+
+                                    </div>
+                                    
+                                </div>
+                                <div class="add-option">
+                                    <span class="text-[0.8rem] text-nowrap"> 
+                                        Короткий опис
+                                    </span>
+                                    <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                </div>
+                                <div class="add-option">
+
+                                    <button 
+                                        class="bg-[var(--dark-color)] h-[40px] rounded-lg text-white font-bold"
+                                        @click="addNewOption('text', 'value')"
+                                    >
+                                        Зберегти
+                                    </button>
+                                </div>
+                                
+
+                            </div>
+
+                            <div class="added-options pt-3">
+                                <ul>
+                                    <li class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
+                                        <img src="../../../public/img/bag.png" alt="img" width="25px">
+                                        <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
+                                        <span>
+                                            Roze gold
+                                        </span>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                      
+                        </div>
+               
                 <div class="button-group">
                     <button class="clearForm">
                         Очистити форму
@@ -225,9 +273,15 @@
                     </button>
                 </div>
             </div>
+
+                </div>
+           
+           
           
 
         </div>
+
+        
     </div>
 
 </template>
@@ -257,6 +311,13 @@
     const wholesaleType = ref('');
     const noteForWholesale = ref('');
 
+    // ADD OPTION
+    const addOptionsRef = ref([]);
+    const filePreview = ref(null)
+    const addOptionText = ref('');
+    const fileReady = ref(false);
+    const file = ref(null);
+
 
     const closeModal = () => {
         modalStore.closeModal();
@@ -264,6 +325,54 @@
 
     const clearForm = () => {
 
+
+    }
+
+    const handleFileUpload = (event) => {
+        const accessedFormat = ['svg', 'png'];
+        const selectedFile = event.target.files[0];
+        const accessedFile = accessedFormat.some(item => selectedFile.name.includes(item));
+
+        if (accessedFile) {
+            file.value = selectedFile;
+            fileReady.value = false;
+            // uploadProgress.value = 0;
+            // uploadStatus.value = '';
+
+            const reader = new FileReader();
+            reader.onload = () => {
+            filePreview.value = reader.result;
+            };
+            reader.readAsDataURL(selectedFile);
+            fileReady.value = true;
+            
+        } else {
+            // console.error('Файл повинен бути формату .svg .png');
+            emit('tooltip', {
+                status: 'error',
+                message: 'Файл повинен бути формату .svg .png'
+            })
+            resetForm();
+            return;
+        }
+        
+    }
+
+    const addNewOption = () => {
+
+        // if ()
+        // console.log(file.value, addOptionText.value)
+
+        if (file.value && addOptionText.value) {
+            // console.log('option true')
+             addOptionsRef.value.push({
+                file: file,
+                text: text
+            })
+
+        }
+        
+        // console.log(addOptionsRef.value, 'optionsref value')
 
     }
 
@@ -287,16 +396,12 @@
 
 
     onMounted(async() => {
-        // ( async () => {
             try{
                 const getData = await $fetch('/api/category')
                 console.log(getData.data);
                 
                 if (getData.data.length > 0) {
                     fetchedCategories.value = getData.data.map((item) => 
-                    // {
-                    //     console.log(item, 'item')
-                    // })
                     
                     ({
                         ...item,
@@ -304,14 +409,10 @@
 
                     }))
                 }
-               
-                // console.log(getData.data, 'getData');
-    // console.log(fetchedCategories.value, 'fetchedCategories');
 
             } catch (error) {
                 console.log(error.message, 'error from getData')
             }
-        // })()
 
     })
     console.log(fetchedCategories.value, 'fetchedCategories');
@@ -326,13 +427,17 @@
 
     @use './/styles/mixins.scss' as mixins;
    
-
+    span{
+        color: var(--dark-color);
+    }
+   
     .add-image{
         // width: 50%;
         h2{
             @include mixins.cardText;
             margin-bottom: 15px;
         }
+
         span{
             @include mixins.descriptionText(400, var(--dark-color));
             // white-space: nowrap;
@@ -391,6 +496,9 @@
     .option{
         display: flex;
         flex-direction: column;
+        span{
+            padding-bottom: 5px;
+        }
        
     }
 
@@ -425,12 +533,15 @@
 
     .text-wrapper{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: flex-start;
+        // align-items: center;
         flex-wrap: wrap;
         gap: 10px;
         .wrapper{
-            flex: 1;
+            // flex: 1;
+            min-width: 250px;
+            flex-grow: 1;
+            flex-basis: 0;
             display: flex;
             flex-direction: column;
             // align-items: ;
@@ -438,6 +549,21 @@
 
         }
     }
+
+    .checkbox{
+        width: auto;
+        height: auto;
+    }
+    .add-option{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+    }
+    .label-wrapper{
+        @include mixins.labelFile
+    }
+
 
 
 </style>

@@ -112,3 +112,24 @@
   border-radius: 10px;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #fff;
 }
+@mixin labelFile {
+  .icon-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        height: 32px;
+        padding: 8px 20px 7px;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: center;
+        background-color: #f5f6f7;
+        border: 1px solid var(--dark-color);
+        color: #282828;
+        cursor: pointer;
+    }
+
+    .icon-file {
+        display: none;
+    }
+}

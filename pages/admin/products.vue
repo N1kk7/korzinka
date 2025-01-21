@@ -62,11 +62,13 @@
                 </div>
                 <div class="settings-block flex justify-end items-stretch gap-5">
                     <button
+                        class="text-nowrap"
                         @click="openPopup('AddCategory')"
                     >
                         Додати категорію
                     </button>
                     <button
+                        class="text-nowrap"
                         @click="openPopup('AddProduct')"
                     >
                         Додати товар
