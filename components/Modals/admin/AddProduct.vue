@@ -60,23 +60,67 @@
                     </h4>
                     <select name="wholesaleType" id="wholesaleType">
                         <option disabled selected value> -- Виберіть категорію -- </option>
-                        <option value="Bag">Мішок</option>
-                        <option value="Role">Рулон</option>
-                        <option value="Package">Упаковка</option>
+                        <option
+                            v-for="(category, index) in fetchedCategories" 
+                            :key="index"
+                            :value="category.group">{{ category.itemLanguage.title }}</option>
                     </select>
-                    <!-- <input type="text" placeholder="Введіть назву товару"> -->
                 </div>
                 <div class="option">
                     <h4 class="option-title">
                         Назва товару:
                     </h4>
-                    <input type="text" placeholder="Введіть назву товару">
+                    <div class="text-wrapper">
+                        <div class="wrapper">
+                            <span>
+                                Українська
+                            </span>
+                            <input type="text" placeholder="Введіть назву товару">
+
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Англійська
+                            </span>
+                            <input type="text" placeholder="Введіть назву товару">
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Російська
+                            </span>
+                            <input type="text" placeholder="Введіть назву товару">
+                        </div>
+                    </div>
+                 
                 </div>
                 <div class="option">
                     <h4 class="option-title">
                         Опис товару:
                     </h4>
-                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+                    <div class="text-wrapper">
+                        <div class="wrapper">
+                            <span >
+                                Українська
+                            </span>
+                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Англійська
+                            </span>
+                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                        </div>
+                        <div class="wrapper">
+                            <span >
+                                Російська
+                            </span>
+                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                        </div>
+                    </div>
+                  
                 </div>
                 <div class="option">
                     <h4 class="option-title">
@@ -107,14 +151,67 @@
                 </div>
                 <div class="option">
                     <h4 class="option-title">
-                        Вкажіть тип пакування товару
+                        Опції товару
                     </h4>
-                    <select name="wholesaleType" id="wholesaleType">
-                        <option value="Bag">Мішок</option>
-                        <option value="Role">Рулон</option>
-                        <option value="Package">Упаковка</option>
-                    </select>
-                    <input class="mt-3" type="text" placeholder="Введіть примітку для оптової ціни">
+                    <div class="text-wrapper">
+                        <div class="wrapper">
+                            <span>
+                                Вкажіть тип фасування товару
+                            </span>
+                            <select name="wholesaleType" id="wholesaleType">
+                                <option value="Bag">Мішок</option>
+                                <option value="Role">Рулон</option>
+                                <option value="Package">Упаковка</option>
+                            </select>
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Відображати товар на сайті
+                            </span>
+                            <input type="checkbox">
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Опції товару
+                            </span>
+                            <select name="wholesaleType" id="wholesaleType">
+                                <option value="Bag">Мішок</option>
+                                <option value="Role">Рулон</option>
+                                <option value="Package">Упаковка</option>
+                            </select>
+                        </div>
+                        
+                        
+                    </div>
+                  
+                </div>
+                <div class="option">
+                    <h4 class="option-title">
+                        Введіть примітку для оптової ціни
+                    </h4>
+                    <div class="text-wrapper">
+                        <div class="wrapper">
+                            <span>
+                                Українська
+                            </span>
+                            <input class="" type="text" placeholder="Введіть примітку">
+
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Англійська
+                            </span>
+                            <input class="" type="text" placeholder="Введіть примітку">
+
+                        </div>
+                        <div class="wrapper">
+                            <span>
+                                Російська
+                            </span>
+                            <input class="" type="text" placeholder="Введіть примітку">
+
+                        </div>
+                    </div>
                 </div>
                 <div class="button-group">
                     <button class="clearForm">
@@ -136,7 +233,7 @@
 </template>
 
 <script setup>
-    import {ref, defineEmits} from 'vue';
+    import {ref, defineEmits, onMounted} from 'vue';
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
@@ -148,7 +245,7 @@
 
     const emit = defineEmits(['addNewItem']);
 
-
+    const fetchedCategories = ref([]);
 
     const cathegory = ref('');
     const productName = ref('');
@@ -184,9 +281,41 @@
     //         showTooltip: true
     //     });
     // } catch (error) {
-    //     console.error('Error adding new item:', error);
+    //     console.error('Error adding new item:', error);()
     // }
     };
+
+
+    onMounted(async() => {
+        // ( async () => {
+            try{
+                const getData = await $fetch('/api/category')
+                console.log(getData.data);
+                
+                if (getData.data.length > 0) {
+                    fetchedCategories.value = getData.data.map((item) => 
+                    // {
+                    //     console.log(item, 'item')
+                    // })
+                    
+                    ({
+                        ...item,
+                        itemLanguage: item.translations.find(translation => translation.language === 'uk')
+
+                    }))
+                }
+               
+                // console.log(getData.data, 'getData');
+    // console.log(fetchedCategories.value, 'fetchedCategories');
+
+            } catch (error) {
+                console.log(error.message, 'error from getData')
+            }
+        // })()
+
+    })
+    console.log(fetchedCategories.value, 'fetchedCategories');
+
 
 
 </script>
@@ -291,6 +420,22 @@
         }
         .addItem{
             color: var(--bg-color);
+        }
+    }
+
+    .text-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        .wrapper{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            // align-items: ;
+            justify-content: space-between;
+
         }
     }
 
