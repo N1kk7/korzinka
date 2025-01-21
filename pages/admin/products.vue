@@ -10,12 +10,17 @@
                 </div>
                 <div class="nav bg-[#d5ddeb] py-2 px-3 rounded-lg">
                     <ul class="flex items center gap-1">
-                        <li class="el-active">
+                        <li :class="activeGroup === 'products' ? 'el-active' : ''" 
+                            @click="showGroup('products')"
+                        >
                             <span>
                                 Товари
                             </span>
                         </li>
-                        <li>
+                        <li 
+                            :class="activeGroup === 'categories' ? 'el-active' : ''"
+                            @click="showGroup('categories')"
+                        >
                             <span>
                                 Категорії
                             </span>
@@ -75,7 +80,10 @@
             </div>
 
         <div class="items-window bg-white rounded-lg h-full flex-1">
-            <ul class="item-wrapper px-2 py-3 flex flex-col justify-center gap-2 items-center">
+            <ul     
+                v-if="activeGroup === 'categories'"
+                class="item-wrapper px-2 py-3 flex flex-col justify-center gap-2 items-center"
+            >
                 <li class="grid grid-cols-[50px_150px_1fr_1fr_50px_50px_50px] items-center gap-2 border-[1px] border-[var(--dark-color)] p-2 rounded-lg w-full"
                     v-for="(item, index) in fetchedCategories" :key="index">
                     <div class="img-content ">
@@ -142,6 +150,8 @@
 
     const fetchedCategories = ref([]);
 
+    const activeGroup = ref('products');
+
 
     const openPopup = (modal) => {
         switch (modal) {
@@ -159,6 +169,12 @@
     definePageMeta({
         layout: 'admin'
     })
+
+    const showGroup = (group) => {
+        if (group !== activeGroup.value) {
+            activeGroup.value = group;
+        }
+    }
 
     onMounted( async () => {
         try {
