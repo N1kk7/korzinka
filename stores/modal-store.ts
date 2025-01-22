@@ -11,12 +11,14 @@ export const useModalStore = defineStore('modal', {
     }),
     actions: {
 
-        showModal(modalName: string) {
-            console.log('modalName', modalName);
+        showModal(modalName: string, props: Object) {
+            // console.log('modalName', modalName);
             
             this.isVisible = true;
             this.currentModal = modalName;
-            // this.modalProps = props;
+            this.modalProps = props;
+
+            console.log(this.modalProps)
             
         },
         closeModal() {

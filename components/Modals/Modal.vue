@@ -29,6 +29,7 @@ import ThemeModal from '~/components/Modals/ThemeModal.vue';
 
 import AddProduct from '~/components/Modals/admin/AddProduct.vue';
 import AddCategory from '~/components/Modals/admin/AddCategory.vue';
+import DeleteCategory from '~/components/Modals/admin/DeleteCategory.vue'
 
 const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
@@ -42,6 +43,7 @@ const modalComponents = {
   ThemeModal,
   AddProduct,
   AddCategory,
+  DeleteCategory,
 }
 
 const tooltip = (obj) => {
@@ -50,7 +52,9 @@ const tooltip = (obj) => {
     };
 
 
-
+// watch(modalProps, () => {
+//   console.log(modalProps.value)
+// })
 
 
 const closeModal = () => {

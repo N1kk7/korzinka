@@ -127,7 +127,10 @@
                     <button class="bg-green-500">
                         <SvgIcon name="save-btn" size="micro" fill="var(--dark-color)"/>
                     </button>
-                    <button class="bg-red-500">
+                    <button 
+                        class="bg-red-500" 
+                        @click="deleteCategory(item)"
+                    >
                         <SvgIcon name="close-btn" size="micro" fill="white"/>
                     </button>
                 </li>
@@ -177,6 +180,17 @@
             activeGroup.value = group;
         }
     }
+
+    const deleteCategory = (category) => {
+        // console.log(category.language.title)
+        modalStore.showModal(
+            'DeleteCategory',
+            {
+                categoryId: category.id,
+                categoryName: category.language.title
+            },
+        );
+    };
 
     onMounted( async () => {
         try {

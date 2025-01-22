@@ -1,5 +1,5 @@
 import { defineEventHandler } from "#imports";
-import  {addCategory, addSubCategory, getAllCategories}  from '../services/categoryServices'
+import  {addCategory, addSubCategory, getAllCategories, deleteCategory}  from '../services/categoryServices'
 
 export default defineEventHandler(async (event) => {
 
@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
             // return await updateUser();
         break;
         case 'DELETE':
+            return await deleteCategory(event)
             // return await deleteUser();
         break;
         default: 

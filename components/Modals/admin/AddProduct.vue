@@ -28,251 +28,304 @@
                 </div>
                 <div class="add-info h-[90vh]">
                     <div class="top-content flex items-center justify-between ">
-                <h2 class="
-                    text-[var(--dark-color)]
-                    font-bold
-                    text-2xl
-                ">
-                    Інформація про товар
-                </h2>
-                <button
-                @click="closeModal"
-                >
-                    <SvgIcon name="close-btn" size="micro" fill="var(--dark-color)"/>
-                </button>
-            </div>
-            
-            <div class="header-description">
-                <span class="
-                    text-[var(--dark-color)]
-                    font-sm
-                    text-base
-                ">
-
-                    Основна інформація картки товару
-                </span>
-            </div>
-            <div class="options mt-4 flex flex-col justify-between w-full h-auto max-h-[85%] overflow-y-scroll gap-3 border-[1px] border-[var(--dark-color)] rounded-lg px-4 pb-6 pt-4">
-                <div class="option">
-                    <h4 class="option-title">
-                        Оберіть категорію товару:
-                    </h4>
-                    <select name="wholesaleType" id="wholesaleType">
-                        <option disabled selected value> -- Виберіть категорію -- </option>
-                        <option
-                            v-for="(category, index) in fetchedCategories" 
-                            :key="index"
-                            :value="category.group">{{ category.itemLanguage.title }}</option>
-                    </select>
-                </div>
-                <div class="option">
-                    <h4 class="option-title">
-                        Назва товару:
-                    </h4>
-                    <div class="text-wrapper">
-                        <div class="wrapper">
-                            <span>
-                                Українська
-                            </span>
-                            <input type="text" placeholder="Введіть назву товару">
-
-                        </div>
-                        <div class="wrapper">
-                            <span>
-                                Англійська
-                            </span>
-                            <input type="text" placeholder="Введіть назву товару">
-                        </div>
-                        <div class="wrapper">
-                            <span>
-                                Російська
-                            </span>
-                            <input type="text" placeholder="Введіть назву товару">
-                        </div>
+                        <h2 class="
+                            text-[var(--dark-color)]
+                            font-bold
+                            text-2xl
+                        ">
+                            Інформація про товар
+                        </h2>
+                        <button
+                        @click="closeModal"
+                        >
+                            <SvgIcon name="close-btn" size="micro" fill="var(--dark-color)"/>
+                        </button>
                     </div>
-                 
-                </div>
-                <div class="option">
-                    <h4 class="option-title">
-                        Опис товару:
-                    </h4>
-                    <div class="text-wrapper">
-                        <div class="wrapper">
-                            <span >
-                                Українська
-                            </span>
-                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+                    
+                    <div class="header-description">
+                        <span class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                        ">
 
-                        </div>
-                        <div class="wrapper">
-                            <span>
-                                Англійська
-                            </span>
-                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
-
-                        </div>
-                        <div class="wrapper">
-                            <span >
-                                Російська
-                            </span>
-                            <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
-
-                        </div>
+                            Основна інформація картки товару
+                        </span>
                     </div>
-                  
-                </div>
-                <div class="option">
-                    <h4 class="option-title">
-                        Кількість товару на складі
-                    </h4>
-                    <input type="text" placeholder="Введіть наявну кількість товару на складі">
-                </div>
-                <div class="price-option flex items-center justify-between gap-2">
-                    <div class="el flex-1">
-                        <h4>
-                            Роздрібна ціна
-                        </h4>
-                        <input type="text" placeholder="Введіть роздрібну ціну товару.">
-                    </div>
-                    <div class="el flex-1">
-                        <h4>
-                            Оптова ціна
-                        </h4>
-                        <input type="text" placeholder=" Введіть оптову ціну товару.">
-                    </div>
-                    <div class="el flex-1">
-                        <h4>
-                            Оптова ціна діє від ...
-                        </h4>
-                        <input type="text" placeholder="Введіть кількість від якої оптова ціна діє">
-                        
-                    </div>
-                </div>
-                <div class="option">
-                    <h4 class="option-title">
-                        Опції товару
-                    </h4>
-                    <div class="text-wrapper items-stretch">
-                        <div class="wrapper">
-                            <span>
-                                Вкажіть тип фасування товару
-                            </span>
+                    <div class="options mt-4 flex flex-col justify-between w-full h-auto max-h-[80%] overflow-y-scroll gap-3 border-[1px] border-[var(--dark-color)] rounded-lg px-4 pb-6 pt-4">
+                        <div class="option">
+                            <h4 class="option-title">
+                                Оберіть категорію товару:
+                            </h4>
                             <select name="wholesaleType" id="wholesaleType">
-                                <option value="Bag">Мішок</option>
-                                <option value="Role">Рулон</option>
-                                <option value="Package">Упаковка</option>
+                                <option disabled selected value> -- Виберіть категорію -- </option>
+                                <option
+                                    v-for="(category, index) in fetchedCategories" 
+                                    :key="index"
+                                    :value="category.group">{{ category.itemLanguage.title }}</option>
                             </select>
                         </div>
-                        <div class="wrapper">
-                            <span>
-                                Відображати товар на сайті
-                            </span>
-                            <div class="checkbox-wrap flex items-center justify-start">
-                                <input class="checkbox" type="checkbox">
+                        <div class="option">
+                            <h4 class="option-title">
+                                Назва товару:
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input type="text" placeholder="Введіть назву товару">
 
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input type="text" placeholder="Введіть назву товару">
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input type="text" placeholder="Введіть назву товару">
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Опис товару:
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span >
+                                        Українська
+                                    </span>
+                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                                </div>
+                                <div class="wrapper">
+                                    <span >
+                                        Російська
+                                    </span>
+                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Кількість товару на складі
+                            </h4>
+                            <div class="checkbox flex items-center justify-start gap-5">
+                                <span>
+                                    Відображати кількість товару на складі
+                                </span>
+                                <input type="checkbox" @change="productAvailability = !productAvailability">
+                            </div>
+                            <input v-if="productAvailability" type="text" placeholder="Введіть наявну кількість товару на складі">
+                        </div>
+                        <div class="price-option flex items-center justify-between gap-2">
+                            <div class="el flex-1">
+                                <h4>
+                                    Роздрібна ціна
+                                </h4>
+                                <input type="text" placeholder="Введіть роздрібну ціну товару.">
+                            </div>
+                            <div class="el flex-1">
+                                <h4>
+                                    Оптова ціна
+                                </h4>
+                                <input type="text" placeholder=" Введіть оптову ціну товару.">
+                            </div>
+                            <div class="el flex-1">
+                                <h4>
+                                    Оптова ціна діє від ...
+                                </h4>
+                                <input type="text" placeholder="Введіть кількість від якої оптова ціна діє">
+                                
                             </div>
                         </div>
-                        
-                        
-                        
-                    </div>
-                  
-                </div>
-                <div class="option">
-                    <h4 class="option-title">
-                        Введіть примітку для оптової ціни
-                    </h4>
-                    <div class="text-wrapper">
-                        <div class="wrapper">
-                            <span>
-                                Українська
-                            </span>
-                            <input class="" type="text" placeholder="Введіть примітку">
-
-                        </div>
-                        <div class="wrapper">
-                            <span>
-                                Англійська
-                            </span>
-                            <input class="" type="text" placeholder="Введіть примітку">
-
-                        </div>
-                        <div class="wrapper">
-                            <span>
-                                Російська
-                            </span>
-                            <input class="" type="text" placeholder="Введіть примітку">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="option">
-                            <h4>
-                                Додати опцію товару
+                        <div class="option">
+                            <h4 class="option-title">
+                                Опції товару
                             </h4>
-                            <div class="add-option-wrap flex items-end justify-between gap-2">
-                                <div class="add-option">
-                                    <span class="text-[0.8rem] text-nowrap">
-                                        Додати файл
+                            <div class="text-wrapper items-stretch">
+                                <div class="wrapper">
+                                    <span>
+                                        Вкажіть тип фасування товару
                                     </span>
-                                    <div class="label-wrapper">
-                                        <label for="file-upload" class="icon-label">
-                                            <span>
-                                                Оберіть файл
-                                            </span>
-                                            <SvgIcon name="download-btn" size="micro" fill="var(--dark-color)"/>
-                                        </label>
-                                        <input type="file" id="file-upload" class="icon-file" @change="handleFileUpload">
+                                    <select name="wholesaleType" id="wholesaleType">
+                                        <option value="Bag">Мішок</option>
+                                        <option value="Role">Рулон</option>
+                                        <option value="Package">Упаковка</option>
+                                    </select>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Відображати товар на сайті
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox">
 
                                     </div>
-                                    
                                 </div>
-                                <div class="add-option">
-                                    <span class="text-[0.8rem] text-nowrap"> 
-                                        Короткий опис
+                                <div class="wrapper">
+                                    <span>
+                                        Акційний товар
                                     </span>
-                                    <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
-                                </div>
-                                <div class="add-option">
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox" @change="discountState = !discountState">
 
-                                    <button 
-                                        class="bg-[var(--dark-color)] h-[40px] rounded-lg text-white font-bold"
-                                        @click="addNewOption('text', 'value')"
-                                    >
-                                        Зберегти
-                                    </button>
+                                    </div>
+                                </div>
+                                <div v-if="discountState" class="wrapper">
+                                    <span>
+                                        Відсоток знижки
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="discount-price" type="text" placeholder="%">
+
+                                    </div>
                                 </div>
                                 
-
+                                
+                                
                             </div>
-
-                            <div class="added-options pt-3">
-                                <ul>
-                                    <li class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
-                                        <img src="../../../public/img/bag.png" alt="img" width="25px">
-                                        <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
-                                        <span>
-                                            Roze gold
-                                        </span>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                      
+                        
                         </div>
-               
-                <div class="button-group">
-                    <button class="clearForm">
-                        Очистити форму
-                    </button>
-                    <button 
-                        class="addItem bg-[var(--dark-color)]"
-                        @click="addNewItem"
-                    >
-                        Додати товар
-                    </button>
-                </div>
-            </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Введіть примітку для оптової ціни
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option">
+                                    <h4>
+                                        Додати опцію товару (макс. 10)
+                                    </h4>
+                                    <div class="add-option-wrap flex flex-col gap-5">
+                                        <div class="add-option flex flex-col">
+                                            <span class="text-[0.8rem] text-nowrap">
+                                                Додати файл
+                                            </span>
+                                            <div class="label-wrapper flex basis-10 items-center justify-start gap-5">
+                                                <label for="file-upload" class="icon-label">
+                                                    <span>
+                                                        Оберіть файл
+                                                    </span>
+                                                    <SvgIcon name="download-btn" size="micro" fill="var(--dark-color)"/>
+                                                </label>
+                                                <div class="preview px-2 py-1 rounded-lg border-[1px] border-[var(--dark-color)]">
+                                                    <img class="file-preview w-5" src="../../../public/img/bag.png" alt="preview"/>
+
+                                                </div>
+
+
+                                                <input type="file" id="file-upload" class="icon-file" @change="handleFileUpload">
+
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="add-option flex items-center justify-start flex-wrap gap-2">
+                                            <div class="option-lang flex flex-col flex-grow">
+                                                <span class="text-[0.8rem] text-nowrap"> 
+                                                    Короткий опис
+                                                </span>
+                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                            </div>
+                                            <div class="option-lang flex flex-col flex-grow">
+                                                <span class="text-[0.8rem] text-nowrap"> 
+                                                    Короткий опис
+                                                </span>
+                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                            </div>
+                                            <div class="option-lang flex flex-col flex-grow">
+                                                <span class="text-[0.8rem] text-nowrap"> 
+                                                    Короткий опис
+                                                </span>
+                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="add-option flex items-center justify-end">
+
+                                            <button 
+                                                class="bg-[var(--dark-color)] h-[40px] px-5 rounded-lg text-white font-bold"
+                                                @click="addNewOption('text', 'value')"
+                                            >
+                                                Додати опцію
+                                            </button>
+                                        </div>
+                                        
+
+                                    </div>
+
+                                    <div class="added-options pt-3" v-if="addOptionsRef.length > 0">
+                                        <ul class="flex items-center justify-start gap-2 flex-wrap">
+                                            <li 
+                                                v-for="(option, index) in addOptionsRef"
+                                                :key="index"
+                                                class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
+                                                <img :src="option.file" alt="img" width="25px">
+                                                <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
+                                                <span>
+                                                    {{ option.text }}
+                                                </span>
+                                                <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
+                                                <button
+                                                    @click="removeOption(index)"
+                                                >
+                                                    <SvgIcon name="close-btn" size="micro" fill="var(--dark-color)"/>
+                                                </button>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                            
+                                </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="clearForm">
+                            Очистити форму
+                        </button>
+                        <button 
+                            class="addItem bg-[var(--dark-color)]"
+                            @click="addNewItem"
+                        >
+                            Додати товар
+                        </button>
+                    </div>
 
                 </div>
            
@@ -302,19 +355,29 @@
     const fetchedCategories = ref([]);
 
     const cathegory = ref('');
-    const productName = ref('');
-    const productDescription = ref('');
+    const productNameUk = ref('');
+    const productNameEn = ref('');
+    const productNameRu = ref('');
+    const productDescriptionUk = ref('');
+    const productDescriptionEn = ref('');
+    const productDescriptionRu = ref('');
     const quantityProduct = ref('');
     const retailPrice = ref('');
     const wholesalePrice = ref('');
     const wholesalePriceFrom = ref('');
     const wholesaleType = ref('');
+    const typePackage = ref('');
     const noteForWholesale = ref('');
+    const productAvailability = ref(false);
 
     // ADD OPTION
+    const productVisibility = ref(false);
     const addOptionsRef = ref([]);
+    const discountState = ref(false);
     const filePreview = ref(null)
-    const addOptionText = ref('');
+    const addOptionTextUk = ref('');
+    const addOptionTextEng = ref('');
+    const addOptionTextRu = ref('');
     const fileReady = ref(false);
     const file = ref(null);
 
@@ -361,18 +424,32 @@
     const addNewOption = () => {
 
         // if ()
-        // console.log(file.value, addOptionText.value)
+        console.log(addOptionsRef.value.length)
+        if (addOptionsRef.value.length > 9) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Максимальна кількість опцій 10'
+            })
+            return
+        }
 
-        if (file.value && addOptionText.value) {
+        if (filePreview.value && addOptionText.value) {
             // console.log('option true')
              addOptionsRef.value.push({
-                file: file,
-                text: text
+                file: filePreview.value,
+                text: addOptionText.value
             })
+            file.value = null;
+            addOptionText.value = '';
 
         }
         
-        // console.log(addOptionsRef.value, 'optionsref value')
+        console.log(addOptionsRef.value, 'optionsref value')
+
+    }
+
+    const removeOption = (index) => {
+        addOptionsRef.value.splice(index, 1)
 
     }
 
@@ -496,6 +573,7 @@
     .option{
         display: flex;
         flex-direction: column;
+        z-index: 1;
         span{
             padding-bottom: 5px;
         }
@@ -515,21 +593,7 @@
     select:focus-visible{
         border: 1px solid var(--active-btn);
     }
-    .button-group{
-        padding-top: 10px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 10px;
-        button{
-            @include mixins.defaultShadow;
-            @include mixins.descriptionText(500, var(--dark-color));
-            padding: 10px 20px;
-        }
-        .addItem{
-            color: var(--bg-color);
-        }
-    }
+  
 
     .text-wrapper{
         display: flex;
@@ -556,12 +620,28 @@
     }
     .add-option{
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         flex: 1;
 
     }
     .label-wrapper{
         @include mixins.labelFile
+    }
+    .button-group{
+        padding-top: 30px;
+        padding-bottom: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        button{
+            @include mixins.defaultShadow;
+            @include mixins.descriptionText(500, var(--dark-color));
+            padding: 10px 20px;
+        }
+        .addItem{
+            color: var(--bg-color);
+        }
     }
 
 
