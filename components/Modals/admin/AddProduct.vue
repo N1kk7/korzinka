@@ -50,44 +50,73 @@
                         ">
 
                             Основна інформація картки товару
+                        <!-- </span>
+                        <span class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                        "> -->
+
+                            Поля відмічені "
+                            <strong
+                                class="text-red-500"
+                            >
+                                *
+                            </strong> 
+                            "
+                            обовʼязкові для заповнення
                         </span>
                     </div>
                     <div class="options mt-4 flex flex-col justify-between w-full h-auto max-h-[80%] overflow-y-scroll gap-3 border-[1px] border-[var(--dark-color)] rounded-lg px-4 pb-6 pt-4">
                         <div class="option">
                             <h4 class="option-title">
-                                Оберіть категорію товару:
+                                Оберіть категорію товару:<strong
+                                class="text-red-500"
+                            >
+                                *
+                            </strong> 
                             </h4>
-                            <select name="wholesaleType" id="wholesaleType">
+                            <select name="wholesaleType" id="wholesaleType" v-model="productCategory">
                                 <option disabled selected value> -- Виберіть категорію -- </option>
                                 <option
                                     v-for="(category, index) in fetchedCategories" 
                                     :key="index"
-                                    :value="category.group">{{ category.itemLanguage.title }}</option>
+                                    :value="category.id"
+                                    
+                                    
+                                >
+                                    {{ category.itemLanguage.title }}
+                                </option>
                             </select>
                         </div>
                         <div class="option">
                             <h4 class="option-title">
                                 Назва товару:
+                                <strong
+                                    class="text-red-500"
+                                >
+                                    *
+                                </strong> 
                             </h4>
                             <div class="text-wrapper">
                                 <div class="wrapper">
                                     <span>
                                         Українська
                                     </span>
-                                    <input type="text" placeholder="Введіть назву товару">
+                                    <input v-model="productNameUk" type="text" placeholder="Введіть назву товару">
 
                                 </div>
                                 <div class="wrapper">
                                     <span>
                                         Англійська
                                     </span>
-                                    <input type="text" placeholder="Введіть назву товару">
+                                    <input v-model="productNameEn" type="text" placeholder="Введіть назву товару">
                                 </div>
                                 <div class="wrapper">
                                     <span>
                                         Російська
                                     </span>
-                                    <input type="text" placeholder="Введіть назву товару">
+                                    <input v-model="productNameRu" type="text" placeholder="Введіть назву товару">
                                 </div>
                             </div>
                         
@@ -124,6 +153,12 @@
                         <div class="option">
                             <h4 class="option-title">
                                 Кількість товару на складі
+                                <strong
+                                    v-if="productAvailability"
+                                    class="text-red-500"
+                                >
+                                    *
+                                </strong> 
                             </h4>
                             <div class="checkbox flex items-center justify-start gap-5">
                                 <span>
@@ -137,6 +172,11 @@
                             <div class="el flex-1">
                                 <h4>
                                     Роздрібна ціна
+                                    <strong
+                                        class="text-red-500"
+                                    >
+                                        *
+                                    </strong> 
                                 </h4>
                                 <input type="text" placeholder="Введіть роздрібну ціну товару.">
                             </div>
@@ -153,54 +193,6 @@
                                 <input type="text" placeholder="Введіть кількість від якої оптова ціна діє">
                                 
                             </div>
-                        </div>
-                        <div class="option">
-                            <h4 class="option-title">
-                                Опції товару
-                            </h4>
-                            <div class="text-wrapper items-stretch">
-                                <div class="wrapper">
-                                    <span>
-                                        Вкажіть тип фасування товару
-                                    </span>
-                                    <select name="wholesaleType" id="wholesaleType">
-                                        <option value="Bag">Мішок</option>
-                                        <option value="Role">Рулон</option>
-                                        <option value="Package">Упаковка</option>
-                                    </select>
-                                </div>
-                                <div class="wrapper">
-                                    <span>
-                                        Відображати товар на сайті
-                                    </span>
-                                    <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="checkbox">
-
-                                    </div>
-                                </div>
-                                <div class="wrapper">
-                                    <span>
-                                        Акційний товар
-                                    </span>
-                                    <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="checkbox" @change="discountState = !discountState">
-
-                                    </div>
-                                </div>
-                                <div v-if="discountState" class="wrapper">
-                                    <span>
-                                        Відсоток знижки
-                                    </span>
-                                    <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="discount-price" type="text" placeholder="%">
-
-                                    </div>
-                                </div>
-                                
-                                
-                                
-                            </div>
-                        
                         </div>
                         <div class="option">
                             <h4 class="option-title">
@@ -230,6 +222,69 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Параметри товару
+                            </h4>
+                            <div class="text-wrapper items-stretch">
+                                <div class="wrapper">
+                                    <span>
+                                        Вкажіть тип фасування товару
+                                    </span>
+                                    <select name="wholesaleType" id="wholesaleType">
+                                        <option value="Bag">Мішок</option>
+                                        <option value="Role">Рулон</option>
+                                        <option value="Package">Упаковка</option>
+                                    </select>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Відображати товар на сайті
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Мінімальна кількість придбання товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="text" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Акційний товар
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox" @change="discountState = !discountState">
+
+                                    </div>
+                                </div>
+                                <div v-if="discountState" class="wrapper">
+                                    <span>
+                                        Відсоток знижки
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="discount-price" type="text" placeholder="%">
+
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        
+                        </div>
+                       
                         <div class="option">
                                     <h4>
                                         Додати опцію товару (макс. 10)
@@ -262,19 +317,19 @@
                                                 <span class="text-[0.8rem] text-nowrap"> 
                                                     Короткий опис
                                                 </span>
-                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                                <input v-model="addOptionTextUk" type="text" placeholder="Введіть короткий опис">
                                             </div>
                                             <div class="option-lang flex flex-col flex-grow">
                                                 <span class="text-[0.8rem] text-nowrap"> 
                                                     Короткий опис
                                                 </span>
-                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                                <input v-model="addOptionTextEn" type="text" placeholder="Введіть короткий опис">
                                             </div>
                                             <div class="option-lang flex flex-col flex-grow">
                                                 <span class="text-[0.8rem] text-nowrap"> 
                                                     Короткий опис
                                                 </span>
-                                                <input v-model="addOptionText" type="text" placeholder="Введіть короткий опис">
+                                                <input v-model="addOptionTextRu" type="text" placeholder="Введіть короткий опис">
                                             </div>
                                             
                                         </div>
@@ -321,7 +376,7 @@
                         </button>
                         <button 
                             class="addItem bg-[var(--dark-color)]"
-                            @click="addNewItem"
+                            @click="addNewProduct"
                         >
                             Додати товар
                         </button>
@@ -354,7 +409,7 @@
 
     const fetchedCategories = ref([]);
 
-    const cathegory = ref('');
+    const productCategory = ref('');
     const productNameUk = ref('');
     const productNameEn = ref('');
     const productNameRu = ref('');
@@ -376,10 +431,24 @@
     const discountState = ref(false);
     const filePreview = ref(null)
     const addOptionTextUk = ref('');
-    const addOptionTextEng = ref('');
+    const addOptionTextEn = ref('');
     const addOptionTextRu = ref('');
     const fileReady = ref(false);
     const file = ref(null);
+
+    // watch(productCategory, () => {
+    //     console.log(productCategory.value, 'value product cat')
+    // })
+
+    // const setProductCategory = (category) => {
+
+    //     console.log('click select prod')
+
+    //     productCategory.value = category
+
+    //     console.log(productCategory.value, 'category value from set')
+
+    // }
 
 
     const closeModal = () => {
@@ -424,7 +493,7 @@
     const addNewOption = () => {
 
         // if ()
-        console.log(addOptionsRef.value.length)
+        // console.log(addOptionsRef.value.length)
         if (addOptionsRef.value.length > 9) {
             emit('tooltip', {
                 status: 'error',
@@ -433,18 +502,28 @@
             return
         }
 
-        if (filePreview.value && addOptionText.value) {
+        if (filePreview.value) {
+
+            if (addOptionTextUk.value && addOptionTextEn.value && addOptionTextRu.value) {
+                addOptionsRef.value.push({
+                    file: filePreview.value,
+                    textUk: addOptionTextUk.value,
+                    textEn: addOptionTextEn.value,
+                    textRu: addOptionTextRu.value,
+
+                })
+            }
             // console.log('option true')
-             addOptionsRef.value.push({
-                file: filePreview.value,
-                text: addOptionText.value
-            })
+             
             file.value = null;
-            addOptionText.value = '';
+            addOptionTextUk.value = '';
+            addOptionTextEn.value = '';
+            addOptionTextRu.value = '';
+
 
         }
         
-        console.log(addOptionsRef.value, 'optionsref value')
+        // console.log(addOptionsRef.value, 'optionsref value')
 
     }
 
@@ -453,11 +532,38 @@
 
     }
 
-    const addNewItem = () => {
-        emit('tooltip', {
-            status: 'errbsdor',
-            message: 'Товар успішно додано'
-        });
+    const addNewProduct =  async () => {
+        // console.log('add new product')
+
+
+        try{
+            if (!productCategory.value) {
+                emit('tooltip', {
+                    status: 'error',
+                    message: 'Оберіть категорію товару'
+                })
+                return
+            }
+            if (!productNameUk.value || !productNameEn.value || !productNameRu.value ) {
+                emit('tooltip', {
+                    status: 'error',
+                    message: 'Введіть назву товару'
+                })
+                return
+            }
+            console.log('log')
+
+
+        } catch (error) {
+
+
+        }
+
+
+        // emit('tooltip', {
+        //     status: 'errbsdor',
+        //     message: 'Товар успішно додано'
+        // });
     // try {
     //     console.log('add new item', tooltipStore);
         
@@ -470,6 +576,11 @@
     //     console.error('Error adding new item:', error);()
     // }
     };
+
+    // const addProduct = async () => {
+ 
+
+    // }
 
 
     onMounted(async() => {
