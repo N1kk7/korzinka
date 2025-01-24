@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
+        // anonKey: 'NUXT_API_PUBLIC_KEY',
     }
 },
   app: {

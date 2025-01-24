@@ -355,7 +355,7 @@
                                                 <img :src="option.file" alt="img" width="25px">
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span>
-                                                    {{ option.text }}
+                                                    {{ option.textUk }}
                                                 </span>
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <button
@@ -424,6 +424,8 @@
     const typePackage = ref('');
     const noteForWholesale = ref('');
     const productAvailability = ref(false);
+    const mediaArray = ref([]);
+
 
     // ADD OPTION
     const productVisibility = ref(false);
@@ -435,6 +437,12 @@
     const addOptionTextRu = ref('');
     const fileReady = ref(false);
     const file = ref(null);
+
+    // option file
+
+    const optionFile = ref(null);
+    const optionFilePreview = ref(null);
+
 
     // watch(productCategory, () => {
     //     console.log(productCategory.value, 'value product cat')
@@ -535,23 +543,69 @@
     const addNewProduct =  async () => {
         // console.log('add new product')
 
+        //ADD OPTIONS
+
+        const categoryData = fetchedCategories.value.filter((item) => item.id === productCategory.value);
+        const categoryName = categoryData[0].group.trim().replace(' ', '-');
+
+
+        // console.log('getData', categoryName)
+
+        uploadFiles(`${categoryName}/options`, addOptionsRef.value);
+
 
         try{
-            if (!productCategory.value) {
-                emit('tooltip', {
-                    status: 'error',
-                    message: 'Оберіть категорію товару'
-                })
-                return
-            }
-            if (!productNameUk.value || !productNameEn.value || !productNameRu.value ) {
-                emit('tooltip', {
-                    status: 'error',
-                    message: 'Введіть назву товару'
-                })
-                return
-            }
-            console.log('log')
+
+
+            // if (!productCategory.value) {
+            //     emit('tooltip', {
+            //         status: 'error',
+            //         message: 'Оберіть категорію товару'
+            //     })
+            //     return
+            // }
+            // if (!productNameUk.value || !productNameEn.value || !productNameRu.value ) {
+            //     emit('tooltip', {
+            //         status: 'error',
+            //         message: 'Введіть назву товару'
+            //     })
+            //     return
+            // }
+
+
+            // const formData = new FormData();
+            // formData.append('files', mediaArray);
+            // formData.append('productNameUk', productNameUk.value.toLowerCase());
+            // formData.append('productNameEn', productNameEn.value.toLowerCase());
+            // formData.append('productNameRu', productNameRu.value.toLowerCase());
+            // formData.append('productDescriptionUk', productDescriptionUk.value.toLowerCase());
+            // formData.append('productDescriptionEn', productDescriptionEn.value.toLowerCase());
+            // formData.append('productDescriptionRu', productDescriptionRu.value.toLowerCase());
+            // formData.append('quantityProduct', quantityProduct.value.toLowerCase());
+            // formData.append('retailPrice', retailPrice.value);
+            // formData.append('wholesalePrice', wholesalePrice.value);
+            // formData.append('wholesalePriceFrom', wholesalePriceFrom);
+            // formData.append('typePackage', typePackage.value);
+            // formData.append('noteForWholesale', noteForWholesale.value);
+            // formData.append('productAvailability', productAvailability);
+
+            // OPTION
+
+            // console.log(addOptionsRef.value)
+
+            // formData.append('addOptionsRef', addOptionsRef.value)
+
+
+
+
+
+
+
+            // const response = await $fetch('/api/products', {
+            //     method: 'POST',
+            //     body: formData,
+            // })
+            // console.log(response, 'log responce')
 
 
         } catch (error) {

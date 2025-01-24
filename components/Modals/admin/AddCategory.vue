@@ -308,7 +308,7 @@
         formData.append('visible', categoryVisible.value);
 
 
-        const res = await $fetch('/api/products',
+        const res = await $fetch('/api/category',
         {
             method: 'POST',
 
