@@ -337,8 +337,10 @@
 
                                             <button 
                                                 class="bg-[var(--dark-color)] h-[40px] px-5 rounded-lg text-white font-bold"
-                                                @click="addNewOption('text', 'value')"
+                                                @click="addTestData"
                                             >
+                                            <!-- @click="addNewOption('text', 'value')" -->
+
                                                 Додати опцію
                                             </button>
                                         </div>
@@ -356,6 +358,8 @@
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span>
                                                     {{ option.textUk }}
+
+                                                    {{ console.log(option.file) }}
                                                 </span>
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <button
@@ -396,6 +400,8 @@
 
 <script setup>
     import {ref, defineEmits, onMounted} from 'vue';
+
+    import bagImg from '@/public/img/bag.png';
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
@@ -498,6 +504,50 @@
         
     }
 
+    const addTestData = ( ) => {
+
+        const data = [{
+            file: bagImg,
+            textUk: 'ololo',
+            textEn: 'ololo',
+            textRu: 'ololo',
+
+        },
+        {
+            file: bagImg,
+            textUk: 'ololo',
+            textEn: 'ololo',
+            textRu: 'ololo',
+
+        },
+        {
+            file: bagImg,
+            textUk: 'ololo',
+            textEn: 'ololo',
+            textRu: 'ololo',
+
+        },
+        {
+            file: bagImg,
+            textUk: 'ololo',
+            textEn: 'ololo',
+            textRu: 'ololo',
+
+        },
+        {
+            file: bagImg,
+            textUk: 'ololo',
+            textEn: 'ololo',
+            textRu: 'ololo',
+
+        },
+
+    ]
+        data.forEach(item => {
+            addOptionsRef.value.push(item)
+        })
+    }
+
     const addNewOption = () => {
 
         // if ()
@@ -548,10 +598,70 @@
         const categoryData = fetchedCategories.value.filter((item) => item.id === productCategory.value);
         const categoryName = categoryData[0].group.trim().replace(' ', '-');
 
+        // const fileData = new FormData();
+
+        // fileData.append('files-data', addOptionsRef.value)
+
 
         // console.log('getData', categoryName)
+        const formData = new FormData();
 
-        uploadFiles(`${categoryName}/options`, addOptionsRef.value);
+
+        // try {
+        // console.log(fileData)
+        
+
+        // console.log(addOptionsRef.value)
+
+        addOptionsRef.value.map((elem) => {
+
+            console.log(elem)
+            formData.append('optionData', elem.file);
+
+
+        })
+
+
+       
+
+// optionFile.append('groupName', categoryName);
+
+        formData.append('groupName', categoryName)
+        // console.log(formData);
+
+
+        
+
+        const optionFileUpload = await $fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        })
+
+        console.log(optionFileUpload, 'option file upload')
+
+
+
+
+
+
+
+        //     const resFileData = await $fetch('/api/upload', {
+        //         method: 'POST',
+        //         body: fileData,
+
+        //     })
+
+        //     console.log(resFileData)
+
+        // } catch (error) {
+        //     console.log(error.message)
+
+        // }
+
+
+        
+
+        // uploadFiles(`${categoryName}/options`, addOptionsRef.value);
 
 
         try{
