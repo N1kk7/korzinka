@@ -337,9 +337,14 @@
 
                                             <button 
                                                 class="bg-[var(--dark-color)] h-[40px] px-5 rounded-lg text-white font-bold"
-                                                @click="addTestData"
+                                                @click="addNewOption('text', 'value')"
+
+                                                
                                             >
+                                            <!-- @click="addTestData" -->
+
                                             <!-- @click="addNewOption('text', 'value')" -->
+
 
                                                 Додати опцію
                                             </button>
@@ -359,7 +364,7 @@
                                                 <span>
                                                     {{ option.textUk }}
 
-                                                    {{ console.log(option.file) }}
+                                                    <!-- {{ console.log(option.file) }} -->
                                                 </span>
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <button
@@ -504,49 +509,49 @@
         
     }
 
-    const addTestData = ( ) => {
+    // const addTestData = ( ) => {
 
-        const data = [{
-            file: bagImg,
-            textUk: 'ololo',
-            textEn: 'ololo',
-            textRu: 'ololo',
+    //     const data = [{
+    //         file: bagImg,
+    //         textUk: 'ololo',
+    //         textEn: 'ololo',
+    //         textRu: 'ololo',
 
-        },
-        {
-            file: bagImg,
-            textUk: 'ololo',
-            textEn: 'ololo',
-            textRu: 'ololo',
+    //     },
+    //     {
+    //         file: bagImg,
+    //         textUk: 'ololo',
+    //         textEn: 'ololo',
+    //         textRu: 'ololo',
 
-        },
-        {
-            file: bagImg,
-            textUk: 'ololo',
-            textEn: 'ololo',
-            textRu: 'ololo',
+    //     },
+    //     {
+    //         file: bagImg,
+    //         textUk: 'ololo',
+    //         textEn: 'ololo',
+    //         textRu: 'ololo',
 
-        },
-        {
-            file: bagImg,
-            textUk: 'ololo',
-            textEn: 'ololo',
-            textRu: 'ololo',
+    //     },
+    //     {
+    //         file: bagImg,
+    //         textUk: 'ololo',
+    //         textEn: 'ololo',
+    //         textRu: 'ololo',
 
-        },
-        {
-            file: bagImg,
-            textUk: 'ololo',
-            textEn: 'ololo',
-            textRu: 'ololo',
+    //     },
+    //     {
+    //         file: bagImg,
+    //         textUk: 'ololo',
+    //         textEn: 'ololo',
+    //         textRu: 'ololo',
 
-        },
+    //     },
 
-    ]
-        data.forEach(item => {
-            addOptionsRef.value.push(item)
-        })
-    }
+    // ]
+    //     data.forEach(item => {
+    //         addOptionsRef.value.push(item)
+    //     })
+    // }
 
     const addNewOption = () => {
 

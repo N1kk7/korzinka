@@ -50,7 +50,7 @@ async function addCategory(event: any) {
         // const blob = await fileBuffer.blob()
 
 
-        // return { message: file}
+        return { message: blob}
 
         const fileName = file.name;
         // const fileType = file
@@ -71,7 +71,7 @@ async function addCategory(event: any) {
 
         if (error) {
             // throw new Error('Failed to upload file');
-            return {message: error.message}
+            // return {message: error.message}//////////////
         }
 
         const { data: publicUrlData } = supabase.storage
