@@ -14,54 +14,101 @@ async function addOptionFile(event: any) {
             return {message: 'No files upload'}
         }
 
-        const uploadedFilePath: string[] = [];
-        const uploadedFiles = [];
-        const textFields: string[] = [];
-        const date = new Date;
+        // const uploadedFilePath: string[] = [];
+        // const uploadedFiles = [];
+        // const textFields: string[] = [];
+        // const date = new Date;
+
+
+        const uploadFiles = files.map(async (item, index) => {
+
+            // console.log(item, 'promise item')
+            const folderName = item.name;
+            const file = {
+                name: item.filename,
+                type: item.type,
+                data: item.data
+            };
+
+            if (!folderName || !file) {
+                throw new Error('Invalid file or folder name');
+            }
+
+            const fileBuffer = new Uint8Array(file.data);
+            const blob = new Blob([fileBuffer], { type: file.type });
+
+            const { data, error } = await supabase.storage
+                .from('Images')
+                .upload(
+                    `${folderName}/${file.name}`, blob, {
+                        contentType: file.type,
+                        upsert: true
+                    }
+                )
+
+                if (error) {
+                    throw new Error('Fail to upload file', error)
+                }
+
+                return {
+                    filePath: data.path,
+                    message: 'File uploaded successfully'
+                }
+
+        })
+
+        const results = await Promise.all(uploadFiles);
+
+        return {
+            success: true,
+            data: results
+        }
+
+
 
         // console.log(files, 'files')
 
         // return {data: files}
+////////
+        // for (const item of files) {
+        //     console.log(item.name, 'name')
+        //     console.log(item.data, 'item-data')
 
-        for (const item of files) {
-            // console.log(item.name, 'name')
-            // console.log(item.data, 'item-data')
+        //     if (item.type) {
+        //         // console.log(item, 'itemoptions')
 
-            if (item.type) {
-                console.log(item, 'itemoptions')
-
-                // const {data, error} = await supabase.storage
-                // .from('Images')
-                // .upload(
-                //     `testStorage/${date.getTime()}-${item.filename}`, item.data, {
-                //         // contentType: item.type,
-                //         upsert: true
-                //     }
-                //     // `testStorage/${fileData.name}${date.getTime()}`,
-                //     // blob,
-                //     // {
-                //     //     contentType: fileData.type,
-                //     //     upsert: true
-                //     // }
-                // )
-                // if (error) {
-                //     console.error('Error uploading file:', error.message);
-                //     return { error: error.message };
-                // }
+        //         // const {data, error} = await supabase.storage
+        //         // .from('Images')
+        //         // .upload(
+        //         //     `testStorage/${date.getTime()}-${item.filename}`, item.data, {
+        //         //         // contentType: item.type,
+        //         //         upsert: true
+        //         //     }
+        //         //     // `testStorage/${fileData.name}${date.getTime()}`,
+        //         //     // blob,
+        //         //     // {
+        //         //     //     contentType: fileData.type,
+        //         //     //     upsert: true
+        //         //     // }
+        //         // )
+        //         // if (error) {
+        //         //     console.error('Error uploading file:', error.message);
+        //         //     return { error: error.message };
+        //         // }
     
-                // if (data) {
-                //     uploadedFilePath.push(data.path);
-                //     return{dataPath: data.path}
-                // }   else {
-                //     console.error('File missing required properties:', item);
-                // }
+        //         // if (data) {
+        //         //     uploadedFilePath.push(data.path);
+        //         //     return{dataPath: data.path}
+        //         // }   else {
+        //         //     console.error('File missing required properties:', item);
+        //         // }
 
-            } else if (item.name === 'groupName') {
+        //     } else if (item.name === 'groupName') {
 
-            }
-        }
+        //     }
+        // }
 
-        return {message: 'complete'}
+        // return {message: 'complete'}
 //         for (const elem of files) {
 
 //             if (elem.type && elem.filename) {
@@ -156,7 +203,7 @@ async function addOptionFile(event: any) {
 //         }
         return {
             message: 'Files uploaded successfully',
-            filePaths: uploadedFilePath, // Возвращаем массив путей
+            // filePaths: uploadedFilePath, // Возвращаем массив путей
         };
 
 

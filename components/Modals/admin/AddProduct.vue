@@ -617,12 +617,20 @@
         // console.log(fileData)
         
 
-        console.log(addOptionsRef.value);
+        // console.log(addOptionsRef.value);
 
         addOptionsRef.value.map((elem) => {
 
             console.log(elem.file)
-            formData.append('optionData', elem.file);
+            formData.append(`${categoryName}`, elem.file);
+            // formData.append('groupName', categoryName)
+        // })
+
+            // formData.append('optionData', {
+            //     file: elem.file,
+            //     groupName: categoryName
+            // });
+
 
 
         })
@@ -632,7 +640,7 @@
 
 // optionFile.append('groupName', categoryName);
 
-        formData.append('groupName', categoryName)
+        // formData.append('groupName', categoryName)
         // console.log(formData);
 
 
