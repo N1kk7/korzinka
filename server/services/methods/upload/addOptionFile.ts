@@ -1,4 +1,5 @@
 import { readMultipartFormData } from "#imports";
+import { data } from "autoprefixer";
 import supabase from '../../../../utils/supabase'
 
 
@@ -14,76 +15,145 @@ async function addOptionFile(event: any) {
         }
 
         const uploadedFilePath: string[] = [];
+        const uploadedFiles = [];
         const textFields: string[] = [];
         const date = new Date;
 
+        // console.log(files, 'files')
+
         // return {data: files}
 
-        for (const elem of files) {
-            const uploadedFiles: any[] = [];
+        for (const item of files) {
+            // console.log(item.name, 'name')
+            // console.log(item.data, 'item-data')
 
-//  return {data: file.data.type}
-            const file = elem.data
+            if (item.type) {
+                console.log(item, 'itemoptions')
 
-            return {data: file}
+                // const {data, error} = await supabase.storage
+                // .from('Images')
+                // .upload(
+                //     `testStorage/${date.getTime()}-${item.filename}`, item.data, {
+                //         // contentType: item.type,
+                //         upsert: true
+                //     }
+                //     // `testStorage/${fileData.name}${date.getTime()}`,
+                //     // blob,
+                //     // {
+                //     //     contentType: fileData.type,
+                //     //     upsert: true
+                //     // }
+                // )
+                // if (error) {
+                //     console.error('Error uploading file:', error.message);
+                //     return { error: error.message };
+                // }
+    
+                // if (data) {
+                //     uploadedFilePath.push(data.path);
+                //     return{dataPath: data.path}
+                // }   else {
+                //     console.error('File missing required properties:', item);
+                // }
 
-            // if (file.type) {
-            //     uploadedFiles.push(file);
-            // } else if (file.name) {
-            //     textFields.push(file.data.toString());
-            // } else {
-            //     console.log('Item without a name:', file);
-            // }
+            } else if (item.name === 'groupName') {
 
-            const getFiles = uploadedFiles[0];
-
-
-;
-            // const getFiles = files
-            const fileData = {
-                // name: file.filename,
-                // type: file.type,
-                // data: file.data
-                name: getFiles.name,
-                type: getFiles.type,
-                data: getFiles.data
             }
-
-            const fileBuffer = new Uint8Array(fileData.data);
-            const blob = new Blob([fileBuffer], { type: fileData.type });
-
-            // return {data: getFiles}
-
-            const {data, error} = await supabase.storage
-            .from('Images')
-            .upload(
-                `testStorage/${fileData.name}${date.getTime()}`,
-                blob,
-                {
-                    contentType: fileData.type,
-                    upsert: true
-                }
-            )
-
-            if (error) {
-                // console.error('Error uploading file:', error.message);
-                continue;
-            }
-
-            if (data) {
-                // uploadedFilePath.push(data.path);
-            }   else {
-                console.error('File missing required properties:', file);
-            }
-
-            // uploadedFiles = []
-
-
-
-
-
-            return {file: getFiles}
         }
+
+        return {message: 'complete'}
+//         for (const elem of files) {
+
+//             if (elem.type && elem.filename) {
+
+//                 const {data, error} = await supabase.storage
+//                 .from('Images')
+//                 .upload(
+//                     `testStorage/${date.getTime()}-${elem.filename}`, elem.data, {
+//                         contentType: elem.type,
+//                         upsert: true
+//                     }
+//                     // `testStorage/${fileData.name}${date.getTime()}`,
+//                     // blob,
+//                     // {
+//                     //     contentType: fileData.type,
+//                     //     upsert: true
+//                     // }
+//                 )
+//                 if (error) {
+//                     console.error('Error uploading file:', error.message);
+//                     return { error: error.message };
+//                 }
+    
+//                 if (data) {
+//                     uploadedFilePath.push(data.path);
+//                     return{dataPath: data.path}
+//                 }   else {
+//                     console.error('File missing required properties:', elem);
+//                 }
+
+//             } 
+//             // else if (elem.name) {
+//             //     // Обрабатываем текстовые поля
+//             //     textFields.push(elem.data.toString());
+//             // }
+//              else {
+//                 console.log('Item without a name or type:', elem);
+//             }
+//             // const uploadedFiles: any[] = [];
+
+//             // const file = elem.data
+
+//             // return {data: file}
+
+// //             if (file.type) {
+// //                 uploadedFiles.push(file);
+// //             } else if (file.name) {
+// //                 textFields.push(file.data.toString());
+// //             } else {
+// //                 console.log('Item without a name:', file);
+// //             }
+
+// //             const getFiles = uploadedFiles[0];
+
+
+// // ;
+// //             // const getFiles = files
+// //             const fileData = {
+// //                 // name: file.filename,
+// //                 // type: file.type,
+// //                 // data: file.data
+// //                 name: getFiles.name,
+// //                 type: getFiles.type,
+// //                 data: getFiles.data
+// //             }
+
+// //             const fileBuffer = new Uint8Array(fileData.data);
+// //             const blob = new Blob([fileBuffer], { type: fileData.type });
+
+//             // return {data: getFiles}
+
+           
+
+//             // if (error) {
+//             //     // console.error('Error uploading file:', error.message);
+//             //     continue;
+//             // }
+
+//             // if (data) {
+//             //     // uploadedFilePath.push(data.path);
+//             // }   else {
+//             //     console.error('File missing required properties:', file);
+//             // }
+
+//             // uploadedFiles = []
+
+
+
+
+
+//             // return {file: getFiles}
+//         }
         return {
             message: 'Files uploaded successfully',
             filePaths: uploadedFilePath, // Возвращаем массив путей

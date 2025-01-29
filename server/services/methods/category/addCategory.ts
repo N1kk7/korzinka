@@ -19,7 +19,9 @@ async function addCategory(event: any) {
 
     
         for (const item of files) {
+            console.log(item.type, 'category item')
             if (item.type) {
+                console.log(item, 'item')
                 uploadedFiles.push(item);
             } else if (item.name) {
                 textFields[item.name] = item.data.toString();

@@ -359,7 +359,7 @@
                                                 v-for="(option, index) in addOptionsRef"
                                                 :key="index"
                                                 class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
-                                                <img :src="option.file" alt="img" width="25px">
+                                                <img :src="option.fileImg" alt="img" width="25px">
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span>
                                                     {{ option.textUk }}
@@ -565,11 +565,12 @@
             return
         }
 
-        if (filePreview.value) {
+        if (file.value) {
 
             if (addOptionTextUk.value && addOptionTextEn.value && addOptionTextRu.value) {
                 addOptionsRef.value.push({
-                    file: filePreview.value,
+                    file: file.value,
+                    fileImg: filePreview.value,
                     textUk: addOptionTextUk.value,
                     textEn: addOptionTextEn.value,
                     textRu: addOptionTextRu.value,
@@ -616,11 +617,11 @@
         // console.log(fileData)
         
 
-        // console.log(addOptionsRef.value)
+        console.log(addOptionsRef.value);
 
         addOptionsRef.value.map((elem) => {
 
-            console.log(elem)
+            console.log(elem.file)
             formData.append('optionData', elem.file);
 
 

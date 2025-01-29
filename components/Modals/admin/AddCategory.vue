@@ -300,6 +300,7 @@
 
 
         const formData = new FormData();
+        console.log(file.value, 'file value')
         formData.append('image', file.value);
         formData.append('group', translitString.toLowerCase());
         formData.append('titleUk', categoryNameUk.value.toLowerCase());
