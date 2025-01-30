@@ -14,15 +14,14 @@ async function addOptionFile(event: any) {
             return {message: 'No files upload'}
         }
 
-        // const uploadedFilePath: string[] = [];
-        // const uploadedFiles = [];
-        // const textFields: string[] = [];
-        // const date = new Date;
+        // console.log()
+
+    
 
 
         const uploadFiles = files.map(async (item, index) => {
 
-            // console.log(item, 'promise item')
+            console.log(item, 'promise item')
             const folderName = item.name;
             const file = {
                 name: item.filename,

@@ -16,14 +16,52 @@
                             <span class="text-center">
                                 Зображення повинні бути в форматі .jpg, .png, .jpeg
                             </span>
-                            <button>
-                                Вибрати
-                            </button>
+                            <label for="product-file" class="icon-label">
+                                <div class="upload-btn">
+                                    Вибрати
+                                </div>
+                            </label>
+                            <!-- @change="handleFileUpload($event, 'product-files')" -->
+
+                            <input 
+                                type="file" 
+                                id="product-file" 
+                                class="hidden" 
+                                multiple 
+                                @change="handleFileUpload($event, 'product', productFileState, productFileState.productFiles.value.length)"
+                            >
+                            
                         </div>
                     </div>
                     
-                    <div class="prewiev-block flex justify-center items-center">
-                        <SvgIcon name="default-picture" size="large" fill="var(--dark-color)"/>
+                    <div class="prewiev-block flex justify-center items-center gap-5">
+                        <SvgIcon 
+                            name="default-picture" 
+                            size="large" 
+                            fill="var(--dark-color)"
+                            v-if="productFileState.productFilesPreview.value.length === 0"
+                        />
+                        <div 
+                            class="preview-wrapper w-[50px] h-[50px] relative flex items-center justify-center gap-5"
+                            v-for="(file, index) in productFileState.productFilesPreview.value"
+                            :key="index"
+                            v-else
+                        >
+                            <div 
+                                class="remove-btn rounded-full bg-red-500 w-5 h-5 absolute top-[-5px] right-[-5px] flex items-center justify-center cursor-pointer"
+                                @click="removeProductImg(index)"
+                            >
+                                <SvgIcon name="close-btn" size="micro" fill="white"/>
+                            </div>
+                            <img 
+                                class="w-[40px] h-[40px] object-cover"
+                                :src="file" 
+                                alt="preview"
+                            >
+                        </div>
+                        
+                        
+
                     </div>
                 </div>
                 <div class="add-info h-[90vh]">
@@ -295,19 +333,22 @@
                                                 Додати файл
                                             </span>
                                             <div class="label-wrapper flex basis-10 items-center justify-start gap-5">
-                                                <label for="file-upload" class="icon-label">
+                                                <label for="option-upload" class="icon-label">
                                                     <span>
                                                         Оберіть файл
                                                     </span>
                                                     <SvgIcon name="download-btn" size="micro" fill="var(--dark-color)"/>
                                                 </label>
                                                 <div class="preview px-2 py-1 rounded-lg border-[1px] border-[var(--dark-color)]">
-                                                    <img class="file-preview w-5" src="../../../public/img/bag.png" alt="preview"/>
+                                                    <img v-if="optionFileState.optionFiles.value.length === 0" class="file-preview w-5" src="../../../public/img/bag.png" alt="preview"/>
+                                                    <img v-else :src="optionFileState.optionFilesPreview.value[0]" alt="preview" class="w-5">
 
                                                 </div>
 
 
-                                                <input type="file" id="file-upload" class="icon-file" @change="handleFileUpload">
+                                                <input type="file" id="option-upload" class="icon-file" 
+                                                    @change="handleFileUpload($event, 'option', optionFileState)"
+                                                >
 
                                             </div>
                                             
@@ -360,6 +401,7 @@
                                                 :key="index"
                                                 class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
                                                 <img :src="option.fileImg" alt="img" width="25px">
+                                                <!-- <img v-else :src="optionFileState.optionFilePreview" alt="preview"> -->
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span>
                                                     {{ option.textUk }}
@@ -404,7 +446,7 @@
 </template>
 
 <script setup>
-    import {ref, defineEmits, onMounted} from 'vue';
+    import {ref, defineEmits, onMounted, toRaw} from 'vue';
 
     import bagImg from '@/public/img/bag.png';
 
@@ -417,6 +459,10 @@
     // const tooltipStore = useTooltipStore();
 
     const emit = defineEmits(['addNewItem']);
+
+    // helpers 
+    import { useFileUpload } from '../../../helpers/uploadFiles';
+    const {handleFileUpload} = useFileUpload(emit);
 
     const fetchedCategories = ref([]);
 
@@ -451,8 +497,39 @@
 
     // option file
 
-    const optionFile = ref(null);
-    const optionFilePreview = ref(null);
+    const productFileState = {
+        // product files
+        productFilesPreview: ref([]),
+        productFiles: ref([]),
+        productReady: ref(false),
+      
+    }
+
+    const optionFileState = {
+        optionFilesPreview: ref([]),
+        optionFiles: ref([]),
+        optionReady: ref(false),
+
+    }
+
+    // watch(productFileState, () => {
+    //     console.log(productFileState.productFiles, 'log from component')
+    // })
+
+    
+
+    // product image
+
+    // const productFilesPreview = ref([]);
+    // const productFiles = ref([])
+    // const productReady = ref(false);
+
+    // category files
+    // const categoryFilesPreview = ref([]);
+    // const categoryFiles = ref([])
+    // const categoryReady = ref(false);
+
+    // console.log(productFilesPreview.value, 'productFilesPreview')
 
 
     // watch(productCategory, () => {
@@ -469,6 +546,12 @@
 
     // }
 
+    const removeProductImg = (index) => {
+        productFileState.productFiles.value.splice(index, 1);
+        productFileState.productFilesPreview.value.splice(index, 1)
+
+    }
+
 
     const closeModal = () => {
         modalStore.closeModal();
@@ -479,35 +562,135 @@
 
     }
 
-    const handleFileUpload = (event) => {
-        const accessedFormat = ['svg', 'png'];
-        const selectedFile = event.target.files[0];
-        const accessedFile = accessedFormat.some(item => selectedFile.name.includes(item));
+    // const handleFileUpload = (event, type) => {
 
-        if (accessedFile) {
-            file.value = selectedFile;
-            fileReady.value = false;
-            // uploadProgress.value = 0;
-            // uploadStatus.value = '';
+    //     console.log(event.target.files, type, 'handleFileUpload')
+    //     const accessedFormat = ['svg', 'png'];
+    //     const files = Array.from(event.target.files)
 
-            const reader = new FileReader();
-            reader.onload = () => {
-            filePreview.value = reader.result;
-            };
-            reader.readAsDataURL(selectedFile);
-            fileReady.value = true;
+    //     // event.target.files.forEach((elem) => {
+    //     // const accessedFile = accessedFormat.some(item => elem.name.includes(item));
+
+    //     let typeFiles, typePreview, typeReady;
+    //     switch (type) {
+    //         case 'product-files':
+    //             typeFiles = productFiles;
+    //             typePreview = productFilesPreview;
+    //             typeReady = productReady;
+
+    //     break;
+    //         case 'option-files':
+
+    //             typeFiles = optionFiles;
+    //             typePreview = optionFilesPreview;
+    //             typeReady = optionReady;
+    //     break;
+    //         case 'category-files':
+    //             typeFiles = categoryFiles;
+    //             typePreview = categoryFilesPreview;
+    //             typeReady = categoryReady;
+    //         break;
+    //     default:
+    //         console.error("Неизвестный тип файла:", type);
+    //         return;
+    //     };
+
+    //     typeReady.value = false;
+
+    //     files.forEach((file) => {
+
+    //         const fileExtension = file.name.split(".").pop().toLowerCase();
+    //             if (!accessedFormat.includes(fileExtension)) {
+    //                 emit("tooltip", {
+    //                     status: "error",
+    //                     message: "Файл повинен бути формату .svg .png",
+    //                 });
+    //                 return;
+    //             }
+
+    //             typeFiles.value.push(file);
+
+    //             const reader = new FileReader();
+    //             reader.onload = () => {
+    //                 typePreview.value.push(reader.result);
+    //             };
+    //             reader.readAsDataURL(file);
+    //     });
+
+    //     typeReady.value = true;
+
+    //     return;
+
+
+
+    //         // if (accessedFile) {
+
+                
+
+
+                
+
             
-        } else {
-            // console.error('Файл повинен бути формату .svg .png');
-            emit('tooltip', {
-                status: 'error',
-                message: 'Файл повинен бути формату .svg .png'
-            })
-            resetForm();
-            return;
-        }
+
+    //             // categoryFile.value = elem;
+    //             // fileReady.value = false;
+    //             // // uploadProgress.value = 0;
+    //             // // uploadStatus.value = '';
+
+    //             // const reader = new FileReader();
+    //             // reader.onload = () => {
+    //             //     filePreview.value = reader.result;
+    //             // };
+    //             // reader.readAsDataURL(selectedFile);
+    //             // fileReady.value = true;
+
+
+
+    //         // } else {
+    //         //     emit('tooltip', {
+    //         //         status: 'error',
+    //         //         message: 'Файл повинен бути формату .svg .png'
+    //         //     })
+    //         //     resetForm();
+    //         //     return;
+
+    //         // }
+
+
+    //     // })
+
         
-    }
+
+        
+
+
+    //     // const selectedFile = event.target.files[0];
+    //     // const accessedFile = accessedFormat.some(item => selectedFile.name.includes(item));
+
+    //     // if (accessedFile) {
+    //     //     file.value = selectedFile;
+    //     //     fileReady.value = false;
+    //     //     // uploadProgress.value = 0;
+    //     //     // uploadStatus.value = '';
+
+    //     //     const reader = new FileReader();
+    //     //     reader.onload = () => {
+    //     //     filePreview.value = reader.result;
+    //     //     };
+    //     //     reader.readAsDataURL(selectedFile);
+    //     //     fileReady.value = true;
+            
+    //     // } else {
+    //     //     // console.error('Файл повинен бути формату .svg .png');
+    //     //     emit('tooltip', {
+    //     //         status: 'error',
+    //     //         message: 'Файл повинен бути формату .svg .png'
+    //     //     })
+    //     //     resetForm();
+    //     //     return;
+    //     // }
+        
+    // }
 
     // const addTestData = ( ) => {
 
@@ -565,12 +748,14 @@
             return
         }
 
-        if (file.value) {
+        console.log(optionFileState.optionFiles.value, 'optionFiles')
+
+        if (optionFileState.optionFilesPreview.value.length > 0) {
 
             if (addOptionTextUk.value && addOptionTextEn.value && addOptionTextRu.value) {
                 addOptionsRef.value.push({
-                    file: file.value,
-                    fileImg: filePreview.value,
+                    file: toRaw(optionFileState.optionFiles.value),
+                    fileImg: optionFileState.optionFilesPreview.value,
                     textUk: addOptionTextUk.value,
                     textEn: addOptionTextEn.value,
                     textRu: addOptionTextRu.value,
@@ -579,7 +764,9 @@
             }
             // console.log('option true')
              
-            file.value = null;
+            optionFileState.optionFiles.value = [];
+            optionFileState.optionFilesPreview.value = [];
+            // file.value = null;
             addOptionTextUk.value = '';
             addOptionTextEn.value = '';
             addOptionTextRu.value = '';
@@ -597,7 +784,10 @@
     }
 
     const addNewProduct =  async () => {
-        // console.log('add new product')
+        // console.log(addOptionsRef.value, 'add new product')
+
+        // const optionRaw = toRaw(addOptionsRef.value)
+        // console.log(optionRaw)
 
         //ADD OPTIONS
 
@@ -610,7 +800,73 @@
 
 
         // console.log('getData', categoryName)
-        const formData = new FormData();
+
+        try {
+
+
+
+            // UPLOAD PRODUCT FILE
+
+            // const uploadProduct = async () => {
+
+            // UPLOAD PRODUCT OPTIONS
+
+                const formData = new FormData();
+
+
+                toRaw(addOptionsRef.value).map((elem) => {
+                    console.log(elem.file[0], 'elemfyle')
+                    const rawFile = elem.file[0];
+                    // formData.append(`${categoryName}_${index}`, rawFile);
+                    formData.append(`${categoryName}`, rawFile);
+
+
+                    // if (rawFile instanceof File) {
+                    // } else {
+                    // console.error('Ошибка: elem.file не является File-объектом', rawFile);
+                    // }
+
+                    // const rawFile = toRaw(elem)
+                    // const rawFile = toRaw(elem.file)
+
+                    // // console.log(rawFile)
+                    // formData.append(`${categoryName}`, rawFile);
+                    // formData.append('groupName', categoryName)
+                    // })
+
+                    // formData.append('optionData', {
+                    //     file: elem.file,
+                    //     groupName: categoryName
+                });
+
+                const optionFileUpload = await $fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData,
+                })
+
+                console.log(optionFileUpload, 'option file upload')
+
+
+            // }
+
+            // const resultUpload = await Promise.all(uploadProduct)
+
+            // console.log(resultUpload);
+
+            // return {
+            //     result: resultUpload,
+            // }
+            
+            
+
+
+            //UPLOAD PRODUCT INFORMATION
+
+        } catch (error) {
+            return {
+                message: error
+            }
+        }
 
 
         // try {
@@ -619,21 +875,7 @@
 
         // console.log(addOptionsRef.value);
 
-        addOptionsRef.value.map((elem) => {
-
-            console.log(elem.file)
-            formData.append(`${categoryName}`, elem.file);
-            // formData.append('groupName', categoryName)
-        // })
-
-            // formData.append('optionData', {
-            //     file: elem.file,
-            //     groupName: categoryName
-            // });
-
-
-
-        })
+        
 
 
        
@@ -646,12 +888,7 @@
 
         
 
-        const optionFileUpload = await $fetch('/api/upload', {
-            method: 'POST',
-            body: formData
-        })
-
-        console.log(optionFileUpload, 'option file upload')
+        
 
 
 
@@ -808,11 +1045,12 @@
             @include mixins.descriptionText(400, var(--dark-color));
             // white-space: nowrap;
         }
-        button{
+        .upload-btn{
             margin: 50px 0 20px;
             @include mixins.defaultShadow;
             @include mixins.descriptionText(500, var(--dark-color));
             padding: 10px 20px;
+            cursor: pointer;
         }
 
     }
