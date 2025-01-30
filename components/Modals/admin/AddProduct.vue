@@ -794,6 +794,10 @@
         const categoryData = fetchedCategories.value.filter((item) => item.id === productCategory.value);
         const categoryName = categoryData[0].group.trim().replace(' ', '-');
 
+        const translitProductName = transliterate(productNameUk.value);
+
+        const productName = translitProductName.replaceAll(' ', '-').toLowerCase();
+
         // const fileData = new FormData();
 
         // fileData.append('files-data', addOptionsRef.value)
@@ -807,36 +811,51 @@
 
             // UPLOAD PRODUCT FILE
 
+        
+
             // const uploadProduct = async () => {
+            const uploadProductFiles = async () => {
+
+                // const productFiles = toRaw(productFileState.productFiles.value);
+                const formData = new FormData();
+                console.log(toRaw(productFileState.productFiles.value))
+
+                toRaw(productFileState.productFiles.value).map((item) => {
+                    console.log(item, 'item')
+                    if (item instanceof File) {
+                        formData.append(`${categoryName}/${productName}`, item);
+
+                    } else {
+                        console.error('Ошибка: elem.file не является File-объектом', item);
+                    }
+                })
+                console.log(formData, 'formdata')
+                const productFileUpload = await $fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+
+                // console.log(productFiles)
+                console.log(productFileUpload, 'product file upload')
+
+            }
 
             // UPLOAD PRODUCT OPTIONS
-
+            const uploadOptions = async () => {
                 const formData = new FormData();
 
 
                 toRaw(addOptionsRef.value).map((elem) => {
-                    console.log(elem.file[0], 'elemfyle')
+                    console.log(elem.file);
+                    
                     const rawFile = elem.file[0];
-                    // formData.append(`${categoryName}_${index}`, rawFile);
-                    formData.append(`${categoryName}`, rawFile);
 
+                    if (rawFile instanceof File) {
+                        formData.append(`${categoryName}/${productName}/optionsImg`, rawFile);
 
-                    // if (rawFile instanceof File) {
-                    // } else {
-                    // console.error('Ошибка: elem.file не является File-объектом', rawFile);
-                    // }
-
-                    // const rawFile = toRaw(elem)
-                    // const rawFile = toRaw(elem.file)
-
-                    // // console.log(rawFile)
-                    // formData.append(`${categoryName}`, rawFile);
-                    // formData.append('groupName', categoryName)
-                    // })
-
-                    // formData.append('optionData', {
-                    //     file: elem.file,
-                    //     groupName: categoryName
+                    } else {
+                    console.error('Ошибка: elem.file не является File-объектом', rawFile);
+                    }
                 });
 
                 const optionFileUpload = await $fetch('/api/upload', {
@@ -845,6 +864,27 @@
                 })
 
                 console.log(optionFileUpload, 'option file upload')
+            }
+
+            const uploadData = async () => {
+
+            }
+
+
+            const resultUploads = await Promise.all(
+                [
+                    uploadProductFiles(),
+                    uploadOptions(),
+                ]
+            )
+
+            // console.log(resultUploads)
+
+            return {
+                resultUploads
+            }
+
+               
 
 
             // }
