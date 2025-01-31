@@ -19,7 +19,6 @@ async function addCategory(event: any) {
 
     
         for (const item of files) {
-            console.log(item.type, 'category item')
             if (item.type) {
                 console.log(item, 'item')
                 uploadedFiles.push(item);
@@ -43,20 +42,11 @@ async function addCategory(event: any) {
             type: getFiles.type,
             data: getFiles.data
         }
-        // console.log(file.name, file.type, file.data);
 
         const fileBuffer = new Uint8Array(file.data); 
         const blob = new Blob([fileBuffer], { type: file.type });
-        // const fileBuffer = await file.data.arrayBuffer(); 
-
-        // const blob = await fileBuffer.blob()
-
-
-        return { message: blob}
 
         const fileName = file.name;
-        // const fileType = file
-        // const fileData = file;   
 
         const bucketName = 'Images';
         const categoryFolder = 'categoryImg';

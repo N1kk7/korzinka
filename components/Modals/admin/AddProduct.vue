@@ -168,21 +168,21 @@
                                     <span >
                                         Українська
                                     </span>
-                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+                                    <textarea v-model="productDescriptionUk" name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
 
                                 </div>
                                 <div class="wrapper">
                                     <span>
                                         Англійська
                                     </span>
-                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+                                    <textarea v-model="productDescriptionEn" name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
 
                                 </div>
                                 <div class="wrapper">
                                     <span >
                                         Російська
                                     </span>
-                                    <textarea name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
+                                    <textarea v-model="productDescriptionRu" name="descriptionText" id="descriptionText" placeholder="Введіть опис товару максимум 500 символів"></textarea>
 
                                 </div>
                             </div>
@@ -202,9 +202,9 @@
                                 <span>
                                     Відображати кількість товару на складі
                                 </span>
-                                <input type="checkbox" @change="productAvailability = !productAvailability">
+                                <input v-model="productStockState" type="checkbox" value="false" @change="productAvailability = !productAvailability">
                             </div>
-                            <input v-if="productAvailability" type="text" placeholder="Введіть наявну кількість товару на складі">
+                            <input v-if="productAvailability" v-model="productStockValue" type="number" placeholder="Введіть наявну кількість товару на складі">
                         </div>
                         <div class="price-option flex items-center justify-between gap-2">
                             <div class="el flex-1">
@@ -216,19 +216,19 @@
                                         *
                                     </strong> 
                                 </h4>
-                                <input type="text" placeholder="Введіть роздрібну ціну товару.">
+                                <input v-model="price" type="number" placeholder="Введіть роздрібну ціну товару.">
                             </div>
                             <div class="el flex-1">
                                 <h4>
                                     Оптова ціна
                                 </h4>
-                                <input type="text" placeholder=" Введіть оптову ціну товару.">
+                                <input type="number" v-model="wholesalePrice" placeholder=" Введіть оптову ціну товару.">
                             </div>
                             <div class="el flex-1">
                                 <h4>
                                     Оптова ціна діє від ...
                                 </h4>
-                                <input type="text" placeholder="Введіть кількість від якої оптова ціна діє">
+                                <input type="number" v-model="wholesalePriceFrom" placeholder="Введіть кількість від якої оптова ціна діє">
                                 
                             </div>
                         </div>
@@ -241,22 +241,31 @@
                                     <span>
                                         Українська
                                     </span>
-                                    <input class="" type="text" placeholder="Введіть примітку">
+                                    <input v-model="wholesaleDescriptionUk" class="" type="text" placeholder="Введіть примітку">
 
                                 </div>
                                 <div class="wrapper">
                                     <span>
                                         Англійська
                                     </span>
-                                    <input class="" type="text" placeholder="Введіть примітку">
+                                    <input v-model="wholesaleDescriptionEn" class="" type="text" placeholder="Введіть примітку">
 
                                 </div>
                                 <div class="wrapper">
                                     <span>
                                         Російська
                                     </span>
-                                    <input class="" type="text" placeholder="Введіть примітку">
+                                    <input v-model="wholesaleDescriptionRu" class="" type="text" placeholder="Введіть примітку">
 
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Продавати товар тільки оптом
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox" v-model="wholesaleOnly">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -269,8 +278,8 @@
                                     <span>
                                         Вкажіть тип фасування товару
                                     </span>
-                                    <select name="wholesaleType" id="wholesaleType">
-                                        <option value="Bag">Мішок</option>
+                                    <select name="wholesaleType" id="wholesaleType" v-model="packageType">
+                                        <option selected value="Bag">Мішок</option>
                                         <option value="Role">Рулон</option>
                                         <option value="Package">Упаковка</option>
                                     </select>
@@ -280,7 +289,7 @@
                                         Відображати товар на сайті
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="checkbox">
+                                        <input v-model="productVisibility" value="false" class="checkbox" type="checkbox">
 
                                     </div>
                                 </div>
@@ -294,7 +303,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="text" placeholder="Введіть значення цифрами">
+                                        <input v-model="counterQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -312,7 +321,7 @@
                                         Відсоток знижки
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="discount-price" type="text" placeholder="%">
+                                        <input v-model="productDiscountPersent" class="discount-price" type="number" placeholder="%">
 
                                     </div>
                                 </div>
@@ -374,6 +383,22 @@
                                             </div>
                                             
                                         </div>
+                                        <div class="add-option flex flex-col gap-2">
+                                            <span>
+                                                Додати ціну для опційного товару
+                                            </span>
+                                            <div class="checkbox-wrap flex items-center justify-start">
+                                                <input v-model="addOptionPrice" value="false" class="checkbox" type="checkbox">
+
+                                            </div>
+                                        </div>
+                                        <div class="add-option" v-if="addOptionPrice">
+                                            <input 
+                                                type="number" 
+                                                placeholder="Введіть ціну на опційний товар"
+                                                v-model="optionPrice"
+                                            >
+                                        </div>
                                         <div class="add-option flex items-center justify-end">
 
                                             <button 
@@ -403,12 +428,25 @@
                                                 <img :src="option.fileImg" alt="img" width="25px">
                                                 <!-- <img v-else :src="optionFileState.optionFilePreview" alt="preview"> -->
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
-                                                <span>
-                                                    {{ option.textUk }}
+                                                <span >
+                                                    {{ option.translations[0].optionInfo }}
+                                                    <!-- {{ option.translation.forEach((elem) => {
+                                                        if (elem.language === 'uk') {
+                                                            return optionInfo
+                                                        }
+                                                    }) }} -->
 
                                                     <!-- {{ console.log(option.file) }} -->
                                                 </span>
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
+                                                <span v-if="option.optionPrice !== 0">
+                                                    {{ option.optionPrice }}
+                                                    UAH
+
+                                                    <!-- {{ console.log(option.file) }} -->
+                                                </span>
+                                                <div v-if="option.optionPrice !== 0" class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
+
                                                 <button
                                                     @click="removeOption(index)"
                                                 >
@@ -417,6 +455,7 @@
                                             </li>
                                             
                                         </ul>
+                                        
                                     </div>
                             
                                 </div>
@@ -458,7 +497,8 @@
     const modalStore = useModalStore();
     // const tooltipStore = useTooltipStore();
 
-    const emit = defineEmits(['addNewItem']);
+    const emit = defineEmits(['addNewItem', 'tooltip']);
+    // const emit = defineEmits(['tooltip']);
 
     // helpers 
     import { useFileUpload } from '../../../helpers/uploadFiles';
@@ -470,30 +510,50 @@
     const productNameUk = ref('');
     const productNameEn = ref('');
     const productNameRu = ref('');
-    const productDescriptionUk = ref('');
+    const productVisibility = ref(false);   // Показывать товар на сайте
+    const productDescriptionUk = ref('');  
     const productDescriptionEn = ref('');
     const productDescriptionRu = ref('');
-    const quantityProduct = ref('');
-    const retailPrice = ref('');
-    const wholesalePrice = ref('');
-    const wholesalePriceFrom = ref('');
-    const wholesaleType = ref('');
-    const typePackage = ref('');
+    const productStockState = ref(false);    // Показывать колличество товарв на сайте 
+    const productStockValue = ref(0)        // Значение колличества товаров на сайте
+    const counterQuantity = ref(1);         // Значение минимального колличества единиц
+    const price = ref(0);                  // Стандартная цена
+    const wholesaleOnly = ref(false);   // Значение продажи товара только оптом
+    const wholesalePrice = ref(0);      // Оптовая цена
+    const wholesalePriceFrom = ref(0); // Оптовая цена действует от
+    const wholesaleDescriptionUk = ref('');
+    const wholesaleDescriptionEn = ref('');
+    const wholesaleDescriptionRu = ref('');
+    const packageType = ref('Bag');            // Значение типа упаковки
     const noteForWholesale = ref('');
     const productAvailability = ref(false);
-    const mediaArray = ref([]);
+    const productDiscountPersent = ref(0); // процент скидки
+    // const mediaArray = ref([]);
+
+    // в схеме добавить дефолтное значение 1 для Значение минимального колличества единиц
+    // добавить в опцию цену опционально
+    //изменить значение price на Int
+    // убрать тайтл из модели продукт
+    // добавить переводы для опций
+    // add wholesale description
 
 
     // ADD OPTION
-    const productVisibility = ref(false);
     const addOptionsRef = ref([]);
     const discountState = ref(false);
-    const filePreview = ref(null)
+    // const filePreview = ref(null)
     const addOptionTextUk = ref('');
     const addOptionTextEn = ref('');
     const addOptionTextRu = ref('');
-    const fileReady = ref(false);
-    const file = ref(null);
+    const addOptionPrice = ref(false);
+    const optionPrice = ref(0);
+
+    // PATH
+
+    const productImgPath = ref([]);
+    const optionImgPath = ref([]);
+    // const fileReady = ref(false);
+    // const file = ref(null);
 
     // option file
 
@@ -512,9 +572,9 @@
 
     }
 
-    // watch(productFileState, () => {
-    //     console.log(productFileState.productFiles, 'log from component')
-    // })
+    watch(productImgPath, () => {
+        console.log(productImgPath.value, 'log from component')
+    })
 
     
 
@@ -756,9 +816,25 @@
                 addOptionsRef.value.push({
                     file: toRaw(optionFileState.optionFiles.value),
                     fileImg: optionFileState.optionFilesPreview.value,
-                    textUk: addOptionTextUk.value,
-                    textEn: addOptionTextEn.value,
-                    textRu: addOptionTextRu.value,
+                    optionPrice: optionPrice.value,
+                    translations: [
+                        {
+                            language: 'uk',
+                            optionInfo: addOptionTextUk.value,
+
+                        },
+                        {
+                            language: 'en',
+                            optionInfo: addOptionTextEn.value,
+                        },
+                        {
+                            language: 'ru',
+                            optionInfo: addOptionTextRu.value,
+                        },
+                    ],
+                    // textUk: addOptionTextUk.value,
+                    // textEn: addOptionTextEn.value,
+                    // textRu: addOptionTextRu.value,
 
                 })
             }
@@ -770,6 +846,9 @@
             addOptionTextUk.value = '';
             addOptionTextEn.value = '';
             addOptionTextRu.value = '';
+            addOptionPrice.value = false;
+            optionPrice.value = 0;
+
 
 
         }
@@ -784,6 +863,28 @@
     }
 
     const addNewProduct =  async () => {
+
+        if (!productCategory.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Оберіть категорію товару'
+            })
+            return;
+        }
+        if (!productNameUk.value || !productNameRu.value || !productNameEn.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Введіть назву товару'
+            })
+            return;
+        }
+        if (!price.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Введіть роздрібну ціну товару'
+            })
+            return;
+        }
         // console.log(addOptionsRef.value, 'add new product')
 
         // const optionRaw = toRaw(addOptionsRef.value)
@@ -796,7 +897,7 @@
 
         const translitProductName = transliterate(productNameUk.value);
 
-        const productName = translitProductName.replaceAll(' ', '-').toLowerCase();
+        const productName = translitProductName.replaceAll(' ', '-').toLowerCase().trim();
 
         // const fileData = new FormData();
 
@@ -818,7 +919,7 @@
 
                 // const productFiles = toRaw(productFileState.productFiles.value);
                 const formData = new FormData();
-                console.log(toRaw(productFileState.productFiles.value))
+                // console.log(toRaw(productFileState.productFiles.value))
 
                 toRaw(productFileState.productFiles.value).map((item) => {
                     console.log(item, 'item')
@@ -829,14 +930,26 @@
                         console.error('Ошибка: elem.file не является File-объектом', item);
                     }
                 })
-                console.log(formData, 'formdata')
+                // console.log(formData, 'formdata')
                 const productFileUpload = await $fetch('/api/upload', {
                     method: 'POST',
                     body: formData
                 })
 
+                // console.log(productFileUpload)
+
+                return (
+                    productFileUpload.map((elem) => {
+                        console.log(elem)
+                        productImgPath.value.push(elem.filePath)
+                    })
+                    // console.log(productImgPath.value)
+                )
+
+             
+
                 // console.log(productFiles)
-                console.log(productFileUpload, 'product file upload')
+                console.log(productImgPath.value, 'product file upload')
 
             }
 
@@ -867,6 +980,78 @@
             }
 
             const uploadData = async () => {
+                
+                console.log('enter upload');
+                
+                const formData = new FormData();
+
+                const jsonData = {
+                    category: productCategory.value,
+                    // productName: {
+                    //     uk: productNameUk.value,
+                    //     en: productNameEn.value,
+                    //     ru: productNameRu.value,
+                    // },
+                    // productDescription: {
+                    //     uk: productDescriptionUk.value,
+                    //     en: productDescriptionEn.value,
+                    //     ru: productDescriptionRu.value,
+                    // },
+                    
+                    visibility: productVisibility.value,
+                    img: toRaw(productImgPath.value),
+                    price: price.value,
+                    
+                    stockState: productStockState.value,
+                    stockValue: productStockValue.value,
+                    discountPersent: productDiscountPersent.value,
+                    wholesalePrice: wholesalePrice.value,
+                    // wholesaleInfo: 
+                    wholesaleFrom: wholesalePriceFrom.value,
+                    counterQuantity: counterQuantity.value,
+                    packageType: packageType.value,
+                    wholesaleOnly: wholesaleOnly.value,
+                    translations: [
+                        {
+                            language: 'uk',
+                            title: productNameUk.value,
+                            description: productDescriptionUk.value,
+                            wholesaleDescription: wholesaleDescriptionUk.value,
+                        },
+                        {
+                            language: 'en',
+                            title: productNameEn.value,
+                            description: productDescriptionEn.value,
+                            wholesaleDescription: wholesaleDescriptionEn.value,
+                        },
+                        {
+                            language: 'ru',
+                            title: productNameRu.value,
+                            description: productDescriptionRu.value,
+                            wholesaleDescription: wholesaleDescriptionRu.value,
+                        },
+                    ],
+                    options: toRaw(addOptionsRef.value)
+                    // options:
+
+
+
+
+
+                }
+
+                formData.append('data', JSON.stringify(jsonData))
+
+                const res = await $fetch('/api/products', {
+                    method: 'POST',
+                    body: formData,
+                })
+
+
+                console.log(res, 'jsonData')
+                return {
+                    data: res
+                }
 
             }
 
@@ -874,11 +1059,12 @@
             const resultUploads = await Promise.all(
                 [
                     uploadProductFiles(),
-                    uploadOptions(),
+                    // uploadOptions(),
+                    // uploadData()
                 ]
             )
 
-            // console.log(resultUploads)
+            console.log(resultUploads)
 
             return {
                 resultUploads

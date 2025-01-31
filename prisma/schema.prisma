@@ -11,90 +11,6 @@ datasource db {
   // directUrl         = env("NUXT_DIRECT_URL")
 }
 
-
-// model Category {
-//   id     Int     @id @default(autoincrement())
-//   group  String  @unique
-//   title  String
-//   visible Boolean
-//   categoryImg String
-//   products Product[]
-// }
-// model Category {
-//   id          Int                  @id @default(autoincrement())
-//   group       String
-//   visible     Boolean
-//   translations CategoryTranslation[]
-// }
-
-// model CategoryTranslation {
-//   id          Int       @id @default(autoincrement())
-//   categoryId  Int       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-//   language    String    // Язык перевода (например, "en", "ru")
-//   title       String    // Переведенное название категории
-//   description String?   // Описание (опционально)
-//   Category    Category  @relation(fields: [categoryId], references: [id])
-// }
-
-// model Product {
-//   id                 Int     @id @default(autoincrement())
-//   group_name         String
-//   title              String
-//   visible            Boolean
-//   img                String?
-//   price              String?
-//   stock              Int?     @default(0)
-//   discountPrice      Float?
-//   wholesalePrice     String?
-//   wholesaleDescription String?
-//   counterQuantity    Int?
-//   wholesaleOnly      Boolean?
-//   category           Category @relation(fields: [group_name], references: [group])
-// }
-
-// model Category {
-//   id          Int                  @id @default(autoincrement())
-//   group       String               @unique
-//   visible     Boolean
-//   translations CategoryTranslation[]
-//   products    Product[]
-// }
-
-// model CategoryTranslation {
-//   id          Int      @id @default(autoincrement())
-//   categoryId  Int      // Поле внешнего ключа
-//   language    String   // Язык перевода (например, "en", "ru", "uk")
-//   title       String   // Переведенное название категории
-//   description String?  // Переведенное описание категории
-//   Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-// }
-
-// model Product {
-//   id                 Int                  @id @default(autoincrement())
-//   categoryId         Int                  // Поле внешнего ключа для связи с Category
-//   title              String               // Основное название товара
-//   visible            Boolean
-//   img                String?
-//   price              String?
-//   stock              Int?                 @default(0)
-//   discountPrice      Float?
-//   wholesalePrice     String?
-//   counterQuantity    Int?
-//   wholesaleOnly      Boolean?
-//   translations       ProductTranslation[] // Связь с переводами
-//   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-// }
-
-// model ProductTranslation {
-//   id                 Int      @id @default(autoincrement())
-//   productId          Int      // Поле внешнего ключа
-//   language           String   // Язык перевода (например, "en", "ru", "uk")
-//   title              String   // Переведенное название товара
-//   productDescription String?  // Переведенное описание товара
-//   wholesaleDescription String? // Переведенное оптовое описание
-//   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-// }
-
 model Category {
   id           Int                  @id @default(autoincrement())
   group        String               @unique
@@ -119,15 +35,16 @@ model CategoryTranslation {
 model Product {
   id                 Int                  @id @default(autoincrement())
   categoryId         Int                  // Поле внешнего ключа для связи с Category
-  title              String               // Основное название товара
+  // title              String               // Основное название товара
   visible            Boolean              // Показывать товар на сайте
-  img                String?              // Строка изображения
-  price              String?              // Стандартная цена
+  img                ProductImg[]              // Строка изображения
+  price              Float?              // Стандартная цена
   stockState         Boolean              // Показывать колличество товарв на сайте 
   stockValue         Int?                 @default(0) // Значение колличества товаров на сайте
-  discountPrice      Float?                // Цена акционного товара
+  discountPercent    Int?                // Цена акционного товара
   wholesalePrice     Int?                  // Оптовая цена
-  counterQuantity    Int?                  // Значение минимального колличества единиц
+  // wholesaleInfo      String?               // информация об оптовой продажи товара
+  counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
   packageType        String                // Значение типа упаковки
   wholesaleOnly      Boolean?               // Значение продажи товара только оптом
   options            ProductOptions[]       // Массив опций
@@ -139,13 +56,21 @@ model ProductOptions {
   id                Int     @id @default(autoincrement())
   optionId          Int
   optionImg         String
-  optionDescription String
+  // optionDescription String
   optionPrice       Float?
-  optionWholesale   Float?
-  wholesaleOnly     Boolean
+  // optionWholesale   Float?
+  // wholesaleOnly     Boolean
+  translations      ProductOptionsTranslation[]
   Product           Product @relation(fields: [optionId], references: [id], onDelete: Cascade)
 
 
+}
+
+model ProductImg {
+  id                Int     @id @default(autoincrement())
+  imgId             Int
+  path              String
+  Product           Product @relation(fields: [imgId], references: [id], onDelete: Cascade)
 }
 
 model ProductTranslation {
@@ -158,7 +83,13 @@ model ProductTranslation {
   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
-
+model ProductOptionsTranslation {
+  id                 Int      @id @default(autoincrement())
+  optionId           Int
+  language           String
+  optionInfo         String
+  Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
+}
 
 model User {
   id        Int      @id @default(autoincrement())
