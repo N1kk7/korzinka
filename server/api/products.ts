@@ -7,13 +7,14 @@ import supabase from "../../utils/supabase";
 
 // console.log('products log');
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler((event) => {
 
     const method = event.node.req.method;
 
 
     switch (method) {
         case 'GET': 
+            return getProducts()
         break;
         case 'POST':
             return addProduct(event)

@@ -136,6 +136,23 @@
                 </li>
 
             </ul>
+            <ul
+                v-else-if="activeGroup === 'products'"
+                class="item-wrapper px-2 py-3 flex flex-col justify-center gap-2 items-center"
+            >
+                <li 
+                    v-for="(item, index) in fetchedProducts" :key="index"
+                    class="border-[1px] border-[var(--dark-color)] p-2 rounded-lg w-full"
+                >   
+                    <img :src="item.img[0].path" alt="product-img" width="30" height="30">
+
+                    <span>
+                        {{ item.translations.find(translation => translation.language === 'uk').title }}
+                    </span>
+
+                </li>
+
+            </ul>
         </div>
         </div>
        
@@ -154,6 +171,8 @@
     const modalStore = useModalStore();
 
     const fetchedCategories = ref([]);
+
+    const fetchedProducts = ref([]);
 
     const activeGroup = ref('products');
 
@@ -203,7 +222,14 @@
                     language: item.translations.find(translation => translation.language === 'uk')
                 }))
             }
-            // console.log(fetchedCategories.success, 'fetchedCategories from getCategories')
+
+            const getProducts = await $fetch('/api/products');
+
+            if (getProducts.data.length > 0) {
+                fetchedProducts.value = getProducts.data.map((item) => item)
+            }
+
+            console.log(fetchedProducts.value, 'get products')
 
         } catch (error) {
 
