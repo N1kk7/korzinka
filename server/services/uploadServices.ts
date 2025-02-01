@@ -1,8 +1,8 @@
 import addProductFile from './methods/upload/addProductFile'
-import addOptionFile from './methods/upload/addOptionFile'
+import uploadFiles from './methods/upload/uploadFiles'
 
 
 export {
     addProductFile,
-    addOptionFile,
+    uploadFiles,
 }

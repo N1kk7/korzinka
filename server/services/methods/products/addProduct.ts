@@ -1,4 +1,5 @@
 import { readMultipartFormData } from "#imports";
+import path from "path";
 import prisma from '../../../../prisma/prisma';
 import supabase from '../../../../utils/supabase'
 
@@ -65,14 +66,17 @@ async function addProduct(event: any) {
 
                 img: {
                     create: productData.img.map((imgPath: string) => ({
-                        path: ''
+                        path: imgPath,
                     }))
                 },
 
                 options: {
 
-                    create: productData.options.map((option: any) => ({
-                        optionImg: '',
+                    create: productData.options.map((option: any) => (
+                        // console.log(option.fileImg[0], 'logOption')
+                        {
+                        
+                        optionImg: option.fileImg[0],
                         // optionDescription: 'test string',
                         optionPrice: Number(option.optionPrice),
                         // optionWholesale: Number(option.optionWholesale),
@@ -84,13 +88,14 @@ async function addProduct(event: any) {
                                 optionInfo: tr.optionInfo,
                             })),
                         }
-                    }))
+                    }
+                ))
                 }
 
             }
         })
 
-        console.log(newProduct, 'log product')
+        // console.log(newProduct, 'log product')
 
         return {
             // data: jsonData

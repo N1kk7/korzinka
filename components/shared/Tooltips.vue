@@ -4,7 +4,6 @@
     <div :class="`tooltip border-b-4 p-4 ${tooltipStyle}`">
       <div class="text-wrapper">
         <p class="font-bold">{{ tooltipType }}</p>
-        <!-- <p>{{ tooltipMessage }}</p> -->
         <slot />
       </div>
      

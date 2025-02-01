@@ -312,7 +312,7 @@
                                         Акційний товар
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="checkbox" @change="discountState = !discountState">
+                                        <input class="checkbox" type="checkbox" v-model="discountState">
 
                                     </div>
                                 </div>
@@ -461,7 +461,10 @@
                                 </div>
                     </div>
                     <div class="button-group">
-                        <button class="clearForm">
+                        <button 
+                            class="clearForm"
+                            @click="clearModal"
+                        >
                             Очистити форму
                         </button>
                         <button 
@@ -525,35 +528,17 @@
     const wholesaleDescriptionEn = ref('');
     const wholesaleDescriptionRu = ref('');
     const packageType = ref('Bag');            // Значение типа упаковки
-    const noteForWholesale = ref('');
     const productAvailability = ref(false);
     const productDiscountPersent = ref(0); // процент скидки
-    // const mediaArray = ref([]);
-
-    // в схеме добавить дефолтное значение 1 для Значение минимального колличества единиц
-    // добавить в опцию цену опционально
-    //изменить значение price на Int
-    // убрать тайтл из модели продукт
-    // добавить переводы для опций
-    // add wholesale description
-
 
     // ADD OPTION
     const addOptionsRef = ref([]);
     const discountState = ref(false);
-    // const filePreview = ref(null)
     const addOptionTextUk = ref('');
     const addOptionTextEn = ref('');
     const addOptionTextRu = ref('');
     const addOptionPrice = ref(false);
     const optionPrice = ref(0);
-
-    // PATH
-
-    const productImgPath = ref([]);
-    const optionImgPath = ref([]);
-    // const fileReady = ref(false);
-    // const file = ref(null);
 
     // option file
 
@@ -572,40 +557,6 @@
 
     }
 
-    watch(productImgPath, () => {
-        console.log(productImgPath.value, 'log from component')
-    })
-
-    
-
-    // product image
-
-    // const productFilesPreview = ref([]);
-    // const productFiles = ref([])
-    // const productReady = ref(false);
-
-    // category files
-    // const categoryFilesPreview = ref([]);
-    // const categoryFiles = ref([])
-    // const categoryReady = ref(false);
-
-    // console.log(productFilesPreview.value, 'productFilesPreview')
-
-
-    // watch(productCategory, () => {
-    //     console.log(productCategory.value, 'value product cat')
-    // })
-
-    // const setProductCategory = (category) => {
-
-    //     console.log('click select prod')
-
-    //     productCategory.value = category
-
-    //     console.log(productCategory.value, 'category value from set')
-
-    // }
-
     const removeProductImg = (index) => {
         productFileState.productFiles.value.splice(index, 1);
         productFileState.productFilesPreview.value.splice(index, 1)
@@ -617,184 +568,38 @@
         modalStore.closeModal();
     }
 
-    const clearForm = () => {
-
+    const clearModal = () => {
+        productCategory.value = '';
+        productVisibility.value = false;
+        productFileState.productFiles.value = [];
+        productFileState.productFilesPreview.value = [];
+        productFileState.productReady.value = false,
+        price.value = 0;
+        productStockState.value = false;
+        productStockValue.value = 0;
+        productDiscountPersent.value = 0;
+        wholesalePrice.value = 0;
+        wholesalePriceFrom.value = 0;
+        counterQuantity.value = 1;
+        packageType.value = 'Bag';
+        wholesaleOnly.value = false;
+        productNameUk.value = '';
+        productDescriptionUk.value = '';
+        wholesaleDescriptionUk.value = '';
+        productNameEn.value = '';
+        productDescriptionEn.value = '';
+        wholesaleDescriptionEn.value = '';
+        productNameRu.value = '';
+        productDescriptionRu.value = '';
+        wholesaleDescriptionRu.value = '';
+        addOptionsRef.value = [];
+        optionFileState.optionFiles.value = [];
+        optionFileState.optionFilesPreview.value = [];
+        optionFileState.optionReady.value = false;
+        discountState.value = false;
+        productAvailability.value = false;
 
     }
-
-    // const handleFileUpload = (event, type) => {
-
-    //     console.log(event.target.files, type, 'handleFileUpload')
-    //     const accessedFormat = ['svg', 'png'];
-    //     const files = Array.from(event.target.files)
-
-    //     // event.target.files.forEach((elem) => {
-    //     // const accessedFile = accessedFormat.some(item => elem.name.includes(item));
-
-    //     let typeFiles, typePreview, typeReady;
-    //     switch (type) {
-    //         case 'product-files':
-    //             typeFiles = productFiles;
-    //             typePreview = productFilesPreview;
-    //             typeReady = productReady;
-
-    //     break;
-    //         case 'option-files':
-
-    //             typeFiles = optionFiles;
-    //             typePreview = optionFilesPreview;
-    //             typeReady = optionReady;
-    //     break;
-    //         case 'category-files':
-    //             typeFiles = categoryFiles;
-    //             typePreview = categoryFilesPreview;
-    //             typeReady = categoryReady;
-    //         break;
-    //     default:
-    //         console.error("Неизвестный тип файла:", type);
-    //         return;
-    //     };
-
-    //     typeReady.value = false;
-
-    //     files.forEach((file) => {
-
-    //         const fileExtension = file.name.split(".").pop().toLowerCase();
-    //             if (!accessedFormat.includes(fileExtension)) {
-    //                 emit("tooltip", {
-    //                     status: "error",
-    //                     message: "Файл повинен бути формату .svg .png",
-    //                 });
-    //                 return;
-    //             }
-
-    //             typeFiles.value.push(file);
-
-    //             const reader = new FileReader();
-    //             reader.onload = () => {
-    //                 typePreview.value.push(reader.result);
-    //             };
-    //             reader.readAsDataURL(file);
-    //     });
-
-    //     typeReady.value = true;
-
-    //     return;
-
-
-
-    //         // if (accessedFile) {
-
-                
-
-
-                
-
-            
-
-    //             // categoryFile.value = elem;
-    //             // fileReady.value = false;
-    //             // // uploadProgress.value = 0;
-    //             // // uploadStatus.value = '';
-
-    //             // const reader = new FileReader();
-    //             // reader.onload = () => {
-    //             //     filePreview.value = reader.result;
-    //             // };
-    //             // reader.readAsDataURL(selectedFile);
-    //             // fileReady.value = true;
-
-
-
-    //         // } else {
-    //         //     emit('tooltip', {
-    //         //         status: 'error',
-    //         //         message: 'Файл повинен бути формату .svg .png'
-    //         //     })
-    //         //     resetForm();
-    //         //     return;
-
-    //         // }
-
-
-    //     // })
-
-        
-
-        
-
-
-    //     // const selectedFile = event.target.files[0];
-    //     // const accessedFile = accessedFormat.some(item => selectedFile.name.includes(item));
-
-    //     // if (accessedFile) {
-    //     //     file.value = selectedFile;
-    //     //     fileReady.value = false;
-    //     //     // uploadProgress.value = 0;
-    //     //     // uploadStatus.value = '';
-
-    //     //     const reader = new FileReader();
-    //     //     reader.onload = () => {
-    //     //     filePreview.value = reader.result;
-    //     //     };
-    //     //     reader.readAsDataURL(selectedFile);
-    //     //     fileReady.value = true;
-            
-    //     // } else {
-    //     //     // console.error('Файл повинен бути формату .svg .png');
-    //     //     emit('tooltip', {
-    //     //         status: 'error',
-    //     //         message: 'Файл повинен бути формату .svg .png'
-    //     //     })
-    //     //     resetForm();
-    //     //     return;
-    //     // }
-        
-    // }
-
-    // const addTestData = ( ) => {
-
-    //     const data = [{
-    //         file: bagImg,
-    //         textUk: 'ololo',
-    //         textEn: 'ololo',
-    //         textRu: 'ololo',
-
-    //     },
-    //     {
-    //         file: bagImg,
-    //         textUk: 'ololo',
-    //         textEn: 'ololo',
-    //         textRu: 'ololo',
-
-    //     },
-    //     {
-    //         file: bagImg,
-    //         textUk: 'ololo',
-    //         textEn: 'ololo',
-    //         textRu: 'ololo',
-
-    //     },
-    //     {
-    //         file: bagImg,
-    //         textUk: 'ololo',
-    //         textEn: 'ololo',
-    //         textRu: 'ololo',
-
-    //     },
-    //     {
-    //         file: bagImg,
-    //         textUk: 'ololo',
-    //         textEn: 'ololo',
-    //         textRu: 'ololo',
-
-    //     },
-
-    // ]
-    //     data.forEach(item => {
-    //         addOptionsRef.value.push(item)
-    //     })
-    // }
 
     const addNewOption = () => {
 
@@ -832,28 +637,19 @@
                             optionInfo: addOptionTextRu.value,
                         },
                     ],
-                    // textUk: addOptionTextUk.value,
-                    // textEn: addOptionTextEn.value,
-                    // textRu: addOptionTextRu.value,
 
                 })
             }
-            // console.log('option true')
              
             optionFileState.optionFiles.value = [];
             optionFileState.optionFilesPreview.value = [];
-            // file.value = null;
             addOptionTextUk.value = '';
             addOptionTextEn.value = '';
             addOptionTextRu.value = '';
             addOptionPrice.value = false;
             optionPrice.value = 0;
-
-
-
         }
         
-        // console.log(addOptionsRef.value, 'optionsref value')
 
     }
 
@@ -885,12 +681,6 @@
             })
             return;
         }
-        // console.log(addOptionsRef.value, 'add new product')
-
-        // const optionRaw = toRaw(addOptionsRef.value)
-        // console.log(optionRaw)
-
-        //ADD OPTIONS
 
         const categoryData = fetchedCategories.value.filter((item) => item.id === productCategory.value);
         const categoryName = categoryData[0].group.trim().replace(' ', '-');
@@ -899,114 +689,103 @@
 
         const productName = translitProductName.replaceAll(' ', '-').toLowerCase().trim();
 
-        // const fileData = new FormData();
-
-        // fileData.append('files-data', addOptionsRef.value)
-
-
-        // console.log('getData', categoryName)
-
-        try {
-
-
 
             // UPLOAD PRODUCT FILE
-
-        
 
             // const uploadProduct = async () => {
             const uploadProductFiles = async () => {
 
-                // const productFiles = toRaw(productFileState.productFiles.value);
                 const formData = new FormData();
-                // console.log(toRaw(productFileState.productFiles.value))
 
-                toRaw(productFileState.productFiles.value).map((item) => {
-                    console.log(item, 'item')
-                    if (item instanceof File) {
-                        formData.append(`${categoryName}/${productName}`, item);
+                try {
 
-                    } else {
-                        console.error('Ошибка: elem.file не является File-объектом', item);
-                    }
-                })
-                // console.log(formData, 'formdata')
-                const productFileUpload = await $fetch('/api/upload', {
-                    method: 'POST',
-                    body: formData
-                })
+                    toRaw(productFileState.productFiles.value).map((item) => {
+                        if (item instanceof File) {
+                            formData.append(`${categoryName}/${productName}`, item);
 
-                // console.log(productFileUpload)
-
-                return (
-                    productFileUpload.map((elem) => {
-                        console.log(elem)
-                        productImgPath.value.push(elem.filePath)
+                        } else {
+                            console.error('Ошибка: elem.file не является File-объектом', item);
+                        }
                     })
-                    // console.log(productImgPath.value)
-                )
 
-             
+                    const productFileUpload = await $fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    })
 
-                // console.log(productFiles)
-                console.log(productImgPath.value, 'product file upload')
+                    if (productFileUpload && Array.isArray(productFileUpload.data)) {
+
+                        return productFileUpload.data.map((elem) => elem.filePath)
+                        
+                    } else {
+                        console.error('Ошибка: productFileUpload не является массивом', productFileUpload);
+                        return [];
+                    }
+
+
+                } catch (error) {
+                    console.error(error)
+                    return [];
+                }
 
             }
 
             // UPLOAD PRODUCT OPTIONS
-            const uploadOptions = async () => {
+            const uploadOptionFiles = async () => {
                 const formData = new FormData();
 
+                try {
+                    toRaw(addOptionsRef.value).map((elem) => {
+                        console.log(elem.file);
+                        
+                        const rawFile = elem.file[0];
 
-                toRaw(addOptionsRef.value).map((elem) => {
-                    console.log(elem.file);
-                    
-                    const rawFile = elem.file[0];
+                        if (rawFile instanceof File) {
+                            formData.append(`${categoryName}/${productName}/optionsImg`, rawFile);
 
-                    if (rawFile instanceof File) {
-                        formData.append(`${categoryName}/${productName}/optionsImg`, rawFile);
+                        } else {
+                        console.error('Ошибка: elem.file не является File-объектом', rawFile);
+                        }
+                    });
+
+                    const optionFileUpload = await $fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData,
+                    })
+
+                    console.log(optionFileUpload, 'option file upload');
+
+                    if (optionFileUpload && Array.isArray(optionFileUpload.data)) {
+
+                        return optionFileUpload.data.map((elem) => elem.filePath)
 
                     } else {
-                    console.error('Ошибка: elem.file не является File-объектом', rawFile);
+                        console.error('Ошибка: productFileUpload не является массивом', productFileUpload);
+                        return [];
                     }
-                });
 
-                const optionFileUpload = await $fetch('/api/upload', {
-                    method: 'POST',
-                    body: formData,
-                })
-
-                console.log(optionFileUpload, 'option file upload')
+                } catch (error) {
+                    console.error()
+                }
             }
 
-            const uploadData = async () => {
-                
-                console.log('enter upload');
-                
+            const uploadData = async (productImgPath, optionImgPath) => {
+
+                toRaw(addOptionsRef.value).map((elem, index) => {
+                    toRaw(elem.fileImg)[0] = optionImgPath[index]
+                })
+            
                 const formData = new FormData();
 
                 const jsonData = {
                     category: productCategory.value,
-                    // productName: {
-                    //     uk: productNameUk.value,
-                    //     en: productNameEn.value,
-                    //     ru: productNameRu.value,
-                    // },
-                    // productDescription: {
-                    //     uk: productDescriptionUk.value,
-                    //     en: productDescriptionEn.value,
-                    //     ru: productDescriptionRu.value,
-                    // },
-                    
                     visibility: productVisibility.value,
-                    img: toRaw(productImgPath.value),
+                    img: productImgPath,
                     price: price.value,
-                    
                     stockState: productStockState.value,
                     stockValue: productStockValue.value,
                     discountPersent: productDiscountPersent.value,
                     wholesalePrice: wholesalePrice.value,
-                    // wholesaleInfo: 
                     wholesaleFrom: wholesalePriceFrom.value,
                     counterQuantity: counterQuantity.value,
                     packageType: packageType.value,
@@ -1032,11 +811,6 @@
                         },
                     ],
                     options: toRaw(addOptionsRef.value)
-                    // options:
-
-
-
-
 
                 }
 
@@ -1055,110 +829,48 @@
 
             }
 
+            const uploadAllData = async () => {
 
-            const resultUploads = await Promise.all(
-                [
-                    uploadProductFiles(),
-                    // uploadOptions(),
-                    // uploadData()
-                ]
-            )
+                try {
 
-            console.log(resultUploads)
+                    const [
+                        productImgPath,
+                         optionImgPath] = await Promise.all([
+                        uploadProductFiles(),
+                        uploadOptionFiles(),
+                    ])
 
-            return {
-                resultUploads
+                    console.log('Изображения загружены:', 
+                    productImgPath, 
+                    optionImgPath);
+
+                    const result = await uploadData(
+                        productImgPath, 
+                        optionImgPath);
+
+                    console.log('Все данные успешно загружены:', result);
+                    clearModal();
+
+                    emit('tooltip', {
+                        status: 'success',
+                        message: 'Товар створений успішно'
+                    })
+
+
+
+                } catch (error) {
+                    console.error(error);
+                    emit('tooltip', {
+                        status: 'error',
+                        message: error
+                    })
+                }
+
             }
 
-               
-
-
-            // }
-
-            // const resultUpload = await Promise.all(uploadProduct)
-
-            // console.log(resultUpload);
-
-            // return {
-            //     result: resultUpload,
-            // }
-            
-            
-
+            uploadAllData();
 
             //UPLOAD PRODUCT INFORMATION
-
-        } catch (error) {
-            return {
-                message: error
-            }
-        }
-
-
-        // try {
-        // console.log(fileData)
-        
-
-        // console.log(addOptionsRef.value);
-
-        
-
-
-       
-
-// optionFile.append('groupName', categoryName);
-
-        // formData.append('groupName', categoryName)
-        // console.log(formData);
-
-
-        
-
-        
-
-
-
-
-
-
-
-        //     const resFileData = await $fetch('/api/upload', {
-        //         method: 'POST',
-        //         body: fileData,
-
-        //     })
-
-        //     console.log(resFileData)
-
-        // } catch (error) {
-        //     console.log(error.message)
-
-        // }
-
-
-        
-
-        // uploadFiles(`${categoryName}/options`, addOptionsRef.value);
-
-
-        try{
-
-
-            // if (!productCategory.value) {
-            //     emit('tooltip', {
-            //         status: 'error',
-            //         message: 'Оберіть категорію товару'
-            //     })
-            //     return
-            // }
-            // if (!productNameUk.value || !productNameEn.value || !productNameRu.value ) {
-            //     emit('tooltip', {
-            //         status: 'error',
-            //         message: 'Введіть назву товару'
-            //     })
-            //     return
-            // }
-
 
             // const formData = new FormData();
             // formData.append('files', mediaArray);
@@ -1172,57 +884,9 @@
             // formData.append('retailPrice', retailPrice.value);
             // formData.append('wholesalePrice', wholesalePrice.value);
             // formData.append('wholesalePriceFrom', wholesalePriceFrom);
-            // formData.append('typePackage', typePackage.value);
-            // formData.append('noteForWholesale', noteForWholesale.value);
-            // formData.append('productAvailability', productAvailability);
-
-            // OPTION
-
-            // console.log(addOptionsRef.value)
-
-            // formData.append('addOptionsRef', addOptionsRef.value)
-
-
-
-
-
-
-
-            // const response = await $fetch('/api/products', {
-            //     method: 'POST',
-            //     body: formData,
-            // })
-            // console.log(response, 'log responce')
-
-
-        } catch (error) {
-
-
-        }
-
-
-        // emit('tooltip', {
-        //     status: 'errbsdor',
-        //     message: 'Товар успішно додано'
-        // });
-    // try {
-    //     console.log('add new item', tooltipStore);
-        
-    //     tooltipStore.showTooltip({
-    //         tooltipStatus: 'success',
-    //         tooltipMessage: 'Товар успішно додано',
-    //         showTooltip: true
-    //     });
-    // } catch (error) {
-    //     console.error('Error adding new item:', error);()
-    // }
+          
+  
     };
-
-    // const addProduct = async () => {
- 
-
-    // }
-
 
     onMounted(async() => {
             try{

@@ -1,5 +1,5 @@
 import { defineEventHandler } from "#imports";
-import { addProductFile, addOptionFile } from "../services/uploadServices";
+import { addProductFile, uploadFiles } from "../services/uploadServices";
 
 
 
@@ -9,12 +9,9 @@ export default defineEventHandler(async (event) => {
 
         switch (method) {
             case 'GET': 
-            // return await getAllCategories();
         break;
             case 'POST':
-                return addOptionFile(event);
-                // return await addCategory(event);
-            // return await addUser();
+                return uploadFiles(event);
         break;
             case 'PATCH':
             // return await updateUser();
