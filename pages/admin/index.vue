@@ -65,7 +65,7 @@
                     <a class="dark:hover:bg-slate-900 ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors" href="javascript:;">
                       <div class="flex py-1">
                         <div class="my-auto">
-                          <img src="./assets/img/team-2.jpg" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" />
+                          <!-- <img src="./assets/img/team-2.jpg" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" /> -->
                         </div>
                         <div class="flex flex-col justify-center">
                           <h6 class="mb-1 text-sm font-normal leading-normal dark:text-white"><span class="font-semibold">New message</span> from Laur</h6>
@@ -82,7 +82,7 @@
                     <a class="dark:hover:bg-slate-900 ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
                       <div class="flex py-1">
                         <div class="my-auto">
-                          <img src="./assets/img/small-logos/logo-spotify.svg" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 h-9 w-9 max-w-none rounded-xl" />
+                          <!-- <img src="./assets/img/small-logos/logo-spotify.svg" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 h-9 w-9 max-w-none rounded-xl" /> -->
                         </div>
                         <div class="flex flex-col justify-center">
                           <h6 class="mb-1 text-sm font-normal leading-normal dark:text-white"><span class="font-semibold">New album</span> by Travis Scott</h6>
@@ -260,7 +260,7 @@
             <div slider class="relative w-full h-full overflow-hidden rounded-2xl">
               <!-- slide 1 -->
               <div slide class="absolute w-full h-full transition-all duration-500">
-                <img class="object-cover h-full" src="./assets/img/carousel-1.jpg" alt="carousel image" />
+                <!-- <img class="object-cover h-full" src="./assets/img/carousel-1.jpg" alt="carousel image" /> -->
                 <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
                   <div class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
                     <i class="top-0.75 text-xxs relative text-slate-700 ni ni-camera-compact"></i>
@@ -272,7 +272,7 @@
 
               <!-- slide 2 -->
               <div slide class="absolute w-full h-full transition-all duration-500">
-                <img class="object-cover h-full" src="./assets/img/carousel-2.jpg" alt="carousel image" />
+                <!-- <img class="object-cover h-full" src="./assets/img/carousel-2.jpg" alt="carousel image" /> -->
                 <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
                   <div class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
                     <i class="top-0.75 text-xxs relative text-slate-700 ni ni-bulb-61"></i>
@@ -284,7 +284,7 @@
 
               <!-- slide 3 -->
               <div slide class="absolute w-full h-full transition-all duration-500">
-                <img class="object-cover h-full" src="./assets/img/carousel-3.jpg" alt="carousel image" />
+                <!-- <img class="object-cover h-full" src="./assets/img/carousel-3.jpg" alt="carousel image" /> -->
                 <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
                   <div class="inline-block w-8 h-8 mb-4 text-center text-black bg-white bg-center rounded-lg fill-current stroke-none">
                     <i class="top-0.75 text-xxs relative text-slate-700 ni ni-trophy"></i>
@@ -318,7 +318,7 @@
                       <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40">
                         <div class="flex items-center px-2 py-1">
                           <div>
-                            <img src="./assets/img/icons/flags/US.png" alt="Country flag" />
+                            <!-- <img src="./assets/img/icons/flags/US.png" alt="Country flag" /> -->
                           </div>
                           <div class="ml-6">
                             <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Country:</p>
@@ -349,7 +349,7 @@
                       <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40">
                         <div class="flex items-center px-2 py-1">
                           <div>
-                            <img src="./assets/img/icons/flags/DE.png" alt="Country flag" />
+                            <!-- <img src="./assets/img/icons/flags/DE.png" alt="Country flag" /> -->
                           </div>
                           <div class="ml-6">
                             <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Country:</p>
@@ -380,7 +380,7 @@
                       <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap dark:border-white/40">
                         <div class="flex items-center px-2 py-1">
                           <div>
-                            <img src="./assets/img/icons/flags/GB.png" alt="Country flag" />
+                            <!-- <img src="./assets/img/icons/flags/GB.png" alt="Country flag" /> -->
                           </div>
                           <div class="ml-6">
                             <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Country:</p>
@@ -411,7 +411,7 @@
                       <td class="p-2 align-middle bg-transparent border-0 w-3/10 whitespace-nowrap">
                         <div class="flex items-center px-2 py-1">
                           <div>
-                            <img src="./assets/img/icons/flags/BR.png" alt="Country flag" />
+                            <!-- <img src="./assets/img/icons/flags/BR.png" alt="Country flag" /> -->
                           </div>
                           <div class="ml-6">
                             <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Country:</p>
