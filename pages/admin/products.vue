@@ -82,10 +82,10 @@
             </div>
 
 
-        <div class="w-full px-6 py-6 mx-auto" >
+        <div  class="w-full px-6 py-6 mx-auto" >
 
 
-            <div class="flex flex-wrap -mx-3" >
+            <div v-if="activeGroup === 'categories'" class="flex flex-wrap -mx-3" >
                 <div class="flex-none w-full max-w-full px-3">
                     <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border" ref="categoryElem">
                     <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
@@ -175,9 +175,9 @@
 
         <!-- card 2 -->
 
-        <div class="flex flex-wrap -mx-3">
+        <div v-else  class="flex flex-wrap -mx-3">
           <div class="flex-none w-full max-w-full px-3">
-            <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border overflow-hidden" ref="productElem">
               <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                 <h6 class="dark:text-white">Товари</h6>
               </div>
@@ -194,7 +194,39 @@
                       </tr>
                     </thead>
                     <tbody class="border-t">
-                      <tr
+                        <template v-if="loadingProductState">
+                                <tr v-for="i in 5" :key="'skeleton-' + i">
+                                <!-- Author -->
+                                <td class="px-6 py-3 align-middle bg-transparent border-b dark:border-white/40">
+                                    <div class="flex items-center">
+                                    <div class="skeleton w-9 h-9 rounded-xl"></div>
+                                    <div class="flex flex-col ml-4">
+                                        <div class="skeleton w-32 h-4 mb-1"></div>
+                                        <div class="skeleton w-24 h-3"></div>
+                                    </div>
+                                    </div>
+                                </td>
+                                <!-- Function -->
+                                <td class="px-6 py-3 align-middle bg-transparent border-b dark:border-white/40">
+                                    <div class="skeleton w-28 h-4 mb-1"></div>
+                                    <div class="skeleton w-20 h-3"></div>
+                                </td>
+                                <!-- Status -->
+                                <td class="px-6 py-3 text-center align-middle bg-transparent border-b dark:border-white/40">
+                                    <div class="skeleton w-16 h-6 rounded-lg mx-auto"></div>
+                                </td>
+                                <!-- Employed -->
+                                <td class="px-6 py-3 text-center align-middle bg-transparent border-b dark:border-white/40">
+                                    <div class="skeleton w-16 h-3 mx-auto"></div>
+                                </td>
+                                <!-- Edit -->
+                                <td class="px-6 py-3 align-middle bg-transparent border-b dark:border-white/40">
+                                    <div class="skeleton w-12 h-3 mx-auto"></div>
+                                </td>
+                                </tr>
+                        </template>
+                        <template v-else>
+                            <tr
                         v-for="product in fetchedProducts" :key="product.id"
                       >
                         <td 
@@ -234,6 +266,8 @@
                           </button>
                         </td>
                       </tr>
+                        </template>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -272,6 +306,7 @@
     const categoryElem = ref(null);
     const loadingProductState = ref(false);
     const fetchedProducts = ref([]);
+    const productElem = ref(null);
     const productCategoryElem = ref(null);
 
     const activeGroup = ref('products');
@@ -305,12 +340,28 @@
         }
 
     })
+    watch(fetchedProducts, async () => {
+        console.log('watch fetchedproducts');
+        if(productElem.value) {
+            const prevHeight = productElem.value.clientHeight;
+            await nextTick();
+            const newHeight = productElem.value.clientHeight;
+
+            gsap.fromTo(
+                productElem.value,
+                { height: prevHeight },
+                { height: newHeight, duration: 0.5, ease: "power2.out" }
+            );
+        }
+
+    })
 
     definePageMeta({
         layout: 'admin'
     })
 
     const showGroup = (group) => {
+        console.log(group)
         if (group !== activeGroup.value) {
             activeGroup.value = group;
         }
@@ -350,6 +401,7 @@
                 fetchedProducts.value = getProducts.data.map((item) => item)
             }
             // productsLoadingState.value = false;
+            loadingProductState.value = false;
 
             console.log(fetchedProducts.value, 'get products')
 
