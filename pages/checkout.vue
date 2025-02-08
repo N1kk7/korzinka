@@ -32,146 +32,36 @@
       <div class="min-w-0 flex-1 space-y-8">
 
         <div class="space-y-4">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Methods</h3>
 
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-center">
-                <div class="h-5 items-center hidden">
-                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
-                </div>
-
-                <div class="text-sm">
-                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
-                    <img src="@/public/img/nova-post.png" alt="new-post">
-                  </label>
-                  <span class="text-[var(--dark-color)]"> 
-                    Оріентована дата доставки: <br> {{(day + 1) <= 9 ? '0' + (day + 1) : day + 1}} - {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="fedex" aria-describedby="fedex-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="fedex" class="font-medium leading-none text-gray-900 dark:text-white"> Free Delivery - FedEx </label>
-                  <p id="fedex-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it by Friday, 13 Dec 2023</p>
-                </div>
-              </div>
-            </div> -->
-
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-center">
-                <div class="h-5 items-center hidden">
-                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
-                </div>
-
-                <div class="text-sm">
-                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
-                    <img src="@/public/img/ukrpost.png" alt="ukrpost">
-                  </label>
-                  <span class="text-[var(--dark-color)]"> 
-                    Оріентована дата доставки: <br> {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} - {{(day + 5) <= 9 ? '0' + (day + 5) : day + 5}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="hidden h-5 items-center">
-                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-                </div>
-
-                <div class="text-sm">
-                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> Самовивіз (Харків)</label>
-                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
-                    Час готовності замовлення
-                  </p>
-                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
-                    {{ deliveryTime }}:00
-                    <!-- {{ 
-                      hours + 1 > 9 && hours + 1 < 16 ? 'Сьогодні з ' + (hours + 2) : 'Завтра з ' + hours
-                    }} -->
-                    <!-- Cьогодні з {{ hours  }} -->
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="space-y-4">
-
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Details</h2>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Контактна інформація</h2>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="relative">
-              <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Місто </label>
+              <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Ім'я </label>
               <input 
-                v-model="cityRef" 
-                @input="debounce"
                 type="text" 
                 id="your_name" 
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть місто" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть ім'я" 
               />
-              <ul v-if="fetchedCity.length > 0" class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)]  w-full">
-                <li 
-                  v-for="city in fetchedCity" 
-                  :key="city.id"
-                >
-                  <span
-                    class="text-[var(--dark-color)] text-sm p-2  cursor-pointer"
-                  >
-                    {{ city.Present }}
-                  </span>
-
-                </li>
-              </ul>
-              <div v-if="unknownCity" class="city-list h-fit absolute z-20 bg-[var(--bg-color)] rounded-br-lg rounded-bl-lg  w-full text-red-500 border-[1px] border-t-0 p-2">
-                Місто не знайдено
-              </div>
-
             </div>
 
             <div>
-              <label for="your_email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Your email* </label>
-              <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com" />
+              <label for="your_email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> По батькові </label>
+              <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть по батькові" />
             </div>
 
             <div>
-              <div class="mb-2 flex items-center gap-2">
-                <label for="select-country-input-3" class="block text-sm font-medium text-gray-900 dark:text-white"> Country* </label>
-              </div>
-              <select id="select-country-input-3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
-                <option selected>United States</option>
-                <option value="AS">Australia</option>
-                <option value="FR">France</option>
-                <option value="ES">Spain</option>
-                <option value="UK">United Kingdom</option>
-              </select>
+              <label for="your_email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Прізвище </label>
+              <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть прізвище" />
             </div>
 
-            <div>
-              <div class="mb-2 flex items-center gap-2">
-                <label for="select-city-input-3" class="block text-sm font-medium text-gray-900 dark:text-white"> City* </label>
-              </div>
-              <select id="select-city-input-3" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
-                <option selected>San Francisco</option>
-                <option value="NY">New York</option>
-                <option value="LA">Los Angeles</option>
-                <option value="CH">Chicago</option>
-                <option value="HU">Houston</option>
-              </select>
-            </div>
+
+           
 
             <div>
-              <label for="phone-input-3" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Phone Number* </label>
+              <label for="phone-input-3" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Номер телефону </label>
               <div class="flex items-center">
-                <button id="dropdown-phone-button-3" data-dropdown-toggle="dropdown-phone-3" class="z-10 inline-flex shrink-0 items-center rounded-s-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700" type="button">
+                <div id="dropdown-phone-button-3" data-dropdown-toggle="dropdown-phone-3" class="z-10 inline-flex shrink-0 items-center rounded-s-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700" type="button">
                   <svg fill="none" aria-hidden="true" class="me-2 h-4 w-4" viewBox="0 0 20 15">
                     <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                     <mask id="a" style="mask-type:luminance" width="20" height="15" x="0" y="0" maskUnits="userSpaceOnUse">
@@ -204,11 +94,11 @@
                       </filter>
                     </defs>
                   </svg>
-                  +1
-                  <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  +380
+                  <!-- <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-                  </svg>
-                </button>
+                  </svg> -->
+                </div>
                 <div id="dropdown-phone-3" class="z-10 hidden w-56 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700">
                   <ul class="p-2 text-sm font-medium text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-phone-button-2">
                     <li>
@@ -369,94 +259,246 @@
               </div>
             </div>
 
-            <div>
+            <div class="w-full">
               <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Email </label>
               <input type="email" id="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com"  />
             </div>
 
-            <div>
-              <label for="company_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Company name </label>
-              <input type="text" id="company_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Flowbite LLC"  />
-            </div>
-
-            <div>
-              <label for="vat_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> VAT number </label>
-              <input type="text" id="vat_number" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="DE42313253"  />
-            </div>
-
           </div>
 
-          
+
         </div>
 
         <div class="space-y-4">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Payment</h3>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Спосіб доставки</h3>
 
           <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="credit-card" aria-describedby="credit-card-text" type="radio" name="payment-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
+              <div class="flex items-center">
+                <div class="h-5 items-center hidden">
+                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
                 </div>
 
-                <div class="ms-4 text-sm">
-                  <label for="credit-card" class="font-medium leading-none text-gray-900 dark:text-white"> Credit Card </label>
-                  <p id="credit-card-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Pay with your credit card</p>
+                <div class="text-sm">
+                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
+                    <img src="@/public/img/nova-post.png" alt="new-post">
+                  </label>
+                  <span class="text-[var(--dark-color)]"> 
+                    Оріентована дата доставки: <br> {{(day + 1) <= 9 ? '0' + (day + 1) : day + 1}} - {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
+                  </span>
                 </div>
-              </div>
-
-              <div class="mt-4 flex items-center gap-2">
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Delete</button>
-
-                <div class="h-3 w-px shrink-0 bg-gray-200 dark:bg-gray-700"></div>
-
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Edit</button>
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+            <!-- <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
               <div class="flex items-start">
                 <div class="flex h-5 items-center">
-                  <input id="pay-on-delivery" aria-describedby="pay-on-delivery-text" type="radio" name="payment-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                  <input id="fedex" aria-describedby="fedex-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                 </div>
 
                 <div class="ms-4 text-sm">
-                  <label for="pay-on-delivery" class="font-medium leading-none text-gray-900 dark:text-white"> Payment on delivery </label>
-                  <p id="pay-on-delivery-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">+$15 payment processing fee</p>
+                  <label for="fedex" class="font-medium leading-none text-gray-900 dark:text-white"> Free Delivery - FedEx </label>
+                  <p id="fedex-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it by Friday, 13 Dec 2023</p>
                 </div>
               </div>
+            </div> -->
 
-              <div class="mt-4 flex items-center gap-2">
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Delete</button>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-center">
+                <div class="h-5 items-center hidden">
+                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
+                </div>
 
-                <div class="h-3 w-px shrink-0 bg-gray-200 dark:bg-gray-700"></div>
-
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Edit</button>
+                <div class="text-sm">
+                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
+                    <img src="@/public/img/ukrpost.png" alt="ukrpost">
+                  </label>
+                  <span class="text-[var(--dark-color)]"> 
+                    Оріентована дата доставки: <br> {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} - {{(day + 5) <= 9 ? '0' + (day + 5) : day + 5}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
+                  </span>
+                </div>
               </div>
             </div>
-
             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
               <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="paypal-2" aria-describedby="paypal-text" type="radio" name="payment-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                <div class="hidden h-5 items-center">
+                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                 </div>
 
-                <div class="ms-4 text-sm">
-                  <label for="paypal-2" class="font-medium leading-none text-gray-900 dark:text-white"> Paypal account </label>
-                  <p id="paypal-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Connect to your account</p>
+                <div class="text-sm">
+                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> Самовивіз (Харків)</label>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    Час готовності замовлення
+                  </p>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    {{ deliveryTime }}:00
+                    <!-- {{ 
+                      hours + 1 > 9 && hours + 1 < 16 ? 'Сьогодні з ' + (hours + 2) : 'Завтра з ' + hours
+                    }} -->
+                    <!-- Cьогодні з {{ hours  }} -->
+                  </p>
                 </div>
-              </div>
-
-              <div class="mt-4 flex items-center gap-2">
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Delete</button>
-
-                <div class="h-3 w-px shrink-0 bg-gray-200 dark:bg-gray-700"></div>
-
-                <button type="button" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Edit</button>
               </div>
             </div>
           </div>
         </div>
+        <div class="space-y-4">
+
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Деталі доставки</h2>
+
+          <div class="grid grid-cols-1 gap-4">
+            <div class="relative">
+              <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Ваш населений пункт </label>
+              <input 
+                v-model="cityRef" 
+                @input="debounce"
+                type="text" 
+                id="your_name" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Оберіть населений пункт" 
+              />
+              <ul v-if="fetchedCity.length > 0" class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)]  w-full">
+                <li 
+                  v-for="city in fetchedCity" 
+                  :key="city.id"
+                >
+                  <span
+                    class="text-[var(--dark-color)] text-sm p-2  cursor-pointer"
+                  >
+                    {{ city.Present }}
+                  </span>
+
+                </li>
+              </ul>
+              <div v-if="unknownCity" class="city-list h-fit absolute z-20 bg-[var(--bg-color)] rounded-br-lg rounded-bl-lg  w-full text-red-500 border-[1px] border-t-0 p-2">
+                Місто не знайдено
+              </div>
+
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+          </div>
+
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Оберіть спосіб отримання:</h2>
+
+
+          <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Поштомат "Нова Пошта" </label>
+
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input 
+              type="radio" 
+              name="deliveryMethod" 
+              value="postomat"
+              v-model="selectedDelivery"
+              class="hidden peer"
+            />
+            <span 
+              class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 
+              peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+            >
+              <span class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"></span>
+            </span>
+            <input 
+                type="text" 
+                id="your_name" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть номер відділення або поштомату" 
+              />
+          </label>
+
+          <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Відділення "Нова Пошта" </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input 
+              type="radio" 
+              name="deliveryMethod" 
+              value="postomat"
+              v-model="selectedDelivery"
+              class="hidden peer"
+            />
+            <span 
+              class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 
+              peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+            >
+              <span class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"></span>
+            </span>
+            <input 
+                type="text" 
+                id="your_name" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Оберіть населений пункт" 
+              />
+          </label>
+          <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Кур'єр "Нова Пошта" </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input 
+              type="radio" 
+              name="deliveryMethod" 
+              value="postomat"
+              v-model="selectedDelivery"
+              class="hidden peer"
+            />
+            <span 
+              class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 
+              peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+            >
+              <span class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"></span>
+            </span>
+            <input 
+                type="text" 
+                id="your_name" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Оберіть населений пункт" 
+              />
+          </label>
+          
+      
+
+          
+        </div>
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Спосіб оплати</h3>
+
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-start">
+                <div class="hidden h-5 items-center">
+                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                </div>
+
+                <div class="text-sm">
+                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> Оплата при отриманні </label>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    Оплата при отриманні товару
+                  </p>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-start">
+                <div class="hidden h-5 items-center">
+                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                </div>
+
+                <div class="text-sm">
+                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> Оплата на рахунок </label>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    Оплата на рахунок після 
+                  </p>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
 
         <div class="space-y-4">
           <div class="sm:col-span-2">
@@ -469,7 +511,7 @@
                 <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
                 </svg>
-                Add new address
+                <span>Оформити замовлення</span>
               </button>
             </div>
         </div>
@@ -479,9 +521,20 @@
 
 
 
-      <div class="mt-6 space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md">
+      <div class="mt-6 space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md sticky top-20 bg-gray-50 p-4 rounded-lg">
+        
+
         <div class="flow-root">
           <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
+
+            <dl class="flex justify-between items-center my-5">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Ваше замовлення:</h2>
+              <NuxtLink to="/cart" class="text-sm font-semibold text-red-600 hover:text-red-700 dark:text-gray-400 dark:hover:text-gray-300">
+                Змінити
+              </NuxtLink>
+
+
+            </dl>
             <dl class="flex items-center justify-between gap-4 py-3">
               <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Subtotal</dt>
               <dd class="text-base font-medium text-gray-900 dark:text-white">$8,094.00</dd>
@@ -538,18 +591,28 @@
   let timerId = null;
 
 
-  console.log(cityRef);
+  const name = ref('');
+  const surname = ref('');
+  const familyName = ref('');
+  const phone = ref('');
+  const email = ref('');
+  const deliveryMethod = ref('pickup');
+  const selectedDelivery = ref('pickup');
+  const paymentMethod = ref('card');
+  const selectedPayment = ref('card');
+
 
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth();
   const year = date.getFullYear();
   const hours = date.getHours();
-  const getFormattedHours = (h) => (h < 10 ? '0' + h : h);
   const openHour = 9;
   const closeHour = 18;
 
-  console.log(date, 'date')
+  const getFormattedHours = (h) => (h < 10 ? '0' + h : h);
+  const getFormattedMonth = (m) => (m < 10 ? '0' + m : m);
+
 
   // watch(cityRef, (newVal, oldVal) => {
   //   console.log('cityRef изменился:', newVal);
@@ -640,6 +703,8 @@
 
 
 <style scoped lang="scss">
+
+
 
 
 </style>
