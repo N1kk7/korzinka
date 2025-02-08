@@ -30,18 +30,116 @@
 
     <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16 gap-5">
       <div class="min-w-0 flex-1 space-y-8">
+
         <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Methods</h3>
+
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-center">
+                <div class="h-5 items-center hidden">
+                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
+                </div>
+
+                <div class="text-sm">
+                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
+                    <img src="@/public/img/nova-post.png" alt="new-post">
+                  </label>
+                  <span class="text-[var(--dark-color)]"> 
+                    Оріентована дата доставки: <br> {{(day + 1) <= 9 ? '0' + (day + 1) : day + 1}} - {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-start">
+                <div class="flex h-5 items-center">
+                  <input id="fedex" aria-describedby="fedex-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                </div>
+
+                <div class="ms-4 text-sm">
+                  <label for="fedex" class="font-medium leading-none text-gray-900 dark:text-white"> Free Delivery - FedEx </label>
+                  <p id="fedex-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it by Friday, 13 Dec 2023</p>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-center">
+                <div class="h-5 items-center hidden">
+                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
+                </div>
+
+                <div class="text-sm">
+                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white">
+                    <img src="@/public/img/ukrpost.png" alt="ukrpost">
+                  </label>
+                  <span class="text-[var(--dark-color)]"> 
+                    Оріентована дата доставки: <br> {{(day + 3) <= 9 ? '0' + (day + 3) : day + 3}} - {{(day + 5) <= 9 ? '0' + (day + 5) : day + 5}} . {{ (month + 1) <= 9 ? '0' + (month + 1) : month + 1 }} . {{ year }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+              <div class="flex items-start">
+                <div class="hidden h-5 items-center">
+                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                </div>
+
+                <div class="text-sm">
+                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> Самовивіз (Харків)</label>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    Час готовності замовлення
+                  </p>
+                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">
+                    {{ deliveryTime }}:00
+                    <!-- {{ 
+                      hours + 1 > 9 && hours + 1 < 16 ? 'Сьогодні з ' + (hours + 2) : 'Завтра з ' + hours
+                    }} -->
+                    <!-- Cьогодні з {{ hours  }} -->
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4">
+
           <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Details</h2>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Your name </label>
-              <input type="text" id="your_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Bonnie Green" required />
+            <div class="relative">
+              <label  for="your_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Місто </label>
+              <input 
+                v-model="cityRef" 
+                @input="debounce"
+                type="text" 
+                id="your_name" 
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Введіть місто" 
+              />
+              <ul v-if="fetchedCity.length > 0" class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)]  w-full">
+                <li 
+                  v-for="city in fetchedCity" 
+                  :key="city.id"
+                >
+                  <span
+                    class="text-[var(--dark-color)] text-sm p-2  cursor-pointer"
+                  >
+                    {{ city.Present }}
+                  </span>
+
+                </li>
+              </ul>
+              <div v-if="unknownCity" class="city-list h-fit absolute z-20 bg-[var(--bg-color)] rounded-br-lg rounded-bl-lg  w-full text-red-500 border-[1px] border-t-0 p-2">
+                Місто не знайдено
+              </div>
+
             </div>
 
             <div>
               <label for="your_email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Your email* </label>
-              <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com" required />
+              <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com" />
             </div>
 
             <div>
@@ -266,35 +364,29 @@
                   </ul>
                 </div>
                 <div class="relative w-full">
-                  <input type="text" id="phone-input" class="z-20 block w-full rounded-e-lg border border-s-0 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:border-s-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                  <input type="text" id="phone-input" class="z-20 block w-full rounded-e-lg border border-s-0 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:border-s-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"  />
                 </div>
               </div>
             </div>
 
             <div>
               <label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Email </label>
-              <input type="email" id="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com" required />
+              <input type="email" id="email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="name@flowbite.com"  />
             </div>
 
             <div>
               <label for="company_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Company name </label>
-              <input type="text" id="company_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Flowbite LLC" required />
+              <input type="text" id="company_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Flowbite LLC"  />
             </div>
 
             <div>
               <label for="vat_number" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> VAT number </label>
-              <input type="text" id="vat_number" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="DE42313253" required />
+              <input type="text" id="vat_number" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="DE42313253"  />
             </div>
 
-            <div class="sm:col-span-2">
-              <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
-                </svg>
-                Add new address
-              </button>
-            </div>
           </div>
+
+          
         </div>
 
         <div class="space-y-4">
@@ -367,57 +459,22 @@
         </div>
 
         <div class="space-y-4">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Delivery Methods</h3>
+          <div class="sm:col-span-2">
+              <button 
+            @click="checkout"
 
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="dhl" aria-describedby="dhl-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" checked />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="dhl" class="font-medium leading-none text-gray-900 dark:text-white"> $15 - DHL Fast Delivery </label>
-                  <p id="dhl-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it by Tommorow</p>
-                </div>
-              </div>
+                type="submit" 
+                class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-[var(--dark-color)] px-5 py-2.5 text-sm font-medium text-[var(--light-color)] hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >
+                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                </svg>
+                Add new address
+              </button>
             </div>
-
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="fedex" aria-describedby="fedex-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="fedex" class="font-medium leading-none text-gray-900 dark:text-white"> Free Delivery - FedEx </label>
-                  <p id="fedex-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it by Friday, 13 Dec 2023</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="express" aria-describedby="express-text" type="radio" name="delivery-method" value="" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="express" class="font-medium leading-none text-gray-900 dark:text-white"> $49 - Express Delivery </label>
-                  <p id="express-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Get it today</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <div>
-          <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Enter a gift card, voucher or promotional code </label>
-          <div class="flex max-w-md items-center gap-4">
-            <input type="text" id="voucher" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="" required />
-            <button type="button" class="flex items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Apply</button>
-          </div>
-        </div>
+        
       </div>
 
 
@@ -453,7 +510,8 @@
         </div>
 
         <div class="space-y-3">
-          <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Payment</button>
+          <button 
+            type="submit" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Payment</button>
 
           <p class="text-sm font-normal text-gray-500 dark:text-gray-400">One or more items in your cart require an account. <a href="#" title="" class="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">Sign in or create an account now.</a>.</p>
         </div>
@@ -471,6 +529,108 @@
 
 
 <script setup>
+
+  import { ref, watch, computed } from 'vue';
+
+  const cityRef = ref('');
+  const fetchedCity = ref([]);
+  const unknownCity = ref(false);
+  let timerId = null;
+
+
+  console.log(cityRef);
+
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const getFormattedHours = (h) => (h < 10 ? '0' + h : h);
+  const openHour = 9;
+  const closeHour = 18;
+
+  console.log(date, 'date')
+
+  // watch(cityRef, (newVal, oldVal) => {
+  //   console.log('cityRef изменился:', newVal);
+  // });
+
+  const deliveryTime = computed(() => {
+  const pickupTime = hours + 2;
+
+  if (pickupTime >= openHour && pickupTime < closeHour) {
+    return `Сьогодні з ${getFormattedHours(pickupTime)}`;
+  } else {
+    return `Завтра з ${getFormattedHours(openHour)}`;
+  }
+});
+
+  const getCityBody = {
+    "apiKey": "79c5b1ebb84b844978e6d52a46b760e1",
+   "modelName": "AddressGeneral",
+   "calledMethod": "searchSettlements",
+   "methodProperties": {
+      "CityName" : "",
+      "Limit" : "100",
+      "Page" : "1"
+    }
+  }
+
+
+  // const debounce = () => {
+
+  //   if (cityRef.value === '') {
+  //     return
+  //   }
+    
+  //   setTimeout(() => {
+  //     getCityBody.methodProperties.CityName = cityRef.value;
+  //     console.log('log debounce');
+
+  //     checkout();
+  //   }, 2500)
+  // }
+
+  const debounce = () => {
+
+    if (cityRef.value === '') {
+      return
+    }
+
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      getCityBody.methodProperties.CityName = cityRef.value;
+      console.log('log debounce');
+      checkout();
+    }, 500);
+  };
+
+
+
+  
+
+  const checkout = async () => {
+
+    const res = await $fetch('https://api.novaposhta.ua/v2.0/json/', {
+      method: 'POST',
+      body: getCityBody,
+    // https://api.novaposhta.ua/v2.0/json/
+    // console.log('checkout from scripts')
+    })
+    if (res.data[0] === undefined) {
+      // fetchedCity.value.push('Немає такого міста')
+      unknownCity.value = true;
+      
+    } else {
+      unknownCity.value = false;
+      fetchedCity.value = res.data[0].Addresses
+    }
+    console.log(res.data[0])
+
+    return res
+  };
+
+
 
 
 
