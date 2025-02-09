@@ -614,9 +614,9 @@
   const getFormattedMonth = (m) => (m < 10 ? '0' + m : m);
 
 
-  // watch(cityRef, (newVal, oldVal) => {
-  //   console.log('cityRef изменился:', newVal);
-  // });
+  watch(cityRef, (newVal, oldVal) => {
+    console.log('cityRef изменился:', newVal);
+  });
 
   const deliveryTime = computed(() => {
   const pickupTime = hours + 2;
