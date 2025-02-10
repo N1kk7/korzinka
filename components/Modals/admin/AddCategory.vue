@@ -189,7 +189,7 @@
             >
                 Скасувати
             </button>
-            <button class="addItem" @click="sendData">
+            <button class="addItem" @click="addNewCategory">
                 Додати
             </button>
         </div>
@@ -294,6 +294,175 @@
     }
 
     // console.log(categoryName, 'category name')
+
+    const addNewCategory = () => {
+        if (categoryNameUk.value.length < 1 
+            && 
+            categoryNameEn.value.length < 1
+            &&
+            categoryNameRu.value.length < 1)
+        {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть всі поля'
+            });
+            return;
+        } else if (categoryNameUk.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву категорії Українською'
+            });
+            return;
+        } else if (categoryNameEn.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву категорії Англійською'
+            });
+            return;
+        } else if (categoryNameRu.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть назву категорії Російською'
+            });
+            return;
+        } else if (!file.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Оберіть іконку для обраної категорії'
+            });
+            return;
+        } else if (categoryTextUk.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть опис категорії Українською'
+            });
+            return;
+        } else if (categoryTextEn.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть опис категорії Англійською'
+            });
+            return;
+        } else if (categoryTextRu.value.length < 1) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Заповніть опис категорії Російською'
+            });
+            return;
+        } else if (!file.value) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Оберіть іконку для обраної категорії'
+            });
+            return;
+        }
+
+        const translitString = transliterate(categoryNameUk.value)
+
+        const uploadCategoryFile = async () => {
+
+            const formData = new FormData();
+
+            try{
+                formData.append(`category-icon/${translitString}`, file.value);
+
+                const response = await $fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                // console.log(response);
+                if (response.success) {
+                    // console.log('success');
+                    return response.data[0].filePath
+                } else {
+                    emit('tooltip', {
+                        status: 'error',
+                        message: 'Помилка при завантаженні іконки категорії'
+                    })
+                }
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }
+
+
+        const uploadData = async (categoryIconPath) => {
+
+            console.log(categoryIconPath, 'categoryIconPath');
+
+            const formData = new FormData();
+
+            const jsonData = {
+                group: translitString,
+                visible: categoryVisible.value,
+                translations: [
+                    {
+                        language: 'uk',
+                        title: categoryNameUk.value,
+                        description: categoryTextUk.value,
+                    },
+                    {
+                        language: 'en',
+                        title: categoryNameEn.value,
+                        description: categoryTextEn.value,
+                    },
+                    {
+                        language: 'ru',
+                        title: categoryNameRu.value,
+                        description: categoryTextRu.value,
+                    },
+                ],
+                categoryImg: categoryIconPath,
+                // categoryImg: categoryIconPath,
+            };
+            formData.append('data', JSON.stringify(jsonData));
+
+
+            try {
+
+
+                console.log(formData);
+
+                const response = await $fetch('/api/category', {
+                    method: 'POST',
+                    body: formData
+                })
+
+                console.log(response);
+                return response
+
+            } catch (error) {
+                console.log(error.message, 'error from uploadData');
+            }
+        }
+
+
+        const uploadAllData = async () => {
+
+            try {
+                const categoryIconPath = await uploadCategoryFile();
+                const resultUpload = await uploadData(categoryIconPath);
+
+                console.log('Все дані успішно додано:', resultUpload);  
+                resetForm();
+                emit('tooltip', {
+                    status: 'success',
+                    message: 'Категорія успішно додана'
+                })
+            } catch (error) {
+                console.log(error)
+                emit('tooltip', {
+                    status: 'error',
+                    message: `Помилка при додаванні категорії ${error}`
+                })
+            }
+
+        }
+
+        uploadAllData();
+
+    }
 
 
 

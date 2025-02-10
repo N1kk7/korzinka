@@ -38,7 +38,7 @@ async function addProduct(event: any) {
         const productData = JSON.parse(textField.data.toString());
 
         // console.log(productData)
-
+// return
         const newProduct = await prisma.product.create({
             data: {
                 categoryId: Number(productData.category),

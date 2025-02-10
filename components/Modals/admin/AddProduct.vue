@@ -509,7 +509,7 @@
 
     const fetchedCategories = ref([]);
 
-    const productCategory = ref('');
+    const productCategory = ref('ololo');
     const productNameUk = ref('');
     const productNameEn = ref('');
     const productNameRu = ref('');
@@ -742,6 +742,7 @@
 
                         if (rawFile instanceof File) {
                             formData.append(`${categoryName}/${productName}/optionsImg`, rawFile);
+
 
                         } else {
                         console.error('Ошибка: elem.file не является File-объектом', rawFile);
