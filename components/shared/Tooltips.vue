@@ -8,56 +8,55 @@
       </div>
      
     </div>
-  </template>
+</template>
 
 <script setup>
-import { watch, onMounted } from 'vue';
+    import { watch, onMounted } from 'vue';
 
 // const tooltipStore = useTooltipStore();
 
-const tooltipStyle = ref('');
-const showTooltip = ref(false);
-const tooltipMessage = ref('');
-const tooltipType = ref('');
+    const tooltipStyle = ref('');
+    const showTooltip = ref(false);
+    const tooltipMessage = ref('');
+    const tooltipType = ref('');
 
-const props = defineProps({
-    tooltipStatus: {
-        type: String,
-        default: 'success',
-    },
+    const props = defineProps({
+        tooltipStatus: {
+            type: String,
+            default: 'success',
+        },
 
-    
-})
-
-const setTooltip = (type) => {
-    console.log('type', type);
-    
-  switch (type) {
-    case 'success':
         
-      tooltipStyle.value = 'bg-green-200 border-green-600 text-green-600';
-      break;
-    case 'info':
-        tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
-        break;
-    case 'warning':
-        tooltipStyle.value = 'bg-yellow-200 border-yellow-600 text-yellow-600';
-        break;
-    case 'error':
-        tooltipStyle.value = 'bg-red-200 border-red-600 text-red-600';
-        break;
-    default:
-        tooltipType.value = 'Повідомлення';
-        tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
-      break;
-  }
-};
+    })
+
+    const setTooltip = (type) => {
+        
+        switch (type) {
+            case 'success':
+                
+            tooltipStyle.value = 'bg-green-200 border-green-600 text-green-600';
+            break;
+            case 'info':
+                tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
+                break;
+            case 'warning':
+                tooltipStyle.value = 'bg-yellow-200 border-yellow-600 text-yellow-600';
+                break;
+            case 'error':
+                tooltipStyle.value = 'bg-red-200 border-red-600 text-red-600';
+                break;
+            default:
+                tooltipType.value = 'Повідомлення';
+                tooltipStyle.value = 'bg-blue-200 border-blue-600 text-blue-600';
+            break;
+        }
+    };
 
 
-onMounted(() => {
-    tooltipType.value = props.tooltipStatus;
-    setTooltip(props.tooltipStatus);
-})
+    onMounted(() => {
+        tooltipType.value = props.tooltipStatus;
+        setTooltip(props.tooltipStatus);
+    })
 
 </script>
 
@@ -68,7 +67,7 @@ onMounted(() => {
         width: 100%;
         text-align: center;
         position: absolute;
-        padding-left: 250px;
+        // padding-left: 250px;
         top: 20px;
         right: 0;
         animation: tooltipAnimation 5s ease-in-out forwards; 

@@ -80,15 +80,18 @@ async function addCategory(event: any) {
                     create: [
                         {
                             language: 'uk',
-                            title: titleUk
+                            title: titleUk,
+                            groupText: ''
                         },
                         {
                             language: 'en',
                             title: titleEn,
+                            groupText: ''
                         },
                         {
                             language: 'ru',
-                            title: titleRu
+                            title: titleRu,
+                            groupText: ''
                         }
                     ]
                 },

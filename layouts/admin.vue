@@ -277,18 +277,21 @@
 
         <slot />
         <!-- <Tooltips :props="tooltipProps"/> -->
-        <Tooltips 
+       
+        <!-- :tooltipProps="tooltipProps"  -->
+
+      </main>
+      <Tooltips 
           v-if="showTooltip"
+
           :tooltipStatus="tooltipStatus"
 
 
 
         >
         {{ tooltipMessage }}
-        </Tooltips>
-        <!-- :tooltipProps="tooltipProps"  -->
 
-      </main>
+        </Tooltips>
       <Modal @tooltip="tooltip">
           <template #default="{ openModal, closeModal}">
             <component
@@ -335,7 +338,7 @@
 // });
 
 const tooltip = (obj) => {
-  // console.log(obj);
+  console.log(obj);
   const {status, message} = obj;
   
   tooltipStatus.value = status;
