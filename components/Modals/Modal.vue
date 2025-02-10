@@ -1,6 +1,6 @@
 <template>
     <div v-if="isVisible" class="modal-overlay" @click.self="closeModal">
-      <div class="modal-content">
+      <div class="modal-content max-h-[100vh] overflow-y-auto">
       <!-- <p>Current Modal: {{ currentModal }}</p>
       <p>Modal Props: {{ modalProps }}</p> -->
         <slot :openModal="openModal" :closeModal="closeModal" />
@@ -84,6 +84,6 @@ const openModal = (modalName, props = {}) => {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 </style>

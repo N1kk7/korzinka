@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[20vw]">
+    <div class="w-auto">
         <div class="top-row flex justify-between items-center ">
             <h2>
                 Додати категорію
@@ -64,52 +64,104 @@
                 </div>
                
             </div>
-            <div class="add-description flex flex-col">
-                <span
-                    class="
-                         text-[var(--dark-color)]
-                        font-sm
-                        text-base
-                        pb-2
-                    "
-                >
-                    Назва категорії (англійською) 
-                </span>
-               
-                <input v-model="categoryNameEn" class="" type="text" placeholder="Введіть назву категорії">
+            <div class="category-name-wrap flex justify-start items-center flex-wrap gap-5">
+                <div class="add-description flex flex-col">
+                    <span
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                            pb-2
+                        "
+                    >
+                        Назва категорії (англійською) 
+                    </span>
+                
+                    <input v-model="categoryNameEn" class="" type="text" placeholder="Введіть назву категорії">
 
+                </div>
+                <div class="add-description flex flex-col">
+                    <span
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                            pb-2
+                        "
+                    >
+                        Назва категорії (російською) 
+                    </span>
+                
+                    <input v-model="categoryNameRu" class="" type="text" placeholder="Введіть назву категорії">
+
+                </div>
+                
+                <div class="add-description flex flex-col">
+                    <span
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                            pb-2
+                        "
+                    >
+                        Назва категорії (українською)
+                    </span>
+                
+                    <input v-model="categoryNameUk" class="" type="text" placeholder="Введіть назву категорії">
+
+                </div>
             </div>
-            <div class="add-description flex flex-col">
+            <div class="category-description flex flex-col gap-2 mt-5">
                 <span
-                    class="
-                         text-[var(--dark-color)]
-                        font-sm
-                        text-base
-                        pb-2
-                    "
-                >
-                    Назва категорії (російською) 
-                </span>
-               
-                <input v-model="categoryNameRu" class="" type="text" placeholder="Введіть назву категорії">
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+
+                        "
+                    >
+                        Опис категорії (українською) 
+                    </span>
+                <textarea 
+                    class="border border-solid border-[var(--dark-color)] resize-none rounded-lg p-2" 
+                    placeholder="Введіть опис категорії"
+                    v-model="categoryTextUk"
+                    name="textUk" id="" rows="3"
+                />
+                <span
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                        "
+                    >
+                        Опис категорії (англійською) 
+                    </span>
+                <textarea 
+                    class="border border-solid border-[var(--dark-color)] resize-none rounded-lg p-2" 
+                    placeholder="Введіть опис категорії"
+                    v-model="categoryTextEn"
+                    name="" id="" rows="3"
+                />
+                <span
+                        class="
+                            text-[var(--dark-color)]
+                            font-sm
+                            text-base
+                        "
+                    >
+                        Опис категорії (російською) 
+                    </span>
+                <textarea 
+                    class="border border-solid border-[var(--dark-color)] resize-none rounded-lg p-2" 
+                    placeholder="Введіть опис категорії"
+                    v-model="categoryTextRu"
+                    name="" id="" rows="3"
+                />
 
             </div>
             
-            <div class="add-description flex flex-col">
-                <span
-                    class="
-                         text-[var(--dark-color)]
-                        font-sm
-                        text-base
-                        pb-2
-                    "
-                >
-                    Назва категорії (українською)
-                </span>
-               
-                <input v-model="categoryNameUk" class="" type="text" placeholder="Введіть назву категорії">
-
-            </div>
             <div class="flex flex-col">
                 <span
                     class="
@@ -168,6 +220,9 @@
     const categoryNameUk = ref('');
     const categoryNameEn = ref('');
     const categoryNameRu = ref('');
+    const categoryTextUk = ref('');
+    const categoryTextEn = ref('');
+    const categoryTextRu = ref('');
 
     // const categoryGroup = ref('');
     const categoryVisible = ref(false);
