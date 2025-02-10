@@ -272,15 +272,23 @@
         filePreview.value = null;
         uploadProgress.value = null;
         uploadStatus.value = '';
-    };
-
-    const resetTextFields = () => {
         categoryNameUk.value = '';
         categoryNameEn.value = '';
         categoryNameRu.value = '';
-        // categoryGroup.value = '';   
         categoryVisible.value = false;
-    }
+        categoryTextEn.value = '';
+        categoryTextRu.value = '';
+        categoryTextUk.value = '';
+
+    };
+
+    // const resetTextFields = () => {
+    //     categoryNameUk.value = '';
+    //     categoryNameEn.value = '';
+    //     categoryNameRu.value = '';
+    //     // categoryGroup.value = '';   
+    //     categoryVisible.value = false;
+    // }
 
     const sendData = () => {
         resetForm();
@@ -445,11 +453,12 @@
                 const resultUpload = await uploadData(categoryIconPath);
 
                 console.log('Все дані успішно додано:', resultUpload);  
-                resetForm();
                 emit('tooltip', {
                     status: 'success',
                     message: 'Категорія успішно додана'
                 })
+                resetForm();
+                // resetTextFields();
             } catch (error) {
                 console.log(error)
                 emit('tooltip', {

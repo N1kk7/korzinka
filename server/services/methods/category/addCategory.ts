@@ -133,10 +133,6 @@ async function addCategory(event: any) {
 
     const productData = JSON.parse(textField.data.toString());
 
-    // return productData
-
-
-    console.log(productData, 'formData')
 
     try {
 
@@ -145,24 +141,6 @@ async function addCategory(event: any) {
                 group: productData.group,
                 visible: productData.visible,
                 translations: {
-                    // create: [
-                        
-                        // {
-                        //     language: 'uk',
-                        //     title: productData.translations[0].titleUk,
-                        //     groupText: productData.translations[0].description,
-                        // },
-                        // {
-                        //     language: 'en',
-                        //     title: productData.translations[1].titleEn,
-                        //     groupText: productData.translations[1].description,
-                        // },
-                        // {
-                        //     language: 'ru',
-                        //     title: productData.translations[2].titleRu,
-                        //     groupText: productData.translations[2].description,
-                        // }
-                    // ]
                     create: productData.translations.map((translation: any) => ({
                         language: translation.language,
                         title: translation.title,
