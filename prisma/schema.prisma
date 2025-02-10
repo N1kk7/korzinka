@@ -29,6 +29,7 @@ model CategoryTranslation {
   language    String   // Язык перевода (например, "en", "ru", "uk")
   title       String   // Переведенное название категории
   description String?  // Переведенное описание категории
+  groupText   String    // Описание категории
   Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
@@ -50,6 +51,7 @@ model Product {
   options            ProductOptions[]       // Массив опций
   translations       ProductTranslation[] // Связь с переводами
   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+   orderItems        OrderItem[]
 }
 
 model ProductOptions {
@@ -60,6 +62,12 @@ model ProductOptions {
   optionPrice       Float?
   // optionWholesale   Float?
   // wholesaleOnly     Boolean
+  poductSize        String
+  productWeight     String
+  productDensity    String
+  productCapacity   String
+  packageQuantity   String
+  groupPackQuantity String
   translations      ProductOptionsTranslation[]
   Product           Product @relation(fields: [optionId], references: [id], onDelete: Cascade)
 
@@ -80,6 +88,9 @@ model ProductTranslation {
   title              String   // Переведенное название товара
   productDescription String?  // Переведенное описание товара
   wholesaleDescription String? // Переведенное оптовое описание
+  productColor       String    // 
+  groupPackage        String
+  productMaterial     String
   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
@@ -91,12 +102,67 @@ model ProductOptionsTranslation {
   Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
 }
 
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   username  String   @unique
+//   email     String   @unique
+//   password  String
+//   createdAt DateTime @default(now())
+// }
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+
+  // История заказов пользователя
+  orders    Order[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int?        
+  user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  status     OrderStatus @default(PENDING) 
+  createdAt  DateTime    @default(now())
+
+  // Информация о доставке
+  shippingInfo ShippingInfo?
+  
+  // Связь с продуктами в заказе
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int     @default(1) // Количество товара в заказе
+
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ShippingInfo {
+  id           Int     @id @default(autoincrement())
+  orderId      Int     @unique 
+  recipient    String  
+  phoneNumber  String  
+  address      String  
+  postalCode   String? 
+  city         String  
+  country      String  
+
+  order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+enum OrderStatus {
+  PENDING      // Ожидает обработки
+  PROCESSING   // В обработке
+  SHIPPED      // Отправлен
+  DELIVERED    // Доставлен
+  CANCELED     // Отменен
 }
 
 model News {
