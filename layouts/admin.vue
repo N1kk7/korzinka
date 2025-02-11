@@ -8,7 +8,7 @@
       <div class="h-19">
         <!-- <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i> -->
         <div class="px-2 py-6 m-0 text-sm whitespace-nowrap  text-slate-700 flex justify-center items-center gap-2" href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html" target="_blank">
-          <img src="@/public/img/only-dog.png" class="hidden h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1  rounded-lg" alt="main_logo" />
+          <img src="../public/img/only-dog.png" class="hidden h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1  rounded-lg" alt="main_logo" />
           <div class="title-wrapper ml-1 flex items-baseline flex-col">
             <span class=" font-semibold transition-all duration-200 ease-nav-brand">
               Панель керування

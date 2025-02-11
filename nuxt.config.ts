@@ -109,7 +109,7 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/icon-library.js',
-    '~/plugins/vue-google-maps.js',
+    '~/plugins/vue-google-maps.client.js',
   ],
   alias: {
     '@': './',

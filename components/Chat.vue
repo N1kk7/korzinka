@@ -43,16 +43,11 @@
                     Я тут щоб допомгти!
                 </h3>
             <div class="form">
-                <textarea name="message" id="1" placeholder="Введіть Ваше запитання"
-                    v-model="chatValue"
-                >
-
-                </textarea>
-                <!-- <textarea type="text" > -->
+                <textarea v-model="message" placeholder="Введіть Ваше запитання"></textarea>
             </div>
             <div class="button-group">
                 <button
-                    @click="chatValue = ''"
+                    @click="message = ''"
                 >
                     Очистити
                 </button>
@@ -69,21 +64,26 @@
 
 <script setup>
 
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
 
     import SvgIcon from './shared/SvgIcon.vue';
 
 
     const chat = ref(false);
-    const chatValue = ref('');
+    // const message = ref('');
+    const message = ref('');
 
 
     const openChat = () => {
         chat.value = !chat.value
         if(!chat.value){
-            chatValue.value = ''
+            message.value = ''
         }
     }
+
+    onMounted(() => {
+        message.value = "";
+    });
 
 
 
@@ -155,7 +155,9 @@
                     animation:  circleAnim 1.5s infinite linear;
                 }
                 .img{
-                    background: url(@/public/img/only-dog.png) no-repeat center center;
+                    // background: url(.//public/img/only-dog.png) no-repeat center center;
+                    background: url(../public/img/only-dog.png) no-repeat center center;
+
                     background-size: cover;
                   
                     width: 40px;

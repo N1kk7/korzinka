@@ -326,7 +326,7 @@ import { ref, watch } from 'vue';
 
 <style lang="scss">
 
-    @use '@/styles/mixins.scss' as mixins;
+    @use './/styles/mixins.scss' as mixins;
 
 
 
