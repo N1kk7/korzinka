@@ -438,12 +438,12 @@
         height: -webkit-fill-available;
     }
     button{
-        color: var(--dark-color);
+        color: var(--light-color);
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 5px;
-        border: 1px solid var(--dark-color);
+        border: 1px solid var(--light-color);
         border-radius: 5px;
     }
     .search-btn{

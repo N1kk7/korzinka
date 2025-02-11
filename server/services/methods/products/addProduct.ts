@@ -51,6 +51,12 @@ async function addProduct(event: any) {
                 counterQuantity: Number(productData.counterQuantity),
                 packageType: String(productData.packageType),
                 wholesaleOnly: Boolean(productData.wholesaleOnly),
+                productSize: String(productData.productSize),
+                productWeight: String(productData.productWeight),
+                productDensity: String(productData.productDensity),
+                productCapacity: String(productData.productCapacity),
+                packageQuantity: String(productData.productQuantity),
+                groupPackQuantity: String(productData.productGroupQuantity),
 
                 translations: {
                     
@@ -59,6 +65,9 @@ async function addProduct(event: any) {
                         title: t.title,
                         productDescription: t.description,
                         wholesaleDescription: t.wholesaleDescription,
+                        productColor: t.productColor,
+                        groupPackage: t.groupPackage,
+                        productMaterial: t.productMaterial,
 
                     })),
 

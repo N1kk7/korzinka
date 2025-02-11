@@ -14,6 +14,8 @@ async function uploadFiles(event: any) {
             return {message: 'No files upload'}
         }
 
+        console.log(files);
+        
 
         const uploadFiles = files.map(async (item, index) => {
 
@@ -41,12 +43,15 @@ async function uploadFiles(event: any) {
                 )
 
                 if (error) {
-                    throw new Error('Fail to upload file', error)
+                    throw new Error(`Fail to upload file: ${error.message}`)
                 }
 
                 const {data: publicUrlData} = supabase.storage
                     .from('Images')
                     .getPublicUrl(`${folderName}/${file.name}`);
+                if (!publicUrlData || !publicUrlData.publicUrl) {
+                    throw new Error('Failed to retrieve public URL');
+                }
 
                 return {
                     filePath: publicUrlData.publicUrl,

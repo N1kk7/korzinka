@@ -29,7 +29,7 @@
                             <SvgIcon name="download-btn" size="micro" fill="var(--dark-color)"/>
 
                         </label>
-                        <input type="file" id="file_out" class="icon-file" @change="handleFileUpload">
+                        <input type="file" ref="fileInput" id="file_out" class="icon-file" @change="handleFileUpload">
 
                     </div>
                     <div class="icon-preview flex items-center justify-center">
@@ -214,6 +214,7 @@
 
     const file = ref(null);
     const fileReady = ref(false);
+    const fileInput = ref(null);
     const filePreview = ref(null);
     const uploadProgress = ref(null);
     const uploadStatus = ref('');
@@ -269,6 +270,7 @@
     const resetForm = () => {
         file.value = null;
         fileReady.value = false;
+        fileInput.value = null;
         filePreview.value = null;
         uploadProgress.value = null;
         uploadStatus.value = '';
@@ -366,19 +368,22 @@
         }
 
         const translitString = transliterate(categoryNameUk.value)
+        const categoryName = translitString.trim().replaceAll(' ', '-').toLowerCase();
 
         const uploadCategoryFile = async () => {
 
             const formData = new FormData();
 
             try{
-                formData.append(`category-icon/${translitString}`, file.value);
+                formData.append(`category-icon/${categoryName}`, file.value);
+                console.log(file.value, 'file value');
+                
 
                 const response = await $fetch('/api/upload', {
                     method: 'POST',
                     body: formData
                 })
-                // console.log(response);
+                console.log(response);
                 if (response.success) {
                     // console.log('success');
                     return response.data[0].filePath
@@ -450,6 +455,13 @@
 
             try {
                 const categoryIconPath = await uploadCategoryFile();
+                if (!categoryIconPath) {
+                    emit('tooltip', {
+                        status: 'error',
+                        message: 'Файл не был загружен, попробуйте снова'
+                    });
+                    return;
+                }
                 const resultUpload = await uploadData(categoryIconPath);
 
                 console.log('Все дані успішно додано:', resultUpload);  

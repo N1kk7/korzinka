@@ -309,6 +309,104 @@
                                 </div>
                                 <div class="wrapper">
                                     <span>
+                                        Розмір одиниці товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productSize" class="checkbox" type="text" placeholder="Введіть значення розміру">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Вага одиниці товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productWeight" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Щильність одиниці товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productDensity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Об'єм одиниці товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productCapacity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Кількість товару в упаковці
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Кількість товару в груповій упаковці
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="productGroupQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Мінімальна кількість придбання товару
+                                        <strong
+                                            class="text-red-500"
+                                        >
+                                            *
+                                        </strong> 
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input v-model="counterQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <span>
                                         Акційний товар
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
@@ -331,6 +429,127 @@
                             </div>
                         
                         </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Матеріал товару
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input v-model="productMaterialUk" class="" type="text" placeholder="Введіть матеріал">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input v-model="productMaterialEn" class="" type="text" placeholder="Введіть матеріал">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input v-model="productMaterialRu" class="" type="text" placeholder="Введіть матеріал">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Колір товару
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input v-model="productColorUk" class="" type="text" placeholder="Введіть колір">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input v-model="productColorEn" class="" type="text" placeholder="Введіть колір">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input v-model="productColorRu" class="" type="text" placeholder="Введіть колір">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <h4 class="option-title">
+                                Тип одиниці товару
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input v-model="productUnitTypeUk" class="" type="text" placeholder="Введіть тип товару">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input v-model="productUnitTypeEn" class="" type="text" placeholder="Введіть тип товару">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input v-model="productUnitTypeRu" class="" type="text" placeholder="Введіть тип товару">
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="option">
+                            <h4 class="option-title">
+                                Введіть примітку для оптової ціни
+                            </h4>
+                            <div class="text-wrapper">
+                                <div class="wrapper">
+                                    <span>
+                                        Українська
+                                    </span>
+                                    <input v-model="wholesaleDescriptionUk" class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Англійська
+                                    </span>
+                                    <input v-model="wholesaleDescriptionEn" class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Російська
+                                    </span>
+                                    <input v-model="wholesaleDescriptionRu" class="" type="text" placeholder="Введіть примітку">
+
+                                </div>
+                                <div class="wrapper">
+                                    <span>
+                                        Продавати товар тільки оптом
+                                    </span>
+                                    <div class="checkbox-wrap flex items-center justify-start">
+                                        <input class="checkbox" type="checkbox" v-model="wholesaleOnly">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
                        
                         <div class="option">
                                     <h4>
@@ -531,6 +750,23 @@
     const productAvailability = ref(false);
     const productDiscountPersent = ref(0); // процент скидки
 
+    const productMaterialUk = ref('');
+    const productMaterialEn = ref('');
+    const productMaterialRu = ref('');
+    const productColorUk = ref('');
+    const productColorEn = ref('');
+    const productColorRu = ref('');
+    const productUnitTypeUk = ref('');
+    const productUnitTypeEn = ref('');
+    const productUnitTypeRu = ref('');
+
+    const productSize = ref('');
+    const productWeight = ref('');
+    const productDensity = ref(''); //plotnost
+    const productCapacity = ref(''); //obem
+    const productQuantity = ref('');
+    const productGroupQuantity = ref('');
+
     // ADD OPTION
     const addOptionsRef = ref([]);
     const discountState = ref(false);
@@ -598,6 +834,21 @@
         optionFileState.optionReady.value = false;
         discountState.value = false;
         productAvailability.value = false;
+        productMaterialUk.value = '';
+        productMaterialEn.value = '';
+        productMaterialRu.value = '';
+        productColorUk.value = '';
+        productColorEn.value = '';
+        productColorRu.value = '';
+        productUnitTypeUk.value = '';
+        productUnitTypeEn.value = '';
+        productUnitTypeRu.value = '';
+        productSize.value = '';
+        productWeight.value = '';
+        productDensity.value = '';
+        productCapacity.value = '';
+        productQuantity.value = '';
+        productGroupQuantity.value = '';
 
     }
 
@@ -683,7 +934,7 @@
         }
 
         const categoryData = fetchedCategories.value.filter((item) => item.id === productCategory.value);
-        const categoryName = categoryData[0].group.trim().replace(' ', '-');
+        const categoryName = categoryData[0].group.trim().replaceAll(' ', '-').toLowerCase();
 
         const translitProductName = transliterate(productNameUk.value);
 
@@ -791,24 +1042,40 @@
                     counterQuantity: counterQuantity.value,
                     packageType: packageType.value,
                     wholesaleOnly: wholesaleOnly.value,
+                    productSize: productSize.value,
+                    productWeight: productWeight.value,
+                    productDensity: productDensity.value,
+                    productCapacity: productCapacity.value,
+                    productQuantity: productQuantity.value,
+                    groupPackQuantity: productGroupQuantity.value,
                     translations: [
                         {
                             language: 'uk',
                             title: productNameUk.value,
                             description: productDescriptionUk.value,
                             wholesaleDescription: wholesaleDescriptionUk.value,
+                            productColor: productColorUk.value,
+                            groupPackage: productUnitTypeUk.value,
+                            productMaterial: productMaterialUk.value,
+
                         },
                         {
                             language: 'en',
                             title: productNameEn.value,
                             description: productDescriptionEn.value,
                             wholesaleDescription: wholesaleDescriptionEn.value,
+                            productColor: productColorEn.value,
+                            groupPackage: productUnitTypeEn.value,
+                            productMaterial: productMaterialEn.value,
                         },
                         {
                             language: 'ru',
                             title: productNameRu.value,
                             description: productDescriptionRu.value,
                             wholesaleDescription: wholesaleDescriptionRu.value,
+                            productColor: productColorRu.value,
+                            groupPackage: productUnitTypeRu.value,
+                            productMaterial: productMaterialRu.value,
                         },
                     ],
                     options: toRaw(addOptionsRef.value)

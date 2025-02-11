@@ -14,6 +14,7 @@ datasource db {
 model Category {
   id           Int                  @id @default(autoincrement())
   group        String               @unique
+  listPosition Int                  @default(0)
   visible      Boolean
   categoryImg String
   parentId     Int?                 // ID родительской категории (null для корневых категорий)
@@ -48,6 +49,12 @@ model Product {
   counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
   packageType        String                // Значение типа упаковки
   wholesaleOnly      Boolean?               // Значение продажи товара только оптом
+  productSize        String
+  productWeight     String
+  productDensity    String
+  productCapacity   String
+  packageQuantity   String
+  groupPackQuantity String
   options            ProductOptions[]       // Массив опций
   translations       ProductTranslation[] // Связь с переводами
   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
@@ -62,12 +69,6 @@ model ProductOptions {
   optionPrice       Float?
   // optionWholesale   Float?
   // wholesaleOnly     Boolean
-  poductSize        String
-  productWeight     String
-  productDensity    String
-  productCapacity   String
-  packageQuantity   String
-  groupPackQuantity String
   translations      ProductOptionsTranslation[]
   Product           Product @relation(fields: [optionId], references: [id], onDelete: Cascade)
 

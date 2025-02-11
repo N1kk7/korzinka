@@ -115,7 +115,6 @@ async function addCategory(event: any) {
 
     // }
 
-    console.log('ololo')
 
     const formData = await readMultipartFormData(event);
 
@@ -133,12 +132,19 @@ async function addCategory(event: any) {
 
     const productData = JSON.parse(textField.data.toString());
 
+    const lastCategory = await prisma.category.findFirst({
+        orderBy: { listPosition: 'desc' },
+    });
+
+    const newListPosition = lastCategory ? lastCategory.listPosition + 1 : 1;
+
 
     try {
 
         const newCategory = await prisma.category.create({
             data: {
                 group: productData.group,
+                listPosition: newListPosition,
                 visible: productData.visible,
                 translations: {
                     create: productData.translations.map((translation: any) => ({
