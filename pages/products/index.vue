@@ -265,6 +265,8 @@
        
 
             <main v-if="activeCategory.length" class="flex-grow p-1 mt-5">
+            <!-- <main class="flex-grow p-1 mt-5"> -->
+
               <div 
                 v-for="(item, index) in activeCategory" 
                 :key="index" 
@@ -290,11 +292,17 @@
                       {{ groupProduct.groupName || 'Unnamed Group' }}
                     </h3>
                     <div class="grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-                      <div 
+                      <!-- <div 
                         v-for="(product, productIndex) in groupProduct.products" 
                         :key="productIndex" 
                         class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
+                      > -->
+                      <div 
+                        v-for="(product, productIndex) in fetchedProducts.data" 
+                        :key="productIndex" 
+                        class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
                       >
+                        {{console.log(product, 'product') }}
                         <ItemCard :product="product" :group="item.group"/>
                       </div>
                     </div>
@@ -303,11 +311,13 @@
 
 
                 <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-                  <!-- class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]" -->
+                <!-- <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4"> -->
+
+
 
                   <div 
 
-                    v-for="(product, productIndex) in item.products" 
+                    v-for="(product, productIndex) in fetchedProducts.data" 
                     :key="productIndex" 
                     class="card-wrapper bg-gray-200 h-fit"
                   >
@@ -349,9 +359,9 @@
 
     const fetchedProducts = ref([]);
 
-    onMounted(async () => {
+onMounted(async () => {
   try {
-    const response = await $fetch('/api/products'); // Ваш API
+    const response = await $fetch('/api/products');
     fetchedProducts.value = response;
     console.log(fetchedProducts.value);
     

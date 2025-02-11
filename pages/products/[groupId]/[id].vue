@@ -2,7 +2,10 @@
     <section class="mt-8 mb-12">
         <div class="px-5 mt-5 mb-8">
             <h2 class="text-xl font-semibold text-[var(--dark-color)]  sm:text-2xl">
-                Придбати [Назва товару] за вигідною ціною – [Назва магазину]
+                Придбати {{ productData?.translations?.find(tr => tr.language === $i18n.locale).title }} за вигідною ціною korzinka.in.ua!
+                 <!-- {{console.log($i18n.locale, 'log locale')}} -->
+
+                <!-- {{console.log(product?.translations, 'log product')}} -->
             </h2>
             <p class="text-xl font-sm text-[var(--dark-color)]  sm:text-2xl">
                 Детальний опис товару: характеристики, особливості та застосування. Дізнайтесь про все, що потрібно про наш продукт!
@@ -13,7 +16,7 @@
 
                 <div class="lg:col-span-3 h-full p-8">
                     <div class="relative h-full flex items-center justify-center lg:min-h-[580px]">
-                        <img src="https://readymadeui.com/images/watch6.webp" alt="Product" class="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
+                        <img :src="productData.img[0].path" alt="Product" class="lg:w-3/5 w-3/4 h-full object-contain max-lg:p-8" />
 
                         <div class="flex space-x-4 items-end absolute right-0 max-md:right-4 md:bottom-4 bottom-0">
                             <div class="bg-white w-10 h-10 grid items-center justify-center rounded-full rotate-90 shrink-0 cursor-pointer">
@@ -32,7 +35,9 @@
 
                 <div class="lg:col-span-2 bg-gray-100 py-6 px-8 h-full">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Smart Watch Timex</h2>
+                        <h2 class="text-2xl font-bold text-gray-800">
+                            {{ productData?.translations?.find(tr => tr.language === $i18n.locale).title }}
+                        </h2>
 
                         <div class="flex space-x-1 mt-2">
                             <svg class="w-4 fill-gray-800" viewBox="0 0 14 13" fill="none"
@@ -65,7 +70,7 @@
 
                     <div class="mt-8">
                         <h3 class="text-lg font-bold text-gray-800">Price</h3>
-                        <p class="text-gray-800 text-3xl font-bold mt-4">$130</p>
+                        <p class="text-gray-800 text-3xl font-bold mt-4">${{productData.price}}</p>
                     </div>
 
                     <div class="mt-8">
@@ -163,3 +168,36 @@
         </div>
     </section>
 </template>
+
+
+
+
+<script setup>
+    import { onMounted, ref, onUnmounted} from 'vue';
+    import { useProductStore } from '#imports';
+
+    const productStore = useProductStore();
+
+    // const product = ref(null)
+
+    // onMounted(() => {
+
+        const product = productStore;
+        const productData = product.selectedProducts
+        // console.log(product.value, 'product value')
+        // console.log(product.selectedProducts, 'product log')
+    // })
+
+    onUnmounted(() => {
+        productStore.setSelectedProducts(null);
+
+    })
+
+   
+
+    // console.log(product);
+
+
+
+
+</script>

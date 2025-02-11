@@ -2,8 +2,8 @@
 
     <NuxtLink 
         class="flex bg-[#f0feff] rounded-xl w-auto justify-center items-center relative overflow-hidden "
-        :to="`/products/${props.group}/:${props.product.id}`"
-
+        :to="`/products/${props.group}/${props.product.id}`"
+        @click="selectProduct(props.product)"
         >
     
         
@@ -20,29 +20,37 @@
                 <div class="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 max-sm:grid-cols-5">
 
                     <div class="col-span-2 p-3 bg-[var(--primary-color)] flex items-center justify-center">
-                        <img src="/public/img/bag.png" alt="demo" />
+                        <img :src="props.product.img[0].path" alt="demo" />
                     </div>
                     <div class="col-span-3 p-3 z-20 relative flex flex-col justify-between gap-2">
                         <div class="text-block">
-                            <h3 class="font-bold text-[var(--dark-color)]">Назва товару</h3>
-                            <span class="mb-3 text-[var(--primary-color)]">Опис товару</span>
+                            <h3 class="font-bold text-[var(--dark-color)]">
+                                {{ props.product.translations.find(translation => translation.language === 'uk').title }}
+                            </h3>
+                            <span class="mb-3 text-[var(--primary-color)]">
+                                {{ props.product.translations.find(translation => translation.language === 'uk').productDescription }}
+                            </span>
                         </div>
                         <div class="content-block">
                             <div
                             class="card flex items-center text-gray-500 bg-gray-200 focus:bg-white rounded-lg p-2 border-[1px] border-[var(--secondary-color)] flex-wrap justify-around gap-[5px]">
                             <div class="text-center">
-                                <p class="text-sm">Ціна</p>
-                                <p class="font-bold text-gray-800">37</p>
+                                <p class="text-sm">Ціна грн.</p>
+                                <p class="font-bold text-gray-800">
+                                    {{ props.product.price }}
+                                </p>
                             </div>
                             <div class="text-center">
-                                <p class="text-sm">Опт.</p>
-                                <p class="font-bold text-gray-800">850</p>
+                                <p class="text-sm">Опт. грн.</p>
+                                <p class="font-bold text-gray-800">
+                                    {{ props.product.wholesalePrice }}
+                                </p>
                             </div>
                             <div class="text-center">
                                 <p class="text-sm">Діє від</p>
                                 <p class="font-bold text-gray-800 flex gap-1">
-                                    <img src="https://svgshare.com/i/16Fg.svg" />
-                                        9.5
+                                    <!-- <img src="https://svgshare.com/i/16Fg.svg" /> -->
+                                    {{ props.product.counterQuantity }} шт
                                 </p>
                             </div>
                         </div>
@@ -50,7 +58,7 @@
                             <div class="bg-white text-gray-500 p rounded-lg border-[1px] border-[var(--secondary-color)]  flex-1 flex justify-between items-center overflow-hidden min-w-16 w-fit">
                                 <button 
                                     class="hover:bg-red-400 hover:text-white w-full h-full"
-                                    @click="(e) => counterControl(e, '-', 5)"
+                                    @click="(e) => counterControl(e, '-', props.product.counterQuantity)"
                                 >
                                     -
                                 </button>
@@ -63,7 +71,7 @@
                                 <button 
                                     class="hover:bg-green-500 hover:text-white w-full h-full"
 
-                                    @click="(e) => counterControl(e, '+', 5)"
+                                    @click="(e) => counterControl(e, '+', props.product.counterQuantity)"
                                 >
                                     +
                                 </button>
@@ -92,8 +100,11 @@
 
 <script setup>
 
+    import { useProductStore } from '#imports';
 
     import SvgIcon from './shared/SvgIcon.vue';
+
+    const productStore = useProductStore();
 
     let counter = ref(0);
 
@@ -101,6 +112,13 @@
         product: Object,
         group: String,
     })
+
+    // console.log(props.product.img[0].path);
+
+    const selectProduct = (product) => {
+        productStore.setSelectedProducts(product);
+        console.log(productStore.selectedProducts)
+    }
     
 
     const counterControl = (event, operator, quantity) => {
