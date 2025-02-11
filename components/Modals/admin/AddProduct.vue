@@ -331,7 +331,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input v-model="productWeight" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+                                        <input v-model="productWeight" class="checkbox" type="text" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -345,7 +345,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input v-model="productDensity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+                                        <input v-model="productDensity" class="checkbox" type="text" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -359,7 +359,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input v-model="productCapacity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+                                        <input v-model="productCapacity" class="checkbox" type="text" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -373,7 +373,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input v-model="productQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+                                        <input v-model="productQuantity" class="checkbox" type="text" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -387,7 +387,7 @@
                                         </strong> 
                                     </span>
                                     <div class="checkbox-wrap flex items-center justify-start">
-                                        <input v-model="productGroupQuantity" class="checkbox" type="number" placeholder="Введіть значення цифрами">
+                                        <input v-model="productGroupQuantity" class="checkbox" type="text" placeholder="Введіть значення цифрами">
 
                                     </div>
                                 </div>
@@ -513,43 +513,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="option">
-                            <h4 class="option-title">
-                                Введіть примітку для оптової ціни
-                            </h4>
-                            <div class="text-wrapper">
-                                <div class="wrapper">
-                                    <span>
-                                        Українська
-                                    </span>
-                                    <input v-model="wholesaleDescriptionUk" class="" type="text" placeholder="Введіть примітку">
-
-                                </div>
-                                <div class="wrapper">
-                                    <span>
-                                        Англійська
-                                    </span>
-                                    <input v-model="wholesaleDescriptionEn" class="" type="text" placeholder="Введіть примітку">
-
-                                </div>
-                                <div class="wrapper">
-                                    <span>
-                                        Російська
-                                    </span>
-                                    <input v-model="wholesaleDescriptionRu" class="" type="text" placeholder="Введіть примітку">
-
-                                </div>
-                                <div class="wrapper">
-                                    <span>
-                                        Продавати товар тільки оптом
-                                    </span>
-                                    <div class="checkbox-wrap flex items-center justify-start">
-                                        <input class="checkbox" type="checkbox" v-model="wholesaleOnly">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                        
                         <div class="option">
                                     <h4>

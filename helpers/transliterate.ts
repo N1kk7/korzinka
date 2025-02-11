@@ -28,7 +28,6 @@ export const transliterate = (text: string) => {
     .split('')
     .map(char => map[char] || char) 
     .join('')
-    // .replace(/[^a-zA-Z0-9\-_.]/g, '');
     .replace(/ /g, '-')
     .replace(/[^a-zA-Z0-9\-_.]/g, '')
 };
