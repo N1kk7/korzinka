@@ -65,13 +65,14 @@
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   
 
-  gsap.registerPlugin(ScrollTrigger);
+  
   
 
   const statsWrapper = ref(null);
   
 
   onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
       "#clientsNum", 
