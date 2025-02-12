@@ -7,12 +7,16 @@ import getCategory from './methods/category/getCategory';
 import getSubCategory from './methods/category/getSubCategory';
 import patchCategory from './methods/category/patchCategory';
 import patchSubCategory from './methods/category/patchCategory';
+import getCategoriesWithProducts from './methods/category/getCategoriesWithProducts';
+import getCategoryWithProducts from './methods/category/getCategoryWithProducts';
 
 export { 
     addCategory, 
     addSubCategory, 
     deleteCategory, 
     deleteSubCategory ,
+    getCategoriesWithProducts,
+    getCategoryWithProducts,
     getAllCategories,
     getCategory,
     getSubCategory,

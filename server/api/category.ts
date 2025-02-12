@@ -1,13 +1,28 @@
 import { defineEventHandler } from "#imports";
-import  {addCategory, addSubCategory, getAllCategories, deleteCategory}  from '../services/categoryServices'
+import  {
+    addCategory, 
+    addSubCategory, 
+    getAllCategories, 
+    getCategoriesWithProducts,
+    getCategoryWithProducts,
+    deleteCategory
+}  from '../services/categoryServices'
 
 export default defineEventHandler(async (event) => {
 
     const method = event.node.req.method;
+
+    const query = getQuery(event);
  
     switch (method) {
         case 'GET': 
-            return await getAllCategories();
+            if (query.category = 'all') {
+                return await getCategoriesWithProducts();
+            } else if (query.id) {
+                return await getCategoryWithProducts(Number(query.id));
+            } else {
+                return await getAllCategories();
+            }
         break;
         case 'POST':
             return await addCategory(event);
