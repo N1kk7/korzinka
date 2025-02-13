@@ -2,12 +2,12 @@
 export default {
   darkMode: 'class', 
   content: [
-    './components/**/*.{vue,js}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './app.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}'
+    './components/**/*.{vue,js,ts,scss}',
+    './layouts/**/*.{vue,js,ts,scss}',
+    './pages/**/*.{vue,js,ts,scss}',
+    './app.{js,ts,scss}',
+    './plugins/**/*.{js,ts,scss}',
+    './nuxt.config.{js,ts,scss}',
   ],
   theme: {
     extend: {

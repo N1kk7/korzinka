@@ -49,6 +49,7 @@ model Product {
   counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
   packageType        String                // Значение типа упаковки
   wholesaleOnly      Boolean?               // Значение продажи товара только оптом
+  wholesaleFrom      Int?                   //Значение колличества единиц от которой действует оптовая цена
   productSize        String
   productWeight     String
   productDensity    String

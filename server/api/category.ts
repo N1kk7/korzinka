@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
  
     switch (method) {
         case 'GET': 
-            if (query.category = 'all') {
+            if (query.category === 'all') {
                 return await getCategoriesWithProducts();
             } else if (query.id) {
                 return await getCategoryWithProducts(Number(query.id));

@@ -261,8 +261,9 @@
                           </div>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                          <button class="inline-block px-5 py-2.5 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25 text-slate-400">
-                            <i class="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i>
+                          <button class="inline-block px-5 py-2.5 mb-0 font-bold text-[var(-dark-color)] text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none leading-normal text-sm ease-in bg-150 tracking-tight-rem bg-x-25">
+                            <!-- <i class="text-xs leading-tight fa fa-ellipsis-v dark:text-white dark:opacity-60"></i> -->
+                             Edit
                           </button>
                         </td>
                       </tr>
@@ -361,9 +362,16 @@
     })
 
     const showGroup = (group) => {
-        console.log(group)
-        if (group !== activeGroup.value) {
-            activeGroup.value = group;
+
+        switch (group) {
+            case 'products':
+                fetchProduct();
+                activeGroup.value = 'products';
+            break;
+            case 'categories':
+                fetchCategory();
+                activeGroup.value = 'categories';
+            break
         }
     }
 
@@ -378,14 +386,11 @@
         );
     };
 
-    onMounted( async () => {
+    const fetchCategory = async () => {
         loadingCategoryState.value = true;
-        loadingProductState.value = true;
+        try{
 
-
-        try {
             const getCategories = await $fetch('/api/category');
-            // console.log('log fetch');
             
             if (getCategories.data.length > 0) {
                 fetchedCategories.value = getCategories.data.map((item) => ({
@@ -395,23 +400,37 @@
             }
             loadingCategoryState.value = false;
 
+        } catch (error) {
+            console.log(error.message, 'Something went wrong')
+        }
+
+
+    }
+
+    const fetchProduct = async () => {
+        loadingProductState.value = true;
+
+        try{
             const getProducts = await $fetch('/api/products');
 
             if (getProducts.data.length > 0) {
                 fetchedProducts.value = getProducts.data.map((item) => item)
             }
-            // productsLoadingState.value = false;
+
             loadingProductState.value = false;
 
-            console.log(fetchedProducts.value, 'get products')
+            console.log(fetchedProducts.value, 'fetchedProducts');
 
         } catch (error) {
-
-            console.log(error, 'error from getCategories')
+            console.log(error.message, 'Something went wrong')
         }
-    })
 
-    // console.log(fetchedCategories.value, 'fetchedCategories')
+
+    }
+
+    onMounted(() => {
+        fetchProduct();
+    })
    
 
 </script>
@@ -433,6 +452,82 @@
 .skeleton {
   @apply bg-gray-300 dark:bg-gray-600 animate-pulse;
 }
+// .table-header {
+//   padding: 12px 24px; // px-6 py-3
+//   font-weight: bold; // font-bold
+//   text-align: left; // text-left
+//   text-transform: uppercase; // uppercase
+//   vertical-align: middle; // align-middle
+//   background-color: transparent; // bg-transparent
+//   border-bottom: 1px solid rgba(255, 255, 255, 0.4); // dark:border-white/40
+//   font-size: 12px; // text-xs
+//   letter-spacing: normal; // tracking-normal
+//   color: rgb(148, 163, 184); // text-slate-400
+//   opacity: 0.7; // opacity-70
+// }
+
+// .table-cell {
+//   padding: 8px; // p-2
+//   vertical-align: middle; // align-middle
+//   background-color: transparent; // bg-transparent
+//   border-bottom: 1px solid rgba(255, 255, 255, 0.4); // dark:border-white/40
+//   color: rgb(148, 163, 184); // text-slate-400
+// }
+
+// .skeleton-cell {
+//   padding: 8px; // p-2
+//   vertical-align: middle; // align-middle
+//   background-color: transparent; // bg-transparent
+//   border-bottom: 1px solid rgba(255, 255, 255, 0.4); // dark:border-white/40
+//   display: flex; // flex
+//   align-items: center; // items-center
+// }
+
+// .skeleton {
+//   background-color: rgb(226, 232, 240); // Светло-серый bg-gray-200
+//   animation: pulse 1.5s infinite ease-in-out;
+//   border-radius: 4px;
+// }
+
+// // Анимация скелетона
+// @keyframes pulse {
+//   0% {
+//     opacity: 1;
+//     background-color: rgb(226, 232, 240); // Светлее
+//   }
+//   50% {
+//     opacity: 0.6;
+//     background-color: rgb(203, 213, 225); // Чуть темнее
+//   }
+//   100% {
+//     opacity: 1;
+//     background-color: rgb(226, 232, 240);
+//   }
+// }
+
+// // Для темной темы
+// @media (prefers-color-scheme: dark) {
+//   .skeleton {
+//     background-color: rgb(107, 114, 128); // Светлый серый в темной теме
+//   }
+
+//   @keyframes pulse {
+//     0% {
+//       opacity: 1;
+//       background-color: rgb(107, 114, 128);
+//     }
+//     50% {
+//       opacity: 0.6;
+//       background-color: rgb(75, 85, 99); // Чуть темнее
+//     }
+//     100% {
+//       opacity: 1;
+//       background-color: rgb(107, 114, 128);
+//     }
+//   }
+// }
+
+
 
     .admin-container{
         height: -webkit-fill-available;

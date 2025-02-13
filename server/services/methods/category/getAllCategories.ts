@@ -3,6 +3,7 @@ import supabase from "../../../../utils/supabase";
 
 
 async function getAllCategories (){
+    
     try{
         const categories = await prisma.category.findMany({
             include: {

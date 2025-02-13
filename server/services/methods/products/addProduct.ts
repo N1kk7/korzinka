@@ -48,6 +48,7 @@ async function addProduct(event: any) {
                 stockValue: Number(productData.stockValue),
                 discountPercent: Number(productData.discountPersent),
                 wholesalePrice: Number(productData.wholesalePrice),
+                wholesaleFrom: Number(productData.wholesaleFrom),
                 counterQuantity: Number(productData.counterQuantity),
                 packageType: String(productData.packageType),
                 wholesaleOnly: Boolean(productData.wholesaleOnly),
