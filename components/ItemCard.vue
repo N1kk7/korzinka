@@ -19,17 +19,17 @@
                 <!-- <div class="grid grid-cols-5"> -->
                 <div class="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-1 max-sm:grid-cols-5">
 
-                    <div class="col-span-2 p-3 bg-[var(--primary-color)] flex items-center justify-center">
-                        <img :src="props.product.img[0].path" alt="demo" />
+                    <div class="col-span-2 p-1 bg-[var(--primary-color)] flex items-center justify-center">
+                        <img :src="props.product.img[0].path" alt="demo" class="w-[90%]"/>
                     </div>
                     <div class="col-span-3 p-3 z-20 relative flex flex-col justify-between gap-2">
                         <div class="text-block">
                             <h3 class="font-bold text-[var(--dark-color)]">
                                 {{ props.product.translations.find(translation => translation.language === 'uk').title }}
                             </h3>
-                            <span class="mb-3 text-[var(--primary-color)]">
+                            <!-- <span class="mb-3 text-[var(--primary-color)]">
                                 {{ props.product.translations.find(translation => translation.language === 'uk').productDescription }}
-                            </span>
+                            </span> -->
                         </div>
                         <div class="content-block">
                             <div

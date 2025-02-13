@@ -264,23 +264,33 @@
           >
        
 
-            <main v-if="activeCategory.length" class="flex-grow p-1 mt-5">
-            <!-- <main class="flex-grow p-1 mt-5"> -->
+            <!-- <main v-if="activeCategory.length" class="flex-grow p-1 mt-5"> -->
+            <main  class="flex-grow p-1 mt-5">
+
 
               <div 
-                v-for="(item, index) in activeCategory" 
+                v-for="(item, index) in fetchedAllCategories" 
                 :key="index" 
                 class="group-title mb-10"
               >
 
-                <h2 class="text-2xl font-bold text-[var(--dark-color)] mb-4">
-                  {{ item.title }}
+                <h2 class="text-2xl font-bold text-[var(--dark-color)] mb-4 z-10 relative">
+                  {{ item.translations.find(t => t.language === $i18n.locale).title  }}
                 </h2>
 
+                <div class="grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
+                  <div 
+                    v-for="(product, productIndex) in item.products" 
+                    :key="productIndex" 
+                    class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
+                  >
+                    {{console.log(product, 'product') }}
+                    <ItemCard :product="product" :group="item.group"/>
+                  </div>
+                </div>
 
-                <!-- <div v-if="item.groupProducts && item.groupProducts.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4"> -->
-                <div v-if="item.groupProducts && item.groupProducts.length" class=" mt-4">
-                  <!-- class="card-wrapper bg-gray-200 h-fit rounded-xl border-[1px] border-[var(--dark-color)]" -->
+
+                <!-- <div v-if="item.groupProducts && item.groupProducts.length" class=" mt-4">
 
                   <div 
                     v-for="(groupProduct, groupIndex) in item.groupProducts" 
@@ -292,11 +302,6 @@
                       {{ groupProduct.groupName || 'Unnamed Group' }}
                     </h3>
                     <div class="grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-                      <!-- <div 
-                        v-for="(product, productIndex) in groupProduct.products" 
-                        :key="productIndex" 
-                        class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
-                      > -->
                       <div 
                         v-for="(product, productIndex) in fetchedProducts.data" 
                         :key="productIndex" 
@@ -311,7 +316,6 @@
 
 
                 <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-                <!-- <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4"> -->
 
 
 
@@ -323,7 +327,9 @@
                   >
                     <ItemCard :product="product" :group="item.group"/>
                   </div>
-                </div>
+                </div> -->
+
+                
               </div>
             </main>
             <KorzinkaBg/>
@@ -359,11 +365,18 @@
 
     const fetchedProducts = ref([]);
 
+    const fetchedAllCategories = ref([])
+
 onMounted(async () => {
   try {
-    const response = await $fetch('/api/products');
-    fetchedProducts.value = response;
-    console.log(fetchedProducts.value);
+    // const response = await $fetch('/api/products');
+    const response = await $fetch('/api/category?category=all');
+    fetchedAllCategories.value = response;
+
+    console.log(response, 'response');
+
+    // fetchedProducts.value = response;
+    // console.log(fetchedProducts.value);
     
   } catch (error) {
     console.error('Error fetching data зкщв:', error);

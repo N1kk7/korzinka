@@ -419,7 +419,6 @@
 
             loadingProductState.value = false;
 
-            console.log(fetchedProducts.value, 'fetchedProducts');
 
         } catch (error) {
             console.log(error.message, 'Something went wrong')

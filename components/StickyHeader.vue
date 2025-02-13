@@ -16,12 +16,19 @@
           </div>
           <div class="items-list item-list-hidden">
             <ul>
-              <li class="additional-menu">
+              <li 
+                v-for="(category, index) in fetchedCategories"
+                :key="index"
+                class="additional-menu"
+              >
                 <span>
-                  Пакети майка
+                  <!-- {{console.log(category, 'category')}} -->
+                  <!-- Пакети майка -->
+                   <!-- {{ category.group }} -->
+                   {{ category?.translations?.find(tr => tr.language === $i18n.locale).title }}
                 </span>
                 <hr/>
-                <ul class="item-options-list option-list-hidden">
+                <!-- <ul class="item-options-list option-list-hidden">
                   <li>
                     <span>
                       Багажна серія
@@ -46,9 +53,9 @@
                     </span>
                     <hr/>
                   </li>
-                </ul>
+                </ul> -->
               </li>
-              <li>
+              <!-- <li>
                 <span>
                   Пакети для сміття
                 </span>
@@ -111,7 +118,7 @@
                 </span>
                 <hr/>
 
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -145,11 +152,15 @@
 
 <script setup>
 
+  import { onMounted, ref, watch }  from "vue";
+
   // import { useModalStore } from "@/stores/modal-store";
   import { useModalStore } from "#imports";
 
   import LangBtn from "@/components/shared/LangBtn.vue";
   import SvgIcon from "./shared/SvgIcon.vue";
+
+  const fetchedCategories = ref([]);
 
 
   const modalStore = useModalStore();
@@ -162,6 +173,19 @@
   const themeControl = () => {
     modalStore.showModal('ThemeModal');
   }
+
+
+
+
+  onMounted(async() => {
+      try{
+        const res = await $fetch('/api/category');
+        fetchedCategories.value = res.data;
+        console.log(res.data, 'res from header')
+      } catch(e) {
+        console.log(e, 'Something went wrong')
+      }
+  })
 
   
 
