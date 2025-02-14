@@ -8,7 +8,8 @@
                         Товари
                     </h1>
                 </div>
-                <div class="nav bg-[#d5ddeb] py-2 px-3 rounded-lg">
+                <div class="flex items-center justify-center gap-5 px-5">
+                    <div class="nav bg-[#d5ddeb] py-2 px-3 rounded-lg">
                     <ul class="flex items center gap-1">
                         <li :class="activeGroup === 'products' ? 'el-active' : ''" 
                             @click="showGroup('products')"
@@ -47,7 +48,12 @@
                         </li> -->
 
                     </ul>
+
                 </div>
+                <AdminBurger/>
+                </div>
+             
+
             </div>
             <div class="settings-row grid grid-cols-[2fr_1fr] items-center gap-5 my-5">
 
@@ -60,7 +66,7 @@
                     </div>
                 
                 </div>
-                <div class="settings-block flex justify-end items-stretch gap-5">
+                <div class="settings-block flex justify-end items-stretch gap-5 px-5">
                     <button
                         class="text-nowrap"
                         @click="openPopup('AddCategory')"
@@ -73,9 +79,9 @@
                     >
                         Додати товар
                     </button>
-                    <button>
+                    <!-- <button>
                         <SvgIcon name="burger-menu" size="micro" fill="var(--dark-color)" />
-                    </button>
+                    </button> -->
 
                 </div>
 
@@ -298,6 +304,7 @@
     import { onMounted, ref, watch } from 'vue';
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
+    import AdminBurger from '@/components/shared/AdminBurger.vue';
     import gsap from 'gsap';
 
     const modalStore = useModalStore();

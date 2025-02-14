@@ -352,8 +352,9 @@ const closeSidebar = () => {
   
   if (isSidebarOpen.value) {
     setTimeout(() => {
+      indexStore.setAdminBurgerBtn(false);
       isSidebarOpen.value = false
-    }, 500);
+    }, 300);
   }
   return
 }
