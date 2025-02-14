@@ -78,6 +78,13 @@
                     <button 
                         class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
                         @click="(e) => addToCart(e)">
+                        <!-- <SvgIcon name="cart-icon" fill="white" size="micro"/> -->
+                        <!-- <div class="w-[1px] h-full bg-white"/> -->
+                        Детальніше про товар
+                    </button>
+                    <button 
+                        class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
+                        @click="(e) => addToCart(e)">
                         <SvgIcon name="cart-icon" fill="white" size="micro"/>
                         <div class="w-[1px] h-full bg-white"/>
                         В кошик
@@ -160,12 +167,12 @@
 
         display: flex;
         flex-direction: column;
-        min-height: 350px;
+        min-height: 400px;
         .card-img{
             // position: absolute;
             flex: 1;
             position: absolute;
-            height: 80%;
+            height: 70%;
             width: 100%;
         }
         .text-content{
