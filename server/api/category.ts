@@ -13,8 +13,6 @@ export default defineEventHandler(async (event) => {
     const method = event.node.req.method;
 
     const query = getQuery(event);
-
-    console.log(query, 'query');
     
  
     switch (method) {

@@ -278,14 +278,24 @@
                   {{ item.translations.find(t => t.language === $i18n.locale).title  }}
                 </h2>
 
-                <div class="grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
+                <div class="cards-content">
+                  <!-- grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4 -->
                   <div 
+
                     v-for="(product, productIndex) in item.products" 
                     :key="productIndex" 
-                    class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
+                    class="card-wrapper w-fit"
                   >
-                    {{console.log(product, 'product') }}
-                    <ItemCard :product="product" :group="item.group"/>
+                  <!-- bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)] -->
+
+                    <!-- {{console.log(product, 'product') }} -->
+                    <!-- <NuxtLink
+                      :to="`/products/${item.group.replaceAll(' ', '-').toLowerCase()}/${product.id}`"
+                      @click="selectProduct(product.product)"
+                    >
+                    {{ console.log(item.group, product.id) }} -->
+                      <ItemCard :product="product" :group="item.group"/>
+                    <!-- </NuxtLink> -->
                   </div>
                 </div>
 
@@ -342,6 +352,7 @@
   <script setup >
 
     import { ref, computed, onMounted } from 'vue';
+    import { useProductStore } from '#imports';
     import { useAsyncData } from 'nuxt/app'
 
     import { useFetch } from 'nuxt/app';
@@ -357,11 +368,18 @@
     import ItemCard from '@/components/ItemCard.vue';
 
     import products from '@/data/Products/products.ts';
+
+    const productStore = useProductStore()
     // const { data, error } = await useFetch('/api/products');
 
     // const fetchedProducts = data.value
 
     // console.log(fetchedProducts);
+    const selectProduct = (product) => {
+        productStore.setSelectedProducts(product);
+        console.log(productStore.selectedProducts)
+    }
+    
 
     const fetchedProducts = ref([]);
 
@@ -501,6 +519,11 @@ onMounted(() => {
     .products-section{
       font-family: 'Montserrat', sans-serif;
     }
+    .products-main{
+      @media screen and (max-width: 600px) {
+        width: 98vw;
+      }
+    }
     .product-container{
       width: 92vw;
       margin: 0 auto;
@@ -509,6 +532,9 @@ onMounted(() => {
     .page-title{
       p{
         font-size: clamp(0.7rem, 2vw, 1.5rem);
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
     }
     .icon {
@@ -581,6 +607,25 @@ onMounted(() => {
     .card-wrapper{
       box-shadow:  20px 20px 60px #bebebe,
           -20px -20px 60px #ffffff;
+    }
+    .cards-content{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+
+      .card-wrapper{
+        width: calc(50% - 5px);
+        @media screen and (max-width: 1024px) {
+          width: calc(33.3% - 7px);
+        }
+        @media screen and (max-width: 764px) {
+          width: calc(50% - 5px);
+        }
+        @media screen and (max-width: 375px) {
+          width: 100%;
+        }
+      }
     }
 
   </style>
