@@ -35,15 +35,15 @@
                     <div
                     class="card flex items-center text-gray-500 bg-gray-200 focus:bg-white rounded-lg p-2 border-[1px] border-[var(--secondary-color)] max-sm:p-0 max-sm:py-2 max-sm:gap-1 justify-around gap-[5px]">
                     <div class="text-center">
-                        <p class="text-sm">Ціна грн.</p>
+                        <p class="text-sm">Ціна</p>
                         <p class="font-bold text-gray-800">
-                            {{ props.product.price }}
+                            {{ props.product.price }} грн.
                         </p>
                     </div>
                     <div class="text-center">
-                        <p class="text-sm">Опт. грн.</p>
+                        <p class="text-sm">Опт. ціна</p>
                         <p class="font-bold text-gray-800">
-                            {{ props.product.wholesalePrice }}
+                            {{ props.product.wholesalePrice }} грн.
                         </p>
                     </div>
                     <div class="text-center">
@@ -142,8 +142,9 @@
 .card-img{
     img{
         @media screen and (max-width: 1024px) {
-        max-width: 75%;
-    }
+            max-width: 70%;
+            transform: translateY(10%)
+        }
     }
    
 }
@@ -159,7 +160,7 @@
 
         display: flex;
         flex-direction: column;
-        min-height: 400px;
+        min-height: 350px;
         .card-img{
             // position: absolute;
             flex: 1;
