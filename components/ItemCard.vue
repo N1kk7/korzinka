@@ -54,7 +54,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="flex mt-3 gap-2 flex-wrap justify-center items-stretch">
+                <div class="button-group flex mt-3 gap-2 flex-wrap justify-center items-stretch">
                     <!-- <div class="bg-white text-gray-500 p rounded-lg border-[1px] border-[var(--secondary-color)]  flex-1 flex justify-between items-center overflow-hidden min-w-16 w-fit">
                         <button 
                             class="hover:bg-red-400 hover:text-white w-full h-full"
@@ -80,7 +80,7 @@
                         @click="(e) => addToCart(e)">
                         <!-- <SvgIcon name="cart-icon" fill="white" size="micro"/> -->
                         <!-- <div class="w-[1px] h-full bg-white"/> -->
-                        Детальніше про товар
+                        Детальніше...
                     </button>
                     <button 
                         class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
@@ -185,6 +185,9 @@
 
                 }
             // padding-top: 150px;
+        }
+        .button-group{
+            flex-direction: column;
         }
     }
 }
