@@ -1,176 +1,217 @@
 <template>
-    <!-- <div class="admin-layout"> -->
 
       <div class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
         <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
 
       <aside 
-        class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" 
+        class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full h-full p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" 
         :aria-expanded="isSidebarOpen"
         :class="{'-translate-x-full z-50': !isSidebarOpen, 'translate-x-4 z-50': isSidebarOpen}"
       >
-      <!-- :class="{'hidden': !showSidebar, 'flex': showSidebar}" -->
 
-      <div class="h-19">
-        <!-- <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i> -->
-        <div class="px-2 py-6 m-0 text-sm whitespace-nowrap  text-slate-700 flex justify-center items-center gap-2" href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html" target="_blank">
-          <img src="../public/img/only-dog.png" class="hidden h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1  rounded-lg" alt="main_logo" />
-          <div class="title-wrapper ml-1 flex items-baseline flex-col">
-            <span class=" font-semibold transition-all duration-200 ease-nav-brand">
-              Панель керування
-            </span>
-            <span > 
-              https://www.korzinka.in.ua
-            </span>
+      <div>
+        <div class="h-19">
+          <div class="px-2 py-6 m-0 text-sm whitespace-nowrap  text-slate-700 flex justify-center items-center gap-2" target="_blank">
+            <img src="../public//img/only-dog.png" class=" h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1  rounded-lg" alt="main_logo" />
+            <div class="title-wrapper ml-1 flex items-baseline flex-col">
+              <span class=" font-semibold transition-all duration-200 ease-nav-brand">
+                Панель керування
+              </span>
+              <span > 
+                https://www.korzinka.in.ua  
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent -->
-      <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent " />
+        <!-- dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent -->
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent " />
 
-      <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
-        <ul class="flex flex-col pl-0 mb-0">
-          <li 
-            class="mt-[0.125rem] w-full"
-            @click="closeSidebar"
+        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full py-2">
+          <ul class="flex flex-col pl-0 mb-0">
+            <li 
+              class="mt-0.5 w-full "
+              @click="closeSidebar(), activePage = 'index'"
 
-          >
-            <NuxtLink to="/admin/">
-
-              <div class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors">
-                <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                  <img src="@/public/img/icons/house.png" alt="option">
-
-                </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                      Головна
-                    </span>
-              </div>
-            </NuxtLink>
-          </li>
-
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
-
-          >
-            <NuxtLink to="/admin/analytics"
-              class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
             >
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <img src="@/public/img/icons/analysis.png" alt="option">
+              <NuxtLink to="/admin/">
 
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Аналітика
-              </span>
-            </NuxtLink>
-          </li>
+                <div 
+                  class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'index' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/house.png" alt="option">
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Головна
+                  </span>
+                </div>
+              </NuxtLink>
+            </li>
 
-          >
-            <NuxtLink to="/admin/buyers" class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
-                <img src="@/public/img/icons/buying.png" alt="option">
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Покупці
-              </span>
-            </NuxtLink>
-          </li>
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'analytics'"
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
-            
-          >
-            <NuxtLink to="/admin/notifications" class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <!-- <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i> -->
-                <img src="@/public/img/icons/notification.png" alt="option">
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Повідомлення
-              </span>
-            </NuxtLink>
-          </li>
+            >
+              <NuxtLink to="/admin/analytics">
+                <div
+                    class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                    :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'analytics' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/analysis.png" alt="option">
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
-          >
-            <NuxtLink to="/admin/orders" class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <!-- <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i> -->
-                <img src="@/public/img/icons/order.png" alt="option">
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Аналітика
+                  </span>
+                </div>
+              
+              </NuxtLink>
+            </li>
 
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Замовлення
-              </span>
-            </NuxtLink>
-          </li>
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'buyers'"
 
-          <li class="w-full mt-4">
-            <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase">Account pages</h6>
-          </li>
+            >
+              <NuxtLink to="/admin/buyers" >
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'buyers' }"
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/buying.png" alt="option">
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Покупці
+                  </span>
+                </div>
+              
+              </NuxtLink>
+            </li>
 
-          >
-            <NuxtLink to="/admin/payment" class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <!-- <i class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"></i> -->
-                <img src="@/public/img/icons/cash-payment.png" alt="option">
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Оплата
-              </span>
-            </NuxtLink>
-          </li>
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'notifications'"
+              
+            >
+              <NuxtLink to="/admin/notifications">
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'notifications' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/notification.png" alt="option">
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Повідомлення
+                  </span>
+                </div>
+              
+              </NuxtLink>
+            </li>
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
-          >
-            <NuxtLink to="/admin/products" class= "py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <!-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-single-copy-04"></i> -->
-                <img src="@/public/img/icons/cubes.png" alt="option">
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'orders'"
+            >
+              <NuxtLink to="/admin/orders">
 
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Товари
-              </span>
-            </NuxtLink>
-          </li>
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'orders' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/order.png" alt="option">
 
-          <li 
-            class="mt-0.5 w-full"
-            @click="closeSidebar"
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Замовлення
+                  </span>
+                </div>
+              
+              </NuxtLink>
+            </li>
+
+            <li class="w-full mt-4">
+              <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase">Account pages</h6>
+            </li>
+
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'payment'"
+
+            >
+              <NuxtLink to="/admin/payment">
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'payment' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/cash-payment.png" alt="option">
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Оплата
+                  </span>
+                </div>
+                
+              </NuxtLink>
+            </li>
+
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'products'"
+            >
+              <NuxtLink to="/admin/products">
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'products' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/cubes.png" alt="option">
+
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Товари
+                  </span>
+                </div>
+          
+              </NuxtLink>
+            </li>
+
+            <li 
+              class="mt-0.5 w-full"
+              @click="closeSidebar(), activePage = 'settings'"
+          
+            >
+
+              <NuxtLink to="/admin/settings">
+                <div
+                  class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                  :class="{ 'text-white bg-[var(--primary-color)]': activePage === 'settings' }"
+                >
+                  <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                    <img src="@/public/img/icons/setting.png" alt="option">
+
+                  </div>
+                  <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
+                    Налаштування
+                  </span>
+                </div>
         
-          >
-
-            <NuxtLink to="/admin/settings" class=" py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <!-- <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-collection"></i> -->
-                <img src="@/public/img/icons/setting.png" alt="option">
-
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">
-                Налаштування
-              </span>
-            </NuxtLink>
-          </li>
-        </ul>
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="mx-4">
+      
+
+      <div class="mx-4 pb-14">
         <!-- load phantom colors for card after: -->
         <p class="invisible hidden text-blue-500 bg-gray-500/30  after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 "></p>
         <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border" sidenav-card>
@@ -194,13 +235,23 @@
 
       <!-- <main class="page-layout"> -->
       <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl">
-        <button 
-          class="bg-[var(--light-color)] absolute right-5 top-2 xl:hidden block"
-          @click="isSidebarOpen = !isSidebarOpen"
-        >
-          ololo
-        </button>
-        <slot />
+        <!-- <div class="mobile-burger py-2 ">
+          <button 
+            class="bg-[var(--light-color)] "
+            @click="isSidebarOpen = !isSidebarOpen"
+          >
+            <div class="top"></div>
+            <div class="middle"></div>
+            <div class="bottom"></div>
+          </button>
+        </div> -->
+
+          <!-- <slot @toggle-sidebar="handleSidebarToggle"/> -->
+          <!-- <div @toggle-sidebar="handleSidebarToggle">
+            <slot />
+          </div> -->
+          <slot />
+       
         <!-- <Tooltips :props="tooltipProps"/> -->
        
         <!-- :tooltipProps="tooltipProps"  -->
@@ -231,21 +282,27 @@
 </template>
 
 <script setup>
-    import { computed, toRefs, watch, ref} from 'vue';
+    import { computed, toRefs, watch, ref, onMounted} from 'vue';
     import Modal from '~/components/Modals/Modal.vue';
     import Tooltips from '~/components/shared/Tooltips.vue';  
-    import { useModalStore } from "#imports";
+    import { useModalStore, useIndexStore } from "#imports";
 
 
     const showTooltip = ref(false);
     const tooltipStatus = ref('');
     const tooltipMessage = ref('');
     const isSidebarOpen = ref(false);
+    const activePage = ref('index');
 
+    // onMounted(() => {
+    //   this.$nuxt.$on('toggle-sidebar', ($event) => this.test($event));
+    //     console.log(event, 'event')
+    // });
 
 
 
     const modalStore = useModalStore();
+    const indexStore = useIndexStore();
     // const tooltipStore = useTooltipStore();
     const currentModal = computed(() => modalStore.currentModal);
     const modalProps = computed(() => modalStore.modalProps);
@@ -262,6 +319,17 @@
 // watch(tooltipProps, (newVal, oldVal) => {
 //   console.log('tooltipProps изменился: from admin', newVal);
 // });
+
+  // const burgerBtnState = indexStore.getters['adminBurgerBtn'];
+
+  // console.log(indexStore.adminBurgerBtn(), 'indexStore.adminBurgerBtn');
+
+
+const burgerBtn = computed(() => indexStore.adminBurgerBtn);
+
+watch(burgerBtn, () => {
+  burgerBtn.value ? isSidebarOpen.value = true : isSidebarOpen.value = false
+})
 
 const tooltip = (obj) => {
   console.log(obj);
@@ -280,6 +348,8 @@ const tooltip = (obj) => {
 }
 
 const closeSidebar = () => {
+  console.log(isSidebarOpen.value, 'log');
+  
   if (isSidebarOpen.value) {
     setTimeout(() => {
       isSidebarOpen.value = false
@@ -287,7 +357,11 @@ const closeSidebar = () => {
   }
   return
 }
-    
+
+// const handleSidebarToggle = (state) => {
+//   console.log('emit')
+//   isSidebarOpen.value = state;
+// };
 
 
 
