@@ -14,8 +14,10 @@
          <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
               <a href="#" class="shrink-0 md:order-1">
-                <img class="h-20 w-20 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-                <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" />
+                <!-- <img class="h-20 w-20 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
+                <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
+                <img class="h-20 w-20 dark:hidden" src="@/public/img/icons/brand-identity.png" alt="imac image" />
+                <!-- <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
               </a>
 
               <label for="counter-input" class="sr-only">Choose quantity:</label>
@@ -34,12 +36,15 @@
                   </button>
                 </div>
                 <div class="text-end md:order-4 md:w-32">
-                  <p class="text-base font-bold text-gray-900 dark:text-white">$1,499</p>
+                  <p class="text-base font-bold text-gray-900 dark:text-white">1,499 грн</p>
                 </div>
               </div>
 
               <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">PC system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB, 10-core GPU, Keyboard layout INT</a>
+                <a href="#" class="text-base font-medium text-gray-900 hover:underline dark:text-white">
+                  <!-- PC system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB, 10-core GPU, Keyboard layout INT -->
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, odit? Quasi voluptatem blanditiis quis, libero necessitatibus aspernatur voluptatum ex ea possimus? Suscipit eveniet, non odit eum atque deleniti optio voluptas.
+                </a>
 
                 <div class="flex items-center gap-4">
                   <button type="button" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">
@@ -69,12 +74,17 @@
           <div class="mt-6 grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 sm:mt-8">
             <div class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <a href="#" class="overflow-hidden rounded">
-                <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" />
+                <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
+                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
+                <img class="mx-auto h-44 w-44 dark:hidden" src="../../public//icon-pack/bag-icons/stratch.png" alt="imac image" />
+
+
               </a>
               <div>
-                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">iMac 27”</a>
-                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This generation has some improvements, including a longer continuous battery life.</p>
+                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">ТОВАР</a>
+                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, odit?
+                </p>
               </div>
               <div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">
@@ -102,12 +112,16 @@
             </div>
             <div class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <a href="#" class="overflow-hidden rounded">
-                <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg" alt="imac image" />
-                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg" alt="imac image" />
+                <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg" alt="imac image" />
+                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg" alt="imac image" /> -->
+                <img class="mx-auto h-44 w-44 dark:hidden" src="../../public/icon-pack/bag-icons/comservBag.png" alt="imac image" />
+
               </a>
               <div>
-                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Playstation 5</a>
-                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This generation has some improvements, including a longer continuous battery life.</p>
+                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">ТОВАР</a>
+                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
               </div>
               <div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">
@@ -135,12 +149,16 @@
             </div>
             <div class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <a href="#" class="overflow-hidden rounded">
-                <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg" alt="imac image" />
-                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg" alt="imac image" />
+                <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg" alt="imac image" />
+                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg" alt="imac image" /> -->
+                <img class="mx-auto h-44 w-44 dark:hidden" src="../../public/icon-pack/bag-icons/cute-bag.png" alt="imac image" />
+
               </a>
               <div>
-                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Apple Watch Series 8</a>
-                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">This generation has some improvements, including a longer continuous battery life.</p>
+                <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">ТОВАР</a>
+                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                </p>
               </div>
               <div>
                 <p class="text-lg font-bold text-gray-900 dark:text-white">
