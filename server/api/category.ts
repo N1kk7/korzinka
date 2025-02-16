@@ -13,14 +13,17 @@ export default defineEventHandler(async (event) => {
     const method = event.node.req.method;
 
     const query = getQuery(event);
+
+    // console.log(query.category, 'query');
     
  
     switch (method) {
         case 'GET': 
             if (query.category === 'all') {
                 return await getCategoriesWithProducts();
-            } else if (query.id) {
-                return await getCategoryWithProducts(Number(query.id));
+            } else if (query.categoryId) {
+                // console.log(query.category, 'query.id' );
+                return await getCategoryWithProducts(Number(query.categoryId));
             } else {
                 return await getAllCategories();
             }

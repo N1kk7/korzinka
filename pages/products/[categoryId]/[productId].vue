@@ -4,7 +4,7 @@
         <main  class="flex-grow p-1 mt-5">
 
             <div 
-            v-for="(item, index) in fetchedAllProducts" 
+            v-for="(item, index) in fetchedCategoryProducts" 
             :key="index" 
             class="group-title mb-10"
             >
@@ -24,13 +24,13 @@
                 <!-- bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)] -->
 
                 <!-- {{console.log(product, 'product') }} -->
-                <NuxtLink
+                <!-- <NuxtLink
                     :to="`/products/${item.group.replaceAll(' ', '-').toLowerCase()}/${product.id}`"
                     @click="selectProduct(product.product)"
                 >
-                <!-- {{ console.log(item.group, product.id) }} -->
+                {{ console.log(item.group, product.id) }} -->
                     <ItemCard :product="product" :group="item.group"/>
-                </NuxtLink>
+                <!-- </NuxtLink> -->
                 </div>
             </div>
 
@@ -83,37 +83,21 @@
   
   
 <script setup >
-
-  import { onMounted, ref } from 'vue';
-  import ItemCard from '@/components/ItemCard.vue';
+    import { onMounted, ref } from 'vue';
 
 
-  const fetchedAllProducts = ref([]);
+    const fetchedCategoryProducts = ref([]);
 
-  onMounted( async () => {
+    onMounted( async () => {
 
-    try {
+        const fetchCategoryProducts = await $fetch('/api/products');
 
-        const fetchProducts = await $fetch('/api/category?category=all');
-
-        if (fetchProducts.length > 0) {
-            fetchedAllProducts.value = fetchProducts
+        if (fetchCategoryProducts.data.length > 0) {
+            fetchedCategoryProducts.value = fetchedCategoryProducts.data.map((item) => item)
         }
+        
 
-    } catch (error) {
-        console.error('Error fetching data зкщв:', error);
-
-    }
-
-    // console.log(fetchedAllProducts.value, 'fetchedAllProducts')
-
-
-  })
-
-
-
-
-
+    })
 
     definePageMeta({
     layout: 'products'
@@ -221,24 +205,24 @@
     //   box-shadow:  20px 20px 60px #bebebe,
     //       -20px -20px 60px #ffffff;
     // }
-    .cards-content{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 10px;
+    // .cards-content{
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   justify-content: flex-start;
+    //   gap: 10px;
 
-      .card-wrapper{
-        width: calc(50% - 5px);
-        @media screen and (max-width: 1024px) {
-          width: calc(33.3% - 7px);
-        }
-        @media screen and (max-width: 764px) {
-          width: calc(50% - 5px);
-        }
-        @media screen and (max-width: 375px) {
-          width: 100%;
-        }
-      }
-    }
+    //   .card-wrapper{
+    //     width: calc(50% - 5px);
+    //     @media screen and (max-width: 1024px) {
+    //       width: calc(33.3% - 7px);
+    //     }
+    //     @media screen and (max-width: 764px) {
+    //       width: calc(50% - 5px);
+    //     }
+    //     @media screen and (max-width: 375px) {
+    //       width: 100%;
+    //     }
+    //   }
+    // }
 
   </style>

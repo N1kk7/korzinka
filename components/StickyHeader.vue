@@ -21,12 +21,18 @@
                 :key="index"
                 class="additional-menu"
               >
-                <span>
-                  <!-- {{console.log(category, 'category')}} -->
-                  <!-- Пакети майка -->
-                   <!-- {{ category.group }} -->
-                   {{ category?.translations?.find(tr => tr.language === $i18n.locale).title }}
-                </span>
+                <!-- <NuxtLink :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`" class="flex justify-start gap-2 items-center"> -->
+                <NuxtLink 
+                  :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`" 
+                  class="flex justify-start gap-2 items-center"
+                  >
+
+                  <img :src="category.categoryImg" alt="icon" class="w-5 h-5">
+                  <span>
+                    {{ category?.translations?.find(tr => tr.language === $i18n.locale).title }}
+                  </span>
+                </NuxtLink>
+                
                 <hr/>
                 <!-- <ul class="item-options-list option-list-hidden">
                   <li>
@@ -156,6 +162,7 @@
 
   // import { useModalStore } from "@/stores/modal-store";
   import { useModalStore } from "#imports";
+  import { useIndexStore } from "#imports";
 
   import LangBtn from "@/components/shared/LangBtn.vue";
   import SvgIcon from "./shared/SvgIcon.vue";
@@ -164,6 +171,17 @@
 
 
   const modalStore = useModalStore();
+  const indexStore = useIndexStore();
+
+  const fetchCategory = computed(() => indexStore.fetchedCategories);
+  fetchedCategories.value = fetchCategory.value
+
+  // console.log(fetchCategory.value, 'fetchCategory')
+
+  // watch(fetchCategory, () => {
+  //   console.log(fetchCategory.value, 'fetchCategory')
+  //   fetchedCategories.value = fetchCategory.value
+  // })
 
   const languageControl = () => {
     // modalStore.setLanguageModal(action);
@@ -177,15 +195,15 @@
 
 
 
-  onMounted(async() => {
-      try{
-        const res = await $fetch('/api/category');
-        fetchedCategories.value = res.data;
-        console.log(res.data, 'res from header')
-      } catch(e) {
-        console.log(e, 'Something went wrong')
-      }
-  })
+  // onMounted(async() => {
+  //     try{
+  //       const res = await $fetch('/api/category');
+  //       fetchedCategories.value = res.data;
+  //       console.log(res.data, 'res from header')
+  //     } catch(e) {
+  //       console.log(e, 'Something went wrong')
+  //     }
+  // })
 
   
 
