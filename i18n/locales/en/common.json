@@ -6,5 +6,29 @@
         "buyers": "For buyers",
         "news": "News",
         "contacts": "Contacts"
+    },
+    "lang-modal": {
+        "title": "Set the language",
+        "langEn": "English",
+        "langRu": "Russian",
+        "langUk": "Ukrainian"
+    },
+    "common-btns" : {
+        "cart-btn" : "Cart",
+        "enter-btn" : "Log in",
+        "catalog-btn" : "Catalog"
+
+    },
+    "search-block": {
+        "placeholder" : "For example: t-shirt bags",
+        "search-btn": "Search"
+    },
+    "mobile-menu" : {
+        "main": "Main",
+        "menu": "Menu",
+        "lang-btn": "English",
+        "close-btn": "Close",
+        "profile-btn": "Profile",
+        "logIn-btn": "Log in"
     }
 }

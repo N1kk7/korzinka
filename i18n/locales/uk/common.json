@@ -6,5 +6,30 @@
         "buyers": "Покупцю",
         "news": "Новини",
         "contacts": "Контакти"
+    },
+    "lang-modal": {
+        "title": "Оберіть мову",
+        "langEn": "Англійська",
+        "langRu": "Російська",
+        "langUk": "Українська"
+    },
+    "common-btns" : {
+        "cart-btn" : "Корзина",
+        "enter-btn" : "Вхід",
+        "catalog-btn" : "Каталог"
+
+    },
+    "search-block": {
+        "placeholder" : "Приклад: пакети майка",
+        "search-btn": "Пошук"
+    },
+    "mobile-menu" : {
+        "main": "Головна",
+        "menu": "Меню",
+        "lang-btn": "Українська",
+        "close-btn": "Закрити",
+        "profile-btn": "Профіль",
+        "logIn-btn": "Увійти"
     }
+
 }

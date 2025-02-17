@@ -1,20 +1,20 @@
 <template>
     <div class="language-component">
         <button>
-            <SvgIcon name="lang-icon" size="micro" />
-        <div class="separator"></div>
-        <div class="text">
-            <p>RU</p>
-        </div>
-    </button>
-
+                <SvgIcon name="lang-icon" size="micro" fill="var(--dark-color)"/>
+            <div class="separator"></div>
+            <div class="text">
+                <p>
+                    {{ $i18n.locale.toUpperCase() }}
+                </p>
+            </div>
+        </button>
     </div>
-    
-    
 </template>
 
 <script lang="ts" setup>
     import SvgIcon from '@/components/shared/SvgIcon.vue';
+import { I18N } from '@splidejs/splide/src/js/constants/i18n';
 
 </script>
 
@@ -48,15 +48,7 @@
                 cursor: pointer;
             }
 
-
-
-
-
-           
         }
-        // .language-list {
-        //         display: none;
-        //     }
     }
 
 </style>

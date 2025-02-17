@@ -1,9 +1,8 @@
 <template>
     <div class="main-header">
-
         <div class="main-buttons">
           <button class="items-btn">
-            Каталог
+            {{ $t('common-btns.catalog-btn') }}
             <div class="arrow-down">
               <div class="line line1"></div>
               <div class="line line2"></div>
@@ -21,7 +20,6 @@
                 :key="index"
                 class="additional-menu"
               >
-                <!-- <NuxtLink :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`" class="flex justify-start gap-2 items-center"> -->
                 <NuxtLink 
                   :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`" 
                   class="flex justify-start gap-2 items-center"
@@ -32,179 +30,50 @@
                     {{ category?.translations?.find(tr => tr.language === $i18n.locale).title }}
                   </span>
                 </NuxtLink>
-                
                 <hr/>
-                <!-- <ul class="item-options-list option-list-hidden">
-                  <li>
-                    <span>
-                      Багажна серія
-                    </span>
-                    <hr/>
-                  </li>
-                  <li>
-                    <span>
-                      Біопакети
-                    </span>
-                    <hr/>
-                  </li>
-                  <li>
-                    <span>
-                      З малюнком
-                    </span>
-                    <hr/>
-                  </li>
-                  <li>
-                    <span>
-                      Без малюнку
-                    </span>
-                    <hr/>
-                  </li>
-                </ul> -->
               </li>
-              <!-- <li>
-                <span>
-                  Пакети для сміття
-                </span>
-                <hr/>
-
-              </li>
-              <li class="additional-menu">
-                <span>
-                  Пакети фасувальні
-                </span>
-                <hr/>
-                <ul class="item-options-list option-list-hidden">
-                  <li>
-                    <span>
-                      Пакети фасувальні в рулоні
-                    </span>
-                    <hr/>
-                  </li>
-                  <li>
-                    <span>
-                      Пакети фасувальні в блоці
-
-                    </span>
-                    <hr/>
-                  </li>
-                </ul>
-
-              </li>
-              <li>
-                <span>
-                  Пакети Zip Lock
-                </span>
-                <hr/>
-
-              </li>
-              <li>
-                <span>
-                  Мішки
-                </span>
-                <hr/>
-
-              </li>
-              <li>
-                <span>
-                  Стрейтч плівка
-                </span>
-                <hr/>
-
-              </li>
-              <li>
-                <span>
-                  Рукавички
-                </span>
-                <hr/>
-
-              </li>
-              <li>
-                <span>
-                  Статті
-                </span>
-                <hr/>
-
-              </li> -->
             </ul>
           </div>
         </div>
         <div class="search-block">
-          <input type="text" placeholder="Приклад: пакет майка" class="search">
+          <input type="text" :placeholder="$t('search-block.placeholder')" class="search">
           <div class="icon">
             <SvgIcon name="search-icon" size="micro"/>
             <span>
-              Пошук
+              {{ $t('search-block.search-btn') }}
             </span>
           </div>
         </div>
         <div class="right-button-group">
-          <!-- <button class="theme-btn" @click="themeControl">
-            theme
-          </button> -->
           <NuxtLink to="/cart"  class="cart">
-          <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)"/>
-          <div class="separator"></div>
-          <span>
-            Корзина
-          </span>
+            <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)"/>
+            <div class="separator"></div>
+            <span>
+              {{ $t('common-btns.cart-btn') }}
+            </span>
           </NuxtLink>
           <LangBtn @click="languageControl"/>
         </div>
-        
-
       </div>
 
 </template>
 
 <script setup>
 
-  import { onMounted, ref, watch }  from "vue";
-
-  // import { useModalStore } from "@/stores/modal-store";
   import { useModalStore } from "#imports";
-  import { useIndexStore } from "#imports";
 
   import LangBtn from "@/components/shared/LangBtn.vue";
   import SvgIcon from "./shared/SvgIcon.vue";
 
-  const fetchedCategories = ref([]);
-
-
   const modalStore = useModalStore();
-  const indexStore = useIndexStore();
-
-  const fetchCategory = computed(() => indexStore.fetchedCategories);
-  fetchedCategories.value = fetchCategory.value
-
-  // console.log(fetchCategory.value, 'fetchCategory')
-
-  // watch(fetchCategory, () => {
-  //   console.log(fetchCategory.value, 'fetchCategory')
-  //   fetchedCategories.value = fetchCategory.value
-  // })
 
   const languageControl = () => {
-    // modalStore.setLanguageModal(action);
     modalStore.showModal('LangModal');
   };
 
   const themeControl = () => {
     modalStore.showModal('ThemeModal');
   }
-
-
-
-
-  // onMounted(async() => {
-  //     try{
-  //       const res = await $fetch('/api/category');
-  //       fetchedCategories.value = res.data;
-  //       console.log(res.data, 'res from header')
-  //     } catch(e) {
-  //       console.log(e, 'Something went wrong')
-  //     }
-  // })
-
   
 
 </script>
@@ -217,7 +86,6 @@
     .main-header {
       display: flex;
       justify-content: space-between;
-      // overflow: hidden;
       align-items: center;
       width: 100%;
       gap: 20px;
@@ -312,9 +180,7 @@
             
           }
           li:hover{
-            // filter: brightness(1.4);
             background: #4f4f4c;
-            // transition: all ease 0.3s;
             transition: background-color 0.3s ease, filter 0.3s ease;
             cursor: pointer;
 
@@ -326,7 +192,6 @@
               top: -10px;
               left: 100%;
               background: var(--dark-color);
-              // filter: brightness(0.7);
               border: 1px solid var(--bg-color);
               border-top: 0;
               width: auto;
@@ -389,7 +254,6 @@
       }
 
       .right-button-group{
-        // width: 17vw;
         display: flex;
         justify-content: flex-end;
         margin-right: 2vw;

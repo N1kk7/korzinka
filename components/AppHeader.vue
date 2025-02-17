@@ -58,7 +58,7 @@
 
             </div>
             <span>
-              Вхід
+              {{ $t('common-btns.enter-btn') }}
             </span>
           </div>
           <div class="mobile-phone">

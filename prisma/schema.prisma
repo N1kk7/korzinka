@@ -37,7 +37,6 @@ model CategoryTranslation {
 model Product {
   id                 Int                  @id @default(autoincrement())
   categoryId         Int                  // Поле внешнего ключа для связи с Category
-  // title              String               // Основное название товара
   visible            Boolean              // Показывать товар на сайте
   img                ProductImg[]              // Строка изображения
   price              Float?              // Стандартная цена
@@ -45,7 +44,6 @@ model Product {
   stockValue         Int?                 @default(0) // Значение колличества товаров на сайте
   discountPercent    Int?                // Цена акционного товара
   wholesalePrice     Int?                  // Оптовая цена
-  // wholesaleInfo      String?               // информация об оптовой продажи товара
   counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
   packageType        String                // Значение типа упаковки
   wholesaleOnly      Boolean?               // Значение продажи товара только оптом
@@ -104,13 +102,6 @@ model ProductOptionsTranslation {
   Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
 }
 
-// model User {
-//   id        Int      @id @default(autoincrement())
-//   username  String   @unique
-//   email     String   @unique
-//   password  String
-//   createdAt DateTime @default(now())
-// }
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique

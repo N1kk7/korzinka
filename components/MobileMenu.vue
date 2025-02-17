@@ -5,7 +5,7 @@
         <section class="mobile-menu">
             <div :class="{'search-section': true, 'active-searchSection': searchBlock}">
                 <div class="search-wrapper">
-                    <input type="text" placeholder="Пошук">
+                    <input type="text" :placeholder="$t('search-block.placeholder')">
                     <div class="button-wrapper">
                         <button class="search-btn">
                             <SvgIcon name="mobile-search" size="micro" fill="var(--main-accent)"/>
@@ -25,7 +25,7 @@
                     <NuxtLink :to="localePath('/') ">
                         <SvgIcon name="mobile-home" size="medium" fill="var(--light-color)"/>
                         <span>
-                            Головна
+                            {{ $t('mobile-menu.main') }}
                         </span>
                     </NuxtLink>
                        
@@ -35,7 +35,7 @@
 
                         <SvgIcon name="mobile-category" size="medium" fill="var(--light-color)"/>
                         <span>
-                            Товари
+                            {{ $t('header.products') }}
                         </span>
                     </NuxtLink>
                     
@@ -44,7 +44,7 @@
 
                         <SvgIcon name="mobile-search" size="medium" fill="var(--light-color)"/>
                         <span>
-                            Пошук
+                            {{ $t('search-block.search-btn') }}
                         </span>
 
 
@@ -53,7 +53,7 @@
                     <NuxtLink :to="localePath('/cart') ">
                         <SvgIcon name="cart-icon" size="medium" fill="var(--light-color)"/>
                         <span>
-                            Корзина
+                            {{ $t('common-btns.cart-btn') }}
                         </span>
                     </NuxtLink>
                  
@@ -64,7 +64,7 @@
             ">
                     <SvgIcon name="burger-menu" size="medium" fill="var(--light-color)"/>
                     <span>
-                        Меню
+                        {{ $t('mobile-menu.menu') }}
                     </span>
                 </li>
             </ul>
@@ -91,11 +91,14 @@
                         </span>
 
                     </div>
-                    <div class="btn lang-btn">
+                    <div 
+                        class="btn lang-btn"
+                        @click="toggleToShowLangModal"
+                    >
                         <SvgIcon name="lang-icon" size="micro" fill="var(--main-accent)"/>
                         <div class="separator"></div>
                         <span>
-                            Українська
+                            {{ $t('mobile-menu.lang-btn') }}
                         </span>
                     </div>
 
@@ -104,7 +107,7 @@
                         <NuxtLink :to="localePath('/')" @click="showMenu(false)">
                             <li >
                                 <span>
-                                    Головна
+                                    {{ $t('mobile-menu.main') }}
                                 </span>
                             </li>
 
@@ -113,11 +116,11 @@
                        
                     <li @click="listControl('productList')">
                         <span>
-                            Товари
+                            {{ $t('header.products') }}
                         </span>
                         <SvgIcon name="arrow-down" size="micro" fill="var(--dark-color)"/>
                     </li>
-                    <ul class="sub-menu" v-if="productList">
+                    <!-- <ul class="sub-menu" v-if="productList">
                         <li @click="listControl('bagList')">
                             <span>
                                 Пакети майка
@@ -191,12 +194,28 @@
                             </span>
                         </li>
 
+                    </ul> -->
+                    <ul class="sub-menu" v-if="productList">
+                        <li 
+                            v-for="(category, index) in fetchedAllCategories"
+                            :key="index"
+                        >
+                            <NuxtLink
+                                :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`"
+                            >
+                                <span>
+                                    {{ category.translations.find(tr => tr.language === $i18n.locale).title }}
+                                </span>
+                                <SvgIcon name="arrow-down" size="micro" fill="var(--dark-color)"/>
+                            </NuxtLink>
+                            
+                        </li>
                     </ul>
                         <NuxtLink :to="localePath('/about')" @click="showMenu(false)">
                             <li >
 
                                 <span>
-                                    Про компанію
+                                    {{ $t('header.about') }}
                                 </span>
                             </li>
 
@@ -206,7 +225,7 @@
                             <li >
 
                             <span>
-                                Оплата та доставка
+                                {{ $t('header.pay-delivery') }}
                             </span>
                             </li>
 
@@ -215,7 +234,7 @@
                         <NuxtLink :to="localePath('/help')" @click="showMenu(false)">
                             <li >
                                 <span>
-                                    Покупцю
+                                    {{ $t('header.buyers') }}
                                 </span>
                             </li>
                         </NuxtLink>
@@ -223,7 +242,7 @@
                         <NuxtLink :to="localePath('/news')" @click="showMenu(false)">
                             <li >
                                 <span>
-                                    Новини
+                                    {{ $t('header.news') }}
                                 </span>
                             </li>
 
@@ -231,7 +250,8 @@
                         <NuxtLink :to="localePath('/contact')" @click="showMenu(false)">
                             <li >
                                 <span>
-                                    Контакти
+                                    {{ $t('header.contacts') }}
+
                                 </span>
                             </li>
                         </NuxtLink>
@@ -243,12 +263,14 @@
                         <SvgIcon name="default-user" size="micro" fill="var(--main-accent)"/>
                         <div class="separator"></div>
                         <span>
-                            Профіль
+                            {{ $t('mobile-menu.profile-btn') }}
+
                         </span>
                     </div>
                     <div class="btn cancel-btn" @click="showMenu(false)">
                         <span>
-                            Закрити
+                            {{ $t('mobile-menu.close-btn') }}
+
                         </span>
                         <div class="separator"></div>
                         <SvgIcon name="close-btn" size="micro" fill="var(--main-accent)"/>
@@ -273,14 +295,12 @@
 
 <script setup>
 
-    // componenets
-    //import { NuxtLink } from '@/.nuxt/components';
-    // import { NuxtLink } from '@/.nuxt/components';
-// import { useLocalePath } from '@/.nuxt/imports';
-// import { NuxtLink } from '@/.nuxt/components';
+
 import SvgIcon from '@/shared/SvgIcon.vue';
 import gsap from 'gsap';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
+
+import { useIndexStore, useModalStore } from '#imports';
 
     let openMenu = ref(false);
 
@@ -292,10 +312,27 @@ import { ref, watch } from 'vue';
 
     const localePath = useLocalePath();
 
+    const indexStore = useIndexStore();
+    const modalStore = useModalStore();
+
+    const fetchedAllCategories = ref([]);
+
+    const fetchCategories = computed(() => indexStore.fetchedCategories)
+    fetchedAllCategories.value = fetchCategories.value
+
+
+
 
     const showMenu = (value) => {
         openMenu.value = value;
         openMenu.value ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset'
+    }
+
+    const toggleToShowLangModal = () => {
+        showMenu(false);
+        setTimeout(() => {
+            modalStore.showModal('LangModal');
+        }, 300);
     }
 
 
