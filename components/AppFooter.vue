@@ -62,51 +62,82 @@
           <div class="">
             <h6 class="text-lg font-medium mb-7 max-lg:text-center text-[var(--main-accent)]">Сторінки</h6>
             <ul class="flex flex-col max-lg:items-center gap-6">
-              <li><a href="javascript:;"
-                  class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Головна</a>
+              <li>
+                  <NuxtLink to="/"
+                      class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                    >
+                    Головна
+                  </NuxtLink>
               </li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Про компанію</a>
+              <li>
+                  <NuxtLink to="/about"
+                    class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
+                    Про компанію
+                  </NuxtLink>
               </li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Новини</a>
+              <li>
+                  <NuxtLink to="/news"
+                    class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
+                    Новини
+                  </NuxtLink>
               </li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Контакти
-                  Version</a></li>
+              <li>
+                  <NuxtLink to="/contact"
+                      class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
+                    Контакти
+                  </NuxtLink>
+                </li>
             </ul>
           </div>
           <div class="">
             <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">Товари</h6>
             <ul class="flex flex-col gap-6 max-lg:items-center">
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Пакети для сміття</a></li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Пакети майка
-                </a></li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Фасувальні пакети
-                  </a></li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Стрейтч плівка
-                  </a></li>
+              <li
+                v-for="(category, index) in fetchedCategoriesFour"
+                :key="index"
+                
+              >
+                <NuxtLink
+                  :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`"
+                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                >
+                  {{  category.translations.find(tr => tr.language === $i18n.locale).title }}
+                </NuxtLink>
+              </li>
+
             </ul>
           </div>
           <div class="">
             <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">Ресурси</h6>
             <ul class="flex flex-col gap-6 max-lg:items-center">
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Вхід</a>
+              <li>
+                <div
+                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                >
+                  Вхід
+                </div>
               </li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Корзина
-                  </a></li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Оплата доставка</a>
+              <li>
+                <NuxtLink to="/cart"
+                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                >
+                  Корзина
+                </NuxtLink>
               </li>
-              <li><a href="javascript:;"
-                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">Покупцю
-                  </a></li>
+              <li>
+                <NuxtLink to="/pay-delivery"
+                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                >
+                  Оплата доставка
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/help"
+                  class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
+                >
+                  Покупцю
+                </NuxtLink>
+              </li>
             </ul>
           </div>
         </div>
@@ -158,8 +189,24 @@
   </section>
 </template>
   
-  <script setup>
-  </script>
+<script setup>
+
+  import { ref } from 'vue';
+  import { useIndexStore } from '#imports'
+
+
+
+  const indexStore = useIndexStore();
+
+
+
+  const fetchedCategoriesFour = computed(() => indexStore.fetchedCategories.slice(0, 4));
+
+
+
+
+
+</script>
   
 
   

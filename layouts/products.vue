@@ -143,10 +143,16 @@
                         v-for="(category, index) in fetchedAllCategories"
                         :key="index"
                     >
-                        <div class="icon">
-                        <img :src="category.categoryImg" alt="icon" />
-                        </div>
-                        <span>{{ category.translations.find(tr => tr.language === $i18n.locale).title }}</span>
+                        <NuxtLink 
+                            :to="`/products/${category.group.replaceAll(' ', '-').toLowerCase()}`"
+                            class="flex justify-start gap-2 items-center"
+                        >
+                            <div class="icon">
+                                <img :src="category.categoryImg" alt="icon" />
+                            </div>
+                            <span>{{ category.translations.find(tr => tr.language === $i18n.locale).title }}</span>
+                        </NuxtLink>
+                        
                     </li>
                     <!-- <ul class="sub-list ml-3 " v-show="categories">
                         <li @click="showCategory('empty-bags')">

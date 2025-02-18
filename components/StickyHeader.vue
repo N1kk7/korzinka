@@ -60,12 +60,15 @@
 
 <script setup>
 
-  import { useModalStore } from "#imports";
+  import { useModalStore, useIndexStore } from "#imports";
 
   import LangBtn from "@/components/shared/LangBtn.vue";
   import SvgIcon from "./shared/SvgIcon.vue";
 
   const modalStore = useModalStore();
+  const indexStore = useIndexStore();
+
+  const fetchedCategories = computed(() => indexStore.fetchedCategories);
 
   const languageControl = () => {
     modalStore.showModal('LangModal');
