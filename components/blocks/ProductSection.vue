@@ -106,22 +106,23 @@
 <style lang="scss">
 
 @use ".//styles/mixins.scss" as mixins;
+    h1{
+        position: relative;
+        z-index: 1;
+    }
     .product-list{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         margin-bottom: 50px;
         gap: 20px;
         .product-card{
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-direction: column-reverse;
             align-items: center;
+            justify-content: space-between;
             overflow: hidden;
-            border-radius: 50px;
-            background: linear-gradient(145deg, #cacaca, #f0f0f0);
-            box-shadow:  20px 20px 60px #bebebe,
-                        -20px -20px 60px #ffffff;
+            @include mixins.cardShadow;
             padding: 20px;
-            max-height: 200px;
             position: relative;
             cursor: pointer;
             transition: all ease 0.3s;
@@ -129,13 +130,25 @@
             span{
                 @include  mixins.cardText;
                 white-space: nowrap;
+                text-align: center;
+                position: relative;
+                padding-top: 10px;
+                width: 100%;
+                &::before{
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    background: rgb(203, 202, 202);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
             }
             .img-wrapper{
-                display: flex;
-                align-items: end;
-                justify-content: end;
+                flex: 1;
                 img{
-                    max-width: 70%;
+                    width: 100px;
                     border-radius: 50px;
                 }
             }

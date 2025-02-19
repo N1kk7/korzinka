@@ -6,7 +6,7 @@
                     Купити поліетиленові пакети, сміттєві мішки, стрейч-плівку та целофанові рукавички оптом та в роздріб.
                 </h1>
             </div>
-            <p>
+            <p class="seo-text">
                 Шукаєте якісні поліетиленові пакети, мішки для сміття, стрейч-плівку або целофанові рукавички?
                 Наш магазин пропонує широкий асортимент пакувальних та господарських товарів за доступними цінами!
                 Ми спеціалізуємося на реалізації продукції, яка ідеально підходить для дому, бізнесу, офісів, ресторанів, складів та виробництва.
@@ -21,7 +21,7 @@
                                 <ul class="seo-list">
                                     <li>
                                         <strong>Широкий асортимент:</strong>
-                                        <ul class="sub-seo-list px-5 pt-5 flex justify-start items-start gap-4 flex-wrap">
+                                        <ul class="sub-seo-list pt-5">
                                             <li>
                                                 <span><strong>Поліетиленові пакети:</strong> різних розмірів, щільностей та форматів для пакування продуктів, товарів та речей.</span>
                                             </li>
@@ -72,8 +72,8 @@
                         <h1>
                             Наші продукти підходять для:
                         </h1>
-                        <div class="info-block">
-                            <ul class="seo-list">
+                        <div class="info-block shadow-block">
+                            <ul class="seo-list pl-5">
                                 <li>
                                     <span>
                                         <strong>
@@ -118,7 +118,7 @@
                             Переваги співпраці з нами
                         </h1>
                     </div>
-                    <div class="info-block light-block">
+                    <div class="info-block light-block shadow-block">
                         <div class="img-wrapper">
                             <img 
                                 class="w-full h-full object-cover bg-[var(--dark-color)] rounded-lg"
@@ -148,37 +148,37 @@
                     </div>
                 </div>
             </div>
-            <div class="seo-block">
+            <div class="seo-block ">
                 <div class="title mt-10">
                     <h1>
                         Як оформити замовлення?
                     </h1>
                 </div>
-                <div class="seo-wrapper">
-                    <div class="description">
+                <div class="seo-wrapper ">
+                    <div class="description ">
                         <p>
                             Оформити замовлення на поліетиленові пакети, мішки для сміття, стрейч-плівку або рукавички легко:
                         </p>
                     </div>
                     <div class="info-block dark-block bg-[var(--dark-color)]">
                     
-                    <ul class="seo-list px-5">
-                        <li>
-                            <span>
-                                Виберіть товари в каталозі.
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                Зв'яжіться з нами за допомогою телефону або через онлайн-форму на сайті.
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                Вкажіть зручний спосіб оплати та доставки.
-                            </span>
-                        </li>
-                    </ul>
+                        <ul class="seo-list px-5">
+                            <li>
+                                <span>
+                                    Виберіть товари в каталозі.
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    Зв'яжіться з нами за допомогою телефону або через онлайн-форму на сайті.
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    Вкажіть зручний спосіб оплати та доставки.
+                                </span>
+                            </li>
+                        </ul>
                     <div class="img-wrapper">
                         <img src="/public/seo-img/delivery1.png" alt="img" style="width: 100%;">
                     </div>
@@ -207,7 +207,12 @@
     .seo-section{
         p{
             @include mixins.cardText;
+
             line-height: 2rem;
+        }
+        .seo-text{
+            @include mixins.cardShadow;
+            padding: 20px;
         }
         .seo-block{
             margin-top: 10px;
@@ -215,11 +220,16 @@
         h2{
 
             @include mixins.titleText;
-
+            position: relative;
+            z-index: 1;
             margin-block: 1vw;
 
             @media screen and (max-width: 768px) {
             }
+        }
+        h1{
+            position: relative;
+            z-index: 1;
         }
         .seo-wrapper{
             margin-top: 4vw;
@@ -249,6 +259,8 @@
                     }
                     strong{
                             @include mixins.descriptionText(700, var(--dark-color));
+                            position: relative;
+                            z-index: 1;
                         }
                     span{
                         strong{
@@ -258,8 +270,12 @@
 
                     }
                     .sub-seo-list{
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        gap: 1rem;
                         li{
                             flex-basis: 250px;
+                            @include mixins.cardShadow;
                             @media screen and (max-width: 639px) {
                                 flex-basis: 100%;
                             }
@@ -274,6 +290,15 @@
                         margin: 0 auto;
                     }
                 }
+                .bottom-row{
+                    @include mixins.cardShadow;
+                    ol{
+                        padding-left: 20px;
+                    }
+                }
+            }
+            .shadow-block{
+                @include mixins.cardShadow;
             }
 
             .dark-block{
