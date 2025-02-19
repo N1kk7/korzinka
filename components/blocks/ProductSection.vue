@@ -66,7 +66,7 @@
 
             <div class="manufacture">
                 <div class="title">
-                    <h1>Виробники</h1>
+                    <h1>{{ $t('index-page.manufacture') }}</h1>
                 </div>
                 <ul>
                     <li>

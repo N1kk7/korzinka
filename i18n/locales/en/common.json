@@ -30,5 +30,94 @@
         "close-btn": "Close",
         "profile-btn": "Profile",
         "logIn-btn": "Log in"
+    },
+    "index-page": {
+        "hero": {
+            "title-strong": "Quality packaging",
+            "title": "materials and packages in one store.",
+            "content1": "Delivery",
+            "content2": "Best wholesale prices",
+            "content3": "years on the market"
+        },
+        "stats": {
+            "title": "Our statistics",
+            "clients": "Regular customers",
+            "years": "Years on the market",
+            "products": "Goods in the store",
+            "orders": "Orders for today"
+        },
+        "news": "News",
+        "manufacture" : "Manufacturers",
+        "main-seo": {
+            "main-title": "Buy plastic bags, garbage bags, stretch film, and cellophane gloves wholesale and retail.",
+            "main-text": "Looking for quality plastic bags, garbage bags, stretch wrap, or cellophane gloves? Our store offers a wide range of packaging and household goods at affordable prices! We specialize in selling products that are ideal for home, business, offices, restaurants, warehouses, and manufacturing."
+        },
+        "why-us": {
+            "title": "Why choose us?",
+            "category": {
+                "title": "Wide range:",
+                "content1": {
+                    "strong": "Polyethylene bags:",
+                    "text": "different sizes, densities and formats for packaging products, goods and things."
+                },
+                "content2": {
+                    "strong": "Garbage bags:",
+                    "text": "from standard volumes to heavy-duty construction waste bags."
+                },
+                "content3": {
+                    "strong": "Stretch film in rolls:",
+                    "text": "for reliable fixation of cargo on pallets, packaging of goods and protection against damage."
+                },
+                "content4": {
+                    "strong": "Cellophane gloves:",
+                    "text": "disposable, ideal for use in the food industry, cleaning and medicine."
+                },
+                "content5": {
+                    "strong": "Garbage bags:",
+                    "text": "all sizes, including reinforced options for large volumes of waste."
+                }
+            },
+            "quality": {
+                "title": "High quality materials:",
+                "text": "We sell products only from trusted manufacturers, which guarantees durability, strength, and safety."
+            },
+            "order-conditions": {
+                "title": "Flexible purchase terms:",
+                "text": "Both wholesale and retail purchases are available. We offer individual terms for large orders."
+            },
+            "delivery": {
+                "title": "Delivery nationwide:",
+                "text": "Fast delivery to any region thanks to cooperation with reliable logistics companies."
+            }
+        },
+        "our-products": {
+            "title": "Our products are suitable for:",
+            "content1": {
+                "title": "Packaging of products and goods.",
+                "text": "Use plastic bags and stretch wrap for secure transportation and storage."
+            },
+            "content2": {
+                "title": "Cleanliness and hygiene.",
+                "text": "Garbage bags and disposable gloves will ensure order and compliance with sanitary standards."
+            },
+            "content3": {
+                "title": "Production needs.",
+                "text": "Durable bags are suitable for collecting construction waste, and stretch film will become an indispensable tool in the warehouse."
+            }
+        },
+        "our-advantages": {
+            "title": "Advantages of working with us:",
+            "content1": "Large volumes of products are always in stock.",
+            "content2": "Competitive prices for the entire range.",
+            "content3": "Individual approach to each client."
+        },
+        "how-to-delivery": {
+            "title": "How to place an order?",
+            "description": "Placing an order for plastic bags, garbage bags, stretch film or gloves is easy:",
+            "content1": "Select products in the catalog." ,
+            "content2": "Contact us by phone or via the online form on the website.",
+            "content3": "Please indicate a convenient payment and delivery method."
+        },
+        "summary": "Don't delay! Provide your home or business with quality packaging materials right now!!!"
     }
 }

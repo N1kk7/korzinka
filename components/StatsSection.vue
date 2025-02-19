@@ -5,7 +5,7 @@
     <section class="Stats">
       <div class="container">
         <div class="title">
-          <h3>Наша статистика</h3>
+          <h3>{{ $t('index-page.stats.title')}}</h3>
         </div>
         <div class="wrapper" ref="statsWrapper">
           <div class="item" ref="clients">
@@ -17,7 +17,7 @@
             </div>
             
 
-            <span>Постійних кліентів</span>
+            <span>{{ $t('index-page.stats.clients') }}</span>
           </div>
           <div class="item" ref="years">
             <div class="num-wrapper flex items-center justify-center">
@@ -29,7 +29,7 @@
 
             </div>
            
-            <span>Років на ринку</span>
+            <span>{{ $t('index-page.stats.years') }}</span>
           </div>
           <div class="item" ref="products">
             <div class="num-wrapper flex items-center justify-center">
@@ -41,7 +41,7 @@
 
             </div>
            
-            <span>Товарів в магазині</span>
+            <span>{{ $t('index-page.stats.products') }}</span>
           </div>
           <div class="item" ref="orders">
             <div class="num-wrapper flex items-center justify-center">
@@ -52,7 +52,7 @@
 
             </div>
            
-            <span>Замовлень на сьогодні</span>
+            <span>{{ $t('index-page.stats.orders') }}</span>
           </div>
         </div>
       </div>

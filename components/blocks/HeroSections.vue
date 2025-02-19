@@ -2,16 +2,17 @@
     <section class="main">
         <div class="title-text">
             <h1 ref="titleRef">
-                <strong>Якісні пакувальні</strong> <br>
-                матеріали та пакети <br/>
-                в одному магазині.
+                <strong>{{ $t('index-page.hero.title-strong') }}</strong> <br>
+                {{ $t('index-page.hero.title') }}
+                <!-- матеріали та пакети <br/>
+                в одному магазині. -->
             </h1>
             <ul class="promo-block" ref="promoBlockRef">
                 <li>
                     <SvgIcon name="hero-van" size="large" fill="var(--dark-color)"/>
 
                     <span>
-                        Доставка
+                        {{ $t('index-page.hero.content1') }}
                     </span>
                 </li>
                 <li>
@@ -19,7 +20,8 @@
                     <SvgIcon name="hero-delivery" size="large" fill="var(--dark-color)"/>
                     
                     <span>
-                        Кращі оптові ціни
+                        {{ $t('index-page.hero.content2') }}
+
                     </span>
                 </li>
                 <li>
@@ -28,7 +30,8 @@
                         <strong ref="number">
                             {{ counter }}
                         </strong>
-                            років на ринку
+                        {{ $t('index-page.hero.content3') }}
+
                     </span>
                 </li>
             </ul>

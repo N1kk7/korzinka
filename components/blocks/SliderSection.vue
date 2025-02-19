@@ -4,7 +4,7 @@
           <div class="title ">
             <h1
               class="border-b-[1px] border-[var(--border-color)] pb-5"
-            >Новини</h1>
+            >{{ $t('index-page.news')}}</h1>
 
           </div>
           <swiper
