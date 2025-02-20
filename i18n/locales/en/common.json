@@ -119,5 +119,202 @@
             "content3": "Please indicate a convenient payment and delivery method."
         },
         "summary": "Don't delay! Provide your home or business with quality packaging materials right now!!!"
+    },
+    "about-page": {
+        "title": "About the company",
+        "description": "We are a company with over 20 years of experience in the market, engaged in the wholesale and retail sale of packaging products. Learn about the history of our activities, our values ​​and advantages that make us a reliable partner for your business and everyday needs.",
+        "about-us": {
+            "title": "About us",    
+            "text": "Welcome to korzinka.in.ua! We are a company engaged in wholesale and retail sales of various packaging products. In the assortment of korzinka.in.ua you will find cellophane bags, garbage bags, zip bags, salting bags, packaging bags, T-shirt bags and packaging bags. Since our founding, we have come a long way, and today we have over 20 years of experience in the market. Our beginnings were in the Barabashovo market, and since then we have continued to strengthen our positions, cooperating with leading manufacturers, in particular with the Komserv company, which allows us to guarantee the highest quality of our products."
+        },
+        "our-mission": {
+            "title": "Our mission",
+            "text": "We strive to provide you with the best packaging solutions that meet the requirements of modern business and everyday life. Offering a wide range of products, we always emphasize their quality and reliability. Our goals are to provide each customer with products that are suitable for specific needs and help them effectively solve packaging tasks."
+        },
+        "our-values": {
+            "title": "Our values",
+            "content1": {
+                "title": "Quality:",
+                "text": "We always focus on the high quality of our products. Thanks to close cooperation with the company Komserv, we ensure stable production and delivery of only reliable goods."
+            },
+            "content2": {
+                "title": "Innovation:",
+                "text": "We do not stop there and are constantly improving our range, adapting it to the needs of the market and our customers."
+            },
+            "content3": {
+                "title": "Reliability:",
+                "text": "We strive for long-term relationships with each client, so we always ensure stability in quality, delivery, and service."
+            },
+            "content4": {
+                "title": "Flexibility:",
+                "text": "We offer a variety of terms of cooperation - from small retail buyers to large wholesale orders. It is important for us to satisfy every client, regardless of the volume of purchase."
+            }
+        },
+        "our-advantages": {
+            "title": "Advantages of our company",
+            "content1": {
+                "strong": "Wide range of products:",
+                "text": "Here you will find packaging solutions for every taste and for every purpose."
+            },
+            "content2": {
+                "strong": "Guaranteed quality:",
+                "text": "Cooperation with Comserv allows us to maintain high standards of production and supply of goods."
+            },
+            "content3": {
+                "strong": "Competitive prices:",
+                "text": "Thanks to well-established supply channels and optimized production processes, we can offer favorable prices without compromising product quality."
+            },
+            "content4": {
+                "strong": "Experience and stability:",
+                "text": "More than 20 years of experience in the market allow us to perfectly understand customer needs."
+            },
+            "content5": {
+                "strong": "Individual approach to each client:",
+                "text": "We offer special conditions for regular customers and personalization of orders."
+            }
+        },
+        "why-us": {
+            "title": "Why choose us?",
+            "text": "Our customers choose us due to the consistently high quality of our products, flexible terms of cooperation and favorable prices. We understand the importance of proper packaging for your business, so we provide only the best solutions for each industry, be it retail, food industry or other areas."
+        },
+        "our-clients": {
+            "title": "Our clients",
+            "text": "Our regular clients include both large corporate customers and small businesses. We are happy to work with everyone and are ready to offer the best packaging solutions for any need."
+        },
+        "contact-us": {
+            "title": "Contact us",
+            "text": "We are always happy to help! If you have any questions or want to place an order, please contact us in any way convenient for you. Our specialists are ready to provide advice and help with product selection."
+        },
+        "summary": "A reliable partner for your business and life."
+    },
+    "pay-delivery": {
+        "title": "Payment and delivery",
+        "description": "Thank you for choosing our store! We strive to provide a comfortable and fast payment and delivery process. In this section you will find all the necessary information about payment methods, delivery options and order receipt times.",
+        "payment": {
+            "title": "Payment",
+            "text": "We offer several payment methods for your convenience:",
+            "content1": {
+                "strong": "Bank card:",
+                "text": "Pay online using Visa, MasterCard or other cards that support online payments. All transactions are protected by modern security standards."
+            },
+            "content2": {
+                "strong": "Electronic wallets:",
+                "text": "Payment via popular payment systems such as PayPal, Google Pay, Apple Pay or others available in your region."
+            },
+            "content3": {
+                "strong": "Cashless payment:",
+                "text": "For legal entities, payment to a current account is possible. Contact us to arrange an invoice."
+            },
+            "content4": {
+                "strong": "Postpaid:",
+                "text": "You can pay for your order upon receipt at the pick-up point or from the courier (additional fees may apply)."
+            }
+
+        },
+        "delivery": {
+            "title": "Delivery",
+            "text": "We cooperate with reliable logistics companies to ensure fast and high-quality delivery.",
+            "content1": {
+                "strong": "Courier delivery:",
+                "text": "Door-to-door delivery to any location. Delivery times depend on your location and range from 1 to 7 business days."
+            },
+            "content2": {
+                "strong": "Pick-up points:",
+                "text": "Pick up your order at a convenient time from the nearest pickup point. You can choose the point when placing your order."
+            },
+            "content3": {
+                "strong": "Postal delivery:",
+                "text": "For remote regions, shipping via mail is available. Delivery time is specified during checkout."
+            }
+        },
+        "delivery-condition": {
+            "title": "Delivery terms",
+            "text": "We offer several payment methods for your convenience:",
+            "content1": {
+                "strong": "Order processing times:",
+                "text": "All orders are processed within 1-2 business days."
+            },
+            "content2": {
+                "strong": "Shipping cost:",
+                "text": "The cost depends on the delivery method and your region. The exact amount will be calculated during checkout."
+            },
+            "content3": {
+                "strong": "Free shipping:",
+                "text": "We offer free shipping for orders over UAH 5,000. The shipping cost will be calculated during checkout."
+            },
+            "content4": {
+                "strong": "Order status:",
+                "text": "After sending your order, you will receive a tracking number for your package."
+            }
+
+        },
+        "summary": "If you have additional questions, please contact our support team by phone +380 99 999 99 99 or email:"
+    },
+    "buyers-page": {
+        "title": "Buyer assistance",
+        "description": "We have prepared answers to frequently asked questions and recommendations that will help you in the process of placing and receiving your orders.",
+        "set-order": {
+            "title": "How to place an order?",
+            "text": "We offer several payment methods for your convenience:",
+            "content1": "Select a product from the catalog and click the “Add to Cart” button. Go to the cart, review the list of selected products and click \"Checkout\".",
+            "content2": "Enter your contact details, delivery address and choose a payment method. Confirm your order. A confirmation with details will be sent to the email address provided."
+        },
+        "change-order": {
+            "title": "How do I change or cancel an order?",
+            "change-order": {
+                "strong": "Order change:",
+                "text": "If your order has not yet been sent, you can contact our support service by phone +380 99 999 99 99 or email:"
+            },
+            "cancel-order": {
+                "strong": "Order cancellation:",
+                "text": "To cancel an order, please contact us with your order number. If the order has already been shipped, cancellation is only possible after the goods have been received and returned."
+            },
+            "warranty": {
+                "title": "Guarantees and returns",
+                "content1": {
+                    "strong": "Product warranty:",
+                    "text": "All products have a warranty in accordance with the law."
+                },
+                "content2": {
+                    "strong": "Return of goods:",
+                    "text": "You can return the product within 14 days of receipt, provided it is in its original condition and packaging."
+                },
+                "content3": {
+                    "strong": "How to make a return:",
+                    "text": "Contact our support team for return instructions."
+                }
+            }
+        },
+        "faq": {
+            "title": "Frequently asked questions",
+            "content1": {
+                "strong": "Can I order delivery to another city?",
+                "text": "Yes, we deliver orders nationwide. The cost and delivery time depend on your region."
+            },
+            "content2": {
+                "strong": "What should I do if I received a damaged product?",
+                "text": "If you find damage to the product, please contact our support team immediately and provide photos of the damage."
+            },
+            "content3": {
+                "strong": "Can I get a discount on my first order?",
+                "text": "Yes, when you subscribe to our newsletter you will receive a discount on your first order. For details, see the \"News\" page."
+            }
+        },
+        "order-tracking": {
+            "title": "Order tracking",
+            "text": "After sending the order, a track number will be sent to the specified email, with which you can track the delivery status on the transport company's website."
+        },
+        "rest-question": {
+            "title": "If you have any questions, we are always ready to help!",
+            "text": "Contact our support service in any convenient way:",
+            "tel": "Phone",
+            "mail": "Email",
+            "chat": "Online chat on the website."
+        },
+        "summary": {
+            "title": "We are always here to help!",
+            "text": "Thank you for choosing us. If you have any questions, need advice or help, our team is always ready to support you. Contact us via a convenient communication channel for you, and we will definitely find a solution. +38 099 999 99 99 or write to email:",
+            "description": "Your comfort is our priority!"
+        }
     }
 }
