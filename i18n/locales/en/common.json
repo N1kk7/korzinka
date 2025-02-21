@@ -120,6 +120,10 @@
         },
         "summary": "Don't delay! Provide your home or business with quality packaging materials right now!!!"
     },
+    "products-page": {
+        "title": "Goods",
+        "description": "Welcome to our store! Here you will find a wide range of products for packaging and household needs: garbage bags, packaging bags, stretch film, zip bags and cellophane gloves. Product quality and ease of use are guaranteed!"
+    },
     "about-page": {
         "title": "About the company",
         "description": "We are a company with over 20 years of experience in the market, engaged in the wholesale and retail sale of packaging products. Learn about the history of our activities, our values ​​and advantages that make us a reliable partner for your business and everyday needs.",
@@ -316,5 +320,111 @@
             "text": "Thank you for choosing us. If you have any questions, need advice or help, our team is always ready to support you. Contact us via a convenient communication channel for you, and we will definitely find a solution. +38 099 999 99 99 or write to email:",
             "description": "Your comfort is our priority!"
         }
+    },
+    "news-page": {
+        "title": "News",
+        "description": "Stay up to date with the latest events! Here you will find all the important information about new products, promotions, events and other events related to our company.",
+        "summary": {
+            "title": "Stay with us on the wave of news!",
+            "description": "Don't miss any important event — follow our updates to always be up to date with the latest news, promotions and new products. We are constantly working to offer you the most up-to-date information about our products, services and social initiatives. Join our community, receive advantageous offers first and be a part of important changes!",
+            "mail": {
+                "title": "Stay in touch with us!",
+                "placeholder": "Enter email",
+                "btn": "Subscribe",
+                "text": "And stay up to date with the latest discounts and news"
+            },
+            "text": "Thank you for choosing"
+        }
+    },
+    "contacts-page": {
+        "title": "Contacts",
+        "description": "We are always happy to help you! Contact us in a way convenient for you.",
+        "address": {
+            "title" : "Address:",
+            "description" : "Our main store is located at:",
+            "city" : "City: Kharkiv,",
+            "market" : "Barabashovo market"
+        },
+        "work-hours": {
+            "title": "Store opening hours:",
+            "description": "Our store is open daily from:"
+        },
+        "days-off": {
+            "title": "Weekend",
+            "days": "Sunday, Monday"
+        },
+        "phones": {
+            "title": "Phones:",
+            "sales-department": "Sales department: ,"
+
+        },
+        "online-service": {
+            "title": "Electronic orders:",
+            "description": "We accept 24/7:"
+        },
+        "contact-us": {
+            "title": "Contact us",
+            "content1": "Technical support",
+            "content2": "Technical support",
+            "content3": "Technical support",
+            "content4": "Technical support",
+            "form": {
+                "name": "Name",
+                "name-placeholder": "First and last name",
+                "mail-placeholder": "Enter your email.",
+                "message": "Message",
+                "btn": "Send"
+            },
+            "summary": "We value your opinion and are always ready to make your experience with us better!"
+        }
+
+    },
+    "cart": {
+        "title": "Cart",
+        "description": "Your cart is a convenient place to select and complete your purchases. We value your time and strive to make the process as simple and comfortable as possible.",
+        "also-buy": "With these goods they also buy...",
+        "summary": {
+            "title": "Order summary",
+            "full-price": "Full price",
+            "discount": "Discount",
+            "delivery": "Pickup / delivery",
+            "shipping": "Shipping cost",
+            "total": "Total",
+            "place-order": "Go to checkout",
+            "or": "or",
+            "go-back": "Return to Store"
+        }
+    },
+    "footer": {
+        "title": "Packages wholesale and retail",
+        "pages": {
+            "title": "Pages",
+            "main": "Home",
+            "about": "About the company",
+            "news": "News",
+            "contacts": "Contacts"
+        },
+        "products": "Goods",
+        "resourses": {
+            "title": "Resource",
+            "enter": "Log in",
+            "cart": "Cart",
+            "pay-delivery": "Payment delivery",
+            "help": "To the buyer"
+        },
+        "subscribe": {
+            "title": "Subscribe to the newsletter",
+            "agree": "I agree.",
+            "policy": "privacy policy",
+            "and": "and",
+            "terms": "conditions.",
+            "btn": "Send",
+            "summary": {
+                "rights": "company 2025, All rights reserved.",
+                "questions": "Have a question? Contact us!"
+            }
+        }
     }
+   
+
 }
