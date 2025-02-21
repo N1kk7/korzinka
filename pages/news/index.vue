@@ -12,11 +12,13 @@
                     mb-5
                     "
                 >
-                    Новини
+                    <!-- Новини -->
+                     {{ $t("news-page.title") }}
                 </h1>
                 <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
-                    Будьте в курсі останніх подій! Тут ви знайдете всю важливу інформацію про новинки, акції,
-                    заходи та інші події, пов'язані з нашою компанією.
+                    <!-- Будьте в курсі останніх подій! Тут ви знайдете всю важливу інформацію про новинки, акції,
+                    заходи та інші події, пов'язані з нашою компанією. -->
+                     {{ $t("news-page.description") }}
                 </p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-5">
@@ -147,12 +149,14 @@
                     text-2xl
                     mb-5
                     ">
-                    Будьте з нами на хвилі новин!
+                    <!-- Будьте з нами на хвилі новин! -->
+                     {{ $t("news-page.summary.title") }}
                 </h2>
                 <p class="text-[var(--dark-color)] font-medium text-lg mb-2 ">
-                    Не пропустіть жодної важливої події — слідкуйте за нашими оновленнями, щоб завжди бути в курсі останніх новин, акцій та новинок.
+                    <!-- Не пропустіть жодної важливої події — слідкуйте за нашими оновленнями, щоб завжди бути в курсі останніх новин, акцій та новинок.
                     Ми постійно працюємо, щоб запропонувати вам найактуальнішу інформацію про наші товари, послуги та соціальні ініціативи.
-                    Долучайтеся до нашої спільноти, отримуйте вигідні пропозиції першими та будьте частиною важливих змін!
+                    Долучайтеся до нашої спільноти, отримуйте вигідні пропозиції першими та будьте частиною важливих змін! -->
+                     {{ $t("news-page.summary.description") }}
                 </p>
 
                 <div class="newsletter-form relative bg-[var(--dark-color)] mx-auto p-5 rounded-lg flex items-center justify-center mt-10 mb-5 h-auto">
@@ -167,20 +171,23 @@
                         <form aria-labelledby="newsletter-headline">
                             <div class="flex flex-col items-center justify-between gap-4">
                                 <span class="text-[var(--light-color)] text-lg">
-                                    Залишайтесь з нами на звʼязку!
+                                    <!-- Залишайтесь з нами на звʼязку! -->
+                                     {{ $t("news-page.summary.mail.title") }}
                                 </span>
                                 <div class="input-wrapper sm:flex items-center">
-                                    <input name="EMAIL" type="email" required="required" placeholder="Введіть email" aria-label="Email address" 
+                                    <input name="EMAIL" type="email" required="required" :placeholder="$t('news-page.summary.mail.placeholder')" aria-label="Email address" 
                                         class="px-5 py-3 text-base leading-6 transition duration-150 ease-in-out border-2 rounded-md appearance-none focus:outline-none sm:max-w-xs border-gray-200 text-gray-900 placeholder-gray-500 focus:placeholder-gray-400 bg-white"
                                     >
                                     <div class="mt-3 sm:mt-0 sm:ml-3 sm:flex-shrink-0 max-sm:flex max-sm:justify-end">
                                         <button type="submit" class="block px-5 py-3 text-white transition duration-100 ease-in-out bg-blue-500 border border-transparent rounded shadow-sm hover:bg-blue-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
-                                            Підписатись
+                                            <!-- Підписатись -->
+                                             {{ $t("news-page.summary.mail.btn") }}
                                         </button>
                                     </div>
                                 </div>
                                 <span class="form-text text-[var(--light-color)] text-lg whitespace-nowrap">
-                                    Та будьте в курсі останніх знижок та новин korzinka.in.ua
+                                    <!-- Та будьте в курсі останніх знижок та новин korzinka.in.ua -->
+                                     {{ $t("news-page.summary.mail.text") }}
                                 </span>
                             </div>
                         </form>
@@ -198,7 +205,9 @@
                     mt-16
                     mb-20
                     ">
-                    Дякуємо що обрали <strong>
+                    <!-- Дякуємо що обрали  -->
+                     {{ $t("news-page.summary.text") }}
+                    <strong>
                         www.korzinka.in.ua !
                     </strong>
                 </h2>

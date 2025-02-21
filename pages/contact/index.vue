@@ -10,15 +10,18 @@
             text-2xl
             mb-5
           "
-          >Контакти
+          >
+          <!-- Контакти -->
+           {{ $t("contacts-page.title") }}
         </h1>
         <p
           class="text-[var(--dark-color)] font-medium text-lg mb-2"
         
         >
-          Ми завжди раді допомогти вам! Зв'яжіться з нами зручним для вас
-          способом.
-            </p>
+          <!-- Ми завжди раді допомогти вам! Зв'яжіться з нами зручним для вас
+          способом. -->
+           {{ $t("contacts-page.description") }}
+        </p>
       </div>
      
       <section class="contact-section grid grid-cols-[1fr_3fr] gap-5 mt-10 max-md:flex max-md:flex-col-reverse">
@@ -31,13 +34,15 @@
                 <h2
                   class="text-[var(--dark-color)] font-bold text-lg"
                 >
-                  Адреса:
+                  <!-- Адреса: -->
+                   {{ $t("contacts-page.address.title") }}
                 </h2>
               </div>
               <p
                 class="text-[var(--dark-color)] font-medium text-sm mb-2"
               >
-                Наш головний магазин розташований за адресою:
+                <!-- Наш головний магазин розташований за адресою: -->
+                 {{ $t("contacts-page.address.description") }}
               </p>
               <ul class="block-list">
                 <li>
@@ -50,7 +55,13 @@
                 <li>
                   <p
                     class="text-[var(--dark-color)] font-medium text-sm mb-2"
-                  >Місто: Харків,<br/> ринок Барабашово</p>
+                  >
+                  <!-- Місто: Харків, -->
+                   {{ $t("contacts-page.address.city") }}
+                  <br/> 
+                  <!-- ринок Барабашово -->
+                   {{ $t("contacts-page.address.market") }}
+                </p>
                 </li>
               </ul>
             </div>
@@ -62,13 +73,15 @@
                 <h2
                   class="text-[var(--dark-color)] font-bold text-lg"
                 >
-                  Час роботи магазину:
+                  <!-- Час роботи магазину: -->
+                   {{ $t("contacts-page.work-hours.title") }}
                 </h2>
               </div>
               <p
                 class="text-[var(--dark-color)] font-medium text-sm mb-2"
               >
-                Наш магазин працює щодня з:
+                <!-- Наш магазин працює щодня з: -->
+                 {{ $t("contacts-page.work-hours.description") }}
               </p>
               <ul class="block-list">
                 <li>
@@ -79,7 +92,13 @@
                 <li>
                   <p
                     class="text-[var(--dark-color)] font-medium text-sm mb-2"
-                  ><strong>Вихідні</strong><br/> Неділя, Понеділок</p>
+                  ><strong>
+                    <!-- Вихідні -->
+                     {{ $t("contacts-page.days-off.title") }}
+                  </strong><br/> 
+                  <!-- Неділя, Понеділок -->
+                   {{ $t("contacts-page.days-off.days") }}
+                </p>
                 </li>
               </ul>
             </div>
@@ -91,14 +110,18 @@
                 <h2
                   class="text-[var(--dark-color)] font-bold text-lg"
                 >
-                  Телефони:
+                  <!-- Телефони: -->
+                   {{ $t("contacts-page.phones.title") }}
                 </h2>
               </div>
               <ul class="block-list">
                 <li>
                   <p
                     class="text-[var(--dark-color)] font-medium text-sm mb-2"
-                  >Відділ продажу: ,<br/> +38 (068) 000-00-00</p>
+                  >
+                  <!-- Відділ продажу:  -->
+                   {{ $t("contacts-page.phones.sales-department") }}
+                  ,<br/> +38 (068) 000-00-00</p>
                 </li>
               </ul>
             </div>
@@ -108,8 +131,12 @@
             <div class="text-block">
               <p class="text-[var(--dark-color)] font-medium text-sm">
                 <strong>
-                  Електронні замовлення:
-                </strong> <br/>Приймаємо 24/7:</p>
+                  <!-- Електронні замовлення: -->
+                   {{ $t("contacts-page.online-service.title") }}
+                </strong> <br/>
+                <!-- Приймаємо 24/7: -->
+                 {{ $t("contacts-page.online-service.description") }}
+              </p>
             </div>
           </div>
         </div>
@@ -142,7 +169,8 @@
         <div class="flex justify-center mt-12">
             <div class="text-center md:max-w-xl lg:max-w-3xl">
                 <h2 class="mb-12 max-md:mb-[3vw] px-6 text-3xl font-bold text-[var(--dark-color)]">
-                    Зв'яжіться з нами
+                    <!-- Зв'яжіться з нами -->
+                     {{ $t("contacts-page.contact-us.title") }}
                 </h2>
             </div>
         </div>
@@ -166,7 +194,8 @@
                             </div>
                             <div class="ml-0.5 text-center grow">
                                 <p class="mb-2 font-bold text-[var(--dark-color)]">
-                                    Technical support
+                                    <!-- Technical support -->
+                                     {{ $t("contacts-page.contact-us.content1") }}
                                 </p>
                                 <p class="text-neutral-500 text-[1.3vw]">
                                     support@example.com
@@ -191,7 +220,8 @@
                             </div>
                             <div class="ml-0.5 text-center grow">
                                 <p class="mb-2 font-bold text-[var(--dark-color)]">
-                                    Technical support
+                                    <!-- Technical support -->
+                                     {{ $t("contacts-page.contact-us.content2") }}
                                 </p>
                                 <p class="text-neutral-500 text-[1.5vw]">
                                     support@example.com
@@ -215,7 +245,8 @@
                             </div>
                             <div class="ml-0.5 text-center grow">
                                 <p class="mb-2 font-bold text-[var(--dark-color)]">
-                                    Technical support
+                                    <!-- Technical support -->
+                                     {{ $t("contacts-page.contact-us.content3") }}
                                 </p>
                                 <p class="text-neutral-500 text-[1.5vw]">
                                     support@example.com
@@ -239,7 +270,8 @@
                             </div>
                             <div class="ml-0.5 text-center grow">
                                 <p class="mb-2 font-bold text-[var(--dark-color)]">
-                                    Technical support
+                                    <!-- Technical support -->
+                                     {{ $t("contacts-page.contact-us.content4") }}
                                 </p>
                                 <p class="text-neutral-500 text-[1.5vw]">
                                     support@example.com
@@ -262,7 +294,8 @@
 
               <div class="mb-3 w-full">
                   <label class="block font-medium mb-[2px] text-[var(--dark-color)]" htmlFor="exampleInput90">
-                          Ім'я
+                          <!-- Ім'я -->
+                           {{ $t("contacts-page.contact-us.form.name") }}
                   </label>
                   <input type="text" class="px-2 py-2 border w-full outline-none rounded-md bg-white text-[var(--dark-color)]" id="exampleInput90" placeholder="Ім'я і прізвище" />
               </div>
@@ -277,14 +310,16 @@
 
               <div class="mb-3 w-full">
                   <label class="block font-medium mb-[2px] text-[var(--dark-color)]" htmlFor="exampleInput90">
-                          Повідомлення
+                          <!-- Повідомлення -->
+                           {{ $t("contacts-page.contact-us.form.message") }}
                   </label>
                   <textarea class="px-2 py-2 border rounded-[5px] w-full outline-none bg-white text-[var(--dark-color)] min-h-36" name="" id=""></textarea>
               </div>
 
               <button type="button"
                       class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md">
-                      Відправити
+                      <!-- Відправити -->
+                       {{ $t("contacts-page.contact-us.form.btn") }}
               </button>
 
             </form>
@@ -296,69 +331,15 @@
       <section class="summary mb-12">
         <div class="text-block font-bold text-center text-[var(--dark-color)]">
           <p class="text-lg">
-            Ми цінуємо вашу думку і завжди готові зробити Ваш досвід взаємодії з
-            нами краще!
+            <!-- Ми цінуємо вашу думку і завжди готові зробити Ваш досвід взаємодії з
+            нами краще! -->
+            {{ $t("contacts-page.contact-us.summary") }}
           </p>
         </div>
       </section>
     </div>
   </div>
 </template>
-
-
-<!-- <script setup>
-import { onMounted } from 'vue';
-import LinkBlock from '@/components/shared/LinkBlock.vue';
-import SvgIcon from '@/components/shared/SvgIcon.vue';
-
-const center = { lat: 50.00321326656911, lng: 36.30118217658963 };
-const markerOptions = { 
-  position: center, 
-  label: 'Korzinka', 
-  title: 'Korzinka', 
-  clickable: true 
-};
-
-onMounted(() => {
-  loadMap();
-});
-
-
-const loadMap = () => {
-
-  if (window.google && window.google.maps) {
-    initMap();
-  } else {
-    console.error("Google Maps API не загружен.");
-  }
-};
-
-
-const initMap = () => {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 12,
-    center: center,
-  });
-
-  // const marker = new google.maps.marker.AdvancedMarkerElement({
-    const marker = new google.maps.Marker({
-
-    position: center,
-    map: map,
-    title: markerOptions.title,
-    label: markerOptions.label,
-    clickable: markerOptions.clickable,
-  });
-
-  const infowindow = new google.maps.InfoWindow({
-    content: "<p>Information about Korzinka</p>",
-  });
-
-  marker.addListener("click", () => {
-    infowindow.open(map, marker);
-  });
-};
-</script> -->
 
 <script setup>
 import { onMounted } from 'vue';

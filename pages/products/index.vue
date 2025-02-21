@@ -34,46 +34,6 @@
                 </div>
             </div>
 
-
-            <!-- <div v-if="item.groupProducts && item.groupProducts.length" class=" mt-4">
-
-                <div 
-                v-for="(groupProduct, groupIndex) in item.groupProducts" 
-                class="card-wrapper bg-gray-200 h-fit "
-
-                :key="groupIndex"
-                >
-                <h3 class="text-xl font-semibold text-[var(--dark-color)] mb-2">
-                    {{ groupProduct.groupName || 'Unnamed Group' }}
-                </h3>
-                <div class="grid grid-cols-1  2xl:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-                    <div 
-                    v-for="(product, productIndex) in fetchedProducts.data" 
-                    :key="productIndex" 
-                    class="card-wrapper bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)]"
-                    >
-                    {{console.log(product, 'product') }}
-                    <ItemCard :product="product" :group="item.group"/>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-            <div v-if="item.products && item.products.length" class="grid grid-cols-1 lg:grid-cols-2  3xl:grid-cols-3  md:grid-cols-3 sm:grid-cols-2 gap-4 mt-4">
-
-
-
-                <div 
-
-                v-for="(product, productIndex) in fetchedProducts.data" 
-                :key="productIndex" 
-                class="card-wrapper bg-gray-200 h-fit"
-                >
-                <ItemCard :product="product" :group="item.group"/>
-                </div>
-            </div> -->
-
             
             </div>
         </main>

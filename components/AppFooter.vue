@@ -16,7 +16,8 @@
                 korzinka.in.ua
               </strong>
               <span class="font-normal text-sm whitespace-nowrap text-[var(--main-accent)]">
-                Пакети оптом та в роздріб
+                 {{  $t('footer.title') }}
+
               </span>
             </div>
           </div>
@@ -60,37 +61,41 @@
       <div class="py-14 flex flex-col lg:flex-row justify-between gap-8 border-b border-gray-500">
         <div class="w-full max-lg:mx-auto flex flex-col sm:flex-row max-lg:items-center max-lg:justify-between gap-6 md:gap-12 lg:gap-24">
           <div class="">
-            <h6 class="text-lg font-medium mb-7 max-lg:text-center text-[var(--main-accent)]">Сторінки</h6>
+            <h6 class="text-lg font-medium mb-7 max-lg:text-center text-[var(--main-accent)]">
+               {{  $t('footer.pages.title') }}
+            </h6>
             <ul class="flex flex-col max-lg:items-center gap-6">
               <li>
                   <NuxtLink to="/"
                       class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
                     >
-                    Головна
+                     {{  $t('footer.pages.main') }}
                   </NuxtLink>
               </li>
               <li>
                   <NuxtLink to="/about"
                     class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
-                    Про компанію
+                     {{  $t('footer.pages.about')}}
                   </NuxtLink>
               </li>
               <li>
                   <NuxtLink to="/news"
                     class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
-                    Новини
+                     {{  $t('footer.pages.news') }}
                   </NuxtLink>
               </li>
               <li>
                   <NuxtLink to="/contact"
                       class="text-base font-normal max-lg:text-center text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400">
-                    Контакти
+                     {{  $t('footer.pages.contacts') }}
                   </NuxtLink>
                 </li>
             </ul>
           </div>
           <div class="">
-            <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">Товари</h6>
+            <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">
+               {{  $t('footer.products') }}
+            </h6>
             <ul class="flex flex-col gap-6 max-lg:items-center">
               <li
                 v-for="(category, index) in fetchedCategoriesFour"
@@ -108,41 +113,46 @@
             </ul>
           </div>
           <div class="">
-            <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">Ресурси</h6>
+            <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7 max-lg:text-center">
+              {{  $t('footer.resourses.title') }}
+            </h6>
             <ul class="flex flex-col gap-6 max-lg:items-center">
               <li>
                 <div
                   class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
                 >
-                  Вхід
+                   {{  $t('footer.resourses.enter') }}
                 </div>
               </li>
               <li>
                 <NuxtLink to="/cart"
                   class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
                 >
-                  Корзина
+                   {{  $t('footer.resourses.cart') }}
                 </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/pay-delivery"
                   class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
                 >
-                  Оплата доставка
+                   {{  $t('footer.resourses.pay-delivery') }}
                 </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/help"
                   class="text-base font-normal text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-amber-400 focus-within:outline-0 focus-within:text-amber-400"
                 >
-                  Покупцю
+                   {{  $t('footer.resourses.help') }}
                 </NuxtLink>
               </li>
             </ul>
           </div>
         </div>
         <div class="w-full lg:max-w-md max-lg:mx-auto ">
-          <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7">Підписатись на розсилку</h6>
+          <h6 class="text-lg font-medium text-[var(--main-accent)] mb-7">
+            <!-- Підписатись на розсилку -->
+             {{  $t('footer.subscribe.title') }}
+          </h6>
           <div class="bg-black border-[1px] rounded-3xl p-5">
             <form action="#" class="flex flex-col gap-5">
               <div class="relative">
@@ -158,10 +168,10 @@
                     class="w-5 h-5 aspect-square appearance-none cursor-pointer border border-gray-600 bg-transparent  rounded-md mr-2 hover:border-gray-400 hover:bg-[var(--dark-light-color)] checked:bg-no-repeat checked:bg-center checked:border-gray-400 checked:bg-[var(--secondary-color)]"
                     checked="">
                   <label for="checked-checkbox" class="text-sm font-normal cursor-pointer text-gray-400">
-                    Я згоден <a href="javascript:;" class="text-amber-500">політикою конфіденційності</a> та <a
-                      href="javascript:;" class="text-amber-500">умовами.</a></label>
+                    {{  $t('footer.subscribe.agree') }} <a href="javascript:;" class="text-amber-500">{{ $t('footer.subscribe.policy') }}</a> {{ $t('footer.subscribe.and') }} <a
+                      href="javascript:;" class="text-amber-500">{{ $t('footer.subscribe.terms') }}</a></label>
                 </div>
-                <input type="submit" value="Send"
+                <input type="submit" :value="$t('footer.subscribe.btn')"
                   class="text-white text-base font-semibold py-3 px-7 rounded-full cursor-pointer bg-amber-500 transition-all duration-500 hover:bg-white hover:text-gray-900">
               </div>
 
@@ -171,7 +181,7 @@
       </div>
       <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-5 pt-7 pb-16">
         <span class="text-sm font-normal text-gray-400">
-        <a href="https://pagedone.io/" class="">company</a> 2025, All rights reserved.
+        <a href="https://pagedone.io/" class="">company</a> {{ $t('footer.subscribe.summary.rights') }}
         </span>
         <div class="relative  text-gray-500 focus-within:text-gray-900 ">
           <div class="absolute inset-y-0 right-6 flex items-center pl-3 pointer-events-none ">
@@ -182,7 +192,7 @@
           </div>
           <button type="button" id="default-search"
             class="block w-full lg:min-w-[448px] pr-12 pl-6 py-3 text-base font-normal shadow-xs text-[var(--main-accent)] bg-transparent border border-gray-700 rounded-full placeholder-gray-400 focus:outline-none leading-relaxed transition-all duration-500 "
-           >Маєте питання? Звʼяжіться з нами!</button> 
+           >{{ $t('footer.subscribe.summary.questions') }}</button> 
         </div>
       </div>
     </div>

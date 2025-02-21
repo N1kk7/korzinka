@@ -11,10 +11,10 @@
                 mb-5
                 "
             >
-                Про компанію
+                 {{ $t("about-page.title") }}
             </h1>
             <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
-              Ми — компанія з понад 20-річним досвідом на ринку, яка займається оптовою та роздрібною продажем пакувальних виробів. Ознайомтесь з історією нашої діяльності, нашими цінностями та перевагами, які роблять нас надійним партнером для вашого бізнесу та повсякденних потреб.
+                {{ $t("about-page.description") }}
 
             </p>
             
@@ -22,25 +22,25 @@
         <FadeSlider/>
         <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Про нас
+         {{ $t("about-page.about-us.title") }}
     </h2>
     <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-        Ласкаво просимо до korzinka.in.ua! Ми — компанія, яка займається оптовою та роздрібною продажем різноманітних пакувальних виробів. В асортименті korzinka.in.ua ви знайдете целофанові пакети, пакети для мусора, зип пакети, мішки для засолки, упаковочні мішки, пакети майка та фасувальні пакети. З моменту заснування ми пройшли довгий шлях, і сьогодні маємо понад 20 років досвіду на ринку. Наші початки були в ринку Барабашово, і з того часу ми продовжуємо зміцнювати наші позиції, співпрацюючи з провідними виробниками, зокрема з компанією Комсерв, що дозволяє нам гарантувати найвищу якість нашої продукції.
+         {{ $t("about-page.about-us.text") }}
     </p>
 </div>
 
 <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Наша місія
+         {{ $t("about-page.our-mission.title") }}
     </h2>
     <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-        Ми прагнемо надати вам найкращі пакувальні рішення, що відповідають вимогам сучасного бізнесу та побуту. Пропонуючи великий вибір продукції, ми завжди ставимо акцент на її якість і надійність. Наші цілі — забезпечити кожного клієнта продукцією, яка підходить для конкретних потреб і допомагає ефективно вирішувати завдання пакування.
+         {{ $t("about-page.our-mission.text") }}
     </p>
 </div>
 
 <div class="values-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Наші цінності
+         {{ $t("about-page.our-values.title") }}
     </h2>
     <ul class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2 my-0 mx-auto flex-wrap">
         <li class="rounded-2xl">
@@ -49,10 +49,10 @@
           </div>
           <div class="description">
             <strong>
-              Якість:
+               {{ $t("about-page.our-values.content1.title") }}
             </strong> 
             <p>
-              Ми завжди орієнтуємося на високу якість нашої продукції. Завдяки тісній співпраці з компанією Комсерв, ми забезпечуємо стабільне виробництво і доставку тільки надійних товарів.
+               {{ $t("about-page.our-values.content1.text") }}
             </p>
           </div>
          
@@ -63,10 +63,10 @@
           </div>
           <div class="description">
             <strong>
-              Інноваційність:
+               {{ $t("about-page.our-values.content2.title") }}
             </strong>
             <p>
-              Ми не зупиняємося на досягнутому і постійно вдосконалюємо наш асортимент, адаптуючи його до потреб ринку та наших клієнтів.
+               {{ $t("about-page.our-values.content2.text") }}
             </p>
           </div>
           
@@ -77,10 +77,10 @@
           </div>
           <div class="description">
             <strong>
-              Надійність:
+               {{ $t("about-page.our-values.content3.title") }}
             </strong>
             <p>
-              Ми прагнемо до довгострокових відносин з кожним клієнтом, тому завжди забезпечуємо стабільність у якості, доставці та обслуговуванні.
+               {{ $t("about-page.our-values.content3.text") }}
             </p>
           </div>
           
@@ -91,10 +91,10 @@
           </div>
           <div class="description">
             <strong>
-              Гнучкість:
+               {{ $t("about-page.our-values.content4.title") }}
             </strong>
             <p>
-              Ми пропонуємо різноманітні умови співпраці — від дрібного роздрібного покупця до великих оптових замовлень. Для нас важливо задовольнити кожного клієнта, незалежно від обсягів покупки.
+               {{ $t("about-page.our-values.content4.text") }}
             </p>
           </div>
           
@@ -104,44 +104,69 @@
 
 <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Переваги нашої компанії
+         {{ $t("about-page.our-advantages.title") }}
     </h2>
     <ul class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
-        <li><strong>Широкий асортимент продукції:</strong> У нас ви знайдете пакувальні рішення на будь-який смак і для будь-яких цілей.</li>
-        <li><strong>Гарантована якість:</strong> Співпраця з компанією Комсерв дозволяє нам підтримувати високі стандарти виробництва та постачання товарів.</li>
-        <li><strong>Конкурентоспроможні ціни:</strong> Завдяки налагодженим каналам постачання та оптимізованим процесам виробництва ми можемо запропонувати вигідні ціни без шкоди для якості продукції.</li>
-        <li><strong>Досвід і стабільність:</strong> Більше 20 років досвіду на ринку дають нам змогу досконало розуміти потреби клієнтів.</li>
-        <li><strong>Індивідуальний підхід до кожного клієнта:</strong> Ми пропонуємо спеціальні умови для постійних клієнтів та персоналізацію замовлень.</li>
+        <li>
+          <strong>
+             {{ $t("about-page.our-advantages.content1.strong") }}
+          </strong> 
+           {{ $t("about-page.our-advantages.content1.text") }}
+        </li>
+        <li>
+          <strong>
+             {{ $t("about-page.our-advantages.content2.strong") }}
+          </strong> 
+           {{ $t("about-page.our-advantages.content2.text") }}
+        </li>
+        <li>
+          <strong>
+             {{ $t("about-page.our-advantages.content3.strong") }}
+          </strong> 
+           {{ $t("about-page.our-advantages.content3.text") }}
+        </li>
+        <li>
+          <strong>
+             {{ $t("about-page.our-advantages.content4.strong") }}
+          </strong> 
+           {{ $t("about-page.our-advantages.content4.text") }}
+        </li>
+        <li>
+          <strong>
+             {{ $t("about-page.our-advantages.content5.strong") }}
+          </strong> 
+           {{ $t("about-page.our-advantages.content5.text") }}
+        </li>
     </ul>
 </div>
 
 <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Чому варто обрати нас?
+         {{ $t("about-page.why-us.title") }}
     </h2>
     <p class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
-        Наші клієнти обирають нас завдяки постійній високій якості продукції, гнучким умовам співпраці та вигідним цінам. Ми розуміємо важливість правильного пакування для вашого бізнесу, тому надаємо лише найкращі рішення для кожної галузі, будь то роздрібний бізнес, харчова промисловість або інші сфери.
+         {{ $t("about-page.why-us.text") }}
     </p>
 </div>
 
 <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Наші клієнти
+         {{ $t("about-page.our-clients.title") }}
     </h2>
     <p class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
-        Серед наших постійних клієнтів є як великі корпоративні замовники, так і малий бізнес. Ми з радістю працюємо з усіма і готові запропонувати найкращі пакувальні рішення для будь-яких потреб.
+         {{ $t("about-page.our-clients.text") }}
     </p>
 </div>
 
 <div class="text-block mb-5">
     <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-        Зв'яжіться з нами
+         {{ $t("about-page.contact-us.title") }}
     </h2>
     <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-        Ми завжди раді допомогти! Якщо у вас є будь-які запитання або ви хочете оформити замовлення, звертайтеся до нас будь-яким зручним для вас способом. Наші фахівці готові надати консультацію та допомогти з вибором продукції.
+         {{ $t("about-page.contact-us.text") }}
     </p>
     <p class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
-        <strong>korzinka.in.ua</strong> — надійний партнер для вашого бізнесу та побуту.
+        <strong>korzinka.in.ua</strong> — {{ $t("about-page.contact-us.summary") }}
     </p>
 </div>
 

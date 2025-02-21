@@ -11,11 +11,11 @@
                     mb-5
                     "
                 >
-                    Оплата і доставка
+                    {{ $t("pay-delivery.title") }}
                 </h1>
                 <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
-                    Дякуємо, що обрали наш магазин! Ми прагнемо забезпечити комфортний і швидкий процес оплати та доставки. 
-                    У цьому розділі ви знайдете всю необхідну інформацію про способи оплати, варіанти доставки та терміни отримання замовлення.
+
+                    {{ $t("pay-delivery.description") }}
                 </p>
                 
             </div>
@@ -26,18 +26,18 @@
             <ul >
                 <li>
                     <span>
-                        Оплата
+                        {{ $t("pay-delivery.payment.title") }}
                     </span>
                 </li>
                 <li>
                     <span >
-                        Доставка
+                        {{ $t("pay-delivery.delivery.title") }}
                     </span>
             
                 </li>
                 <li>
                     <span>
-                        Умови доставки
+                        {{ $t("pay-delivery.delivery-condition.title") }}
                     </span>
                 </li>
 
@@ -48,47 +48,68 @@
                     <div class="info-blocks ">
                         <div class="text-block mb-5">
                             <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-                                Оплата
+                                {{ $t("pay-delivery.payment.title") }}
                             </h2>
                             <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-                                Ми пропонуємо кілька способів оплати для вашої зручності:
+                                {{ $t("pay-delivery.payment.text") }}
                             </p>
 
                             <div class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
                                 <p>
-                                    <span class="font-semibold">Банківська картка:</span> Оплата онлайн за допомогою Visa, MasterCard або інших карток, що підтримують платежі в інтернеті. Усі транзакції захищені сучасними стандартами безпеки.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.payment.content1.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.payment.content1.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Електронні гаманці:</span> Оплата через популярні платіжні системи, такі як PayPal, Google Pay, Apple Pay або інші доступні у вашому регіоні.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.payment.content2.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.payment.content2.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Безготівковий розрахунок:</span> Для юридичних осіб можлива оплата на розрахунковий рахунок. Зв'яжіться з нами для оформлення рахунку.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.payment.content3.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.payment.content3.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Післяоплата:</span> Ви можете оплатити замовлення при отриманні в пункті видачі або у кур'єра (додаткова комісія може стягуватися).
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.payment.content4.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.payment.content4.text") }}
                                 </p>
                             </div>
 
                         </div>
                         <div class="text-block mb-5">
                             <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-                                Доставка
+                                {{ $t("pay-delivery.delivery.title") }}
 
                             </h2>
                             <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-                                Ми співпрацюємо з надійними логістичними компаніями, щоб забезпечити швидку та якісну доставку.
+                                {{ $t("pay-delivery.delivery.text") }}
 
                             </p>
 
                             <div class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
                                 <p>
-                                    <span class="font-semibold">Кур'єрська доставка:</span> Доставка до дверей у будь-який населений пункт. Терміни залежать від вашого розташування та складають від 1 до 7 робочих днів.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery.content1.strong") }}
+                                    </span> 
+                                        {{ $t("pay-delivery.delivery.content1.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Пункти видачі:</span> Заберіть замовлення у зручний час з найближчого пункту самовивезення. Ви можете вибрати пункт під час оформлення замовлення.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery.content2.strong") }}
+                                    </span> 
+                                        {{ $t("pay-delivery.delivery.content2.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Поштова доставка:</span> Для віддалених регіонів доступна відправка через пошту. Термін доставки уточнюється під час оформлення.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery.content3.strong") }}
+                                    </span> 
+                                        {{ $t("pay-delivery.delivery.content3.text") }}
                                 </p>
                             </div>
 
@@ -110,30 +131,43 @@
                         </div>
                         <div class="text-block mb-5">
                             <h2 class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]">
-                                Умови доставки
+                                {{ $t("pay-delivery.delivery-condition.title") }}
                             </h2>
                             <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
-                                Ми пропонуємо кілька способів оплати для вашої зручності:
+                                {{ $t("pay-delivery.delivery-condition.text") }}
                             </p>
                             <div class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2">
                                 <p>
-                                    <span class="font-semibold">Терміни обробки замовлення:</span> Всі замовлення обробляються протягом 1-2 робочих днів.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery-condition.content1.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.delivery-condition.content1.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Вартість доставки:</span> Вартість залежить від способу доставки та вашого регіону. Точна сума буде розрахована під час оформлення замовлення.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery-condition.content2.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.delivery-condition.content2.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Безкоштовна доставка:</span> Ми пропонуємо безкоштовну доставку для замовлень від [вставте суму, наприклад, 5000 ₽].
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery-condition.content3.strong") }}
+                                    </span> 
+                                    {{ $t("pay-delivery.delivery-condition.content3.text") }}
                                 </p>
                                 <p>
-                                    <span class="font-semibold">Статус замовлення:</span> Після відправлення замовлення ви отримаєте номер для відстеження посилки.
+                                    <span class="font-semibold">
+                                        {{ $t("pay-delivery.delivery-condition.content4.strong") }}
+                                    </span>
+                                    {{ $t("pay-delivery.delivery-condition.content4.text") }}
                                 </p>
                             </div>
 
                         </div>
                         <div class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ">
                             <p>
-                                Якщо у вас є додаткові питання, будь ласка, зв'яжіться з нашою службою підтримки за телефоном <span class="font-semibold">[вставте номер телефону]</span> або напишіть на email <span class="font-semibold">[вставте адресу електронної пошти]</span>.
+                                {{ $t("pay-delivery.summary") }}
+                                <span class="font-semibold">test@korzinka.in.ua</span>.
                             </p>
                         </div>
                         
@@ -150,19 +184,19 @@
                         >
                             <li class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300">
                                 <span class="text-[var(--dark-color)] font-normal text-base leading-relaxed  ">
-                                    Оплата
+                                    {{ $t("pay-delivery.payment.title") }}
                                 </span>
                                 <SvgIcon name="arrow-right" size="micro" fill="var(--dark-color)"/>
                             </li>
                             <li class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300">
                                 <span class="text-[var(--dark-color)] font-normal text-base leading-relaxed ">
-                                    Доставка
+                                    {{ $t("pay-delivery.delivery.title") }}
                                 </span>
                                 <SvgIcon name="arrow-right" size="micro" fill="var(--dark-color)"/>
                             </li>
                             <li class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300">
                                 <span class="text-[var(--dark-color)] font-normal text-base leading-relaxed ">   
-                                    Умови доставки
+                                    {{ $t("pay-delivery.delivery-condition.title") }}
                                 </span>
                                 <SvgIcon name="arrow-right" size="micro" fill="var(--dark-color)"/>
                             </li>

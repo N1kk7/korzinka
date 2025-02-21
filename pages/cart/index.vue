@@ -4,8 +4,14 @@
       <section class=" py-8 antialiased md:py-16 max-md:mt-10">
         <!-- dark:bg-gray-900  -->
   <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-    <h2 class="text-xl font-semibold text-[var(--dark-color)]  sm:text-2xl">Кошик</h2>
-    <p class="text-xl font-sm text-[var(--dark-color)]  sm:text-2xl">Ваш кошик - зручне місце для вибору та оформлення покупок. Ми цінуємо ваш час та прагнемо зробити процес максимально простим та комфортним.</p>
+    <h2 class="text-xl font-semibold text-[var(--dark-color)]  sm:text-2xl">
+      <!-- Кошик -->
+       {{ $t("cart.title") }}
+    </h2>
+    <p class="text-xl font-sm text-[var(--dark-color)]  sm:text-2xl">
+      <!-- Ваш кошик - зручне місце для вибору та оформлення покупок. Ми цінуємо ваш час та прагнемо зробити процес максимально простим та комфортним. -->
+       {{ $t("cart.description") }}
+    </p>
 
     <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
       <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
@@ -70,7 +76,10 @@
         <!-- <div class="hidden xl:mt-8 xl:block"> -->
         <div class=" mt-8 xl:block">
 
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-[var(--dark-color)]">З цими товарами також купують ...</h3>
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-[var(--dark-color)]">
+            <!-- З цими товарами також купують ... -->
+             {{ $t('cart.also-buy') }}
+          </h3>
           <div class="mt-6 grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 sm:mt-8">
             <div class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <a href="#" class="overflow-hidden rounded">
@@ -191,45 +200,68 @@
 
       <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
         <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-white sm:p-6">
-          <p class="text-xl font-semibold text-gray-900 dark:text-var(--dark-color)">Підсумок замовлення</p>
+          <p class="text-xl font-semibold text-gray-900 dark:text-var(--dark-color)">
+            <!-- Підсумок замовлення -->
+             {{ $t('cart.summary.title') }}
+          </p>
 
           <div class="space-y-4">
             <div class="space-y-2">
               <dl class="flex items-center justify-between gap-4">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">Повна ціна</dt>
+                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">
+                  <!-- Повна ціна -->
+                   {{ $t('cart.summary.full-price') }}
+                </dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-gray-700">₴ 0</dd>
               </dl>
 
               <dl class="flex items-center justify-between gap-4">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">Скидка</dt>
+                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">
+                  <!-- Скидка -->
+                   {{ $t('cart.summary.discount') }}
+                </dt>
                 <dd class="text-base font-medium text-green-700">-₴ 0</dd>
               </dl>
 
               <dl class="flex items-center justify-between gap-4">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">Самовивіз / доставка</dt>
+                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">
+                  <!-- Самовивіз / доставка -->
+                   {{ $t('cart.summary.delivery') }}
+                </dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-gray-700">₴ 0</dd>
               </dl>
 
               <dl class="flex items-center justify-between gap-4">
-                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">Вартість доставки</dt>
+                <dt class="text-base font-normal text-gray-500 dark:text-gray-500">
+                  <!-- Вартість доставки -->
+                   {{ $t('cart.summary.delivery') }}
+                </dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-gray-700">₴ 0</dd>
               </dl>
             </div>
 
             <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-              <dt class="text-base font-bold text-gray-900 dark:var(--primary-color)">Всього</dt>
+              <dt class="text-base font-bold text-gray-900 dark:var(--primary-color)">
+                <!-- Всього -->
+                 {{ $t('cart.summary.total') }}
+              </dt>
               <dd class="text-base font-bold text-gray-900 dark:var(--dark-color)">₴ 0</dd>
             </dl>
           </div>
 
           <NuxtLink to="/checkout" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-[var(--dark-color)] hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-            Перейти до оформлення замовлення
+            <!-- Перейти до оформлення замовлення -->
+             {{ $t('cart.summary.place-order') }}
           </NuxtLink>
 
           <div class="flex items-center justify-center gap-2">
-            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> чи </span>
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> 
+              <!-- чи -->
+               {{ $t('cart.summary.or') }}
+             </span>
             <NuxtLink to="/products" title="" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
-            Повернутись в Магазин
+            <!-- Повернутись в Магазин -->
+             {{ $t('cart.summary.go-back') }}
               <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
               </svg>
