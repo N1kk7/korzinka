@@ -2,10 +2,9 @@
     <section class="main">
         <div class="title-text">
             <h1 ref="titleRef">
-                <strong>{{ $t('index-page.hero.title-strong') }}</strong> <br>
+                <strong>{{ $t('index-page.hero.title-strong') }}</strong>
+                <br>
                 {{ $t('index-page.hero.title') }}
-                <!-- матеріали та пакети <br/>
-                в одному магазині. -->
             </h1>
             <ul class="promo-block" ref="promoBlockRef">
                 <li>
@@ -305,7 +304,7 @@ const observer = new IntersectionObserver(
             @media screen and (max-width: 1024px) {
                 margin-top: unset;
                 justify-content: flex-end;
-                padding-bottom: 50px;
+                padding-bottom: 25px;
                 z-index: 10;
                 // background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 100%);
                 background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 50%, rgba(0,0,0,1) 100%);
@@ -325,6 +324,9 @@ const observer = new IntersectionObserver(
                 font-weight: 600;
                 @include mixins.titleText(10vw, center, 700);
                 font-size: clamp(1.2em, 6vw, 2em);
+                white-space: normal;
+                text-align: start;
+
                 @media screen and (max-width: 1024px) {
                     font-size: clamp(1.3em, 7vw, 2.1em);
                     margin-bottom: 10px;

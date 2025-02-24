@@ -15,7 +15,7 @@
             {{ $t("index-page.why-us.title") }}
           </h2>
           <div
-            class="info-block light-block flex flex-col justify-start gap-5 items-center"
+            class="info-block shadow-block light-block flex flex-col justify-start gap-5 items-center"
           >
             <div class="top-row">
               <ul class="seo-list">
@@ -276,7 +276,7 @@
       justify-content: flex-start;
       border-radius: 20px;
       position: relative;
-      padding-inline: 1vw;
+      // padding-inline: 1vw;
       gap: 1rem;
       @media screen and (max-width: 640px) {
         flex-direction: column;
@@ -325,6 +325,7 @@
       }
       .bottom-row {
         @include mixins.cardShadow;
+        margin-bottom: 20px;
         ol {
           padding-left: 20px;
         }
@@ -332,11 +333,15 @@
     }
     .shadow-block {
       @include mixins.cardShadow;
+      padding: 20px 40px;
     }
 
     .dark-block {
+      box-shadow: 40px 40px 80px #bebebe,
+                -20px -20px 60px #ffffff;
       .seo-list {
         color: var(--light-color);
+        padding: 20px 40px;
         span {
           color: var(--light-color);
           strong {
