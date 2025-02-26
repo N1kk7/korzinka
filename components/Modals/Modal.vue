@@ -51,12 +51,6 @@ const tooltip = (obj) => {
 
     };
 
-
-// watch(modalProps, () => {
-//   console.log(modalProps.value)
-// })
-
-
 const closeModal = () => {
   modalStore.closeModal();
 };

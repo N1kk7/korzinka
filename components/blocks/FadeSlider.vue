@@ -82,9 +82,7 @@ const cards = [
 
 
 <style lang="scss" scoped>
-    // .swiper{
-        // overflow: visible
-    // }
+    
 
     .swiper-pagination{
         bottom: -20px !important;

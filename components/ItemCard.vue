@@ -184,22 +184,12 @@
                 font-size: clamp(12px, 1.5vw, 18px)
 
                 }
-            // padding-top: 150px;
         }
         .button-group{
             flex-direction: column;
         }
     }
 }
-
-// .card {
-//     box-shadow:  20px 20px 60px #bebebe,
-//     -20px -20px 60px #ffffff;
-// }
-
-// .cards-content{
-//     display: flex;
-// }
 
 
 </style>

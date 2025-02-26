@@ -72,20 +72,12 @@
   </template>
   
   <script setup>
-    // import { useLanguageStore } from "@/stores/lang-store";
-    // const { localePath } = useNuxtApp().$i18n;
-    //components
-    import SvgIcon from './shared/SvgIcon.vue';
 
-
-    //libs
-    // import { useLocalePath } from '#i18n';
+    import SvgIcon from './shared/SvgIcon.vue'
     import { useI18n } from 'vue-i18n';
     
 
-    // const { locale } = useI18n();
 
-    // const currentLocale = locale.value;
     
 
 const localePath = useLocalePath();

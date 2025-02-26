@@ -28,7 +28,6 @@
             border: 15px solid var(--primary-color);
             border-radius: 50%;
             padding: 5rem;
-            // mix-blend-mode:
 
         };
     }

@@ -28,11 +28,7 @@
 </template>
 
 <script setup>
-    // import { useModalStore } from "@/stores/modal-store";
-    import { useModalStore } from "#imports";
-
-    // import { useThemeStore } from "@/stores/theme-store";
-    import { useThemeStore } from "#imports";
+    import { useModalStore, useThemeStore } from "#imports";
 
     defineProps(['openModal', 'closeModal']);
 
@@ -41,12 +37,9 @@
 
     const themesStore = themeStore.themes
 
-    // console.log(themeStore.themes);
-
     const setNewTheme = (theme) => {
 
         themeStore.setTheme(theme);
-        // console.log(theme);
     }
 
 
