@@ -13,8 +13,6 @@
 <script setup>
     import { watch, onMounted } from 'vue';
 
-// const tooltipStore = useTooltipStore();
-
     const tooltipStyle = ref('');
     const showTooltip = ref(false);
     const tooltipMessage = ref('');

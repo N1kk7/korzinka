@@ -24,8 +24,6 @@ export default defineComponent({
       required: true,
     },
     size: {
-    //   type: Number,
-    //   default: 24,
       type: String,
       default: 'medium',
     },

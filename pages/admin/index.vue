@@ -560,14 +560,10 @@
     import AdminBurger from '@/components/shared/AdminBurger.vue';
 
     const burgerActive = ref(false);
-    // const emit = defineEmits(['toggle-sidebar']);
-
-    // defineEmits(['toggle-sidebar']);
-    // defineEmits(['toggle-sidebar']);
+  
 
     const handleSidebarToggle = (state) => {
       burgerActive.value = state;
-      // emit('toggle-sidebar', state);
     };
 
     definePageMeta({

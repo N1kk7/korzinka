@@ -4,20 +4,6 @@
         :style="{'right': chat ? '30px' : '-220px'}"
     >
 
-                
-  
-        <!-- <div class="top-element">
-            <div class="coccoc-alo-phone coccoc-alo-green coccoc-alo-show">
-                    <div class="coccoc-alo-ph-circle"></div>
-                    <div class="coccoc-alo-ph-circle-fill"></div>
-                    <div class="coccoc-alo-ph-img-circle"></div>
-                </div>
-            <div class="text-block">
-                <h3>
-                    Я тут щоб Вам допомгти!
-                </h3>
-            </div>
-        </div> -->
         <div 
             class="top-element" 
             @click="openChat"
@@ -67,10 +53,7 @@
     import { ref, onMounted } from 'vue';
 
     import SvgIcon from './shared/SvgIcon.vue';
-
-
     const chat = ref(false);
-    // const message = ref('');
     const message = ref('');
 
 
@@ -216,9 +199,6 @@
 
                     &::placeholder{
                         color: var(--secondary-color);
-                        // position: absolute;
-
-                        
                     }
                     &:focus{
                         outline: none;

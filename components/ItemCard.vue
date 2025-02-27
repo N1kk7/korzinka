@@ -117,8 +117,6 @@
         group: String,
     })
 
-    // console.log(props.product.img[0].path);
-
     const selectProduct = (product) => {
         productStore.setSelectedProducts(product);
         console.log(productStore.selectedProducts)
@@ -169,7 +167,6 @@
         flex-direction: column;
         min-height: 400px;
         .card-img{
-            // position: absolute;
             flex: 1;
             position: absolute;
             height: 70%;

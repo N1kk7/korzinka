@@ -204,17 +204,8 @@
   import { ref } from 'vue';
   import { useIndexStore } from '#imports'
 
-
-
   const indexStore = useIndexStore();
-
-
-
   const fetchedCategoriesFour = computed(() => indexStore.fetchedCategories.slice(0, 4));
-
-
-
-
 
 </script>
   

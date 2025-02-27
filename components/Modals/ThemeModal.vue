@@ -8,23 +8,15 @@
                 </h2>
                 <button @click="closeModal">Закрити</button>
             </div>
-            
-
             <hr>
-
             <ul>
                 <li v-for="(theme, idx) in themesStore" :key="idx" @click="setNewTheme(theme)">
                     {{ theme.name }}
                 </li>
             </ul>
         </div>
-
-        
-
-
     </section>
     
-
 </template>
 
 <script setup>

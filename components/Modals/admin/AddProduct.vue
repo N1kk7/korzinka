@@ -676,14 +676,11 @@
 
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import { useModalStore } from '#imports';
-    // import { useTooltipStore } from '@/stores/tooltip-store.ts';
 
 
     const modalStore = useModalStore();
-    // const tooltipStore = useTooltipStore();
 
     const emit = defineEmits(['addNewItem', 'tooltip']);
-    // const emit = defineEmits(['tooltip']);
 
     // helpers 
     import { useFileUpload } from '../../../helpers/uploadFiles';

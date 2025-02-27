@@ -131,7 +131,6 @@ import gsap from "gsap";
 const galleryColumns = ref([images1, images2, images1, images2, images1, images2]);
 
 
-// Функция для случайного перемешивания массива (алгоритм Фишера-Йейтса)
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -144,15 +143,7 @@ onMounted(() => {
   const items = promoBlockRef.value.querySelectorAll('li'); 
   const strongEl = promoBlockRef.value.querySelector('strong');
 
-// watch(galleryColumns, (newColumns) => {
-//   const shuffledColumns = newColumns.map(column => {
-//     const columnCopy = [...column];
-//     shuffleArray(columnCopy);
-//     return columnCopy;
-//   });
 
-//   console.log(shuffledColumns);
-// });
 watch(galleryColumns, (newColumns) => {
     shuffledColumns = newColumns.map(column => {
       const columnCopy = [...column];
@@ -160,7 +151,6 @@ watch(galleryColumns, (newColumns) => {
       return columnCopy;
     });
 
-    console.log(shuffledColumns);
   });
 
   cols.forEach((col, index) => {
@@ -176,7 +166,6 @@ watch(galleryColumns, (newColumns) => {
 
   const currentColumn = shuffledColumns[index];
 
-  // if (currentColumn && Array.isArray(currentColumn)) {
     if (currentColumn && currentColumn.length > 0) {
 
     if (direction === 1) {

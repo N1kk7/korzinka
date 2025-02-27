@@ -1,8 +1,6 @@
 <template>
     <div v-if="isVisible" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content max-h-[100vh] overflow-y-auto">
-      <!-- <p>Current Modal: {{ currentModal }}</p>
-      <p>Modal Props: {{ modalProps }}</p> -->
         <slot :openModal="openModal" :closeModal="closeModal" />
         <component
           v-if="currentModal"
@@ -17,13 +15,11 @@
   </template>
 
 <script setup>
-// import { useModalStore } from '@/stores/modal-store';
 import { defineEmits} from 'vue';
 import { useModalStore } from '#imports';
 
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
-// import ProductModal from '~/components/Modals/admin/AddProduct.vue';
 
 // ADMIN
 

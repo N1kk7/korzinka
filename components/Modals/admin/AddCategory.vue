@@ -206,8 +206,6 @@
     import SvgIcon from '@/components/shared/SvgIcon.vue';
 
 
-    // const asyncData = useAsyncData()
-
 
     const modalStore = useModalStore();
     const emit = defineEmits();
@@ -225,12 +223,7 @@
     const categoryTextEn = ref('');
     const categoryTextRu = ref('');
 
-    // const categoryGroup = ref('');
     const categoryVisible = ref(false);
-
-    // watch(categoryVisible, (newVal) => {
-    //     console.log(newVal);
-    // })
 
 
 
@@ -490,21 +483,6 @@
     const shareData = async () => {
 
         const translitString = transliterate(categoryNameUk.value)
-
-        // const date = new Date()
-
-        // console.log(date.getTime());
-        // if (file.value) {
-        //     console.log(file.value, 'file value true')
-
-        // } else {
-        //     console.log(file.value, 'file value false')
-
-        // }
-
-
-        // return 
-        // CHECK DATA BLOCK
 
         if (categoryNameUk.value.length < 1 
             && 

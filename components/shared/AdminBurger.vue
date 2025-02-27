@@ -37,13 +37,7 @@
 
     const toggleSidebar = () => {
         burgerActive.value = !burgerActive.value;
-        // emit('toggle-sidebar', burgerActive.value)
-        // this.$nuxt.$emit('toggle-sidebar', burgerActive.value)
         indexStore.setAdminBurgerBtn(burgerActive.value);
     }
-
-
-
-
 
 </script>
