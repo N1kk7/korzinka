@@ -1,9 +1,9 @@
 interface ICountPrice {
     price: number;
+    totalProduct: number;
     wholeSalePrice?: number;
     wholesaleFrom?: number;
     discountPercent?: number;
-    totalProduct: number;
 }
 export const countTotalPrice = (props: ICountPrice): number => {
 

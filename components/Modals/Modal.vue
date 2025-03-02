@@ -11,15 +11,17 @@
           @tooltip="tooltip"
         />
       </div>
+      <!-- v-bind="{...modalProps}" -->
     </div>
   </template>
 
 <script setup>
-import { defineEmits} from 'vue';
+import { defineEmits, toRefs} from 'vue';
 import { useModalStore } from '#imports';
 
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
+import ProductToCart from './ProductToCart.vue';
 
 // ADMIN
 
@@ -31,6 +33,9 @@ const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
 const currentModal = computed(() => modalStore.currentModal);
 const modalProps = computed(() => modalStore.modalProps);
+// const { modalProps } = toRefs(modalStore);
+
+// console.log(modalProps, 'from modal')
 
 const emit = defineEmits(['addNewItem', 'tooltip']);
 
@@ -40,6 +45,7 @@ const modalComponents = {
   AddProduct,
   AddCategory,
   DeleteCategory,
+  ProductToCart
 }
 
 const tooltip = (obj) => {

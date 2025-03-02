@@ -1,10 +1,12 @@
 <template>
 
-    <NuxtLink 
+    <div 
         class="overflow-hidden bg-[#f0feff] flex items-center justify-center w-auto h-full z-20 rounded-xl shadow-[0_0_1rem_rgba(0,0,0,0.2)] relative"
-        :to="`/products/${props.group.replaceAll(' ', '-').toLowerCase()}/${props.product.id}`"
-        @click="selectProduct(props.product)"
+        
         >
+        <!-- @click="selectProduct(props.product)" -->
+
+        <!-- :to="`/products/${props.group.replaceAll(' ', '-').toLowerCase()}/${props.product.id}`" -->
         <!-- flex  rounded-xl w-auto justify-center items-center relative   -->
      
         
@@ -84,7 +86,7 @@
                     </button>
                     <button 
                         class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
-                        @click="(e) => addToCart(e)">
+                        @click="(e) => addToCart(e, props.product)">
                         <SvgIcon name="cart-icon" fill="white" size="micro"/>
                         <div class="w-[1px] h-full bg-white"/>
                         В кошик
@@ -98,17 +100,18 @@
                 
             </div>
         </div>
-    </NuxtLink>
+    </div>
 </template>
 
 
 <script setup>
 
-    import { useProductStore } from '#imports';
+    import { useProductStore, useModalStore } from '#imports';
 
     import SvgIcon from './shared/SvgIcon.vue';
 
     const productStore = useProductStore();
+    const modalStore = useModalStore();
 
     let counter = ref(0);
 
@@ -133,8 +136,10 @@
 
     }
 
-    const addToCart = (event) => {
+    const addToCart = (event, props) => {
         event.preventDefault();
+        // console.log(props, 'item props')
+        modalStore.showModal("ProductToCart", props );
 
     }
 

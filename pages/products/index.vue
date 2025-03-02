@@ -23,15 +23,16 @@
             <!-- bg-gray-200 h-fit rounded-xl border-1px border-[var(--dark-color)] -->
 
             <!-- {{console.log(product, 'product') }} -->
-            <NuxtLink
-              :to="`/products/${item.group
+            <div
+              class="h-full"
+            >
+            <!-- :to="`/products/${item.group
                 .replaceAll(' ', '-')
                 .toLowerCase()}/${product.id}`"
-              @click="selectProduct(product.product)"
-            >
+              @click="selectProduct(product.product)" -->
               <!-- {{ console.log(item.group, product.id) }} -->
               <ItemCard :product="product" :group="item.group" />
-            </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
