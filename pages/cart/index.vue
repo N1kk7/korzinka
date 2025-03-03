@@ -15,7 +15,21 @@
         <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
           <div class="space-y-6">
             <div
+              v-if="cartProducts.length === 0"
+            >
+              <h2>
+                Нажаль в кошику ще немає товарів!
+                <br />
+                <span>
+                  Перейти до продуктів
+                </span>
+              </h2>
+            </div>
+            <div
               class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6"
+              v-for="(product, idx) in cartProducts"
+              :key="idx"
+
             >
               <div
                 class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0"
@@ -25,9 +39,11 @@
                 <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
                   <img
                     class="h-20 w-20 dark:hidden"
-                    src="@/public/img/icons/brand-identity.png"
+                    :src="product.img[0].path"
                     alt="imac image"
                   />
+                  <!-- src="@/public/img/icons/brand-identity.png" -->
+
                   <!-- <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
                 </a>
 
@@ -66,7 +82,7 @@
                       data-input-counter
                       class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
                       placeholder=""
-                      value="2"
+                      :value="product.quantityProducts"
                       required
                     />
                     <button
@@ -96,7 +112,7 @@
                     <p
                       class="text-base font-bold text-gray-900 dark:text-white"
                     >
-                      1,499 грн
+                      {{ product.totalPrice }} грн
                     </p>
                   </div>
                 </div>
@@ -109,11 +125,12 @@
                     class="text-base font-medium text-gray-900 hover:underline dark:text-white"
                   >
                     <!-- PC system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB, 10-core GPU, Keyboard layout INT -->
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Reiciendis, odit? Quasi voluptatem blanditiis quis, libero
                     necessitatibus aspernatur voluptatum ex ea possimus?
                     Suscipit eveniet, non odit eum atque deleniti optio
-                    voluptas.
+                    voluptas. -->
+                    {{ product.translations.find((t) => t.language === $i18n.locale).title }}
                   </a>
 
                   <div class="flex items-center gap-4">
@@ -531,7 +548,7 @@
                 <dd
                   class="text-base font-bold text-gray-900 dark:var(--dark-color)"
                 >
-                  ₴ 0
+                  ₴ {{ totalPrice }}
                 </dd>
               </dl>
             </div>
@@ -582,4 +599,21 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+
+  import { useCartStore } from '#imports';
+
+  const cartStore = useCartStore();
+
+  const cartProducts = computed(() => cartStore.cart);
+
+  const totalPrice = computed(() => {
+    let total = 0;
+    cartProducts.value.forEach((product) => {
+      total += product.totalPrice;
+    });
+    return total;
+  });
+
+
+</script>

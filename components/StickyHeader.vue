@@ -54,7 +54,17 @@
     </div>
     <div class="right-button-group">
       <NuxtLink to="/cart" class="cart">
-        <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)" />
+        <div class="relative">
+          <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)" />
+          <client-only>
+            <span
+              class="cart-count absolute -top-3 -right-3 w-4 h-4 flex justify-center items-center text-xs font-semibold text-white bg-red-600 rounded-full dark:bg-red-600"
+              v-if="cartCounter > 0"
+            >
+              {{ cartCounter }}
+            </span>
+          </client-only>
+        </div>
         <div class="separator"></div>
         <span>
           {{ $t("common-btns.cart-btn") }}
@@ -66,13 +76,17 @@
 </template>
 
 <script setup>
-import { useModalStore, useIndexStore } from "#imports";
+import { ref, onMounted } from "vue";
+import { useModalStore, useIndexStore, useCartStore } from "#imports";
 
 import LangBtn from "@/components/shared/LangBtn.vue";
 import SvgIcon from "./shared/SvgIcon.vue";
 
 const modalStore = useModalStore();
 const indexStore = useIndexStore();
+const cartStore = useCartStore();
+
+const cartCounter = computed(() => cartStore.cart.length);
 
 const fetchedCategories = computed(() => indexStore.fetchedCategories);
 
@@ -83,6 +97,10 @@ const languageControl = () => {
 const themeControl = () => {
   modalStore.showModal("ThemeModal");
 };
+
+onMounted(() => {
+  cartStore.loadProducts();
+});
 </script>
 
 <style lang="scss">
