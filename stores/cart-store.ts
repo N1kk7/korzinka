@@ -9,17 +9,27 @@ export const useCartStore = defineStore('cart', {
     getters: {},
     actions: {
         addProduct(product: any) {
-            // this.cart.push(product);
+
             this.cart.push(product); 
             this.saveCart();
-
-            console.log(product)
 
         },
         removeProduct(product: any) {
 
             this.cart = this.cart.filter(item => item.id !== product.id);
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+            this.saveCart();
+
+        },
+        updateProduct(product: any, newPrice: number, newQuantity: number) {
+
+            const foundProduct = this.cart.find((item) => item.id === product.id)
+
+            if (foundProduct) {
+                foundProduct.totalPrice = newPrice,
+                foundProduct.quantityProducts = newQuantity
+
+                this.saveCart();
+            }
 
         },
         clearCart() {
@@ -27,10 +37,6 @@ export const useCartStore = defineStore('cart', {
             this.saveCart();
         },
         loadProducts() {
-            // const savedCart = localStorage.getItem('cart');
-            // if (savedCart) {
-            //     this.cart = JSON.parse(savedCart);
-            // }
             if (import.meta.client) { 
                 const savedCart = localStorage.getItem('cart');
                 if (savedCart) {

@@ -1,13 +1,10 @@
 <template>
-  <section class="py-8 antialiased md:py-16 max-md:mt-10">
-    <!-- dark:bg-gray-900  -->
+  <section class="py-8 antialiased md:py-10 max-md:mt-6">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <h2 class="text-xl font-semibold text-[var(--dark-color)] sm:text-2xl">
-        <!-- Кошик -->
+      <h2 class="text-xl font-semibold text-[var(--dark-color)] sm:text-2xl mb-4">
         {{ $t("cart.title") }}
       </h2>
       <p class="text-xl font-sm text-[var(--dark-color)] sm:text-2xl">
-        <!-- Ваш кошик - зручне місце для вибору та оформлення покупок. Ми цінуємо ваш час та прагнемо зробити процес максимально простим та комфортним. -->
         {{ $t("cart.description") }}
       </p>
 
@@ -17,47 +14,44 @@
             <div
               v-if="cartProducts.length === 0"
             >
-              <h2>
+              <h2 class="text-xl text-semibold sm:text-2xl relative z-10 mb-8 text-red-700">
                 Нажаль в кошику ще немає товарів!
-                <br />
-                <span>
+                
+              </h2>
+              <NuxtLink to="/products" class="go-back-btn">
+                <span class="text-[var(--dark-color)]">
                   Перейти до продуктів
                 </span>
-              </h2>
+              </NuxtLink>
             </div>
             <div
-              class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6"
+              class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6 relative"
               v-for="(product, idx) in cartProducts"
               :key="idx"
 
             >
               <div
-                class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0"
+                class="space-y-10 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0"
               >
-                <a href="#" class="shrink-0 md:order-1">
-                  <!-- <img class="h-20 w-20 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-                <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
+                <div class="shrink-0 md:order-1">
                   <img
                     class="h-20 w-20 dark:hidden"
                     :src="product.img[0].path"
-                    alt="imac image"
+                    alt="image"
                   />
-                  <!-- src="@/public/img/icons/brand-identity.png" -->
+                </div>
 
-                  <!-- <img class="hidden h-20 w-20 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
-                </a>
-
-                <label for="counter-input" class="sr-only"
+                <label for="counter-input" class="sr-only text-black"
                   >Choose quantity:</label
                 >
                 <div
-                  class="flex items-center justify-between md:order-3 md:justify-end"
+                  class="flex items-center justify-between md:order-3 md:justify-end "
                 >
-                  <div class="flex items-center">
+                  <div class="flex items-center relative">
                     <button
                       type="button"
                       id="decrement-button"
-                      data-input-counter-decrement="counter-input"
+                      @click="updateQuantity('-', product)"
                       class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                     >
                       <svg
@@ -79,16 +73,14 @@
                     <input
                       type="text"
                       id="counter-input"
-                      data-input-counter
                       class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                      placeholder=""
                       :value="product.quantityProducts"
                       required
                     />
                     <button
                       type="button"
                       id="increment-button"
-                      data-input-counter-increment="counter-input"
+                      @click="updateQuantity('+', product)"
                       class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                     >
                       <svg
@@ -107,8 +99,29 @@
                         />
                       </svg>
                     </button>
+                    <h2 class="absolute -top-8 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap text-[var(--dark-color)]">
+                      Кількість товару
+                    </h2>
+                    <span class="text-sm font-medium text-[var(--dark-color)] absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                      {{ product.translations.find((t) => t.language === $i18n.locale).groupPackage }}
+                    </span>
                   </div>
                   <div class="text-end md:order-4 md:w-32">
+                     <!-- <div class="flex items-center gap-4">
+
+                    
+                  </div> -->
+                    <button
+                        type="button"
+                        @click="removeProduct(product)"
+                        class="
+                          inline-flex items-center text-sm font-medium text-white lg:hover:bg-red-700 dark:text-red-500 absolute top-2 right-2
+                          bg-red-500 px-2 py-1 rounded-md 
+                          "
+                      >
+                      
+                      Видалити
+                    </button>
                     <p
                       class="text-base font-bold text-gray-900 dark:text-white"
                     >
@@ -118,80 +131,26 @@
                 </div>
 
                 <div
-                  class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md"
+                  class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md "
                 >
-                  <a
-                    href="#"
-                    class="text-base font-medium text-gray-900 hover:underline dark:text-white"
+                  <h4
+                    class="text-base font-medium text-[var(--dark-color)]"
                   >
-                    <!-- PC system All in One APPLE iMac (2023) mqrq3ro/a, Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB, 10-core GPU, Keyboard layout INT -->
-                    <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Reiciendis, odit? Quasi voluptatem blanditiis quis, libero
-                    necessitatibus aspernatur voluptatum ex ea possimus?
-                    Suscipit eveniet, non odit eum atque deleniti optio
-                    voluptas. -->
                     {{ product.translations.find((t) => t.language === $i18n.locale).title }}
-                  </a>
+                  </h4>
+                  <span class="text-sm font-medium text-[var(--dark-color)]">
+                    {{ product.translations.find((t) => t.language === $i18n.locale).productDescription }}
+                  </span>
 
-                  <div class="flex items-center gap-4">
-                    <button
-                      type="button"
-                      class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white"
-                    >
-                      <svg
-                        class="me-1.5 h-5 w-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-                        />
-                      </svg>
-                      Add to Favorites
-                    </button>
-
-                    <button
-                      type="button"
-                      class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
-                    >
-                      <svg
-                        class="me-1.5 h-5 w-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18 17.94 6M18 18 6.06 6"
-                        />
-                      </svg>
-                      Remove
-                    </button>
-                  </div>
+                 
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="hidden xl:mt-8 xl:block"> -->
           <div class="mt-8 xl:block">
             <h3
               class="text-2xl font-semibold text-gray-900 dark:text-[var(--dark-color)]"
             >
-              <!-- З цими товарами також купують ... -->
               {{ $t("cart.also-buy") }}
             </h3>
             <div
@@ -200,15 +159,13 @@
               <div
                 class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
               >
-                <a href="#" class="overflow-hidden rounded">
-                  <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" /> -->
+                <div class="overflow-hidden rounded">
                   <img
                     class="mx-auto h-44 w-44 dark:hidden"
                     src="../../public//icon-pack/bag-icons/stratch.png"
-                    alt="imac image"
+                    alt="image"
                   />
-                </a>
+                </div>
                 <div>
                   <a
                     href="#"
@@ -291,12 +248,10 @@
                 class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
               >
                 <a href="#" class="overflow-hidden rounded">
-                  <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg" alt="imac image" />
-                <img class="mx-auto hidden h-44 w-44 dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg" alt="imac image" /> -->
                   <img
                     class="mx-auto h-44 w-44 dark:hidden"
                     src="../../public/icon-pack/bag-icons/comservBag.png"
-                    alt="imac image"
+                    alt="image"
                   />
                 </a>
                 <div>
@@ -470,7 +425,7 @@
           </div>
         </div>
 
-        <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+        <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full md:sticky md:top-[80px]">
           <div
             class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-white sm:p-6"
           >
@@ -507,33 +462,6 @@
                   <dd class="text-base font-medium text-green-700">-₴ 0</dd>
                 </dl>
 
-                <dl class="flex items-center justify-between gap-4">
-                  <dt
-                    class="text-base font-normal text-gray-500 dark:text-gray-500"
-                  >
-                    <!-- Самовивіз / доставка -->
-                    {{ $t("cart.summary.delivery") }}
-                  </dt>
-                  <dd
-                    class="text-base font-medium text-gray-900 dark:text-gray-700"
-                  >
-                    ₴ 0
-                  </dd>
-                </dl>
-
-                <dl class="flex items-center justify-between gap-4">
-                  <dt
-                    class="text-base font-normal text-gray-500 dark:text-gray-500"
-                  >
-                    <!-- Вартість доставки -->
-                    {{ $t("cart.summary.delivery") }}
-                  </dt>
-                  <dd
-                    class="text-base font-medium text-gray-900 dark:text-gray-700"
-                  >
-                    ₴ 0
-                  </dd>
-                </dl>
               </div>
 
               <dl
@@ -554,24 +482,18 @@
             </div>
 
             <NuxtLink
-              to="/checkout"
-              class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-[var(--dark-color)] hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              @click="goToCheckout"
+              class="process-order flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-[var(--dark-color)] hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               <!-- Перейти до оформлення замовлення -->
               {{ $t("cart.summary.place-order") }}
             </NuxtLink>
 
             <div class="flex items-center justify-center gap-2">
-              <span
-                class="text-sm font-normal text-gray-500 dark:text-gray-400"
-              >
-                <!-- чи -->
-                {{ $t("cart.summary.or") }}
-              </span>
               <NuxtLink
                 to="/products"
                 title=""
-                class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
+                class="inline-flex items-center justify-center py-2 rounded-md gap-2 text-sm text-white font-medium text-primary-700 bg-[var(--dark-color)] w-full"
               >
                 <!-- Повернутись в Магазин -->
                 {{ $t("cart.summary.go-back") }}
@@ -601,19 +523,79 @@
 
 <script setup>
 
+  import { onMounted, ref } from "vue";
+  import { useRouter } from 'vue-router';
+
   import { useCartStore } from '#imports';
 
   const cartStore = useCartStore();
+  const router = useRouter();
 
-  const cartProducts = computed(() => cartStore.cart);
+  const cartProducts = ref([]);
+  const totalPrice = ref(0);
 
-  const totalPrice = computed(() => {
-    let total = 0;
-    cartProducts.value.forEach((product) => {
-      total += product.totalPrice;
-    });
-    return total;
-  });
+
+  const removeProduct = (product) => {
+    cartStore.removeProduct(product)
+    cartProducts.value = cartStore.cart;
+    totalPrice.value = cartProducts.value.reduce((acc, product) => acc + product.totalPrice, 0);
+
+  }
+
+
+  const goToCheckout = (event) => {
+
+    if (!cartProducts.value.length) {
+      event.preventDefault();
+      console.log('path to checkout forbidden')
+    } else {
+      router.push('/checkout');
+    }
+   
+  }
+
+
+  const updateQuantity = (operator, product) => {
+
+    const newQuantity = operator === '+' ? product.quantityProducts + product.counterQuantity : product.quantityProducts - product.counterQuantity;
+
+    const newPrice = product.totalPrice = countTotalPrice({
+      price: product.price,
+      totalProduct: newQuantity
+    })
+
+    cartStore.updateProduct(product, newPrice, newQuantity);
+    totalPrice.value = cartProducts.value.reduce((acc, product) => acc + product.totalPrice, 0);
+
+
+  }
+
+
+  onMounted(() => {
+    cartProducts.value = cartStore.cart;
+    totalPrice.value = cartProducts.value.reduce((acc, product) => acc + product.totalPrice, 0);
+
+  })
 
 
 </script>
+
+
+<style lang="scss" scoped>
+
+  @use ".//styles/mixins.scss" as mixins;
+
+    .go-back-btn{
+      @include mixins.cardShadow;
+    }
+
+
+    .process-order{
+      @include mixins.cardShadow;
+      border-radius: 0.375rem;
+      padding: unset;
+      padding-block: 1rem;
+      cursor: pointer;
+    }
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-menu-section">
-    <section class="mobile-menu">
+    <section class="mobile-menu overflow-x-clip">
       <div
         :class="{ 'search-section': true, 'active-searchSection': searchBlock }"
       >
@@ -59,9 +59,17 @@
             {{ $t("search-block.search-btn") }}
           </span>
         </li>
-        <li @click="searchBlock ? (searchBlock = false) : null">
+        <li @click="searchBlock ? (searchBlock = false) : null" class="relative">
           <NuxtLink :to="localePath('/cart')">
             <SvgIcon name="cart-icon" size="medium" fill="var(--light-color)" />
+            <client-only>
+              <span 
+                class="cart-count absolute -top-3 right-1 w-6 h-6 flex justify-center items-center text-xs font-semibold text-white bg-red-600 rounded-full dark:bg-red-600 pt-[0!important]"
+                v-if="cartCounter > 0"
+              >
+                {{ cartCounter }}
+              </span> 
+            </client-only>
             <span>
               {{ $t("common-btns.cart-btn") }}
             </span>
@@ -194,9 +202,9 @@
 <script setup>
 import SvgIcon from "@/shared/SvgIcon.vue";
 import gsap from "gsap";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
-import { useIndexStore, useModalStore } from "#imports";
+import { useIndexStore, useModalStore, useCartStore } from "#imports";
 
 let openMenu = ref(false);
 
@@ -204,11 +212,15 @@ const productList = ref(false);
 const bagList = ref(false);
 const packList = ref(false);
 const searchBlock = ref(false);
+// const cartCounter = ref(0);
 
 const localePath = useLocalePath();
 
 const indexStore = useIndexStore();
 const modalStore = useModalStore();
+const cartStore = useCartStore();
+
+const cartCounter = computed(() => cartStore.cart.length);
 
 const fetchedAllCategories = ref([]);
 
@@ -246,6 +258,10 @@ const listControl = (menu) => {
 const searchControl = () => {
   searchBlock.value = !searchBlock.value;
 };
+
+onMounted(() => {
+  cartStore.loadProducts();
+})
 </script>
 
 <style lang="scss">
@@ -469,5 +485,7 @@ const searchControl = () => {
     left: 0;
     transition: all ease 0.3s;
   }
+
+
 }
 </style>

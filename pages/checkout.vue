@@ -1,32 +1,6 @@
 <template>
   <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
     <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <!-- <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
-      <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-        <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
-          <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-          </svg>
-          Cart
-        </span>
-      </li>
-
-      <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-        <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
-          <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-          </svg>
-          Checkout
-        </span>
-      </li>
-
-      <li class="flex shrink-0 items-center">
-        <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-        Order summary
-      </li>
-    </ol> -->
 
       <div
         class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16 gap-5"
@@ -49,6 +23,8 @@
                   id="your_name"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Введіть ім'я"
+                  v-model="name"
+
                 />
               </div>
 
@@ -60,10 +36,11 @@
                   По батькові
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="your_email"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Введіть по батькові"
+                  v-model="surname"
                 />
               </div>
 
@@ -75,10 +52,11 @@
                   Прізвище
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="your_email"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Введіть прізвище"
+                  v-model="familyName"
                 />
               </div>
 
@@ -658,8 +636,11 @@
                       type="text"
                       id="phone-input"
                       class="z-20 block w-full rounded-e-lg border border-s-0 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:border-s-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500"
-                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                      pattern="\d{9}"
                       placeholder="123-456-7890"
+                      v-model="phone"
+                      maxlength="9"
+
                     />
                   </div>
                 </div>
@@ -677,6 +658,7 @@
                   id="email"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="name@flowbite.com"
+                  v-model="email"
                 />
               </div>
             </div>
@@ -836,7 +818,11 @@
                   v-if="fetchedCity.length > 0"
                   class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)] w-full"
                 >
-                  <li v-for="city in fetchedCity" :key="city.id">
+                  <li 
+                    v-for="city in fetchedCity" 
+                    :key="city.id"
+                    @click="cityRef = city.Present, cityName = city.MainDescription, fetchedCity = []"
+                  >
                     <span
                       class="text-[var(--dark-color)] text-sm p-2 cursor-pointer"
                     >
@@ -858,91 +844,114 @@
             </h2>
 
             <label
-              for="your_name"
-              class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Поштомат "Нова Пошта"
-            </label>
+      for="postomat"
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+    >
+      Поштомат "Нова Пошта"
+    </label>
+    <label class="flex items-center gap-3 cursor-pointer relative">
+      <input
+        type="radio"
+        id="postomat"
+        name="deliveryMethod"
+        value="postomat"
+        v-model="selectedDelivery"
+        class="hidden peer"
+        @click="fetchPostalBox"
+      />
+      <ul
+                  v-if="postomatList.length > 0 "
+                  class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)] w-full top-full r-0"
+                >
+                  <li 
+                    v-for="(postomat, index) in postomatList" 
+                    :key="index"
+                    @click="postomatNumber = `${postomat.Number} ${postomat.ShortAddress}`, postomatList.length = 0"
 
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input
-                type="radio"
-                name="deliveryMethod"
-                value="postomat"
-                v-model="selectedDelivery"
-                class="hidden peer"
-              />
-              <span
-                class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
-              >
-                <span
-                  class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
-                ></span>
-              </span>
-              <input
-                type="text"
-                id="your_name"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                placeholder="Введіть номер відділення або поштомату"
-              />
-            </label>
+                  >
+                    <span
+                      class="text-[var(--dark-color)] text-sm p-2 cursor-pointer"
+                    >
+                      {{ postomat.Number  }}
+                      {{ postomat.ShortAddress }}
+                    </span>
+                  </li>
+                </ul>
+      <span
+        class="w-6 h-6 rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+      >
+        <span
+          class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
+        ></span>
+      </span>
+      <input
+        type="text"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+        placeholder="Введіть номер відділення або поштомату"
+        :disabled="selectedDelivery !== 'postomat'"
+        :value="postomatNumber"
+      />
+    </label>
 
-            <label
-              for="your_name"
-              class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Відділення "Нова Пошта"
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input
-                type="radio"
-                name="deliveryMethod"
-                value="postomat"
-                v-model="selectedDelivery"
-                class="hidden peer"
-              />
-              <span
-                class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
-              >
-                <span
-                  class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
-                ></span>
-              </span>
-              <input
-                type="text"
-                id="your_name"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                placeholder="Оберіть населений пункт"
-              />
-            </label>
-            <label
-              for="your_name"
-              class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Кур'єр "Нова Пошта"
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input
-                type="radio"
-                name="deliveryMethod"
-                value="postomat"
-                v-model="selectedDelivery"
-                class="hidden peer"
-              />
-              <span
-                class="w-6 h-6 inline-block rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
-              >
-                <span
-                  class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
-                ></span>
-              </span>
-              <input
-                type="text"
-                id="your_name"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                placeholder="Оберіть населений пункт"
-              />
-            </label>
+    <label
+      for="branch"
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+    >
+      Відділення "Нова Пошта"
+    </label>
+    <label class="flex items-center gap-3 cursor-pointer">
+      <input
+        type="radio"
+        id="branch"
+        name="deliveryMethod"
+        value="branch"
+        v-model="selectedDelivery"
+        class="hidden peer"
+      />
+      <span
+        class="w-6 h-6 rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+      >
+        <span
+          class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
+        ></span>
+      </span>
+      <input
+        type="text"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+        placeholder="Оберіть населений пункт"
+        :disabled="selectedDelivery !== 'branch'"
+      />
+    </label>
+
+    <label
+      for="courier"
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+    >
+      Кур'єр "Нова Пошта"
+    </label>
+    <label class="flex items-center gap-3 cursor-pointer">
+      <input
+        type="radio"
+        id="courier"
+        name="deliveryMethod"
+        value="courier"
+        v-model="selectedDelivery"
+        class="hidden peer"
+      />
+      <span
+        class="w-6 h-6 rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
+      >
+        <span
+          class="w-2 h-2 bg-white rounded-full opacity-0 peer-checked:opacity-100 transition-opacity shadow-md"
+        ></span>
+      </span>
+      <input
+        type="text"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+        placeholder="Оберіть населений пункт"
+        :disabled="selectedDelivery !== 'courier'"
+      />
+    </label>
           </div>
           <div class="space-y-4">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -1018,10 +1027,12 @@
           <div class="space-y-4">
             <div class="sm:col-span-2">
               <button
-                @click="checkout"
-                type="submit"
+                type="button"
+                @click="processCheckout"
                 class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-[var(--dark-color)] px-5 py-2.5 text-sm font-medium text-[var(--light-color)] hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
               >
+              <!-- type="submit" -->
+
                 <svg
                   class="h-5 w-5"
                   aria-hidden="true"
@@ -1142,6 +1153,7 @@
 import { ref, watch, computed } from "vue";
 
 const cityRef = ref("");
+const cityName = ref("");
 const fetchedCity = ref([]);
 const unknownCity = ref(false);
 let timerId = null;
@@ -1155,6 +1167,12 @@ const deliveryMethod = ref("pickup");
 const selectedDelivery = ref("pickup");
 const paymentMethod = ref("card");
 const selectedPayment = ref("card");
+
+
+const postomatNumber = ref('');
+const postomatList = ref([]);
+
+
 
 const date = new Date();
 const day = date.getDate();
@@ -1188,19 +1206,78 @@ const getCityBody = {
   },
 };
 
-// const debounce = () => {
+const getPostBox = {
+  apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
+  modelName: "AddressGeneral",
+  calledMethod: "getWarehouses",
+  methodProperties: {
+    CityName: "",
+    Limit: "1000",
+    // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
+    CategoryOfWarehouse: "Postomat",
+    Page: "1",
+  },
+}
 
-//   if (cityRef.value === '') {
-//     return
-//   }
+const getPostOffice = {
 
-//   setTimeout(() => {
-//     getCityBody.methodProperties.CityName = cityRef.value;
-//     console.log('log debounce');
+}
 
-//     checkout();
-//   }, 2500)
-// }
+
+const fetchPostalBox = async () => {
+  getPostBox.methodProperties.CityName = cityName.value;
+
+  console.log(cityName.value, 'cityname')
+
+  console.log(getPostBox, 'postBox')
+  const res = await $fetch("https://api.novaposhta.ua/v2.0/json/", {
+    method: "POST",
+    body: getPostBox,
+    // https://api.novaposhta.ua/v2.0/json/
+    // console.log('checkout from scripts')
+  });
+
+  postomatList.value = res.data
+  console.log(res.data)
+
+  // console.log(res.data.filter((item) => item.PostomatFor))
+}
+
+const processCheckout = async () => {
+
+  // if (!name.value || !surname.value || !familyName.value || !email.value || !phone.value) {
+  //   console.log('something went wrong check all fields');
+  // }
+
+  // if (!email.value.includes('@')) {
+  //   console.log('please enter valid email')
+  // }
+
+  // const phoneRegex = /^\d{2}\s*\d{3}\s*\d{2}\s*\d{2}$/;
+
+  // if (!phoneRegex.test(phone.value)) {
+  //   console.log('phone ok')
+  // } 
+
+  try{
+
+    const createNewOrder = await $fetch("api/orders")
+
+
+  } catch (err) {
+
+  }
+
+
+
+
+
+
+
+  
+
+  console.log(phone.value, 'phone.value')
+}
 
 const debounce = () => {
   if (cityRef.value === "") {

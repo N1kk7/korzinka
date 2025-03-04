@@ -391,7 +391,6 @@
             "shipping": "Shipping cost",
             "total": "Total",
             "place-order": "Go to checkout",
-            "or": "or",
             "go-back": "Return to Store"
         }
     },
