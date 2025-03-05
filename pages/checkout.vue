@@ -857,7 +857,7 @@
         value="postomat"
         v-model="selectedDelivery"
         class="hidden peer"
-        @click="fetchPostalBox"
+        @click="getPostomatsNp"
       />
       <ul
                   v-if="postomatList.length > 0 "
@@ -1151,6 +1151,7 @@
 
 <script setup>
 import { ref, watch, computed } from "vue";
+import { useCartStore } from '#imports';
 
 const cityRef = ref("");
 const cityName = ref("");
@@ -1183,6 +1184,8 @@ const hours = date.getHours();
 const openHour = 9;
 const closeHour = 18;
 
+const cartStore = useCartStore();
+
 const getFormattedHours = (h) => (h < 10 ? "0" + h : h);
 const getFormattedMonth = (m) => (m < 10 ? "0" + m : m);
 
@@ -1196,83 +1199,23 @@ const deliveryTime = computed(() => {
   }
 });
 
-// const getCityBody = {
-//   apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
-//   modelName: "AddressGeneral",
-//   calledMethod: "searchSettlements",
-//   methodProperties: {
-//     CityName: "",
-//     Limit: "100",
-//     Page: "1",
-//   },
-// };
-
-// const getPostBox = {
-//   apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
-//   modelName: "AddressGeneral",
-//   calledMethod: "getWarehouses",
-//   methodProperties: {
-//     CityName: "",
-//     Limit: "1000",
-//     // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
-//     CategoryOfWarehouse: "Postomat",
-//     Page: "1",
-//   },
-// }
-
-// const getPostOffice = {
-
-// }
+  // const fetchBoxByNumber = async () => {
+  //   const getBoxByNumber = {
+  //     apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
+  //     modelName: "AddressGeneral",
+  //     calledMethod: "getWarehouses",
+  //     methodProperties: {
+  //       CityName: "",
+  //       Limit: "1000",
+  //       // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
+  //       CategoryOfWarehouse: "Postomat",
+  //       Number: postomatNumber.value,
+  //       Page: "1",
+  //     },
+  //   }
 
 
-const fetchPostalBox = async (event) => {
-
-  if (preventReloadBox.value) {
-    return;
-  }
-
-  if (!cityName.value) {
-    event.preventDefault()
-    return;
-  }
-
-  getPostBox.methodProperties.CityName = cityName.value;
-
-
-
-  console.log(cityName.value, 'cityname')
-
-  console.log(getPostBox, 'postBox')
-  const res = await $fetch("https://api.novaposhta.ua/v2.0/json/", {
-    method: "POST",
-    body: getPostBox,
-    // https://api.novaposhta.ua/v2.0/json/
-    // console.log('checkout from scripts')
-  });
-
-  postomatList.value = res.data
-  console.log(res.data)
-
-  // console.log(res.data.filter((item) => item.PostomatFor))
-}
-
-  const fetchBoxByNumber = async () => {
-    const getBoxByNumber = {
-      apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
-      modelName: "AddressGeneral",
-      calledMethod: "getWarehouses",
-      methodProperties: {
-        CityName: "",
-        Limit: "1000",
-        // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
-        CategoryOfWarehouse: "Postomat",
-        Number: postomatNumber.value,
-        Page: "1",
-      },
-    }
-
-
-  }
+  // }
 
 const processCheckout = async () => {
 
@@ -1290,59 +1233,60 @@ const processCheckout = async () => {
   //   console.log('phone ok')
   // } 
 
+
+
   try{
 
-    const createNewOrder = await $fetch("api/orders")
+    const cartData = cartStore.cart.map(item => {
+      return {
+        productId: item.id,
+        quantity: item.quantityProducts
+      }
+    })
+
+    const orderData = new FormData();
+
+    const orderBody = {
+      email: email.value,
+      orders: [
+        {
+          totalPrice: 99999999,
+          shippingInfo: {
+            recipient: name.value + ' ' + surname.value + ' ' + familyName.value,
+            postCompany: "Нова Пошта",
+            phoneNumber: phone.value,
+            address: postomatNumber.value,
+            city: cityName.value,
+            country: "Ukraine",
+          },
+          orderItems: [
+            ...cartData
+          ],
+
+        },
+       
+        
+      ]
+    }
+
+    orderData.append('data', JSON.stringify(orderBody))
+
+    const createNewOrder = await $fetch("api/orders", {
+      method: "POST",
+      body: orderData
+    })
+
+    cartStore.clearCart();
+
+    console.log(createNewOrder, 'createNewOrder')
 
 
   } catch (err) {
-
+    console.log(err)
   }
 
-
-
-
-
-
-
-  
-
-  console.log(phone.value, 'phone.value')
+  // console.log(phone.value, 'phone.value')
 }
-
-const debounsce = () => {
-  if (cityRef.value === "") {
-    return;
-  }
-
-  clearTimeout(timerId);
-  timerId = setTimeout(() => {
-    getCityBody.methodProperties.CityName = cityRef.value;
-    console.log("log debounce");
-    checkout();
-  }, 500);
-};
-
-const checkout = async () => {
-  const res = await $fetch("https://api.novaposhta.ua/v2.0/json/", {
-    method: "POST",
-    body: getCityBody,
-    // https://api.novaposhta.ua/v2.0/json/
-    // console.log('checkout from scripts')
-  });
-  if (res.data[0] === undefined) {
-    // fetchedCity.value.push('Немає такого міста')
-    unknownCity.value = true;
-  } else {
-    unknownCity.value = false;
-    fetchedCity.value = res.data[0].Addresses;
-  }
-  console.log(res.data[0]);
-
-  return res;
-};
-
-
 
 
 const debounce = (string, fn) => {
@@ -1439,25 +1383,6 @@ const debounce = (string, fn) => {
       super('https://api.novaposhta.ua/v2.0/json/', '79c5b1ebb84b844978e6d52a46b760e1');
     }
 
-
-    // async fetchCity(cityName) {
-    //   const body = {
-    //     apiKey: this.apiKey,
-    //     modelName: "AddressGeneral",
-    //     calledMethod: "searchSettlements",
-    //     methodProperties: {
-    //       CityName: cityName,
-    //       Limit: "500",
-    //       Page: "1",
-    //     }
-    //   }
-
-    //   return this.request("", {
-    //     method: "POST",
-    //     body
-    //   })
-    // }
-
     fetchCity(cityName) {
       return super.fetchCity(cityName, "AddressGeneral", "searchSettlements")
     }
@@ -1475,7 +1400,7 @@ const debounce = (string, fn) => {
         }
       }
 
-      return this.request("", {
+      return super.request("", {
         method: "POST",
         body
       })
@@ -1505,28 +1430,32 @@ const debounce = (string, fn) => {
 
   const novaPost = new NovaPoshtaApi();
 
-
-
   const getCitiesNp = debounce(cityRef.value, async () => {
     console.log('call from function')
     const npCities = await novaPost.fetchCity(cityRef.value);
     console.log(npCities);
     if (npCities.data[0] === undefined) {
-      // fetchedCity.value.push('Немає такого міста')
       unknownCity.value = true;
     } else {
       unknownCity.value = false;
       fetchedCity.value = npCities.data[0].Addresses;
     }
-  })
+  }, )
 
+  const getPostomatsNp = async (event) => {
 
+    if (preventReloadBox.value) {
+      return;
+    }
 
+    if (!cityName.value) {
+      event.preventDefault()
+      return;
+    }
 
-
-
-
-
+    const postomatsNp = await novaPost.fetchPostomats(cityName.value);
+    postomatList.value = postomatsNp.data
+  }
 
 
 

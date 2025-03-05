@@ -574,7 +574,7 @@
   onMounted(() => {
     cartProducts.value = cartStore.cart;
     totalPrice.value = cartProducts.value.reduce((acc, product) => acc + product.totalPrice, 0);
-
+    console.log(cartProducts.value)
   })
 
 

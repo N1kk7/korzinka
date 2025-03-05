@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
        
     break;
     case 'POST':
-        return 
+        return await createOrder(event);
     // return await addUser();
     break;
     case 'PATCH':

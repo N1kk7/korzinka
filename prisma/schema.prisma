@@ -113,11 +113,12 @@ model User {
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
+  id         String      @id @default(uuid())
   userId     Int?        
   user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   status     OrderStatus @default(PENDING) 
   createdAt  DateTime    @default(now())
+  totalPrice Int  
 
   // Информация о доставке
   shippingInfo ShippingInfo?
@@ -128,7 +129,7 @@ model Order {
 
 model OrderItem {
   id        Int     @id @default(autoincrement())
-  orderId   Int
+  orderId   String
   productId Int
   quantity  Int     @default(1) // Количество товара в заказе
 
@@ -138,12 +139,14 @@ model OrderItem {
 
 model ShippingInfo {
   id           Int     @id @default(autoincrement())
-  orderId      Int     @unique 
+  orderId      String     @unique 
   recipient    String  
   phoneNumber  String  
-  address      String  
-  postalCode   String? 
+  postCompany  String? 
+  postOffice   String?
+  postomat     String?
   city         String  
+  address      String?  
   country      String  
 
   order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
