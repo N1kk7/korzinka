@@ -13,12 +13,14 @@ export const useModalStore = defineStore('modal', {
             this.isVisible = true;
             this.currentModal = modalName;
             this.modalProps = props;
+            document.body.style.overflow = "hidden";
             
         },
         closeModal() {
             this.isVisible = false;
             this.currentModal = '';
             this.modalProps = {};
+            document.body.style.overflow = "unset";
         }
     }
 })

@@ -336,6 +336,21 @@
             h2{
                 font-size: 1.5em;
             }
+            @media screen and (max-width: 1024px) {
+                &{
+                    width: 100vw;
+                    height: 100vh;
+                    border-radius: 0;
+                    justify-content: flex-start;
+                    overflow-y: scroll;
+
+                }
+            }
+        }
+        @media screen and (max-width: 1024px) {
+            &{
+                padding: 0;
+            }
         }
 
       
@@ -348,6 +363,11 @@
         span{
             white-space: nowrap;
 
+        }
+        @media screen and (max-width: 1024px) {
+            &{
+                flex: 1 1 100px;
+            }
         }
     }
     h5{

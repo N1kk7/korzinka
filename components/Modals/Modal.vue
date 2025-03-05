@@ -59,7 +59,7 @@ const closeModal = () => {
 
 
 const openModal = (modalName, props = {}) => {
-  modalStore.showModal(modalName, props);
+  document.body.style.overflow = "hidden";
 };
 </script>
 
