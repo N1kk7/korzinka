@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-10">
     <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
 
       <div
@@ -808,7 +808,7 @@
                 </label>
                 <input
                   v-model="cityRef"
-                  @input="debounce"
+                  @input="getCitiesNp"
                   type="text"
                   id="your_name"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
@@ -866,7 +866,7 @@
                   <li 
                     v-for="(postomat, index) in postomatList" 
                     :key="index"
-                    @click="postomatNumber = `${postomat.Number} ${postomat.ShortAddress}`, postomatList.length = 0"
+                    @click="postomatNumber = `${postomat.Number} ${postomat.ShortAddress}`, postomatList.length = 0, preventReloadBox = true"
 
                   >
                     <span
@@ -887,7 +887,7 @@
       <input
         type="text"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-        placeholder="Введіть номер відділення або поштомату"
+        placeholder="Введіть номер поштомату"
         :disabled="selectedDelivery !== 'postomat'"
         :value="postomatNumber"
       />
@@ -1171,6 +1171,7 @@ const selectedPayment = ref("card");
 
 const postomatNumber = ref('');
 const postomatList = ref([]);
+const preventReloadBox = ref(false);
 
 
 
@@ -1195,37 +1196,49 @@ const deliveryTime = computed(() => {
   }
 });
 
-const getCityBody = {
-  apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
-  modelName: "AddressGeneral",
-  calledMethod: "searchSettlements",
-  methodProperties: {
-    CityName: "",
-    Limit: "100",
-    Page: "1",
-  },
-};
+// const getCityBody = {
+//   apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
+//   modelName: "AddressGeneral",
+//   calledMethod: "searchSettlements",
+//   methodProperties: {
+//     CityName: "",
+//     Limit: "100",
+//     Page: "1",
+//   },
+// };
 
-const getPostBox = {
-  apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
-  modelName: "AddressGeneral",
-  calledMethod: "getWarehouses",
-  methodProperties: {
-    CityName: "",
-    Limit: "1000",
-    // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
-    CategoryOfWarehouse: "Postomat",
-    Page: "1",
-  },
-}
+// const getPostBox = {
+//   apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
+//   modelName: "AddressGeneral",
+//   calledMethod: "getWarehouses",
+//   methodProperties: {
+//     CityName: "",
+//     Limit: "1000",
+//     // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
+//     CategoryOfWarehouse: "Postomat",
+//     Page: "1",
+//   },
+// }
 
-const getPostOffice = {
+// const getPostOffice = {
 
-}
+// }
 
 
-const fetchPostalBox = async () => {
+const fetchPostalBox = async (event) => {
+
+  if (preventReloadBox.value) {
+    return;
+  }
+
+  if (!cityName.value) {
+    event.preventDefault()
+    return;
+  }
+
   getPostBox.methodProperties.CityName = cityName.value;
+
+
 
   console.log(cityName.value, 'cityname')
 
@@ -1242,6 +1255,24 @@ const fetchPostalBox = async () => {
 
   // console.log(res.data.filter((item) => item.PostomatFor))
 }
+
+  const fetchBoxByNumber = async () => {
+    const getBoxByNumber = {
+      apiKey: "79c5b1ebb84b844978e6d52a46b760e1",
+      modelName: "AddressGeneral",
+      calledMethod: "getWarehouses",
+      methodProperties: {
+        CityName: "",
+        Limit: "1000",
+        // TypeOfWarehouse: "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
+        CategoryOfWarehouse: "Postomat",
+        Number: postomatNumber.value,
+        Page: "1",
+      },
+    }
+
+
+  }
 
 const processCheckout = async () => {
 
@@ -1279,7 +1310,7 @@ const processCheckout = async () => {
   console.log(phone.value, 'phone.value')
 }
 
-const debounce = () => {
+const debounsce = () => {
   if (cityRef.value === "") {
     return;
   }
@@ -1310,6 +1341,195 @@ const checkout = async () => {
 
   return res;
 };
+
+
+
+
+const debounce = (string, fn) => {
+  
+  return () => {
+    clearTimeout(timerId);
+    if (string === "") {
+    console.log("string is empty");
+    return fn();
+  }
+    timerId = setTimeout(() => {
+      // getCityBody.methodProperties.CityName = cityRef.value;
+      console.log("log debounce");
+      // checkout();
+      fn();
+    }, 500);
+  }
+ 
+};
+
+  class PostalServiceApi {
+
+    constructor(baseUrl, apiKey) {
+      this.baseUrl = baseUrl;
+      this.apiKey = apiKey;
+    }
+
+    async request(endpoint, options = {}) {
+      try{
+        
+        const res = await fetch(`${this.baseUrl}${endpoint}`, {
+          method: options.method || 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: options.body ? JSON.stringify(options.body) : undefined,
+
+        });
+
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+
+        return await res.json();
+
+
+      } catch (err) {
+        console.log('Something went wrong', err)
+        return null;
+      }
+    }
+
+    async fetchCity(cityName, modelName, calledMethod) {
+      const body = {
+        apiKey: this.apiKey,
+        modelName,
+        calledMethod,
+        methodProperties: {
+          CityName: cityName,
+          Limit: "500",
+          Page: "1",
+        }
+      }
+
+      return this.request("", {
+        method: "POST",
+        body
+      })
+    }
+
+    async fetchWarehouses(cityName, modelName, calledMethod, extraParams = {}) {
+      const body = {
+        apiKey: this.apiKey,
+        modelName,
+        calledMethod,
+        methodProperties: {
+          CityName: cityName,
+          Limit: "1000",
+          CategoryOfWarehouse: "Postomat",
+          Page: "1",
+          ...extraParams,
+        }
+      }
+
+      return this.request("", {
+        method: "POST",
+        body
+      })
+    }
+  }
+
+  class NovaPoshtaApi extends PostalServiceApi {
+    constructor() {
+      super('https://api.novaposhta.ua/v2.0/json/', '79c5b1ebb84b844978e6d52a46b760e1');
+    }
+
+
+    // async fetchCity(cityName) {
+    //   const body = {
+    //     apiKey: this.apiKey,
+    //     modelName: "AddressGeneral",
+    //     calledMethod: "searchSettlements",
+    //     methodProperties: {
+    //       CityName: cityName,
+    //       Limit: "500",
+    //       Page: "1",
+    //     }
+    //   }
+
+    //   return this.request("", {
+    //     method: "POST",
+    //     body
+    //   })
+    // }
+
+    fetchCity(cityName) {
+      return super.fetchCity(cityName, "AddressGeneral", "searchSettlements")
+    }
+
+    async fetchPostomats(cityName) {
+      const body = {
+        apiKey: this.apiKey,
+        modelName: "AddressGeneral",
+        calledMethod: "getWarehouses",
+        methodProperties: {
+          CityName: cityName,
+          Limit: "1000",
+          CategoryOfWarehouse: "Postomat",
+          Page: "1",
+        }
+      }
+
+      return this.request("", {
+        method: "POST",
+        body
+      })
+    }
+
+    async fetchPostomatsByNumber(cityName, number) {
+      const body = {
+        apiKey: this.apiKey,
+        modelName: "AddressGeneral",
+        calledMethod: "getWarehouses",
+        methodProperties: {
+          CityName: cityName,
+          Limit: "1000",
+          CategoryOfWarehouse: "Postomat",
+          Number: number,
+          Page: "1",
+        }
+      }
+
+      return this.request("", {
+        method: "POST",
+        body
+      })
+    }
+  }
+
+
+  const novaPost = new NovaPoshtaApi();
+
+
+
+  const getCitiesNp = debounce(cityRef.value, async () => {
+    console.log('call from function')
+    const npCities = await novaPost.fetchCity(cityRef.value);
+    console.log(npCities);
+    if (npCities.data[0] === undefined) {
+      // fetchedCity.value.push('Немає такого міста')
+      unknownCity.value = true;
+    } else {
+      unknownCity.value = false;
+      fetchedCity.value = npCities.data[0].Addresses;
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style scoped lang="scss"></style>
