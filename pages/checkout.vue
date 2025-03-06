@@ -1250,7 +1250,7 @@ const processCheckout = async () => {
       email: email.value,
       orders: [
         {
-          totalPrice: 99999999,
+          totalPrice: cartStore.totalPrice,
           shippingInfo: {
             recipient: name.value + ' ' + surname.value + ' ' + familyName.value,
             postCompany: "Нова Пошта",
