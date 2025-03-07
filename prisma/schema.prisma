@@ -108,8 +108,21 @@ model User {
   email     String   @unique
   password  String?
   createdAt DateTime @default(now())
-
+  role      String   @default("user")
   orders    Order[]
+}
+
+model TelegramUser {
+  id        String  @id @default(uuid())
+  chatId    String  @unique
+  username  String?
+  role      TgRoles
+  createdAt DateTime @default(now())
+}
+
+enum TgRoles {
+  ADMIN
+  CLIENT
 }
 
 model Order {

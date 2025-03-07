@@ -1,5 +1,6 @@
 import { readMultipartFormData } from "#imports";
 import prisma from '../../../../prisma/prisma';
+import { sendTelegramMessage } from "~/utils/sendTgMessage";
 
 
 
@@ -41,6 +42,18 @@ async function createOrder(event: any) {
                   }
             }
         })
+
+        const order = await prisma.order.findFirst(parsedData[0])
+
+        if (!order) {
+          return null
+        }
+
+        const admins = await prisma.telegramUser.findMany({ where: { role: 'ADMIN' } });
+
+        for (const admin of admins) {
+          await sendTelegramMessage(admin.chatId, `📢 Новый заказ №${order.id}\n👤 Клиент: ${order.status}\n💰 Сумма: ${order.totalPrice}₽`);
+        }
 
         return {
             status: 'success',
