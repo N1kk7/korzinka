@@ -102,22 +102,40 @@ model ProductOptionsTranslation {
   Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  username  String?  @unique
-  email     String   @unique
-  password  String?
-  createdAt DateTime @default(now())
-  role      String   @default("user")
-  orders    Order[]
-}
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   username  String?  @unique
+//   email     String   @unique
+//   password  String?
+//   createdAt DateTime @default(now())
+//   role      String   @default("user")
+//   orders    Order[]
+// }
 
-model TelegramUser {
-  id        String  @id @default(uuid())
-  chatId    String  @unique
-  username  String?
-  role      TgRoles
-  createdAt DateTime @default(now())
+// model TelegramUser {
+//   id        String  @id @default(uuid())
+//   chatId    String  @unique
+//   username  String?
+//   role      TgRoles
+//   createdAt DateTime @default(now())
+// }
+
+// enum TgRoles {
+//   ADMIN
+//   CLIENT
+// }
+
+model User {
+  id            Int       @id @default(autoincrement())
+  username      String?   @unique
+  email         String?   @unique
+  password      String?
+  createdAt     DateTime  @default(now())
+  role          String    @default("user")
+  orders        Order[]
+  telegramId    String?   @unique
+  telegramChatId String?   @unique
+  telegramRole  TgRoles?  @default(CLIENT)
 }
 
 enum TgRoles {
