@@ -7,14 +7,14 @@ export default defineEventHandler(async (event) => {
     const { chatId, username, role } = body;
 
 
-    const existingUser = await prisma.telegramUser.findUnique({
-        where: { chatId }
+    const existingUser = await prisma.user.findUnique({
+        where: { username }
       });
 
 
       if (!existingUser) {
-        await prisma.telegramUser.create({
-          data: { chatId, username, role }
+        await prisma.user.create({
+          data: {  username, role }
         });
         return { success: true, message: `Пользователь ${username} зарегистрирован как ${role}.` };
       } else {

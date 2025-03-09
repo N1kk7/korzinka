@@ -22,6 +22,7 @@ import { useModalStore } from '#imports';
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
 import ProductToCart from './ProductToCart.vue';
+import AuthModal from './AuthModal.vue';
 
 // ADMIN
 
@@ -45,7 +46,8 @@ const modalComponents = {
   AddProduct,
   AddCategory,
   DeleteCategory,
-  ProductToCart
+  ProductToCart,
+  AuthModal
 }
 
 const tooltip = (obj) => {

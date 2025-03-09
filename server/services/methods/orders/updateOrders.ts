@@ -1,7 +1,10 @@
 import { defineEventHandler, readBody } from '#imports';
 import prisma from '../../../../prisma/prisma';
 
-import { sendTelegramMessage } from '@/utils/sendTgMessage';
+// import { sendTelegramMessage } from '@/utils/sendTgMessage';
+import { sendTelegramMessage } from '../../../../utils/sendTgMessage';
+
+
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -12,10 +15,10 @@ export default defineEventHandler(async (event) => {
     data: { status }
   });
 
-  const client = await prisma.telegramUser.findUnique({ where: { chatId: order.id } });
+  const client = await prisma.user.findUnique({ where: { id: orderId } });
 
   if (client) {
-    await sendTelegramMessage(client.chatId, `📦 Ваш заказ №${orderId} обновлён. Новый статус: ${status}`);
+    await sendTelegramMessage(orderId, `📦 Ваш заказ №${orderId} обновлён. Новый статус: ${status}`);
   }
 
   return { success: true, order };

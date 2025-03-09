@@ -3,11 +3,11 @@
   "compilerOptions": {
     "types": [],
     "moduleResolution": "Node",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       // "@utils/*": ["./utils/*"],
       "@utils/*": ["./utils/*"],
-      "@/*": ["./*"],
+      "@/*": ["src/*"],
       "~/*": ["./*"],
       "#app": [".nuxt/types/app/index.d.ts"],
       "#imports": [".nuxt/types/app/imports.d.ts"],

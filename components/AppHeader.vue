@@ -49,7 +49,10 @@
           </nav>
         </div>
         <div class="buttons">
-          <div class="log-btn">
+          <div 
+            class="log-btn"
+            @click="modalStore.showModal('AuthModal')"
+          >
             <SvgIcon name="login-btn" size="micro" fill="var(--dark-color)"/>
 
             
@@ -75,6 +78,9 @@
 
     import SvgIcon from './shared/SvgIcon.vue'
     import { useI18n } from 'vue-i18n';
+    import { useModalStore } from '#imports';
+
+    const modalStore = useModalStore();
     
 
 
