@@ -1,7 +1,11 @@
 import { defineEventHandler } from "#imports";
-import { createUser } from "../services/authServices";
-
-
+import { 
+    createUser, 
+    loginUser, 
+    logoutUser, 
+    refreshToken, 
+    me,
+} from "../services/authServices";
 
 export default defineEventHandler(async (event) => {
 
@@ -10,10 +14,20 @@ export default defineEventHandler(async (event) => {
 
     switch (method) {
         case "GET":
+            if (query.auth === 'me') {
+                return await me(event);
+            }
         break;
         case "POST":
-            console.log('enter in controller');
-            return await createUser(event);
+            if (query.auth === 'login') {
+                return await loginUser(event);
+            } else if (query.auth === 'register') {
+                return await createUser(event);
+            } else if (query.auth === 'refresh') {
+                return await refreshToken(event);
+            } else if (query.auth === 'logout') {
+                return await logoutUser(event);
+            }
         break;
         case "PATCH":
         break;

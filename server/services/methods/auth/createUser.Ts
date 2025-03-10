@@ -1,6 +1,6 @@
 import { readMultipartFormData } from "#imports";
 import prisma from '../../../../prisma/prisma';
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 
 

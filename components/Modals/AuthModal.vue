@@ -266,7 +266,7 @@
                     loginWindow.value = false;
                 }, 1500);
             }
-            // console.log(response);
+            console.log(response);
             // if (response.success) {
             //     // console.log('success');
             //     return response.data[0].filePath
@@ -296,7 +296,7 @@
 
     const handleLogin = () => {
 
-        console.log(mail.value, password.value);
+        // console.log(mail.value, password.value);
 
         const loginAuth = new Auth(mail.value, password.value);
 
@@ -312,10 +312,17 @@
 
         // if (!loginAuth.validatePassword()) return null;
 
-        emit('tooltip', {
-            status: 'success',
-            message: 'Ви успішно увійшли'
+        loginAuth.fetchRequest('auth?auth=login', 'POST', {
+
+            mail: mail.value,
+            password: password.value
+            
         })
+
+        // emit('tooltip', {
+        //     status: 'success',
+        //     message: 'Ви успішно увійшли'
+        // })
         
 
 
@@ -345,7 +352,7 @@
             return ;
         }
 
-        registerAuth.fetchRequest('auth', 'POST', {
+        registerAuth.fetchRequest('auth?auth=register', 'POST', {
             userName: userName.value,
             userSurname: userSurname.value,
             userFamily: userFamily.value,

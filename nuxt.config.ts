@@ -39,6 +39,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecretPath: 'NUXT_API_SECRET_PATH',
     apiSecretKey: 'NUXT_API_SECRET_KEY',
+    jwtSecretKey: 'JWT_SECRET',
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',

@@ -27,9 +27,11 @@
 <script setup>
   import Modal from "~/components/Modals/Modal.vue";
   import Tooltips from "~/components/shared/Tooltips.vue";
-  import { useModalStore } from "#imports";
+  import { useModalStore, useAuthStore } from "#imports";
+  import { onMounted } from "vue";
 
   const modalStore = useModalStore();
+  const authStore = useAuthStore();
   const currentModal = computed(() => modalStore.currentModal);
   const modalProps = computed(() => modalStore.modalProps);
 
@@ -48,6 +50,11 @@
       showTooltip.value = false;
     }, 3000);
   };
+
+  onMounted(() => {
+    authStore.fetchUser();
+    console.log(authStore.user);
+  })
 </script>
 
 <style scoped>

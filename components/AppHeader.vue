@@ -49,6 +49,12 @@
           </nav>
         </div>
         <div class="buttons">
+          <button
+            class="logout"
+            @click="authStore.logout"
+          >
+            Log out
+          </button>
           <div 
             class="log-btn"
             @click="modalStore.showModal('AuthModal')"
@@ -78,15 +84,16 @@
 
     import SvgIcon from './shared/SvgIcon.vue'
     import { useI18n } from 'vue-i18n';
-    import { useModalStore } from '#imports';
+    import { useModalStore, useAuthStore } from '#imports';
 
     const modalStore = useModalStore();
+    const authStore = useAuthStore();
     
 
 
     
 
-const localePath = useLocalePath();
+    const localePath = useLocalePath();
 
 
 
