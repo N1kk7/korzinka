@@ -7,6 +7,7 @@ import { useRuntimeConfig, setCookie } from "#imports";
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 
+
 async function loginUser(event: any) {
 
     const config = useRuntimeConfig();
