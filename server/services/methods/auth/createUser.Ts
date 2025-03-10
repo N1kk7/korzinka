@@ -2,9 +2,6 @@ import { readMultipartFormData } from "#imports";
 import prisma from '../../../../prisma/prisma';
 import bcrypt from "bcrypt";
 
-
-
-
 async function createUser(event: any) {
 
     const data = await readMultipartFormData(event);
