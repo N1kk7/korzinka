@@ -20,9 +20,11 @@
     "@prisma/client": "^6.3.1",
     "@splidejs/splide": "^4.1.4",
     "@supabase/supabase-js": "^2.47.11",
+    "bcryptjs": "^3.0.2",
     "express": "^4.21.2",
     "formidable": "^3.5.2",
     "gsap": "^3.12.5",
+    "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
     "swiper": "^11.1.15",
@@ -46,4 +48,3 @@
     "vitest": "^2.1.8"
   }
 }
-

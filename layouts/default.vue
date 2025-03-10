@@ -6,7 +6,10 @@
     <main>
       <slot />
     </main>
-    <Modal>
+    <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
+      {{ tooltipMessage }}
+    </Tooltips>
+    <Modal @tooltip="tooltip">
       <template #default="{ openModal, closeModal }">
         <component
           :is="currentModal"
@@ -22,12 +25,29 @@
 </template>
 
 <script setup>
-import Modal from "~/components/Modals/Modal.vue";
-import { useModalStore } from "#imports";
+  import Modal from "~/components/Modals/Modal.vue";
+  import Tooltips from "~/components/shared/Tooltips.vue";
+  import { useModalStore } from "#imports";
 
-const modalStore = useModalStore();
-const currentModal = computed(() => modalStore.currentModal);
-const modalProps = computed(() => modalStore.modalProps);
+  const modalStore = useModalStore();
+  const currentModal = computed(() => modalStore.currentModal);
+  const modalProps = computed(() => modalStore.modalProps);
+
+  const showTooltip = ref(false);
+  const tooltipStatus = ref("");
+  const tooltipMessage = ref("");
+
+  const tooltip = (obj) => {
+
+    const { status, message } = obj;
+
+    tooltipStatus.value = status;
+    tooltipMessage.value = message;
+    showTooltip.value = true;
+    setTimeout(() => {
+      showTooltip.value = false;
+    }, 3000);
+  };
 </script>
 
 <style scoped>

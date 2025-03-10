@@ -1,4 +1,5 @@
 import { defineEventHandler } from "#imports";
+import { createUser } from "../services/authServices";
 
 
 
@@ -11,6 +12,8 @@ export default defineEventHandler(async (event) => {
         case "GET":
         break;
         case "POST":
+            console.log('enter in controller');
+            return await createUser(event);
         break;
         case "PATCH":
         break;

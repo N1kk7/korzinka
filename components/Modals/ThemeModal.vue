@@ -55,7 +55,6 @@
         background: rgba(0, 0, 0, 0.5);
         border: 1px solid var(--dark-color);
         padding: 2em;
-        border-radius: 1em;
         z-index: 100;
         .modal-wrapper{
             background: var(--bg-color);
