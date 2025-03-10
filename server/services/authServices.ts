@@ -5,7 +5,7 @@ import restoreUser from "./methods/auth/restoreUser";
 import loginUser from "./methods/auth/loginUser";
 import logoutUser from "./methods/auth/logoutUser";
 import refreshToken from "./methods/auth/refreshToken";
-
+import createUser from "./methods/auth/createUser";
 import me from "./methods/auth/me";
 
 
@@ -16,5 +16,6 @@ export {
     loginUser,
     logoutUser,
     refreshToken,
+    createUser,
     me,
 }
