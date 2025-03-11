@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: null as {id: number, email: string, username: string} | null
+        user: null as {} | null
     }),
 
     actions: {
@@ -31,7 +31,7 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const response = await $fetch('/api/auth?auth=me', {
                     method: 'GET',
-                    credentials: 'include' // Убеждаемся, что куки передаются
+                    credentials: 'include'
                 });
         
                 console.log(response, 'response from server');
@@ -42,7 +42,7 @@ export const useAuthStore = defineStore('auth', {
                     return;
                 }
         
-                this.user = response;
+                this.user = response.user;
                 console.log(this.user, 'this.user after update');
         
             } catch (error) {

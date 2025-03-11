@@ -113,7 +113,7 @@ async function me(event: any) {
         }
 
         console.log('User found:', user);
-        return { id: user.id, email: user.email, username: user.username };
+        return { user: user };
 
     } catch (error) {
         console.error('Access token invalid:', error);

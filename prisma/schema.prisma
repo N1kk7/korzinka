@@ -131,10 +131,12 @@ model User {
   userSurname   String?
   userFamily    String?
   email         String?   @unique
+  phoneNumber   String?    
   password      String?
   createdAt     DateTime  @default(now())
   role          String    @default("user")
   orders        Order[]
+  adresses      Adress[]
   telegramId    String?   @unique
   telegramChatId String?   @unique
   telegramRole  TgRoles?  @default(CLIENT)
@@ -145,6 +147,18 @@ enum TgRoles {
   CLIENT
 }
 
+model Adress {
+  id            Int      @id @default(autoincrement())
+  adressId      Int?
+  user          User?     @relation(fields: [adressId], references: [id], onDelete: Cascade)  
+  postCompany   String?
+  postOffice    String?
+  postomat      String?
+  city          String
+  postIndex     String?
+  homeAdress    String?
+}
+
 model Order {
   id         String      @id @default(uuid())
   userId     Int?        
@@ -152,11 +166,7 @@ model Order {
   status     OrderStatus @default(PENDING) 
   createdAt  DateTime    @default(now())
   totalPrice Int  
-
-  // Информация о доставке
   shippingInfo ShippingInfo?
-  
-  // Связь с продуктами в заказе
   orderItems OrderItem[]
 }
 

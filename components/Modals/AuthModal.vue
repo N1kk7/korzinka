@@ -114,6 +114,14 @@
                         required 
                     />
 
+                    <label for="phone-number">Email</label>
+                    <input 
+                        type="phone" 
+                        id="phone-number" 
+                        v-model="phoneNumber"
+                        required 
+                    />
+
                     <div class="pass-wrapper flex justify-center items-center gap-5">
                         <div class="w-full flex flex-col ">
                             <label for="register-password">Пароль</label>
@@ -167,6 +175,12 @@
                 <h2>Добро пожаловать в интернет-магазин korzinka.in.ua</h2>
 
             </div>
+            <button 
+                class="absolute z-20 top-5 right-5 p-2 cursor-pointer border border-solid rounded-full" :style="{'border-color': !loginWindow ? 'var(--main-accent)' : 'var(--primary-color)'}"
+                @click="modalStore.closeModal"
+            >
+                <SvgIcon name="close-btn" size="micro" :fill="!loginWindow ? 'var(--main-accent)' : 'var(--primary-color)'"/>
+            </button>
       </div>
 
 
@@ -184,6 +198,7 @@
     const userName = ref("");
     const userSurname = ref("");
     const userFamily = ref("");
+    const phoneNumber = ref("");
     const mail = ref("");
     const password = ref("");
     const confirmedPass = ref("");
@@ -196,6 +211,7 @@
     watch(loginWindow, () => {
         userName.value = "";
         userSurname.value = "";
+        phoneNumber.value = "";
         userFamily.value = "";
         mail.value = "";
         password.value = "";
