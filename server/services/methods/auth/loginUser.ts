@@ -2,15 +2,11 @@ import { readMultipartFormData } from "#imports";
 import prisma from '../../../../prisma/prisma';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { useRuntimeConfig, setCookie } from "#imports";
+import { setCookie } from "#imports";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-
-
 async function loginUser(event: any) {
-
-    const config = useRuntimeConfig();
 
     const data = await readMultipartFormData(event);
 
@@ -19,8 +15,6 @@ async function loginUser(event: any) {
     }
 
     const parsedData = data.map((item) => JSON.parse(item.data.toString()));
-
-    console.log(parsedData, 'parsedData');
 
     const loginData = parsedData[0];
 
@@ -64,20 +58,10 @@ async function loginUser(event: any) {
             maxAge: 3600 * 24 * 7,
         });
 
-        // const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
-
-        // setCookie(event, 'token', token, {
-        //     httpOnly: true,
-        //     secure: process.env.NODE_ENV === 'production',
-        //     sameSite: 'strict',
-        //     maxAge: 60 * 60 * 24 * 7,
-        //     path: '/'
-
-        // });
-
         return {
             statusCode: 200,
-            statusMessage: 'Login successful'
+            statusMessage: 'Login successful',
+            user: user
         }
 
     } catch (err) {

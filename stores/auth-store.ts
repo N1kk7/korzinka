@@ -6,25 +6,14 @@ export const useAuthStore = defineStore('auth', {
     }),
 
     actions: {
-        // async fetchUser() {
-        //     console.log('enter');
-            
-        //     try{
-        //         const { data } = await $fetch('/api/auth?auth=me', {
-        //            method: 'GET',
-        //            credentials: 'include' 
-        //         })
 
-        //         console.log(data, 'data');
+        setUser(user: any) {
+            if(!user) {
+                return 
+            }
 
-        //         this.user = data
-        //         console.log(this.user, 'this.user');
-
-        //     } catch {
-        //         this.user = null
-        //     }
-        // },
-        
+            this.user = user;
+        },
         async fetchUser() {
             console.log('enter fetchUser');
         

@@ -1,18 +1,18 @@
 import jwt from "jsonwebtoken";
-import { useRuntimeConfig, setCookie, getCookie } from "#imports";
+import { setCookie, getCookie } from "#imports";
 
 async function refreshToken(event: any) {
 
-    const config = useRuntimeConfig();
     const refreshToken = getCookie(event, 'refreshToken');
+    const JWT_SECRET = process.env.JWT_SECRET as string;
 
     if (!refreshToken) {
         throw createError({ statusCode: 401, statusMessage: 'Auth is required' });
     }
 
     try{
-        const decoded = jwt.verify(refreshToken, config.jwtSecret) as { id: number};
-        const newAccessToken = jwt.sign({ id: decoded.id }, config.jwtSecret, { expiresIn: '1h' });
+        const decoded = jwt.verify(refreshToken, JWT_SECRET) as { id: number};
+        const newAccessToken = jwt.sign({ id: decoded.id }, JWT_SECRET, { expiresIn: '1h' });
 
         setCookie(event, 'accessToken', newAccessToken, {
             httpOnly: true,
@@ -30,5 +30,4 @@ async function refreshToken(event: any) {
     }
 
 }
-
 export default refreshToken;

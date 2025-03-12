@@ -193,7 +193,7 @@
 <script setup>
     import SvgIcon from "../shared/SvgIcon.vue";
     import { ref, onMounted, onUnmounted, defineEmits, watch } from "vue";
-    import { useModalStore } from "#imports";
+    import { useModalStore, useAuthStore } from "#imports";
 
     const userName = ref("");
     const userSurname = ref("");
@@ -205,6 +205,8 @@
     const loginWindow = ref(false);
 
     const modalStore = useModalStore();
+
+    const authStore = useAuthStore();
 
     const emit = defineEmits();
 
@@ -282,7 +284,11 @@
                     loginWindow.value = false;
                 }, 1500);
             }
-            console.log(response);
+
+
+            return response;
+            
+
             // if (response.success) {
             //     // console.log('success');
             //     return response.data[0].filePath
@@ -310,7 +316,7 @@
 
 
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
 
         // console.log(mail.value, password.value);
 
@@ -328,20 +334,34 @@
 
         // if (!loginAuth.validatePassword()) return null;
 
-        loginAuth.fetchRequest('auth?auth=login', 'POST', {
+        const loginUser = await loginAuth.fetchRequest('auth?auth=login', 'POST', {
 
             mail: mail.value,
             password: password.value
             
         })
+ 
+        if (loginUser.statusCode === 200) {
+            emit('tooltip', {
+                status: 'success',
+                message: 'Ви успішно увійшли'
+            })
+        } else {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Щось пішло не так'
+            })
+            return;
+        }
 
-        // emit('tooltip', {
-        //     status: 'success',
-        //     message: 'Ви успішно увійшли'
-        // })
+        if (loginUser.user) {
+            authStore.setUser(loginUser.user);
+        }
+
+        setTimeout(() => {
+            modalStore.closeModal();
+        },1000);
         
-
-
     }
 
     const handleRegister = () => {
