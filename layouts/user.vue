@@ -24,16 +24,19 @@
                 class="px-2 py-6 m-0 text-sm whitespace-nowrap text-slate-700 flex justify-center items-center gap-2"
                 target="_blank"
               >
-                <img
-                  src="../public//img/only-dog.png"
+                <div>
+                  <SvgIcon name="default-user-icon" size="large"/>
+                </div>
+                <!-- <img
+                  :src="auth"
                   class="h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1 rounded-lg"
                   alt="main_logo"
-                />
+                /> -->
                 <div class="title-wrapper ml-1 flex items-baseline flex-col">
                   <span
                     class="font-semibold transition-all duration-200 ease-nav-brand"
                   >
-                    Панель керування
+                    Профіль
                   </span>
                   <span> https://www.korzinka.in.ua </span>
                 </div>
@@ -238,6 +241,8 @@ import { computed, toRefs, watch, ref, onMounted } from "vue";
 import Modal from "~/components/Modals/Modal.vue";
 import Tooltips from "~/components/shared/Tooltips.vue";
 import { useModalStore, useIndexStore, useAuthStore } from "#imports";
+import SvgIcon from "@/components/shared/SvgIcon.vue";
+
 
 const showTooltip = ref(false);
 const tooltipStatus = ref("");

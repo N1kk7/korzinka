@@ -1276,9 +1276,40 @@ const processCheckout = async () => {
       body: orderData
     })
 
+    console.log(createNewOrder, 'createNewOrder')
+
+
+    const tgMessageBody = {
+      orderId: createNewOrder.data,
+      user: name.value + ' ' + surname.value + ' ' + familyName.value,
+      amount: cartStore.totalPrice,
+      phone: phone.value,
+      email: email.value,
+      date: new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kiev' }),
+    }
+
+    const tgData = new FormData();
+
+    tgData.append('data', JSON.stringify(tgMessageBody))
+
+    const notificationTg = await $fetch('/api/telegram?notification=newOrder', {
+      method: 'POST',
+      body: tgData
+    })
+
+
+    console.log(notificationTg, 'notificationTg');
+
+    // const tgMessage = `🆕 Новый заказ!  
+    //   📦 ID: ${body.id}  
+    //   👤 Пользователь: ${body.user}  
+    //   💰 Сумма: ${body.amount}  
+    //   📅 Дата: ${body.date}`;
+
+    
+
     cartStore.clearCart();
 
-    console.log(createNewOrder, 'createNewOrder')
 
 
   } catch (err) {

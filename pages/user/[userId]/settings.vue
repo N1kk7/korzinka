@@ -126,8 +126,8 @@
           { title: 'Повідомлення', options: ['Повідомлення про знижки', 'Повідомлення про стан замовлення', 'Повідомлення про замовлення' ]},
           { title: 'Безпека', options: ['Двоетапна перевірка', 'Блокування паролем', 'Зміна паролю',] },
           { title: 'Доставка', options: ['Нова Пошта', 'Укрпошта'] }
-        ]" :key="index" class="settings-section p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow relative">
-          <h2 class="font-bold text-lg mb-4 p-2 bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
+        ]" :key="index" class="settings-section  p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow relative">
+          <h2 class="font-bold text-lg mb-4 p-2 pb-0 pl-0 left bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
             {{ section.title }}
           </h2>
           <div class="space-y-4">

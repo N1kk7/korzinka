@@ -40,6 +40,8 @@ export default defineNuxtConfig({
     apiSecretPath: 'NUXT_API_SECRET_PATH',
     apiSecretKey: 'NUXT_API_SECRET_KEY',
     jwtSecretKey: 'JWT_SECRET',
+    telegramBotToken: 'TELEGRAM_BOT_TOKEN',
+    tgChatId: 'TELEGRAM_CHAT_ID',
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
