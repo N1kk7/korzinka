@@ -1,5 +1,5 @@
 import { defineEventHandler } from '#imports';
-import { createOrder, getOrders } from '../services/orderServices';
+import { createOrder, getOrders, getOrdersByUserId } from '../services/orderServices';
 
 export default defineEventHandler(async (event) => {
 
@@ -9,7 +9,13 @@ export default defineEventHandler(async (event) => {
 
     switch (method) {
         case 'GET': 
-            return await getOrders();
+
+            if (query.orderId) {
+                return await getOrdersByUserId(Number(query.orderId))
+            } else {
+                return await getOrders();
+
+            }
        
         break;
         case 'POST':

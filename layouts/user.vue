@@ -1,242 +1,266 @@
 <template>
-    <div
-      class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500"
-    >
-      <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
-  
-      <aside
-        class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full h-auto p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
-        :aria-expanded="isSidebarOpen"
-        :class="{
-          '-translate-x-full z-50': !isSidebarOpen,
-          'translate-x-4 z-50': isSidebarOpen,
-        }"
+  <div class="layout">
+    <AppHeader />
+    <StickyHeader />
+    <MobileMenu />
+    <main >
+      
+      <div
+        class="m-0 font-sans h-[100%] relative contain-layout  text-base antialiased font-normal leading-default bg-gray-50 text-slate-500"
       >
-        <div>
-          <div class="h-19">
-            <div
-              class="px-2 py-6 m-0 text-sm whitespace-nowrap text-slate-700 flex justify-center items-center gap-2"
-              target="_blank"
-            >
-              <img
-                src="../public//img/only-dog.png"
-                class="h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1 rounded-lg"
-                alt="main_logo"
-              />
-              <div class="title-wrapper ml-1 flex items-baseline flex-col">
-                <span
-                  class="font-semibold transition-all duration-200 ease-nav-brand"
-                >
-                  Панель керування
-                </span>
-                <span> https://www.korzinka.in.ua </span>
-              </div>
-            </div>
-          </div>
-          <!-- dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent -->
-          <hr
-            class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent"
-          />
-  
-          <div
-            class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full py-2"
-          >
-            <ul class="flex flex-col pl-0 mb-0">
-              <li
-                class="mt-0.5 w-full"
-                @click="closeSidebar(), (activePage = 'index')"
-              >
-                <NuxtLink to="/admin/">
-                  <div
-                    class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
-                    :class="{
-                      'text-white bg-[var(--primary-color)]':
-                        activePage === 'index',
-                    }"
-                  >
-                    <div
-                      class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
-                    >
-                      <img src="@/public/img/icons/house.png" alt="option" />
-                    </div>
-                    <span
-                      class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                    >
-                      Головна
-                    </span>
-                  </div>
-                </NuxtLink>
-              </li>
-  
-              <li
-                class="mt-0.5 w-full"
-                @click="closeSidebar(), (activePage = 'notifications')"
-              >
-                <NuxtLink to="/admin/notifications">
-                  <div
-                    class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
-                    :class="{
-                      'text-white bg-[var(--primary-color)]':
-                        activePage === 'notifications',
-                    }"
-                  >
-                    <div
-                      class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
-                    >
-                      <img
-                        src="@/public/img/icons/notification.png"
-                        alt="option"
-                      />
-                    </div>
-                    <span
-                      class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                    >
-                      Повідомлення
-                    </span>
-                  </div>
-                </NuxtLink>
-              </li>
-  
-              <li
-                class="mt-0.5 w-full"
-                @click="closeSidebar(), (activePage = 'orders')"
-              >
-                <NuxtLink to="/admin/orders">
-                  <div
-                    class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
-                    :class="{
-                      'text-white bg-[var(--primary-color)]':
-                        activePage === 'orders',
-                    }"
-                  >
-                    <div
-                      class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
-                    >
-                      <img src="@/public/img/icons/order.png" alt="option" />
-                    </div>
-                    <span
-                      class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                    >
-                      Замовлення
-                    </span>
-                  </div>
-                </NuxtLink>
-              </li>
-  
-              <li
-                class="mt-0.5 w-full"
-                @click="closeSidebar(), (activePage = 'settings')"
-              >
-                <NuxtLink to="/admin/settings">
-                  <div
-                    class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
-                    :class="{
-                      'text-white bg-[var(--primary-color)]':
-                        activePage === 'settings',
-                    }"
-                  >
-                    <div
-                      class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
-                    >
-                      <img src="@/public/img/icons/setting.png" alt="option" />
-                    </div>
-                    <span
-                      class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                    >
-                      Налаштування
-                    </span>
-                  </div>
-                </NuxtLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-  
-        <div class="mx-4 pb-14">
-          <!-- load phantom colors for card after: -->
-          <p
-            class="invisible hidden text-blue-500 bg-gray-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850"
-          ></p>
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border"
-            sidenav-card
-          >
-            <!-- <img class="w-1/2 mx-auto" src="./assets/img/illustrations/icon-documentation.svg" alt="sidebar illustrations" /> -->
-            <div class="flex-auto w-full p-4 pt-0 text-center">
-              <div class="transition-all duration-200 ease-nav-brand">
-                <h6 class="mb-0 dark:text-white text-slate-700">Need help?</h6>
-                <p
-                  class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60"
-                >
-                  Please check our docs
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- pro btn  -->
-        <button
-            class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px"
+        <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
+
+        <aside
+          class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full max-h-[85%] p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
+          :aria-expanded="isSidebarOpen"
+          :class="{
+            '-translate-x-full z-50': !isSidebarOpen,
+            'translate-x-4 z-50': isSidebarOpen,
+          }"
         >
-            Upgrade to pro
-        </button>
-        <NuxtLink to="/">
+          <div>
+            <div class="h-19">
+              <div
+                class="px-2 py-6 m-0 text-sm whitespace-nowrap text-slate-700 flex justify-center items-center gap-2"
+                target="_blank"
+              >
+                <img
+                  src="../public//img/only-dog.png"
+                  class="h-auto w-[40px] transition-all duration-200 dark:inline ease-nav-brand bg-[var(--light-color)] p-1 rounded-lg"
+                  alt="main_logo"
+                />
+                <div class="title-wrapper ml-1 flex items-baseline flex-col">
+                  <span
+                    class="font-semibold transition-all duration-200 ease-nav-brand"
+                  >
+                    Панель керування
+                  </span>
+                  <span> https://www.korzinka.in.ua </span>
+                </div>
+              </div>
+            </div>
+            <!-- dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent -->
+            <hr
+              class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent"
+            />
+
+            <div
+              class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full py-2"
+            >
+              <ul class="flex flex-col pl-0 mb-0">
+                <li
+                  class="mt-0.5 w-full"
+                  @click="closeSidebar(), (activePage = 'index')"
+                >
+                  <NuxtLink :to="`/user/:${authStore.user.id}`">
+                    <div
+                      class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                      :class="{
+                        'text-white bg-[var(--primary-color)]':
+                          activePage === 'index',
+                      }"
+                    >
+                      <div
+                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
+                      >
+                        <img src="@/public/img/icons/house.png" alt="option" />
+                      </div>
+                      <span
+                        class="ml-1 duration-300 opacity-100 pointer-events-none ease"
+                      >
+                        Профіль
+                      </span>
+                    </div>
+                  </NuxtLink>
+                </li>
+
+                <li
+                  class="mt-0.5 w-full"
+                  @click="closeSidebar(), (activePage = 'notifications')"
+                >
+                  <NuxtLink :to="`/user/:${authStore.user.id}/notifications`">
+                    <div
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      :class="{
+                        'text-white bg-[var(--primary-color)]':
+                          activePage === 'notifications',
+                      }"
+                    >
+                      <div
+                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
+                      >
+                        <img
+                          src="@/public/img/icons/notification.png"
+                          alt="option"
+                        />
+                      </div>
+                      <span
+                        class="ml-1 duration-300 opacity-100 pointer-events-none ease"
+                      >
+                        Повідомлення
+                      </span>
+                    </div>
+                  </NuxtLink>
+                </li>
+
+                <li
+                  class="mt-0.5 w-full"
+                  @click="closeSidebar(), (activePage = 'orders')"
+                >
+                  <NuxtLink :to="`/user/:${authStore.user.id}/orders`">
+                    <div
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      :class="{
+                        'text-white bg-[var(--primary-color)]':
+                          activePage === 'orders',
+                      }"
+                    >
+                      <div
+                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
+                      >
+                        <img src="@/public/img/icons/order.png" alt="option" />
+                      </div>
+                      <span
+                        class="ml-1 duration-300 opacity-100 pointer-events-none ease"
+                      >
+                        Замовлення
+                      </span>
+                    </div>
+                  </NuxtLink>
+                </li>
+
+                <li
+                  class="mt-0.5 w-full"
+                  @click="closeSidebar(), (activePage = 'settings')"
+                >
+                  <NuxtLink :to="`/user/:${authStore.user.id}/settings`">
+                    <div
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      :class="{
+                        'text-white bg-[var(--primary-color)]':
+                          activePage === 'settings',
+                      }"
+                    >
+                      <div
+                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5"
+                      >
+                        <img
+                          src="@/public/img/icons/setting.png"
+                          alt="option"
+                        />
+                      </div>
+                      <span
+                        class="ml-1 duration-300 opacity-100 pointer-events-none ease"
+                      >
+                        Налаштування
+                      </span>
+                    </div>
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mx-4 pb-14">
+            <!-- load phantom colors for card after: -->
+            <p
+              class="invisible hidden text-blue-500 bg-gray-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850"
+            ></p>
+            <div
+              class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border"
+              sidenav-card
+            >
+              <!-- <img class="w-1/2 mx-auto" src="./assets/img/illustrations/icon-documentation.svg" alt="sidebar illustrations" /> -->
+              <div class="flex-auto w-full p-4 pt-0 text-center">
+                <div class="transition-all duration-200 ease-nav-brand">
+                  <h6 class="mb-0 dark:text-white text-slate-700">
+                    Need help?
+                  </h6>
+                  <p
+                    class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60"
+                  >
+                    Please check our docs
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- pro btn  -->
             <button
+              class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px"
+            >
+              Upgrade to pro
+            </button>
+            <NuxtLink to="/">
+              <button
                 class="flex items-center justify-start gap-5 w-full px-8 py-2 my-2 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px"
                 @click="authStore.logout()"
-            >
-                <img src=" @/public/img/icons/exit.png" alt="exit" class="w-5 h-5"/>
+              >
+                <img
+                  src=" @/public/img/icons/exit.png"
+                  alt="exit"
+                  class="w-5 h-5"
+                />
                 Exit
-            </button>
+              </button>
+            </NuxtLink>
+          </div>
+        </aside>
 
-        </NuxtLink>
-        
+        <div
+          class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
+        >
+          <slot />
         </div>
-      </aside>
+      </div>
+    </main>
 
-      <main
-        class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
-      >
-        <slot />
-  
-      </main>
-      <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
-        {{ tooltipMessage }}
-      </Tooltips>
-      <Modal @tooltip="tooltip">
-        <template #default="{ openModal, closeModal }">
-          <component
-            :is="currentModal"
-            v-bind="modalProps"
-            :openModal="openModal"
-            :closeModal="closeModal"
-          />
-        </template>
-      </Modal>
-    </div>
-  </template>
+    <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
+      {{ tooltipMessage }}
+    </Tooltips>
+    <Modal @tooltip="tooltip">
+      <template #default="{ openModal, closeModal }">
+        <component
+          :is="currentModal"
+          v-bind="modalProps"
+          :openModal="openModal"
+          :closeModal="closeModal"
+        />
+      </template>
+    </Modal>
+    <AppFooter />
 
+  </div>
+</template>
 
 <script setup>
-    import { computed, toRefs, watch, ref, onMounted } from "vue";
-    import Modal from "~/components/Modals/Modal.vue";
-    import Tooltips from "~/components/shared/Tooltips.vue";
-    import { useModalStore, useIndexStore, useAuthStore } from "#imports";
+import { computed, toRefs, watch, ref, onMounted } from "vue";
+import Modal from "~/components/Modals/Modal.vue";
+import Tooltips from "~/components/shared/Tooltips.vue";
+import { useModalStore, useIndexStore, useAuthStore } from "#imports";
 
-    const showTooltip = ref(false);
-    const tooltipStatus = ref("");
-    const tooltipMessage = ref("");
-    const isSidebarOpen = ref(false);
-    const activePage = ref("index");
+const showTooltip = ref(false);
+const tooltipStatus = ref("");
+const tooltipMessage = ref("");
+const isSidebarOpen = ref(false);
+const activePage = ref("index");
 
-    const modalStore = useModalStore();
-    const indexStore = useIndexStore();
-    const authStore = useAuthStore();
-    const currentModal = computed(() => modalStore.currentModal);
-    const modalProps = computed(() => modalStore.modalProps);
+const modalStore = useModalStore();
+const indexStore = useIndexStore();
+const authStore = useAuthStore();
+const currentModal = computed(() => modalStore.currentModal);
+const modalProps = computed(() => modalStore.modalProps);
+
+const tooltip = (obj) => {
+  const { status, message } = obj;
+  tooltipStatus.value = status;
+  tooltipMessage.value = message;
+  showTooltip.value = true;
+  setTimeout(() => {
+    showTooltip.value = false;
+  }, 3000);
+};
 </script>
-
-
 
 <style lang="scss">
 .admin-layout {

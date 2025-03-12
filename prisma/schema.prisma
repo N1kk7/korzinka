@@ -129,6 +129,7 @@ model User {
   id            Int       @id @default(autoincrement())
   username      String?   @unique
   userSurname   String?
+  userAvatar    String?
   userFamily    String?
   email         String?   @unique
   phoneNumber   String?    
@@ -137,6 +138,7 @@ model User {
   role          String    @default("user")
   orders        Order[]
   adresses      Adress[]
+  notifications Notification[]
   telegramId    String?   @unique
   telegramChatId String?   @unique
   telegramRole  TgRoles?  @default(CLIENT)
@@ -145,6 +147,15 @@ model User {
 enum TgRoles {
   ADMIN
   CLIENT
+}
+
+model Notification {
+  id              Int     @id @default(autoincrement())
+  notificationId  Int?
+  user            User?   @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  message         String
+  date            String
+
 }
 
 model Adress {

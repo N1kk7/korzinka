@@ -344,7 +344,6 @@ const showMobileCategory = (category) => {
         mobileBags.value = false;
         mobilePackages.value = true;
       }
-
       break;
   }
 };
@@ -400,7 +399,7 @@ main {
   border-radius: 25%;
   position: relative;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
-    /* Темная тень */ -5px -5px 10px rgba(255, 255, 255, 0.2); /* Светлая тень */
+     -5px -5px 10px rgba(255, 255, 255, 0.2); 
 
   img {
     width: 100%;
