@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth', {
             this.user = user;
         },
         async fetchUser() {
-            console.log('enter fetchUser');
+            // console.log('enter fetchUser');
         
             try {
                 const response = await $fetch('/api/auth?auth=me', {
@@ -22,19 +22,19 @@ export const useAuthStore = defineStore('auth', {
                     credentials: 'include'
                 });
         
-                console.log(response, 'response from server');
+                // console.log(response, 'response from server');
         
                 if (!response) {
-                    console.log('No response from server');
+                    // console.log('No response from server');
                     this.user = null;
                     return;
                 }
         
                 this.user = response.user;
-                console.log(this.user, 'this.user after update');
+                // console.log(this.user, 'this.user after update');
         
             } catch (error) {
-                console.error('Error in fetchUser:', error);
+                // console.error('Error in fetchUser:', error);
                 this.user = null;
             }
         },
@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth', {
                 credentials: 'include'
             })
 
-            console.log(logout, 'logout message')
+            // console.log(logout, 'logout message')
             this.user = null
         }
     }

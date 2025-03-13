@@ -30,65 +30,68 @@ async function me(event: any) {
       });
     }
   }
-  if (!accessToken) {
-    console.error("No valid tokens found");
-    throw createError({ statusCode: 401, statusMessage: "Auth is required" });
-  }
-  try {
-    console.log("Verifying access token");
-    const decoded = jwt.verify(accessToken, JWT_SECRET) as { id: number };
-
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
-      select: {
-        id: true,
-        username: true,
-        userSurname: true,
-        userFamily: true,
-        userAvatar: true,
-        phoneNumber: true,
-        createdAt: true,
-        email: true,
-        role: true,
-        telegramChatId: true,
-        telegramRole: true,
-        adresses: {
-          select: {
-            id: true,
-            city: true,
-            postIndex: true,
-            homeAdress: true,
-            postCompany: true,
-            postOffice: true,
-            postomat: true
+  // if (!accessToken) {
+  //   console.error("No valid tokens found");
+  //   throw createError({ statusCode: 401, statusMessage: "Auth is required" });
+  // }
+  if (accessToken) {
+    try {
+      console.log("Verifying access token");
+      const decoded = jwt.verify(accessToken, JWT_SECRET) as { id: number };
+  
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.id },
+        select: {
+          id: true,
+          username: true,
+          userSurname: true,
+          userFamily: true,
+          userAvatar: true,
+          phoneNumber: true,
+          createdAt: true,
+          email: true,
+          role: true,
+          telegramChatId: true,
+          telegramRole: true,
+          adresses: {
+            select: {
+              id: true,
+              city: true,
+              postIndex: true,
+              homeAdress: true,
+              postCompany: true,
+              postOffice: true,
+              postomat: true
+            },
           },
-        },
-        notifications: {
-          select: {
-            id: true,
-            isReaded: true,
-            message: true,
-            createdAt: true,
+          notifications: {
+            select: {
+              id: true,
+              isReaded: true,
+              message: true,
+              createdAt: true,
+            },
           },
-        },
-
+  
+        }
+      });
+  
+      if (!user) {
+        console.error("User not found");
+        throw createError({ statusCode: 401, statusMessage: "User not found" });
       }
-    });
-
-    if (!user) {
-      console.error("User not found");
-      throw createError({ statusCode: 401, statusMessage: "User not found" });
+  
+      console.log("User found:", user);
+      return { user: user };
+    } catch (error) {
+      console.error("Access token invalid:", error);
+      throw createError({
+        statusCode: 401,
+        statusMessage: "Invalid access token",
+      });
     }
-
-    console.log("User found:", user);
-    return { user: user };
-  } catch (error) {
-    console.error("Access token invalid:", error);
-    throw createError({
-      statusCode: 401,
-      statusMessage: "Invalid access token",
-    });
   }
+ 
 }
 
 export default me;

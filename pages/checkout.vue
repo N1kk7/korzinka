@@ -1239,7 +1239,7 @@
                   Вартість товарів
                 </dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-white">
-                  {{ cartStore.totalPrice }} грн.
+                  {{ checkout.totalProducts }} грн.
                 </dd>
               </dl>
 
@@ -1259,7 +1259,9 @@
                   Всього:
                 </dt>
                 <dd class="text-base font-bold text-gray-900 dark:text-white">
-                  {{ cartStore.totalPrice > 2000 ? cartStore.totalPrice : cartStore.totalPrice + 200 }} грн.
+                  <!-- {{ cartStore.totalPrice > 2000 ? cartStore.totalPrice : cartStore.totalPrice + 200 }} грн. -->
+                  {{ checkout.totalPrice }} грн.
+
                 </dd>
               </dl>
             </div>
@@ -1328,9 +1330,19 @@ const contactInfoState = ref(false);
 const deliveryAddressState = ref(false);
 const courierDeliveryState = ref(false);
 
+const checkout = ref({
+  totalProducts: 0,
+  discount: 0,
+  totalPrice: 0,
+})
+
 
 
 const saveDeliveryAddress = ref(false);
+
+const config = useRuntimeConfig();
+const NOVA_POST_KEY = config.public.novaPostKey;
+const NOVA_POST_URI = config.public.novaPostUri;
 
 onMounted(() => {
   if (authStore.user) {
@@ -1346,7 +1358,11 @@ onMounted(() => {
 
   }
 
-  console.log(cartStore, 'cartStore')
+  checkout.value.totalProducts = cartStore.totalPrice;
+  checkout.value.totalPrice = cartStore.totalPrice > 2000 ? cartStore.totalPrice : cartStore.totalPrice + 200;
+
+  console.log(NOVA_POST_KEY, NOVA_POST_URI, 'np cred')
+  // console.log(NOVA_POST_KEY.replace(';', ''))
 });
 
 const postomatNumber = ref("");
@@ -1575,8 +1591,8 @@ class PostalServiceApi {
 class NovaPoshtaApi extends PostalServiceApi {
   constructor() {
     super(
-      "https://api.novaposhta.ua/v2.0/json/",
-      "79c5b1ebb84b844978e6d52a46b760e1"
+      NOVA_POST_URI,
+      NOVA_POST_KEY
     );
   }
 

@@ -22,20 +22,7 @@ export default defineNuxtConfig({
   components: true,
 
   devtools: { enabled: true },
-  // srcDir: 'src/',
-  // runtimeConfig: {
-  //   public: {
-  //     supabaseUrl: process.env.DATABASE_URL,
-  //     supabaseDirect: process.env.DIRECT_URL,
-  //   },
-  //   databaseUrl: process.env.DATABASE_URL,
-  // },
-  // runtimeConfig: {
-  //   databaseUrl: process.env.NUXT_DATABASE_URL,
-  //   directUrl: process.env.NUXT_DIRECT_URL,
-  //   supabaseUrl: process.env.NUXT_SUPABASE_URL,
-  //   supabaseKey: process.env.NUXT_SUPABASE_KEY
-  // },
+ 
   runtimeConfig: {
     apiSecretPath: 'NUXT_API_SECRET_PATH',
     apiSecretKey: 'NUXT_API_SECRET_KEY',
@@ -45,7 +32,8 @@ export default defineNuxtConfig({
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
-        // anonKey: 'NUXT_API_PUBLIC_KEY',
+        novaPostKey:  process.env.NOVA_POST_KEY,
+        novaPostUri:  process.env.NOVA_POST_URI,
     }
 },
   app: {
@@ -105,9 +93,6 @@ export default defineNuxtConfig({
       },
     ],
     defaultLocale: "uk",
-    // vueI18n: {
-    //   fallbackLocale: "uk",
-    // }
 
   },
   plugins: [
