@@ -1,5 +1,6 @@
 <template>
-  <section class="py-8 antialiased md:py-10 max-md:mt-6">
+  <div>
+    <section class="py-8 antialiased md:py-10 max-md:mt-6">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <h2 class="text-xl font-semibold text-[var(--dark-color)] sm:text-2xl mb-4">
         {{ $t("cart.title") }}
@@ -519,12 +520,19 @@
       </div>
     </div>
   </section>
+    <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
+      {{ tooltipMessage }}
+    </Tooltips>
+  </div>
+ 
+  
 </template>
 
 <script setup>
 
   import { onMounted, ref } from "vue";
   import { useRouter } from 'vue-router';
+  import Tooltips from "~/components/shared/Tooltips.vue";
 
   import { useCartStore } from '#imports';
 
@@ -533,6 +541,25 @@
 
   const cartProducts = ref([]);
   const totalPrice = ref(0);
+
+  const showTooltip = ref(false);
+  const tooltipStatus = ref("");
+  const tooltipMessage = ref("");
+
+  const tooltip = (obj) => {
+
+  const { status, message } = obj;
+
+    tooltipStatus.value = status;
+    tooltipMessage.value = message;
+    showTooltip.value = true;
+    setTimeout(() => {
+      showTooltip.value = false;
+      tooltipStatus.value = "";
+      tooltipMessage.value = "";
+    }, 3000);
+  };
+
 
 
   const removeProduct = (product) => {
@@ -547,6 +574,10 @@
 
     if (!cartProducts.value.length) {
       event.preventDefault();
+      tooltip({
+        status: "error",
+        message: "Ваш кошик порожній"
+      })
       console.log('path to checkout forbidden')
     } else {
       router.push('/checkout');

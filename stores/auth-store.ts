@@ -11,7 +11,6 @@ export const useAuthStore = defineStore('auth', {
             if(!user) {
                 return 
             }
-
             this.user = user;
         },
         async fetchUser() {

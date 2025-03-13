@@ -153,6 +153,8 @@ model Notification {
   id              Int     @id @default(autoincrement())
   notificationId  Int?
   user            User?   @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  isReaded        Boolean
+  createdAt       DateTime  @default(now())
   message         String
   date            String
 
@@ -171,11 +173,12 @@ model Adress {
 }
 
 model Order {
-  id         String      @id @default(uuid())
-  userId     Int?        
-  user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
-  status     OrderStatus @default(PENDING) 
-  createdAt  DateTime    @default(now())
+  id              String      @id @default(uuid())
+  userId          Int?        
+  user            User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  status          OrderStatus @default(PENDING) 
+  createdAt       DateTime    @default(now())
+  paymentMethod   String?
   totalPrice Int  
   shippingInfo ShippingInfo?
   orderItems OrderItem[]
@@ -192,16 +195,17 @@ model OrderItem {
 }
 
 model ShippingInfo {
-  id           Int     @id @default(autoincrement())
-  orderId      String     @unique 
-  recipient    String  
-  phoneNumber  String  
-  postCompany  String? 
-  postOffice   String?
-  postomat     String?
-  city         String  
-  address      String?  
-  country      String  
+  id              Int     @id @default(autoincrement())
+  orderId         String     @unique 
+  recipient       String  
+  phoneNumber     String
+  deliveryMethod  String?  
+  postCompany     String? 
+  postOffice      String?
+  postomat        String?
+  city            String  
+  address         String?  
+  country         String  
 
   order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }

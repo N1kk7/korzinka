@@ -40,6 +40,39 @@ async function me(event: any) {
 
     const user = await prisma.user.findUnique({
       where: { id: decoded.id },
+      select: {
+        id: true,
+        username: true,
+        userSurname: true,
+        userFamily: true,
+        userAvatar: true,
+        phoneNumber: true,
+        createdAt: true,
+        email: true,
+        role: true,
+        telegramChatId: true,
+        telegramRole: true,
+        adresses: {
+          select: {
+            id: true,
+            city: true,
+            postIndex: true,
+            homeAdress: true,
+            postCompany: true,
+            postOffice: true,
+            postomat: true
+          },
+        },
+        notifications: {
+          select: {
+            id: true,
+            isReaded: true,
+            message: true,
+            createdAt: true,
+          },
+        },
+
+      }
     });
 
     if (!user) {

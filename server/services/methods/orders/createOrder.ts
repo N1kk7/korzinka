@@ -121,7 +121,10 @@ async function createOrder(event: any) {
        
 
     } catch (err) {
-        return  `Something went wrong ${err}`
+        return  {
+          status: 'error',
+          message: `Something went wrong ${err}`,
+        }
         
     }
 }
