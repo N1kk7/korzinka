@@ -64,7 +64,7 @@
         height: fit-content;
         width: 100%;
         text-align: center;
-        position: absolute;
+        position: fixed;
         // padding-left: 250px;
         top: 20px;
         right: 0;

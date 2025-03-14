@@ -114,9 +114,9 @@
                         required 
                     />
 
-                    <label for="phone-number">Email</label>
+                    <label for="phone-number">Номер телефона</label>
                     <input 
-                        type="phone" 
+                        type="tel" 
                         id="phone-number" 
                         v-model="phoneNumber"
                         required 

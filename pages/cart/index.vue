@@ -520,9 +520,7 @@
       </div>
     </div>
   </section>
-    <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
-      {{ tooltipMessage }}
-    </Tooltips>
+    
   </div>
  
   

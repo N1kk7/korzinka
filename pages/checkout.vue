@@ -31,14 +31,14 @@
 
               <div>
                 <label
-                  for="your_email"
+                  for="your_surname"
                   class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                 >
                   По батькові
                 </label>
                 <input
                   type="text"
-                  id="your_email"
+                  id="your_surname"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Введіть по батькові"
                   v-model="surname"
@@ -47,14 +47,14 @@
 
               <div>
                 <label
-                  for="your_email"
+                  for="your_family"
                   class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Прізвище
                 </label>
                 <input
                   type="text"
-                  id="your_email"
+                  id="your_family"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Введіть прізвище"
                   v-model="familyName"
@@ -910,7 +910,7 @@
                 value="postomat"
                 v-model="selectedDelivery"
                 class="hidden peer"
-                @click="getPostomatsNp"
+                @click="getPostomatsNp(e, 'reload')"
               />
               <ul
                 v-if="postomatList.length > 0"
@@ -943,19 +943,20 @@
               <input
                 type="text"
                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                placeholder="Введіть номер поштомату"
+                placeholder="Введіть номер поштомату або адресу"
                 :disabled="selectedDelivery !== 'postomat'"
-                :value="postomatNumber"
+                v-model="postomatNumber"
+                @input="getPostomatsNp(e, 'reload')"
               />
             </label>
 
             <label
               for="branch"
-              class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              class="mb-2 block text-sm font-medium text-gray-900 dark:text-white "
             >
               Відділення "Нова Пошта"
             </label>
-            <label class="flex items-center gap-3 cursor-pointer">
+            <label class="flex items-center gap-3 cursor-pointer relative">
               <input
                 type="radio"
                 id="branch"
@@ -963,6 +964,7 @@
                 value="branch"
                 v-model="selectedDelivery"
                 class="hidden peer"
+                @click="getPostOfficeNp(e, 'reload')"
               />
               <span
                 class="w-6 h-6 rounded-full bg-[#E5EFF5] shadow-[inset_3px_3px_6px_#c1cace,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center transition-all duration-300 peer-checked:bg-[#1C2E40] peer-checked:shadow-[inset_2px_2px_5px_#0f1a26,inset_-2px_-2px_5px_#2C4E72]"
@@ -975,8 +977,33 @@
                 type="text"
                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                 placeholder="Введіть номер відділення"
+                v-model="postAddress"
+                @input="getPostOfficeNp(e, 'reload')"
                 :disabled="selectedDelivery !== 'branch'"
               />
+              <ul
+                v-if="postAddressList.length > 0"
+                class="city-list h-fit max-h-60 overflow-y-scroll absolute z-20 rounded-br-lg rounded-bl-lg bg-[var(--bg-color)] w-full top-full r-0"
+              >
+                <li
+                  v-for="(office, index) in postAddressList"
+                  :key="index"
+                  @click="
+                    (postAddress = `${office.Number} ${office.ShortAddress}`),
+                      (postAddressList.length = 0),
+                      (preventReloadBox = true)
+
+
+                  "
+                >
+                  <span
+                    class="text-[var(--dark-color)] text-sm p-2 cursor-pointer"
+                  >
+                    {{ office.Number }}
+                    {{ office.ShortAddress }}
+                  </span>
+                </li>
+              </ul>
             </label>
 
             <label
@@ -1303,6 +1330,9 @@
         </div>
       </div>
     </form>
+    <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">
+      {{ tooltipMessage }}
+    </Tooltips>
   </section>
 </template>
 
@@ -1310,12 +1340,14 @@
 import { ref, watch, computed, onMounted } from "vue";
 import { useCartStore, useAuthStore } from "#imports";
 import ToggleBtn from "@/components/shared/ToggleBtn.vue";
+import Tooltips from "@/components/shared/Tooltips.vue";
+import { prevent } from "@splidejs/splide/src/js/utils";
+
 
 const cityRef = ref("");
 const cityName = ref("");
 const fetchedCity = ref([]);
 const unknownCity = ref(false);
-let timerId = null;
 
 const name = ref("");
 const surname = ref("");
@@ -1329,6 +1361,9 @@ const paymentMethod = ref("");
 const contactInfoState = ref(false);
 const deliveryAddressState = ref(false);
 const courierDeliveryState = ref(false);
+const saveDeliveryAddress = ref(false);
+
+
 
 const checkout = ref({
   totalProducts: 0,
@@ -1336,13 +1371,55 @@ const checkout = ref({
   totalPrice: 0,
 })
 
+let timerId = null;
+
+const date = new Date();
+const day = date.getDate();
+const month = date.getMonth();
+const year = date.getFullYear();
+const hours = date.getHours();
+const openHour = 9;
+const closeHour = 18;
 
 
-const saveDeliveryAddress = ref(false);
+const postomatNumber = ref("");
+const postAddress = ref("");
+const currierAddress = ref("");
+const postomatList = ref([]);
+const postAddressList = ref([]);
+const preventReloadBox = ref(false);
+
+const cartStore = useCartStore();
+const authStore = useAuthStore();
+
+const getFormattedHours = (h) => (h < 10 ? "0" + h : h);
+const getFormattedMonth = (m) => (m < 10 ? "0" + m : m);
+
 
 const config = useRuntimeConfig();
 const NOVA_POST_KEY = config.public.novaPostKey;
 const NOVA_POST_URI = config.public.novaPostUri;
+
+const showTooltip = ref(false);
+const tooltipStatus = ref("");
+const tooltipMessage = ref("");
+
+const numReg = /^[0-9]+$/;
+
+
+const tooltip = (obj) => {
+
+const { status, message } = obj;
+
+  tooltipStatus.value = status;
+  tooltipMessage.value = message;
+  showTooltip.value = true;
+  setTimeout(() => {
+    showTooltip.value = false;
+    tooltipStatus.value = "";
+    tooltipMessage.value = "";
+  }, 3000);
+};
 
 onMounted(() => {
   if (authStore.user) {
@@ -1357,31 +1434,10 @@ onMounted(() => {
     contactInfoState.value = true;
 
   }
-
   checkout.value.totalProducts = cartStore.totalPrice;
   checkout.value.totalPrice = cartStore.totalPrice > 2000 ? cartStore.totalPrice : cartStore.totalPrice + 200;
 
-  console.log(NOVA_POST_KEY, NOVA_POST_URI, 'np cred')
-  // console.log(NOVA_POST_KEY.replace(';', ''))
 });
-
-const postomatNumber = ref("");
-const postomatList = ref([]);
-const preventReloadBox = ref(false);
-
-const date = new Date();
-const day = date.getDate();
-const month = date.getMonth();
-const year = date.getFullYear();
-const hours = date.getHours();
-const openHour = 9;
-const closeHour = 18;
-
-const cartStore = useCartStore();
-const authStore = useAuthStore();
-
-const getFormattedHours = (h) => (h < 10 ? "0" + h : h);
-const getFormattedMonth = (m) => (m < 10 ? "0" + m : m);
 
 const deliveryTime = computed(() => {
   const pickupTime = hours + 2;
@@ -1425,19 +1481,90 @@ watch(deliveryMethod, () => {
 });
 
 const processCheckout = async () => {
-  // if (!name.value || !surname.value || !familyName.value || !email.value || !phone.value) {
-  //   console.log('something went wrong check all fields');
-  // }
 
-  // if (!email.value.includes('@')) {
-  //   console.log('please enter valid email')
-  // }
+  if (cartStore.totalPrice === 0) {
+    tooltip({
+      status: "error",
+      message: "Ваш кошик порожній",
+    })
+    return;
+  }
 
-  // const phoneRegex = /^\d{2}\s*\d{3}\s*\d{2}\s*\d{2}$/;
+  // validation contact info
+  if (!authStore.user || contactInfoState.value) {
+    if (!name.value || !surname.value || !familyName.value || !email.value || !phone.value) {
+    tooltip({
+      status: "error",
+      message: "Всі поля повинні бути заповнені",
+    })
+    // console.log('something went wrong check all fields');
+    return;
+  }
 
-  // if (!phoneRegex.test(phone.value)) {
-  //   console.log('phone ok')
-  // }
+  if (!authStore.user) {
+    if (!email.value.includes('@')) {
+      tooltip({
+        status: "error",
+        message: "Введіть коректну електронну адресу",
+      })
+      // console.log('please enter valid email')
+      return;
+    }
+
+    const phoneRegex = /^\d{2}\s*\d{3}\s*\d{2}\s*\d{2}$/;
+
+    if (!phoneRegex.test(phone.value)) {
+      tooltip({
+        status: "error",
+        message: "Введіть коректний номер телефону",
+      })
+      // console.log('phone ok')
+      return;
+    }
+  }
+
+ 
+    
+  }
+
+  // delivery validation
+
+  if (deliveryMethod.value === "nova-post") {
+    if (cityName.value.trim().length === 0) {
+      tooltip({
+        status: "info",
+        message: "Введіть місто",
+      })
+      return;
+    }
+
+    if (postAddress.value.trim().length === 0 && postomatNumber.value.trim().length === 0 && currierAddress.value.trim().length === 0) {
+      tooltip({
+        status: "info",
+        message: "Оберіть метод та введіть адресу доставки",
+      })
+      return;
+    }
+
+    // if (
+    //   postAddress.value.trim().length === 0 || 
+    //   (postomatNumber.value.trim().length === 0 && currierAddress.value.trim().length === 0)
+    // ) {
+    //   tooltip({
+    //     status: "info",
+    //     message: "Оберіть метод та введіть адресу доставки",
+    //   });
+    //   return;
+    // }
+
+  } else if (deliveryMethod.value === "ukrpost") {
+
+  } else if (deliveryMethod.value === "courier-delivery") {
+
+  }
+
+
+
 
   try {
     const cartData = cartStore.cart.map((item) => {
@@ -1458,9 +1585,11 @@ const processCheckout = async () => {
           shippingInfo: {
             recipient:
               name.value + " " + surname.value + " " + familyName.value,
-            postCompany: "Нова Пошта",
+            postCompany: deliveryMethod.value,
             phoneNumber: phone.value,
-            address: postomatNumber.value,
+            postOffice: postAddress.value,
+            postomat: postomatNumber.value,
+            address: currierAddress.value,
             city: cityName.value,
             country: "Ukraine",
           },
@@ -1485,6 +1614,7 @@ const processCheckout = async () => {
     const tgMessageBody = {
       orderId: createNewOrder.data,
       user: name.value + " " + surname.value + " " + familyName.value,
+      paymentMethod: paymentMethod.value,
       amount: cartStore.totalPrice,
       phone: phone.value,
       email: email.value,
@@ -1619,7 +1749,48 @@ class NovaPoshtaApi extends PostalServiceApi {
     });
   }
 
+  async fetchOfficeByNumber(cityName, number) {
+    console.log(cityName, number)
+    const body = {
+      apiKey: this.apiKey,
+      modelName: "AddressGeneral",
+      calledMethod: "getWarehouses",
+      methodProperties: {
+        CityName: cityName,
+        Limit: "1000",
+        FindByString: number,
+        Page: "1",
+      },
+    };
+
+    return this.request("", {
+      method: "POST",
+      body,
+    });
+  }
+
+  async fetchPostAddresses(cityName) {
+    // "CategoryOfWarehouse" : "Branch",
+
+    const body = {
+      apiKey: this.apiKey,
+      modelName: "AddressGeneral",
+      calledMethod: "getWarehouses",
+      methodProperties: {
+        CityName: cityName,
+        Limit: "3000",
+        Page: "1",
+      },
+    };
+
+    return super.request("", {
+      method: "POST",
+      body,
+    });
+  }
+
   async fetchPostomatsByNumber(cityName, number) {
+    console.log(cityName, number)
     const body = {
       apiKey: this.apiKey,
       modelName: "AddressGeneral",
@@ -1628,7 +1799,7 @@ class NovaPoshtaApi extends PostalServiceApi {
         CityName: cityName,
         Limit: "1000",
         CategoryOfWarehouse: "Postomat",
-        Number: number,
+        FindByString: number,
         Page: "1",
       },
     };
@@ -1639,6 +1810,29 @@ class NovaPoshtaApi extends PostalServiceApi {
     });
   }
 }
+
+// refresh input fields
+
+watch(selectedDelivery, () => {
+  console.log(selectedDelivery.value, "selectedDelivery");
+  if (selectedDelivery.value === "branch") {
+    postomatNumber.value = "";
+    currierAddress.value = "";
+    postomatList.value = [];
+    preventReloadBox.value = false;
+  } else if (selectedDelivery.value === "postomat") {
+    currierAddress.value = "";
+    postAddress.value = "";
+    postAddressList.value = [];
+    preventReloadBox.value = false;
+  } else if (selectedDelivery.value === "courier") {
+    postomatNumber.value = "";
+    postAddress.value = "";
+    postAddressList.value = [];
+    postomatList.value = [];
+    preventReloadBox.value = false;
+  }
+})
 
 const novaPost = new NovaPoshtaApi();
 
@@ -1652,19 +1846,75 @@ const getCitiesNp = debounce(cityRef.value, async () => {
   }
 });
 
-const getPostomatsNp = async (event) => {
+
+
+const getPostomatsNp = async (event, state) => {
+
+  // console.log(event ,'reload', reload)
+
+
+  if (state === 'reload') {
+ 
+    const getPostomatsByNumber = await novaPost.fetchPostomatsByNumber(cityName.value, postomatNumber.value);
+    console.log(getPostomatsByNumber, 'getPostomatsByNumber');
+    postomatList.value = getPostomatsByNumber.data;
+    return;
+  }
+
   if (preventReloadBox.value) {
     return;
   }
 
   if (!cityName.value) {
+    tooltip({
+      status: "info",
+      message: "Виберіть місто",
+    });
     event.preventDefault();
+    
     return;
   }
+
 
   const postomatsNp = await novaPost.fetchPostomats(cityName.value);
   postomatList.value = postomatsNp.data;
 };
+
+const getPostOfficeNp = async (event, state) => {
+
+  if (state === 'reload') {
+ 
+    const getOfficeByNumber = await novaPost.fetchOfficeByNumber(cityName.value, postAddress.value);
+    console.log(getOfficeByNumber, 'getPostomatsByNumber');
+    const filteredOffice = getOfficeByNumber.data.filter((item) => item.CategoryOfWarehouse === "Branch");
+
+    postAddressList.value = filteredOffice;
+    return;
+  }
+
+  if (preventReloadBox.value) {
+    return;
+  }
+
+  if (!cityName.value) {
+    tooltip({
+      status: "info",
+      message: "Виберіть місто",
+    });
+    event.preventDefault();
+    
+    return;
+  }
+
+  const postOfficeNp = await novaPost.fetchPostAddresses(cityName.value);
+  // console.log(postOfficeNp, 'postOfficeNp');
+  const filteredOffice = postOfficeNp.data.filter((item) => item.CategoryOfWarehouse === "Branch");
+  postAddressList.value = filteredOffice;
+
+}
+
+
+
 </script>
 
 <style scoped lang="scss"></style>
