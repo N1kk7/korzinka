@@ -135,7 +135,7 @@ model User {
   phoneNumber   String?    
   password      String?
   createdAt     DateTime  @default(now())
-  role          String    @default("user")
+  role          String    @default("guest")
   orders        Order[]
   adresses      Adress[]
   notifications Notification[]
@@ -145,6 +145,7 @@ model User {
 }
 
 enum TgRoles {
+  GUEST
   ADMIN
   CLIENT
 }

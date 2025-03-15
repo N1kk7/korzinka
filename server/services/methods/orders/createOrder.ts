@@ -64,6 +64,7 @@ async function createOrder(event: any) {
                 username: parsedData[0].username,
                 email: parsedData[0].email,
                 password: parsedData[0].password,
+                role: 'GUEST',
                 orders: {
                     create: parsedData[0].orders.map((order: any) => ({
                       totalPrice: order.totalPrice,

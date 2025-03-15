@@ -13,8 +13,14 @@ async function createUser(event: any) {
     const parsedData = data.map((item) => JSON.parse(item.data.toString()));
 
     const registeredUsers = await prisma.user.findUnique({
-        where: { email: parsedData[0].mail }
+        where: { 
+            email: parsedData[0].mail,
+            role: 'CLIENT'
+
+        }
     });
+
+    console.log(registeredUsers, 'registeredUsers');
 
     if (registeredUsers) {
         throw createError({ statusCode: 400, statusMessage: 'Email уже используется' });
@@ -24,8 +30,28 @@ async function createUser(event: any) {
 
         const hashedPassword = await bcrypt.hash(parsedData[0].password, 10);
 
-        const createNewUser = await prisma.user.create({
-            data: {
+        // const createNewUser = await prisma.user.create({
+        //     data: {
+        //         username: parsedData[0].userName,
+        //         userFamily: parsedData[0].userFamily,
+        //         userSurname: parsedData[0].userSurname,
+        //         email: parsedData[0].mail,
+        //         password: hashedPassword,
+        //         role: 'CLIENT'
+        //     }
+        // });
+
+
+        const createNewUser = await prisma.user.upsert({
+            where: { email: parsedData[0].mail },
+            update: {
+                username: parsedData[0].userName,
+                userFamily: parsedData[0].userFamily,
+                userSurname: parsedData[0].userSurname,
+                password: hashedPassword,
+                role: 'CLIENT'
+            },
+            create: {
                 username: parsedData[0].userName,
                 userFamily: parsedData[0].userFamily,
                 userSurname: parsedData[0].userSurname,
@@ -34,6 +60,7 @@ async function createUser(event: any) {
                 role: 'CLIENT'
             }
         });
+
 
         return {
             status: 200,

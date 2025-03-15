@@ -1339,6 +1339,7 @@
 <script setup>
 import { ref, watch, computed, onMounted } from "vue";
 import { useCartStore, useAuthStore } from "#imports";
+import { navigateTo } from "nuxt/app";
 import ToggleBtn from "@/components/shared/ToggleBtn.vue";
 import Tooltips from "@/components/shared/Tooltips.vue";
 import { prevent } from "@splidejs/splide/src/js/utils";
@@ -1420,6 +1421,22 @@ const { status, message } = obj;
     tooltipMessage.value = "";
   }, 3000);
 };
+
+const clearForm = () => {
+  name.value = "";
+  surname.value = "";
+  familyName.value = "";
+  phone.value = "";
+  email.value = "";
+  postAddress.value = "";
+  postomatNumber.value = "";
+  currierAddress.value = "";
+  postomatList.value = [];
+  postAddressList.value = [];
+  cityName.value = "";
+  cityRef.value = "";
+
+}
 
 onMounted(() => {
   if (authStore.user) {
@@ -1611,6 +1628,11 @@ const processCheckout = async () => {
       return
     }
 
+    tooltip({
+      status: "success",
+      message: "Ваше замовлення було успішно створено",
+    });
+
     const tgMessageBody = {
       orderId: createNewOrder.data,
       user: name.value + " " + surname.value + " " + familyName.value,
@@ -1631,6 +1653,13 @@ const processCheckout = async () => {
     });
 
     console.log(notificationTg, "notificationTg");
+
+   
+
+    clearForm();
+    setTimeout(() => {
+      navigateTo("/");
+    }, 3000)
 
     cartStore.clearCart();
   } catch (err) {
