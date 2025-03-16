@@ -72,7 +72,7 @@
                 <span v-else>{{ value }}</span>
               </dd>
               <button
-                @click="editField(key)"
+                @click="modalStore.showModal('ChangeUserData', { key, value })"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               >
                 <svg
@@ -117,9 +117,10 @@ import { ref } from "vue";
 
 import SvgIcon from "@/components/shared/SvgIcon.vue";
 
-import { useAuthStore } from "#imports";
+import { useAuthStore, useModalStore } from "#imports";
 
 const authStore = useAuthStore();
+const modalStore = useModalStore();
 
 const userData= authStore.user;
 const dateOfCreate = userData.createdAt.slice(0, 10).split('-').reverse().join('.');

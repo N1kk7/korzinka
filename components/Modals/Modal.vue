@@ -16,13 +16,14 @@
   </template>
 
 <script setup>
-import { defineEmits, toRefs} from 'vue';
+import { defineEmits, defineProps, toRefs} from 'vue';
 import { useModalStore } from '#imports';
 
 import LangModal from '~/components/Modals/LangModal.vue';
 import ThemeModal from '~/components/Modals/ThemeModal.vue';
 import ProductToCart from './ProductToCart.vue';
 import AuthModal from './AuthModal.vue';
+import ChangeUserData from './ChangeUserData.vue';
 
 // ADMIN
 
@@ -47,7 +48,8 @@ const modalComponents = {
   AddCategory,
   DeleteCategory,
   ProductToCart,
-  AuthModal
+  AuthModal,
+  ChangeUserData
 }
 
 const tooltip = (obj) => {

@@ -391,6 +391,7 @@
         registerAuth.fetchRequest('auth?auth=register', 'POST', {
             userName: userName.value,
             userSurname: userSurname.value,
+            phoneNumber: phoneNumber.value,
             userFamily: userFamily.value,
             mail: mail.value,
             password: password.value,
