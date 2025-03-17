@@ -41,8 +41,7 @@
     >
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div
-            v-for="(value, key) in {
+          <!-- {
               Имя: profile.firstName,
               Фамилия: profile.userFamily,
               Отчество: profile.lastName,
@@ -51,28 +50,33 @@
               Телефон: profile.phone,
               Email: profile.email,
               Сайт: profile.website,
-            }"
+            }" -->
+          <div
+            v-for="(value, key) in userDataObj"
             :key="key"
             class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow relative"
           >
             <div
               class="font-bold text-lg mb-0 p-2 pl-0 bg-gray-100 dark:bg-gray-800 sticky top-0 z-10"
+              
             >
-              {{ key }}
+
+              {{ value.tr.find((tr) =>  tr[$i18n.locale])?.[$i18n.locale] }}
+
             </div>
             <div class="flex justify-between items-center border-b pb-3">
               <dd class="text-base font-normal">
-                <a
-                  v-if="key === 'Сайт'"
-                  :href="value"
-                  target="_blank"
-                  class="hover:text-blue-500"
-                  >{{ value }}</a
-                >
-                <span v-else>{{ value }}</span>
+                
+                <span>{{ value.value }}</span>
               </dd>
               <button
-                @click="modalStore.showModal('ChangeUserData', { key, value })"
+                @click.stop="modalStore.showModal('ChangeUserData', 
+                  { 
+                    id: userData.id,
+                    key: key,
+                    fieldName: value.tr.find((tr) =>  tr[$i18n.locale])?.[$i18n.locale] 
+                     
+                })"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               >
                 <svg
@@ -114,6 +118,7 @@
 
 <script setup>
 import { ref } from "vue";
+import AdminBurger from "~/components/shared/AdminBurger.vue";
 
 import SvgIcon from "@/components/shared/SvgIcon.vue";
 
@@ -121,6 +126,8 @@ import { useAuthStore, useModalStore } from "#imports";
 
 const authStore = useAuthStore();
 const modalStore = useModalStore();
+
+console.log(authStore.user);
 
 const userData= authStore.user;
 const dateOfCreate = userData.createdAt.slice(0, 10).split('-').reverse().join('.');
@@ -132,6 +139,54 @@ const profile = ref({
   phone: userData.phoneNumber,
   email: userData.email,
 });
+
+const userDataObj = {
+  username: {
+    tr: [
+      {en: 'Name'},
+      {uk: 'Імʼя'},
+      {ru: 'Имя'}
+  ],
+    value: userData.username
+  },
+  userFamily: {
+    tr: [
+      {en: 'Family'},
+      {uk: 'Прізвище'},
+      {ru: 'Фамилия'}
+  ],
+    value: userData.userFamily
+  },
+  userSurname: {
+    tr: [
+      {en: 'Surname'},
+      {uk: 'Прізвище'},
+      {ru: 'Фамилия'}
+    ],
+    value: userData.userSurname
+  },
+  phoneNumber: {
+    tr: [
+      {en: 'Phone'},
+      {uk: 'Телефон'},
+      {ru: 'Телефон'}
+  ],
+    value: userData.phoneNumber
+  },
+  email: {
+    tr: [
+      {en: 'Email'},
+      {uk: 'Електронна пошта'},
+      {ru: 'Электронная почта'}
+  ],
+    value: userData.email
+  },
+
+}
+
+console.log(userData, 'userData');
+
+
 
 const editField = (key) => {
   const newValue = prompt(

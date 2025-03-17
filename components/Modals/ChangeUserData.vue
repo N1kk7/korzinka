@@ -5,7 +5,7 @@
             <h2
                 class="text-white"
             >
-                Введіть нове значення для поля {{ props.key }}
+                Введіть нове значення для поля {{ props.fieldName }}
             </h2>
             <button @click="modalStore.closeModal">
                 <!-- Закрити -->
@@ -24,14 +24,14 @@
                   for="your_name"
                   class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
-                  {{ props.key }}
+                  {{ props.fieldName }}
                 </label>
                 <input
                   type="text"
                   id="your_name"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                  :placeholder="`Введіть ${props.key.toLowerCase()}`"
-                  v-model="name"
+                  :placeholder="`Введіть ${props.fieldName.toLowerCase()}`"
+                  v-model="newValue"
                 />
               </div>
             <!-- <button 
@@ -57,18 +57,53 @@
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import DefaultBtn from '../shared/DefaultBtn.vue';
     import { useModalStore } from '#imports';
-    import { ref, defineProps, onMounted } from 'vue'
+    import { ref, defineEmits, onMounted } from 'vue'
+
+
+    const emit = defineEmits();
+
+
 
     const newValue = ref('');
 
     const modalStore = useModalStore();
 
+
     const props = modalStore.modalProps;
+
 
     const fetchRequest = async () => {
         try{
 
+            if (newValue.value.length <= 0) {
+
+                emit('tooltip', {
+                    status: 'error',
+                    message: 'Заповніть поле'
+                })
+                return;
+            }
+
+            const formData = new FormData();
+
+            formData.append('data', JSON.stringify({
+                id: props.id,
+                field: props.key,
+                newValue: newValue.value
+            }));
+
+            const fetchNewValue = await $fetch('/api/users', {
+                method: 'PATCH',
+                body: formData
+            })
+
+            console.log(fetchNewValue, 'formData');
+
         } catch (err) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Виникла помилка'
+            })
             
         }
     }
@@ -94,7 +129,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
  .modal{
         position: fixed;
         display: flex;

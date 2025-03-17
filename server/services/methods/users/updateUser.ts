@@ -17,11 +17,28 @@ async function updateUser(event: any) {
             }
         }
 
-        const {userId, field} = JSON.parse(body[0].data.toString())
+        const {id, field, newValue} = JSON.parse(body[0].data.toString())
+        if (!id || !field || newValue === undefined) {
+            return {
+                status: 400,
+                message: 'Invalid request data'
+            };
+        }
 
-        // const fetchUpdate = await prisma.user.update({
-        //     where: {id: userId}
-        // })
+        console.log(id, 'userId', field, 'field', newValue , 'value');
+
+        const fetchUpdate = await prisma.user.update({
+            where: { id: id },
+            data: {
+                [field]: newValue
+            }
+        })
+
+        return {
+            status: '200',
+            data: fetchUpdate,
+            message: 'User data updated'
+        }
 
     } catch (err) {
         return {
@@ -31,3 +48,5 @@ async function updateUser(event: any) {
 
 
 }
+
+export default updateUser

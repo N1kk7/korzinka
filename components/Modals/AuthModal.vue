@@ -61,7 +61,7 @@
                 </form>
 
             </div>
-            <div class="form auth">
+            <div class="form auth" v-if="!supabaseConfirmState">
                 <h2
                     class="mb-2 text-2xl font-bold text-[var(--primary-color)]"
                 >
@@ -169,6 +169,138 @@
                 </form>
 
             </div>
+            <div class="form auth relative" v-else>
+                <button @click="supabaseConfirmState = false">
+                    Повернутись назад
+                </button>
+                <h2
+                    class="mb-2 text-2xl font-bold text-[var(--primary-color)]"
+                >
+                    Введіть пароль отриманий на email
+                </h2>
+                <p
+                    class="mb-5"
+                >
+                    Якщо ви не отримували пароль, перевірте правильність введених даних та спробуйте ще.
+                </p>
+                <!-- <form class="flex flex-col gap-1">
+                    <div class="name-wrapper flex justify-center items-center gap-5">
+                        <div class="basis-1/2 flex-1">
+                            <label for="register-name">Имя</label>
+                            <input 
+                                type="text" 
+                                id="register-name" 
+                                v-model="userName"
+                                required 
+                            />
+                        </div>
+                        
+                        <div class="basis-1/2 flex-1">
+                            <label for="register-surname">Отчество</label>
+                            <input 
+                                type="text" 
+                                id="register-surname"
+                                v-model="userSurname"
+                            />
+                        </div>
+                       
+                        <div class="basis-1/2 flex-1">
+                            <label for="register-family">Фамилия</label>
+                            <input 
+                                type="text" 
+                                id="register-family" 
+                                v-model="userFamily"
+                                required 
+                            />
+                        </div>
+                    
+                    </div>
+                    
+
+                    <label for="register-email">Email</label>
+                    <input 
+                        type="email" 
+                        id="register-email" 
+                        v-model="mail"
+                        required 
+                    />
+
+                    <label for="phone-number">Номер телефона</label>
+                    <input 
+                        type="tel" 
+                        id="phone-number" 
+                        v-model="phoneNumber"
+                        required 
+                    />
+
+                    <div class="pass-wrapper flex justify-center items-center gap-5">
+                        <div class="w-full flex flex-col ">
+                            <label for="register-password">Пароль</label>
+                            <input 
+                                type="password" 
+                                id="register-password" 
+                                v-model="password"
+                                required 
+                            />
+                        </div>
+                     
+
+                        <div class="w-full flex flex-col">
+                            <label for="register-password-confirm">Повторите пароль</label>
+                            <input 
+                                type="password" 
+                                id="register-password-confirm" 
+                                v-model="confirmedPass"
+                                required 
+                            />
+                        </div>
+                       
+                    </div>
+
+                    
+
+                    <button
+                        class="register-btn"
+                        @click="handleRegister"  
+                        type="button"              
+                    >
+                        Зарегистрироваться
+                    </button>
+                    
+                    <p>Уже есть аккаунт? 
+                        <button 
+                            class="switch-tab"
+                            @click="loginWindow = false"
+                        >
+                        Войти
+                        </button>
+                    </p>
+
+                    <small>Регистрируясь, вы соглашаетесь с <span >условиями использования</span> и <span >политикой конфиденциальности</span>.</small>
+                </form> -->
+
+                <div class="flex flex-col items-center gap-4">
+                <div class="flex gap-2">
+                <input
+                    v-for="(digit, index) in code"
+                    :key="index"
+                    :ref="el => inputs[index] = el" 
+                    v-model="code[index]"
+                    type="text"
+                    maxlength="1"
+                    @input="handleInput(index, $event)"
+                    @keydown="handleBackspace(index, $event)"
+                    class="w-12 h-12 text-center text-xl border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                />
+                </div>
+                <button
+                    class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+                    @click="handleConfirmRegister"
+                >
+                Подтвердить
+                </button>
+            </div>
+            </div>
             <div class="background" :style="{'left': loginWindow ? '0' : '50%' }">
 
                 <img src="/public/img/only-dog.png" alt="logo">
@@ -203,6 +335,10 @@
     const password = ref("");
     const confirmedPass = ref("");
     const loginWindow = ref(false);
+    const code = ref(['', '', '', '', '', ''])
+    const inputs = ref([]);
+    const supabaseConfirmPass = ref('');
+    const supabaseConfirmState = ref(false);
 
     const modalStore = useModalStore();
 
@@ -219,6 +355,29 @@
         password.value = "";
         confirmedPass.value = "";
     })
+
+
+
+const handleInput = (index, event) => {
+    if (!/\d/.test(event.target.value)) {
+        code.value[index] = '';
+        return;
+    }
+
+    if (event.target.value.length > 1) {
+        code.value[index] = event.target.value.slice(-1);
+    }
+
+    if (index < 5 && event.target.value !== '') {
+        inputs.value[index + 1]?.focus(); 
+    }
+};
+
+const handleBackspace = (index, event) => {
+    if (event.key === 'Backspace' && index > 0 && !code.value[index]) {
+        inputs.value[index - 1]?.focus();
+    }
+};
 
 
     class Auth {
@@ -259,6 +418,107 @@
 
         validateConfirmedPassword() {
             return this.password === this.confirmedPass;
+        }
+
+        async fetchSendVerifyPass(link, method, data = {}) {
+
+            const verifyData = new FormData();
+
+            verifyData.append('data', JSON.stringify({
+                mail: mail.value,
+            }))
+
+            const processVerify = await $fetch('/api/auth?auth=sendVerifyPass', {
+                method: 'POST',
+                body: verifyData
+            })
+
+            console.log(processVerify, 'processVerify');
+
+            if (processVerify.status === 200) {
+                supabaseConfirmState.value = true;
+            } else {
+                emit('tooltip', {
+                    status: 'error',
+                    message: `Виникла помилка ${processVerify.message}`
+                })
+            }
+
+            return {
+                status: processVerify.status,
+                message: processVerify.message
+            }
+
+            
+        }
+        async checkVerifyPass(link, method, data = {}) {
+
+            const verifyData = new FormData();
+
+
+            verifyData.append('data', JSON.stringify({
+                email: mail.value,
+                token: data.token
+            }))
+
+            const processVerify = await $fetch(`/api/${link}`,  {
+                method: method,
+                body: verifyData
+                
+            })
+
+            if (processVerify.status === 200) {
+
+                const registerUser = await this.fetchRequest('auth?auth=register', 'POST', {
+                    userName: userName.value,
+                    userSurname: userSurname.value,
+                    phoneNumber: phoneNumber.value,
+                    userFamily: userFamily.value,
+                    mail: mail.value,
+                    password: password.value,
+                });
+
+                console.log(registerUser, 'registerUser');
+
+
+                if (registerUser.status === 200) {
+                    userName.value = '';
+                    userSurname.value = '';
+                    phoneNumber.value = '';
+                    userFamily.value = '';
+                    mail.value = '';
+                    password.value = '';
+                    confirmedPass.value = '';
+                    supabaseConfirmState.value = false;
+                    code.value = ['', '', '', '', '', ''];
+                    inputs.value = [];
+                    loginWindow.value = false;
+                    emit('tooltip', {
+                        status: 'success',
+                        message: registerUser.message
+                    })
+
+                } else {
+                    emit('tooltip', {
+                        status: 'error',
+                        message: registerUser.message
+                    })
+                }
+
+
+
+                // emit('tooltip', {
+                //     status: 'success',
+                //     message: processVerify.message
+                // })
+            } else {
+                emit('tooltip', {
+                    status: 'error',
+                    message: 'Паролі не співпадають'
+                })
+            }
+
+            console.log(processVerify, 'processVerify');
         }
 
         async fetchRequest(link, method, data = {}) {
@@ -388,16 +648,82 @@
             return ;
         }
 
-        registerAuth.fetchRequest('auth?auth=register', 'POST', {
-            userName: userName.value,
-            userSurname: userSurname.value,
-            phoneNumber: phoneNumber.value,
-            userFamily: userFamily.value,
-            mail: mail.value,
-            password: password.value,
-        });
+        registerAuth.fetchSendVerifyPass('auth?auth=sendVerifyPass', 'POST', {
+            mail: mail.value
+        })
 
 
+
+
+
+        // Send verify password
+
+        // const sendVerifyPass = async () => {
+
+        //     const verifyData = new FormData();
+
+        //     verifyData.append('data', JSON.stringify({
+        //         mail: mail.value,
+        //     }))
+
+        //     const processVerify = await $fetch('/api/auth?auth=sendVerifyPass', {
+        //         method: 'POST',
+        //         body: verifyData
+        //     })
+
+        //     return {
+        //         status: processVerify.status,
+        //         message: processVerify.message
+        //     }
+
+
+
+        // }
+
+        // console.log(sendVerifyPass());
+
+        
+
+    }
+
+    const handleConfirmRegister = () => {
+
+        const registerAuth = new Auth(mail.value, password.value, confirmedPass.value);
+
+        const codeValue = code.value.join(',').replaceAll(',','');
+
+
+        
+
+        if (codeValue.length < 6) {
+            emit('tooltip', {
+                status: 'error',
+                message: 'Код повинен бути 6 цифр'
+            })
+            inputs.value = [];
+            code.value = ['', '', '', '', '', ''];
+            inputs.value[0]?.focus();
+
+            return;
+        }
+
+        console.log('codevalue', codeValue, 'codeValue');
+
+        registerAuth.checkVerifyPass('auth?auth=checkVerifyPass', 'POST', {
+            email: mail.value,
+            token: codeValue
+        })
+
+
+
+        // Check verify password
+
+
+        //register
+
+       
+
+        
     }
 
 

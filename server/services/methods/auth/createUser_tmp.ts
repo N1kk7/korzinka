@@ -48,6 +48,7 @@ async function createUser(event: any) {
                 username: parsedData[0].userName,
                 userFamily: parsedData[0].userFamily,
                 userSurname: parsedData[0].userSurname,
+                phoneNumber: parsedData[0].phoneNumber,
                 password: hashedPassword,
                 role: 'CLIENT'
             },
@@ -55,6 +56,7 @@ async function createUser(event: any) {
                 username: parsedData[0].userName,
                 userFamily: parsedData[0].userFamily,
                 userSurname: parsedData[0].userSurname,
+                phoneNumber: parsedData[0].phoneNumber,
                 email: parsedData[0].mail,
                 password: hashedPassword,
                 role: 'CLIENT'

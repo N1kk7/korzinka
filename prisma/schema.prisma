@@ -139,6 +139,7 @@ model User {
   orders        Order[]
   adresses      Adress[]
   notifications Notification[]
+  settings      UserSetting[]
   telegramId    String?   @unique
   telegramChatId String?   @unique
   telegramRole  TgRoles?  @default(CLIENT)
@@ -148,6 +149,19 @@ enum TgRoles {
   GUEST
   ADMIN
   CLIENT
+}
+
+model UserSetting {
+  id              Int     @id @default(autoincrement())
+  settingId       Int?
+  user            User?   @relation(fields: [settingId], references: [id], onDelete: Cascade)
+  discountNot     Boolean @default(true)
+  orderStateNot   Boolean @default(true)
+  newsStateNot    Boolean @default(true)
+  twoFeCheck      Boolean @default(true)
+  passwordBlock   Boolean @default(true)
+
+
 }
 
 model Notification {

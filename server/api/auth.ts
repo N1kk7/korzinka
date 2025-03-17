@@ -5,6 +5,8 @@ import {
     logoutUser, 
     refreshToken, 
     me,
+    sendVerifyPass,
+    checkVerifyPass
 } from "../services/authServices";
 
 export default defineEventHandler(async (event) => {
@@ -27,6 +29,10 @@ export default defineEventHandler(async (event) => {
                 return await refreshToken(event);
             } else if (query.auth === 'logout') {
                 return await logoutUser(event);
+            } else if (query.auth === 'sendVerifyPass') {
+                return await sendVerifyPass(event);
+            } else if (query.auth === 'checkVerifyPass') {
+                return await checkVerifyPass(event);
             }
         break;
         case "PATCH":
