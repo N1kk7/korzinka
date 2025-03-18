@@ -97,7 +97,15 @@
                 body: formData
             })
 
-            console.log(fetchNewValue, 'formData');
+            if (fetchNewValue.status === 200) {
+                emit('tooltip', {
+                    status: 'success',
+                    message: fetchNewValue.message
+                })
+                modalStore.closeModal();
+            }
+
+            // console.log(fetchNewValue, 'formData');
 
         } catch (err) {
             emit('tooltip', {

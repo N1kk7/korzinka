@@ -3,7 +3,7 @@
     <AppHeader />
     <StickyHeader />
     <MobileMenu />
-    <main>
+    <main class="border-t border-solid border-[var(--main-accent)]">
       <slot />
     </main>
     <Tooltips v-if="showTooltip" :tooltipStatus="tooltipStatus">

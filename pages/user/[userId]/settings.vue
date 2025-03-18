@@ -119,7 +119,7 @@
   </section> -->
   <section class="bg-white rounded-lg py-8 mt-5 antialiased dark:bg-gray-900">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <div class="mx-auto max-w-5xl h-[525px] overflow-y-auto space-y-4 relative">
+      <div class="mx-auto max-w-5xl h-[700px] overflow-y-auto space-y-4 relative">
         <div v-for="(section, index) in [
           { title: 'Налаштування оплати', options: ['Спосіб оплати', 'Збережені карти' ] },
           { title: 'Персоналізація', options: ['Тема застосунку','Мова застосунку'] },

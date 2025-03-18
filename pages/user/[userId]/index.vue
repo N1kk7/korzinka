@@ -37,7 +37,7 @@
     </div>
 
     <section
-      class="bg-white rounded-lg py-8 mt-10 antialiased dark:bg-gray-900"
+      class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 border border-[var(--bg-color)]"
     >
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -100,13 +100,13 @@
         <div class="flex justify-end gap-4 mt-6">
           <button
             @click="resetChanges"
-            class="bg-red-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-red-600 transition"
+            class="bg-[var(--bg-color)] text-[var(--dark-color)] px-6 py-2 rounded-lg shadow-lg hover:bg-red-600 transition"
           >
             Сбросить изменения
           </button>
           <button
             @click="saveChanges"
-            class="bg-green-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-green-600 transition"
+            class="bg-[var(--dark-color)] text-white px-6 py-2 rounded-lg shadow-lg hover:bg-green-600 transition"
           >
             Сохранить изменения
           </button>
@@ -127,7 +127,6 @@ import { useAuthStore, useModalStore } from "#imports";
 const authStore = useAuthStore();
 const modalStore = useModalStore();
 
-console.log(authStore.user);
 
 const userData= authStore.user;
 const dateOfCreate = userData.createdAt.slice(0, 10).split('-').reverse().join('.');

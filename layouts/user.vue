@@ -211,7 +211,7 @@
         </aside>
 
         <div
-          class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
+          class="relative h-full min-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
         >
           <slot />
         </div>
