@@ -121,19 +121,20 @@
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <div class="mx-auto max-w-5xl h-[700px] overflow-y-auto space-y-4 relative">
         <div v-for="(section, index) in [
-          { title: 'Налаштування оплати', options: ['Спосіб оплати', 'Збережені карти' ] },
-          { title: 'Персоналізація', options: ['Тема застосунку','Мова застосунку'] },
-          { title: 'Повідомлення', options: ['Повідомлення про знижки', 'Повідомлення про стан замовлення', 'Повідомлення про замовлення' ]},
-          { title: 'Безпека', options: ['Двоетапна перевірка', 'Блокування паролем', 'Зміна паролю',] },
-          { title: 'Доставка', options: ['Нова Пошта', 'Укрпошта'] }
+          { title: 'Налаштування оплати', options: [{ title: 'Спосіб оплати', typeBtn: 'button', textBtn: ' Змінити'}, { title: 'Збережені карти', typeBtn: 'button', textBtn: ' Додати карту'} ] },
+          { title: 'Персоналізація', options: [{title: 'Темна тема', typeBtn: 'switch', }, { title: 'Мова застосунку', typeBtn: 'button', textBtn: ' Українська'} ] },
+          { title: 'Повідомлення', options: [{title: 'Повідомлення про знижки', typeBtn: 'switch', }, { title: 'Повідомлення про замовлення', typeBtn: 'switch'}, { title: 'Повідомлення статус замовлення', typeBtn: 'switch'} ]},
+          { title: 'Безпека', options: [{title: 'Двоетапна перевірка', typeBtn: 'switch', }, { title:  'Блокування паролем', typeBtn: 'switch'}, { title: 'Зміна паролю', typeBtn: 'button', textBtn: ' Змінити пароль'},] },
+          { title: 'Доставка', options: [{title: 'Нова Пошта', typeBtn: 'button', textBtn: ' Додати адресу'}, { title: 'Укрпошта', typeBtn: 'button', textBtn: ' Додати адресу'}] }
         ]" :key="index" class="settings-section  p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow relative">
           <h2 class="font-bold text-lg mb-4 p-2 pb-0 pl-0 left bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
             {{ section.title }}
           </h2>
           <div class="space-y-4">
             <div v-for="(option, optIndex) in section.options" :key="optIndex" class="flex justify-between items-center border-b pb-3">
-              <span>{{ option }}</span>
-              <button class="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg">Змінити</button>
+              <span>{{ option.title }}</span>
+              <ToggleBtn v-if="option.typeBtn === 'switch'" />
+              <button v-else class="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg">{{ option.textBtn }}</button>
             </div>
           </div>
         </div>
@@ -146,6 +147,7 @@
 <script setup>
 
 import { ref, onMounted, onUnmounted } from 'vue'
+import ToggleBtn from '~/components/shared/ToggleBtn.vue'
 
 const sections = ref([])
 const activeIndex = ref(0)
