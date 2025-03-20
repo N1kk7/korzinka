@@ -37,7 +37,7 @@
               </li>
               <li class="flex items-center xl:hidden">
                
-                  <AdminBurger/>
+                  <DashBurger/>
 
               </li>
               <!-- <li class="flex items-center pl-4 xl:hidden">
@@ -557,7 +557,7 @@
 <script setup>
 
     import { ref } from 'vue'
-    import AdminBurger from '@/components/shared/AdminBurger.vue';
+    import DashBurger from '@/components/shared/DashBurger.vue';
 
     const burgerActive = ref(false);
   

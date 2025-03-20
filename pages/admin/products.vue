@@ -42,7 +42,7 @@
                         </li> -->
             </ul>
           </div>
-          <AdminBurger />
+          <DashBurger />
         </div>
       </div>
       <div
@@ -440,7 +440,7 @@
 import { onMounted, ref, watch } from "vue";
 import SvgIcon from "@/components/shared/SvgIcon.vue";
 import { useModalStore } from "#imports";
-import AdminBurger from "@/components/shared/AdminBurger.vue";
+import DashBurger from "@/components/shared/DashBurger.vue";
 import gsap from "gsap";
 
 const modalStore = useModalStore();

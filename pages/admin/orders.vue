@@ -4,7 +4,7 @@
       <h1
         class="text-2xl font-semibold text-[var(--bg-color)] dark:text-white sm:text-3xl"
       >Замовлення</h1>
-      <AdminBurger />
+      <DashBurger />
     </div>
     <section
       class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 md:py-16"
@@ -698,7 +698,7 @@
 </template>
 
 <script setup>
-  import AdminBurger from "@/components/shared/AdminBurger.vue";
+  import DashBurger from "@/components/shared/DashBurger.vue";
 
   import { onMounted, ref } from "vue";
 

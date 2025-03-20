@@ -3,12 +3,12 @@
         <h1>
             Повідомлення
         </h1>
-        <AdminBurger/>
+        <DashBurger/>
     </div>
 </template>
 
 <script setup>
-    import AdminBurger from '@/components/shared/AdminBurger.vue';
+    import DashBurger from '@/components/shared/DashBurger.vue';
 
     definePageMeta({
         layout: 'admin'
