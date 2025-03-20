@@ -29,6 +29,8 @@ export default defineNuxtConfig({
     jwtSecretKey: 'JWT_SECRET',
     telegramBotToken: 'TELEGRAM_BOT_TOKEN',
     tgChatId: 'TELEGRAM_CHAT_ID',
+    redisPass: 'REDIS_PASSWORD',
+    redisUri: 'REDIS_URI',
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
