@@ -4,7 +4,7 @@
         <h1
           class="text-2xl font-semibold text-[var(--bg-color)] dark:text-white sm:text-3xl"
         >Повідомлення</h1>
-        <AdminBurger />
+        <DashBurger />
       </div>
       <section
         class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 md:py-16"
@@ -22,6 +22,8 @@
   </template>
 
 <script setup>
+
+  import DashBurger from '@/components/shared/DashBurger.vue';
 
 
 

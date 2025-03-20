@@ -1,5 +1,18 @@
 <template>
-  <div class="layout">
+  
+  <div>
+    <div 
+      class="flex justify-center items-center h-screen"
+      v-if="!loggedUser"
+    >
+      <h1 class="text-2xl ">
+        Loading
+      </h1>
+    </div>
+    <div 
+      class="layout" 
+      v-else
+    >
     <AppHeader />
     <StickyHeader />
     <MobileMenu />
@@ -233,7 +246,10 @@
     </Modal>
     <AppFooter />
 
+    </div>
+    <NuxtPage />
   </div>
+  
 </template>
 
 <script setup>
@@ -250,6 +266,8 @@ const tooltipMessage = ref("");
 const isSidebarOpen = ref(false);
 const activePage = ref("index");
 
+const loggedUser = ref(false);
+
 const modalStore = useModalStore();
 const indexStore = useIndexStore();
 const authStore = useAuthStore();
@@ -265,6 +283,38 @@ const tooltip = (obj) => {
     showTooltip.value = false;
   }, 3000);
 };
+
+const closeSidebar = () => {
+  console.log(isSidebarOpen.value, "log");
+
+  if (isSidebarOpen.value) {
+    setTimeout(() => {
+      indexStore.setAdminBurgerBtn(false);
+      isSidebarOpen.value = false;
+    }, 300);
+  }
+  return;
+};
+
+onMounted( async () => {
+
+  await authStore.fetchUser();
+
+  if (!authStore.user) {
+    loggedUser.value = false;
+    return;
+  }
+
+  loggedUser.value = true;
+
+
+
+})
+
+
+
+
+
 </script>
 
 <style lang="scss">

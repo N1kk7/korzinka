@@ -1,10 +1,19 @@
 <template>
-    <div class="mx-6 pt-12 pb-28">
+    <div v-if="!loadingState">
+      <div class="mx-6 pt-12 pb-28">
+        <h1 class="text-2xl">
+            Loading
+        </h1>
+      </div>
+
+    </div>
+    
+    <div class="mx-6 pt-12 pb-28" v-else>
       <div class="head flex items-center justify-between px-5 py-5">
         <h1
           class="text-2xl font-semibold text-[var(--bg-color)] dark:text-white sm:text-3xl"
         >Замовлення</h1>
-        <AdminBurger />
+        <DashBurger />
       </div>
       <section
         class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 md:py-16"
@@ -35,7 +44,6 @@
                         <dd
                             class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                         >
-                            <!-- <a href="#" class="hover:underline">{{ order.id }}</a> -->
                         </dd>
                         </dl>
 
@@ -48,7 +56,6 @@
                         <dd
                             class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                         >
-                            <!-- {{ order.createdAt.slice(0, 10) }} -->
                         </dd>
                         </dl>
 
@@ -61,7 +68,7 @@
                         <dd
                             class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                         >
-                            <!-- {{ order.totalPrice }} грн. -->
+
                         </dd>
                         </dl>
 
@@ -122,19 +129,21 @@
 
 <script setup>
 
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, watch } from 'vue'
   import { useModalStore, useAuthStore } from '#imports';
+  import DashBurger from '@/components/shared/DashBurger.vue';
+
 
   const modalStore = useModalStore();
   const authStore = useAuthStore();
+  const loadingState = ref(false);
 
   const orders = ref([]);
 
+  console.log(authStore.user, "orders");   
 
-  onMounted(async () => {
-
-
-    try{
+  const loadData = async () => {
+        try{
         const getOrders = await $fetch(`/api/orders?orderId=${authStore.user.id}`, {
             method: 'GET'
         })
@@ -142,19 +151,51 @@
         orders.value = getOrders.data;
 
 
-        console.log(getOrders.data, 'getOrders')
 
-
-
-    } catch {
+    } catch (error) {
         console.log(error)
 
     }
+  }
+  
+  if (authStore.user) {
+    loadData();
+    loadingState.value = true;
+  } else {
+    loadingState.value = false;
+  }
+
+
+
+//   onMounted(async () => {
+
+//     const authStore = await useAuthStore();
+
+//     console.log(authStore.user, "orders");
+
+//     if (!authStore.user) {
+//         return;
+//     }
+
+
+//     try{
+//         const getOrders = await $fetch(`/api/orders?orderId=${authStore.user.id}`, {
+//             method: 'GET'
+//         })
+
+//         orders.value = getOrders.data;
+
+
+
+//     } catch (error) {
+//         console.log(error)
+
+//     }
 
 
 
 
-  })
+//   })
 
 
 

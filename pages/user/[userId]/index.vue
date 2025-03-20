@@ -1,12 +1,15 @@
 <template>
-  <div class="mx-6 pt-12 pb-28">
+  <div v-if="!loadingState">
+
+  </div>
+  <div class="mx-6 pt-12 pb-28" v-else>
     <div class="head flex items-center justify-between px-5 py-5">
       <h1
         class="text-2xl font-semibold text-[var(--bg-color)] dark:text-white sm:text-3xl"
       >
         Профіль
       </h1>
-      <AdminBurger />
+      <DashBurger />
     </div>
 
     <div class="flex flex-col pt-5">
@@ -118,7 +121,7 @@
 
 <script setup>
 import { ref } from "vue";
-import AdminBurger from "~/components/shared/AdminBurger.vue";
+import DashBurger from "@/components/shared/DashBurger.vue";
 
 import SvgIcon from "@/components/shared/SvgIcon.vue";
 
@@ -127,20 +130,19 @@ import { useAuthStore, useModalStore } from "#imports";
 const authStore = useAuthStore();
 const modalStore = useModalStore();
 
-
+const loadingState = ref(false);
+const dateOfCreate = ref('');
 const userData= authStore.user;
-const dateOfCreate = userData.createdAt.slice(0, 10).split('-').reverse().join('.');
 
-const profile = ref({
-  firstName: userData.username,
-  lastName: userData.userSurname,
-  userFamily: userData.userFamily,
-  phone: userData.phoneNumber,
-  email: userData.email,
-});
+const userDataObj = ref({})
 
-const userDataObj = {
-  username: {
+console.log(userData, 'userData');
+
+
+if (authStore.user) {
+    dateOfCreate.value = userData.createdAt.slice(0, 10).split('-').reverse().join('.');
+    userDataObj.value = {
+      username: {
     tr: [
       {en: 'Name'},
       {uk: 'Імʼя'},
@@ -180,10 +182,12 @@ const userDataObj = {
   ],
     value: userData.email
   },
+    }
 
+  loadingState.value = true;
+} else {
+  loadingState.value = false;
 }
-
-console.log(userData, 'userData');
 
 
 

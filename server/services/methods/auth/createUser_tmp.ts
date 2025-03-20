@@ -20,7 +20,6 @@ async function createUser(event: any) {
         }
     });
 
-    console.log(registeredUsers, 'registeredUsers');
 
     if (registeredUsers) {
         throw createError({ statusCode: 400, statusMessage: 'Email уже используется' });
