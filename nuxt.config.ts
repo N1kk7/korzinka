@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     tgChatId: 'TELEGRAM_CHAT_ID',
     redisPass: 'REDIS_PASSWORD',
     redisUri: 'REDIS_URI',
+    redisUrl: 'REDIS_URL',
     public: {
         apiBaseUrl: 'NUXT_PUBLIC_API_BASE_URL',
         apiBaseToken: 'NUXT_PUBLIC_API_BASE_TOKEN',
