@@ -50,6 +50,10 @@ const redisClient = new Redis({
 
 });
 
+redisClient.on('error', function (error) {
+  console.dir(error)
+})
+
 export default redisClient;
 
 

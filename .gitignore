@@ -27,3 +27,4 @@ logs
 
 # DB
 # utils/supabase.ts
+.vercel
