@@ -36,20 +36,22 @@ const redisPass = process.env.REDIS_PASSWORD;
 
 import Redis from 'ioredis';
 
-// const redisClient = new Redis({
-//   host: redisUri,
-//   port: 12405,
-//   username: 'default',
-//   password: redisPass,
-//   connectTimeout: 3000,
-//   retryStrategy: (times) => Math.min(times * 50, 2000),
-//   tls: {
-//     minVersion: 'TLSv1.2', 
-//     rejectUnauthorized: false,
-//   }
+const redisClient = new Redis({
+  host: redisUri,
+  port: 12405,
+  username: 'default',
+  password: redisPass,
+  connectTimeout: 3000,
+  retryStrategy: (times) => Math.min(times * 50, 2000),
 
+});
+// const redisClient = new Redis(process.env.REDIS_URL, {
+//   tls: false // Отключаем TLS
 // });
-const redisClient = new Redis(process.env.REDIS_URL);
+
+redisClient.on('error', (err) => {
+  console.error('❌ Redis Error:', err);
+});
 
 
 export default redisClient;
