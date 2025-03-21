@@ -44,7 +44,8 @@ const redisClient = new Redis({
   connectTimeout: 3000,
   retryStrategy: (times) => Math.min(times * 50, 2000),
   tls: {
-    rejectUnauthorized: true,
+    minVersion: 'TLSv1.2', 
+    rejectUnauthorized: false,
   }
 
 });
