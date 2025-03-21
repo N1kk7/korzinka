@@ -1,12 +1,14 @@
 <template>
   <div class="section page products-section">
     <!-- <main v-if="activeCategory.length" class="flex-grow p-1 mt-5"> -->
-    <main class="flex-grow p-1 mt-5">
+    <main class="flex-grow p-1 mt-5" v-if="loader">
       <div
         v-for="(item, index) in fetchedAllProducts"
         :key="index"
         class="group-title mb-10"
       >
+      {{ console.log(item, "item") }}
+
         <h2
           class="text-2xl font-bold text-[var(--dark-color)] mb-4 z-10 relative"
         >
@@ -31,11 +33,38 @@
                 .toLowerCase()}/${product.id}`"
               @click="selectProduct(product.product)" -->
               <!-- {{ console.log(item.group, product.id) }} -->
-              <ItemCard :product="product" :group="item.group" />
+              <ItemCard :product="product" />
             </div>
+            
           </div>
         </div>
       </div>
+    </main>
+    <main class="flex-grow p-1 mt-5" v-else>
+      <div class="group-title mb-10">
+        <h2
+          class="text-2xl font-bold text-[var(--dark-color)] mb-4 z-10 relative"
+        >
+          Завантаження
+        </h2>
+      </div>
+
+      <div class="cards-content mb-10">
+        <div 
+          class="card-wrapper w-fit"
+          v-for="i in 10"
+          :key="i"
+        >
+          <div class="h-full">
+            <SkeletonItemCard />
+          </div>
+
+        </div>
+
+      </div>
+
+      
+
     </main>
   </div>
 </template>
@@ -43,19 +72,34 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import ItemCard from "@/components/ItemCard.vue";
+import SkeletonItemCard from "~/components/SkeletonItemCard.vue";
 
 const fetchedAllProducts = ref([]);
+
+const loader = ref(false);
 
 onMounted(async () => {
   try {
     const fetchProducts = await $fetch("/api/category?category=all");
 
-    if (fetchProducts.length > 0) {
-      fetchedAllProducts.value = fetchProducts;
-    }
+
+    fetchProducts.data.forEach((item) => {
+      // return item.products.length > 0
+      if (item.products.length > 0) {
+        fetchedAllProducts.value.push(item);
+      }
+    });
+
+    loader.value = true;
+
+    // if (fetchProducts.data.products.length > 0) {
+    //   fetchedAllProducts.value = fetchProducts.data.products;
+    // }
   } catch (error) {
     console.error("Error fetching data зкщв:", error);
   }
+
+  console.log(fetchedAllProducts.value, "fetchedAllProducts");
 
   // console.log(fetchedAllProducts.value, 'fetchedAllProducts')
 });

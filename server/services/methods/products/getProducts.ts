@@ -141,14 +141,15 @@ import redisClient from "../../../../utils/redisClient";
 
 async function getProducts(event: any) {
 
-    // Жестко задаем параметры для теста
-    const page = 1;  // Первая страница
-    const pageSize = 10;  // 10 товаров на странице
+    console.log('getProducts')
+
+
+    const page = 1;  
+    const pageSize = 10; 
 
     const cacheKey = `all_products_page_${page}_size_${pageSize}`;
 
     try {
-        // Попытка получить данные из кэша
         const cacheData = await redisClient.get(cacheKey);
         if (cacheData) {
             console.log('Data loaded from cache');
@@ -158,10 +159,9 @@ async function getProducts(event: any) {
             };
         }
 
-        // Запрос в базу данных с пагинацией
         const products = await prisma.product.findMany({
-            skip: (page - 1) * pageSize,  // Пропускаем товары на предыдущих страницах
-            take: pageSize,  // Количество товаров на текущей странице
+            skip: (page - 1) * pageSize, 
+            take: pageSize,  
             include: {
                 img: true, 
                 options: {
@@ -174,8 +174,7 @@ async function getProducts(event: any) {
             }
         });
 
-        // Кэшируем данные для текущей страницы в Redis
-        await redisClient.set(cacheKey, JSON.stringify(products), { EX: 3600 });
+        await redisClient.set(cacheKey, JSON.stringify(products), "EX", 3600);
 
         console.log('Data added to cache');
 

@@ -1,109 +1,47 @@
-// import Redis from 'ioredis'
 const config = useRuntimeConfig();
-// const redis = new Redis({
-//     host: 'redis-16604.c281.us-east-1-2.ec2.redns.redis-cloud.com:16604', 
-//     port: 16604,                     
-//     password: '2xJi0DDpaSTbmnNzIh1p2m4z9aQAv0bW', 
-//     db: 0                           
-//   });
 
-
-//   // Проверка соединения с Redis
-// redis.on('connect', () => {
-//     console.log('Redis connected');
-//   });
-  
-//   redis.on('error', (err) => {
-//     console.error('Redis connection error:', err);
-//   });
-  
-//   // Экспортируем клиент Redis
-//  export default redis;
-
-
-
-//  import {createClient}  from 'redis';
-
-//  const client = createClient({
-//     username: 'default',
-//     password: '2xJi0DDpaSTbmnNzIh1p2m4z9aQAv0bW',
-//     socket: {
-//         host: 'redis-16604.c281.us-east-1-2.ec2.redns.redis-cloud.com',
-//         port: 16604
-//     }
-// });
-
-// client.on('error', err => console.log('Redis Client Error', err));
-
-// await client.connect();
-
-// await client.set('foo', 'bar');
-// const result = await client.get('foo');
-// console.log(result)  // >>> bar
-
-// export default client
-
-// utils/redisClient.js
-
+const redisUri = process.env.REDIS_URI;
+const redisPass = process.env.REDIS_PASSWORD;
 
 // import { createClient } from 'redis';
 
+
+
+// const redisUri = process.env.REDIS_URI;
+// const redisPass = process.env.REDIS_PASSWORD;
+
+// // console.log('Redis URI:', redisUri, 'Password:', redisPass);
+
 // const redisClient = createClient({
 //   username: 'default',
-//   password: '2xJi0DDpaSTbmnNzIh1p2m4z9aQAv0bW',
-//   socket: {
-//     host: 'redis-16604.c281.us-east-1-2.ec2.redns.redis-cloud.com',
-//     port: 16604,
-//   },
+//     password: redisPass,
+//     socket: {
+//         host: redisUri,
+//         port: 12405
+//     }
 // });
 
-// redisClient.on('error', (err) => console.error('Redis Client Error', err));
 
-// await redisClient.connect(); 
+// redisClient.on('error', (err) => console.error('❌ Redis Client Error:', err));
 
-// // console.log('✅ Connected to Redis');
+// redisClient.on('connect', () => console.log('✅ Подключение к Redis установлено'));
 
-// export default redisClient;
-
-import { createClient } from 'redis';
-
-const redisClient = createClient({
-  username: 'default',
-//   password: '2xJi0DDpaSTbmnNzIh1p2m4z9aQAv0bW',
-//   socket: {
-//     host: 'redis-16604.c281.us-east-1-2.ec2.redns.redis-cloud.com',
-//     port: 16604,
-//   },
-    // password: 'WSa8Av0vC1OvKnC2e6OLtIvj8Xkl2fXD',
-    // socket: {
-    //     host: 'redis-18374.c233.eu-west-1-1.ec2.redns.redis-cloud.com',
-    //     port: 18374
-    // }
-    password: `${config.redisPass}`,
-    socket: {
-        host: config.redisUri,
-        port: 12405
-    }
-});
-
-// redisClient.on('error', (err) => console.error('Redis Client Error', err));
-
-// if (!redisClient.isOpen) {
+// if (!redisClient.isReady) {
 //   redisClient.connect()
-//     .then(() => console.log('Подключение к Redis установлено'))
-//     .catch((err) => console.error('Ошибка подключения к Redis:', err));
+//     .catch((err) => console.error('❌ Ошибка подключения к Redis:', err));
 // }
 
 
-redisClient.on('error', (err) => console.error('❌ Redis Client Error:', err));
+// export default redisClient;
 
-redisClient.on('connect', () => console.log('✅ Подключение к Redis установлено'));
+import Redis from 'ioredis';
 
-if (!redisClient.isReady) {
-  redisClient.connect()
-    .catch((err) => console.error('❌ Ошибка подключения к Redis:', err));
-}
-
+const redisClient = new Redis({
+  host: redisUri,
+  port: 12405,
+  username: 'default',
+  password: redisPass,
+});
 
 export default redisClient;
 

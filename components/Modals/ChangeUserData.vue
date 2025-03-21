@@ -57,7 +57,7 @@
     import SvgIcon from '@/components/shared/SvgIcon.vue';
     import DefaultBtn from '../shared/DefaultBtn.vue';
     import { useModalStore } from '#imports';
-    import { ref, defineEmits, onMounted } from 'vue'
+    import { ref, onMounted } from 'vue'
 
 
     const emit = defineEmits();

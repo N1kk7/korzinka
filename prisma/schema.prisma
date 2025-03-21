@@ -1,14 +1,227 @@
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+
+
+// datasource db {
+//   provider = "postgresql"
+//   url = env("NUXT_API_SECRET_PATH")
+//   // directUrl         = env("NUXT_DIRECT_URL")
+// }
+
+// model Category {
+//   id           Int                  @id @default(autoincrement())
+//   group        String               @unique
+//   listPosition Int                  @default(0)
+//   visible      Boolean
+//   categoryImg String
+//   parentId     Int?                 // ID родительской категории (null для корневых категорий)
+//   parent       Category?            @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Cascade) // Связь с родительской категорией
+//   subcategories Category[]          @relation("CategoryParent") // Связь с подкатегориями
+//   translations CategoryTranslation[]
+//   products     Product[]
+// }
+
+// model CategoryTranslation {
+//   id          Int      @id @default(autoincrement())
+//   categoryId  Int      // Поле внешнего ключа
+//   language    String   // Язык перевода (например, "en", "ru", "uk")
+//   title       String   // Переведенное название категории
+//   description String?  // Переведенное описание категории
+//   groupText   String    // Описание категории
+//   Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+// }
+
+// model Product {
+//   id                 Int                  @id @default(autoincrement())
+//   categoryId         Int                  // Поле внешнего ключа для связи с Category
+//   visible            Boolean              // Показывать товар на сайте
+//   img                ProductImg[]              // Строка изображения
+//   price              Float?              // Стандартная цена
+//   stockState         Boolean              // Показывать колличество товарв на сайте 
+//   stockValue         Int?                 @default(0) // Значение колличества товаров на сайте
+//   discountPercent    Int?                // Цена акционного товара
+//   wholesalePrice     Int?                  // Оптовая цена
+//   counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
+//   packageType        String                // Значение типа упаковки
+//   wholesaleOnly      Boolean?               // Значение продажи товара только оптом
+//   wholesaleFrom      Int?                   //Значение колличества единиц от которой действует оптовая цена
+//   productSize        String
+//   productWeight     String
+//   productDensity    String
+//   productCapacity   String
+//   packageQuantity   String
+//   groupPackQuantity String
+//   options            ProductOptions[]       // Массив опций
+//   translations       ProductTranslation[] // Связь с переводами
+//   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//    orderItems        OrderItem[]
+// }
+
+// model ProductOptions {
+//   id                Int     @id @default(autoincrement())
+//   optionId          Int
+//   optionImg         String
+//   optionPrice       Float?
+//   translations      ProductOptionsTranslation[]
+//   Product           Product @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+
+// }
+
+// model ProductImg {
+//   id                Int     @id @default(autoincrement())
+//   imgId             Int
+//   path              String
+//   Product           Product @relation(fields: [imgId], references: [id], onDelete: Cascade)
+// }
+
+// model ProductTranslation {
+//   id                 Int      @id @default(autoincrement())
+//   productId          Int      // Поле внешнего ключа
+//   language           String   // Язык перевода (например, "en", "ru", "uk")
+//   title              String   // Переведенное название товара
+//   productDescription String?  // Переведенное описание товара
+//   wholesaleDescription String? // Переведенное оптовое описание
+//   productColor       String    // 
+//   groupPackage        String
+//   productMaterial     String
+//   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
+
+// model ProductOptionsTranslation {
+//   id                 Int      @id @default(autoincrement())
+//   optionId           Int
+//   language           String
+//   optionInfo         String
+//   Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
+// }
+
+// model User {
+//   id            Int       @id @default(autoincrement())
+//   username      String?   @unique
+//   userSurname   String?
+//   userAvatar    String?
+//   userFamily    String?
+//   email         String?   @unique
+//   phoneNumber   String?    
+//   password      String?
+//   createdAt     DateTime  @default(now())
+//   role          String    @default("guest")
+//   orders        Order[]
+//   adresses      Adress[]
+//   notifications Notification[]
+//   settings      UserSetting[]
+//   telegramId    String?   @unique
+//   telegramChatId String?   @unique
+//   telegramRole  TgRoles?  @default(CLIENT)
+// }
+
+// enum TgRoles {
+//   GUEST
+//   ADMIN
+//   CLIENT
+// }
+
+// model UserSetting {
+//   id              Int     @id @default(autoincrement())
+//   settingId       Int?
+//   user            User?   @relation(fields: [settingId], references: [id], onDelete: Cascade)
+//   discountNot     Boolean @default(true)
+//   orderStateNot   Boolean @default(true)
+//   newsStateNot    Boolean @default(true)
+//   twoFeCheck      Boolean @default(true)
+//   passwordBlock   Boolean @default(true)
+
+
+// }
+
+// model Notification {
+//   id              Int     @id @default(autoincrement())
+//   notificationId  Int?
+//   user            User?   @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+//   isReaded        Boolean
+//   createdAt       DateTime  @default(now())
+//   message         String
+//   date            String
+
+// }
+
+// model Adress {
+//   id            Int      @id @default(autoincrement())
+//   adressId      Int?
+//   user          User?     @relation(fields: [adressId], references: [id], onDelete: Cascade)  
+//   postCompany   String?
+//   postOffice    String?
+//   postomat      String?
+//   city          String
+//   postIndex     String?
+//   homeAdress    String?
+// }
+
+// model Order {
+//   id              String      @id @default(uuid())
+//   userId          Int?        
+//   user            User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+//   status          OrderStatus @default(PENDING) 
+//   createdAt       DateTime    @default(now())
+//   paymentMethod   String?
+//   totalPrice Int  
+//   shippingInfo ShippingInfo?
+//   orderItems OrderItem[]
+// }
+
+// model OrderItem {
+//   id        Int     @id @default(autoincrement())
+//   orderId   String
+//   productId Int
+//   quantity  Int     @default(1) // Количество товара в заказе
+
+//   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+//   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
+
+// model ShippingInfo {
+//   id              Int     @id @default(autoincrement())
+//   orderId         String     @unique 
+//   recipient       String  
+//   phoneNumber     String
+//   deliveryMethod  String?  
+//   postCompany     String? 
+//   postOffice      String?
+//   postomat        String?
+//   city            String  
+//   address         String?  
+//   country         String  
+
+//   order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+// }
+
+// enum OrderStatus {
+//   PENDING      // Ожидает обработки
+//   PROCESSING   // В обработке
+//   SHIPPED      // Отправлен
+//   DELIVERED    // Доставлен
+//   CANCELED     // Отменен
+// }
+
+// model News {
+//   id        Int      @id @default(autoincrement())
+//   title     String
+//   content   String
+//   visible   Boolean
+//   createdAt DateTime @default(now())
+// }
+
 generator client {
   provider = "prisma-client-js"
 }
 
-
-
 datasource db {
   provider = "postgresql"
   url = env("NUXT_API_SECRET_PATH")
-  // directUrl         = env("NUXT_DIRECT_URL")
 }
 
 model Category {
@@ -16,62 +229,67 @@ model Category {
   group        String               @unique
   listPosition Int                  @default(0)
   visible      Boolean
-  categoryImg String
-  parentId     Int?                 // ID родительской категории (null для корневых категорий)
-  parent       Category?            @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Cascade) // Связь с родительской категорией
-  subcategories Category[]          @relation("CategoryParent") // Связь с подкатегориями
+  categoryImg  String
+  parentId     Int?                 
+  parent       Category?            @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Cascade)
+  subcategories Category[]          @relation("CategoryParent")
   translations CategoryTranslation[]
   products     Product[]
+
+  @@index([parentId])
 }
 
 model CategoryTranslation {
   id          Int      @id @default(autoincrement())
-  categoryId  Int      // Поле внешнего ключа
-  language    String   // Язык перевода (например, "en", "ru", "uk")
-  title       String   // Переведенное название категории
-  description String?  // Переведенное описание категории
-  groupText   String    // Описание категории
+  categoryId  Int      
+  language    String   
+  title       String   
+  description String?  
+  groupText   String   
   Category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+  @@index([language])
 }
 
 model Product {
   id                 Int                  @id @default(autoincrement())
-  categoryId         Int                  // Поле внешнего ключа для связи с Category
-  visible            Boolean              // Показывать товар на сайте
-  img                ProductImg[]              // Строка изображения
-  price              Float?              // Стандартная цена
-  stockState         Boolean              // Показывать колличество товарв на сайте 
-  stockValue         Int?                 @default(0) // Значение колличества товаров на сайте
-  discountPercent    Int?                // Цена акционного товара
-  wholesalePrice     Int?                  // Оптовая цена
-  counterQuantity    Int?                  @default(1)// Значение минимального колличества единиц
-  packageType        String                // Значение типа упаковки
-  wholesaleOnly      Boolean?               // Значение продажи товара только оптом
-  wholesaleFrom      Int?                   //Значение колличества единиц от которой действует оптовая цена
+  categoryId         Int                  
+  visible            Boolean              
+  img                ProductImg[]         
+  price              Float?               
+  stockState         Boolean              
+  stockValue         Int?                 @default(0)
+  discountPercent    Int?                 
+  wholesalePrice     Int?                 
+  counterQuantity    Int?                 @default(1)
+  packageType        String               
+  wholesaleOnly      Boolean?             
+  wholesaleFrom      Int?                 
   productSize        String
-  productWeight     String
-  productDensity    String
-  productCapacity   String
-  packageQuantity   String
-  groupPackQuantity String
-  options            ProductOptions[]       // Массив опций
-  translations       ProductTranslation[] // Связь с переводами
+  productWeight      String
+  productDensity     String
+  productCapacity    String
+  packageQuantity    String
+  groupPackQuantity  String
+  options            ProductOptions[]     
+  translations       ProductTranslation[] 
   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-   orderItems        OrderItem[]
+  orderItems        OrderItem[]
+
+  @@index([categoryId])
+  @@index([price])
 }
 
 model ProductOptions {
   id                Int     @id @default(autoincrement())
   optionId          Int
   optionImg         String
-  // optionDescription String
   optionPrice       Float?
-  // optionWholesale   Float?
-  // wholesaleOnly     Boolean
   translations      ProductOptionsTranslation[]
   Product           Product @relation(fields: [optionId], references: [id], onDelete: Cascade)
 
-
+  @@index([optionId])
 }
 
 model ProductImg {
@@ -79,19 +297,24 @@ model ProductImg {
   imgId             Int
   path              String
   Product           Product @relation(fields: [imgId], references: [id], onDelete: Cascade)
+
+  @@index([imgId])
 }
 
 model ProductTranslation {
   id                 Int      @id @default(autoincrement())
-  productId          Int      // Поле внешнего ключа
-  language           String   // Язык перевода (например, "en", "ru", "uk")
-  title              String   // Переведенное название товара
-  productDescription String?  // Переведенное описание товара
-  wholesaleDescription String? // Переведенное оптовое описание
-  productColor       String    // 
-  groupPackage        String
-  productMaterial     String
+  productId          Int      
+  language           String   
+  title              String   
+  productDescription String?  
+  wholesaleDescription String?
+  productColor       String    
+  groupPackage       String
+  productMaterial    String
   Product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([language])
 }
 
 model ProductOptionsTranslation {
@@ -100,30 +323,10 @@ model ProductOptionsTranslation {
   language           String
   optionInfo         String
   Option             ProductOptions @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@index([optionId])
+  @@index([language])
 }
-
-// model User {
-//   id        Int      @id @default(autoincrement())
-//   username  String?  @unique
-//   email     String   @unique
-//   password  String?
-//   createdAt DateTime @default(now())
-//   role      String   @default("user")
-//   orders    Order[]
-// }
-
-// model TelegramUser {
-//   id        String  @id @default(uuid())
-//   chatId    String  @unique
-//   username  String?
-//   role      TgRoles
-//   createdAt DateTime @default(now())
-// }
-
-// enum TgRoles {
-//   ADMIN
-//   CLIENT
-// }
 
 model User {
   id            Int       @id @default(autoincrement())
@@ -143,48 +346,50 @@ model User {
   telegramId    String?   @unique
   telegramChatId String?   @unique
   telegramRole  TgRoles?  @default(CLIENT)
+
+  @@index([phoneNumber])
 }
+
+model Adress {
+  id        Int    @id @default(autoincrement())
+  userId    Int
+  street    String
+  city      String
+  country   String
+  postalCode String?
+  postIndex String 
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+
+model UserSetting {
+  id        Int   @id @default(autoincrement())
+  userId    Int
+  setting   String
+  value     String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
 
 enum TgRoles {
   GUEST
   ADMIN
   CLIENT
-}
-
-model UserSetting {
-  id              Int     @id @default(autoincrement())
-  settingId       Int?
-  user            User?   @relation(fields: [settingId], references: [id], onDelete: Cascade)
-  discountNot     Boolean @default(true)
-  orderStateNot   Boolean @default(true)
-  newsStateNot    Boolean @default(true)
-  twoFeCheck      Boolean @default(true)
-  passwordBlock   Boolean @default(true)
-
-
-}
-
-model Notification {
-  id              Int     @id @default(autoincrement())
-  notificationId  Int?
-  user            User?   @relation(fields: [notificationId], references: [id], onDelete: Cascade)
-  isReaded        Boolean
-  createdAt       DateTime  @default(now())
-  message         String
-  date            String
-
-}
-
-model Adress {
-  id            Int      @id @default(autoincrement())
-  adressId      Int?
-  user          User?     @relation(fields: [adressId], references: [id], onDelete: Cascade)  
-  postCompany   String?
-  postOffice    String?
-  postomat      String?
-  city          String
-  postIndex     String?
-  homeAdress    String?
 }
 
 model Order {
@@ -194,19 +399,24 @@ model Order {
   status          OrderStatus @default(PENDING) 
   createdAt       DateTime    @default(now())
   paymentMethod   String?
-  totalPrice Int  
-  shippingInfo ShippingInfo?
-  orderItems OrderItem[]
+  totalPrice      Int  
+  shippingInfo    ShippingInfo?
+  orderItems      OrderItem[]
+
+  @@index([userId])
+  @@index([status])
 }
 
 model OrderItem {
   id        Int     @id @default(autoincrement())
   orderId   String
   productId Int
-  quantity  Int     @default(1) // Количество товара в заказе
-
+  quantity  Int     @default(1) 
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model ShippingInfo {
@@ -223,14 +433,17 @@ model ShippingInfo {
   country         String  
 
   order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([city])
+  @@index([country])
 }
 
 enum OrderStatus {
-  PENDING      // Ожидает обработки
-  PROCESSING   // В обработке
-  SHIPPED      // Отправлен
-  DELIVERED    // Доставлен
-  CANCELED     // Отменен
+  PENDING      
+  PROCESSING   
+  SHIPPED      
+  DELIVERED    
+  CANCELED     
 }
 
 model News {
@@ -239,4 +452,6 @@ model News {
   content   String
   visible   Boolean
   createdAt DateTime @default(now())
+
+  @@index([createdAt])
 }

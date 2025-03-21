@@ -18,13 +18,41 @@
         </div> -->
         
         <!-- <div class="grid grid-cols-5"> -->
+            <!-- <div class="options ">
+                <div class="option badge-discount">
+                    Знижка %
+                </div>
+                <div  class="option badge-wholesale">
+                    Тільки оптом
+                </div>
+                <div  class="option badge-new">
+                    Новинка
+                </div>
+        </div> -->
+
+  <div class="badge-labels flex h-6 max-h-6 items-center overflow-hidden absolute left-0 top-0 rounded-tl-[16px]">
+    <!-- skew(-12deg) translateX(-4px) -->
+    <div class="badge relative -skew-x-12 rounded-br-lg py-1.5 text-[13px] leading-3 text-white bg-[var(--dark-color)] z-[3] -translate-x-1">
+      <span class="skew-x-[12] whitespace-nowrap">Новинка</span>
+    </div>
+
+    <div class="badge relative -skew-x-12 rounded-br-lg py-1.5  text-[13px] leading-3 text-white bg-[var(--main-accent)] z-[2] -translate-x-3">
+      <span class="skew-x-[12] whitespace-nowrap">Тільки оптом</span>
+    </div>
+
+    <div class="badge relative -skew-x-12 rounded-br-lg py-1.5  text-[13px] leading-3 text-white bg-[var(--active-btn)] z-[1] -translate-x-6">
+      <span class="skew-x-[12] whitespace-nowrap">Знижка</span>
+    </div>
+  </div>
+
+
         <div class="grid-card grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-1  h-full">
             <!--  -->
 
             <div class="card-img col-span-2 p-1 bg-[var(--primary-color)] flex items-center justify-center">
                 <img :src="props.product.img[0].path" alt="demo" class="w-[90%]"/>
             </div>
-            <div class="text-content col-span-3 p-3 z-20 relative flex flex-col justify-between gap-2">
+            <div class="text-content col-span-3 p-3 pt-6 z-20 relative flex flex-col justify-between gap-2">
                 <div class="text-block">
                     <h3 class="font-bold text-[var(--dark-color)]">
                         {{ props.product.translations.find(translation => translation.language === 'uk').title }}
@@ -117,7 +145,7 @@
 
     const props = defineProps({
         product: Object,
-        group: String,
+        // group: String,
     })
 
     const selectProduct = (product) => {
@@ -181,6 +209,7 @@
             flex: 1;
             h3{
                 color: white;
+                padding-top: 10px;
             }
             p{
                 font-size: clamp(12px, 1.5vw, 18px)
@@ -193,5 +222,16 @@
     }
 }
 
+.badge-labels{
+    .badge{
+        padding-left: clamp(16px, 1vw, 20px);
+        padding-right: clamp(12px, 1vw, 16px);
+    }
+    
+    span{
+        font-size: clamp(8px, 1.5vw, 14px);
+    }
+
+}
 
 </style>

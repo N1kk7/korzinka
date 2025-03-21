@@ -41,7 +41,9 @@ onMounted(async () => {
     fetchedCategoryProducts.value = fetchedCategoryProducts.data.map(
       (item) => item
     );
+
   }
+
 });
 
 definePageMeta({

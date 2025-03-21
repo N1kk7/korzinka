@@ -22,7 +22,9 @@ export default defineNuxtConfig({
   components: true,
 
   devtools: { enabled: true },
- 
+  nitro: {
+    compressPublicAssets: true
+  },
   runtimeConfig: {
     apiSecretPath: 'NUXT_API_SECRET_PATH',
     apiSecretKey: 'NUXT_API_SECRET_KEY',
