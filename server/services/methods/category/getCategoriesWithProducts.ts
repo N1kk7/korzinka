@@ -1,115 +1,68 @@
 import prisma from "../../../../prisma/prisma";
 
+import { encode, decode } from "@msgpack/msgpack";
 import redisClient from "../../../../utils/redisClient";
 
-
 const getCategoriesWithProducts = async () => {
-
-    const cacheKey = 'all_categories_7';
+    const cacheKey = 'all_categories';
 
     try {
+        const pipeline = redisClient.pipeline();
+        pipeline.getBuffer(cacheKey);
+        const execResult = await pipeline.exec();
 
-        const cacheData = await redisClient.get(cacheKey);
+        if (!execResult) return { message: 'Redis error', error: 'Pipeline returned null' };
+
+        const [[error, cacheData]] = execResult;
+
+        if (error) return { message: 'Redis error', error };
 
         if (cacheData) {
-            console.log('Data loaded from cache');
-            return {
-                data: JSON.parse(cacheData),
-                message: 'Data loaded from cache'
-            };
+            return { data: JSON.parse(cacheData.toString()), message: 'Data loaded from cache' };
         }
-        console.time("DB Query");
+
         const categoryWithProducts = await prisma.category.findMany({
-            // where: {
-            //     products: {
-            //         some: {},
-            //     },
-            // },
-            // include: {
-            //     products: {
-            //         include: {
-            //             img: true,
-            //             options: {
-            //                 include: {
-            //                     translations: true,
-            //                 }
-            //             },
-            //             translations: true
-            //         }
-            //     },
-            //     translations: true,
-            // },
             select: {
                 id: true,
                 group: true, 
-                translations: {
-                  select: {
-                    language: true,
-                    title: true, 
-                  }
-                },
+                translations: { select: { language: true, title: true } },
                 products: {
                     take: 10,
-                  select: {
-
-                    id: true,
-                    productSize: true, 
-                    img: {
-                      select: {
-                        path: true 
-                      }
-                    },
-                    price: true,
-                    wholesalePrice: true,
-                    counterQuantity: true,
-                    translations: {
-                      select: {
-                        language: true,
-                        title: true,
-                        productDescription: true,
-                        wholesaleDescription: true,
-                        groupPackage: true,
-                        productColor: true,
-                        productMaterial: true
-
-                      }
-                    },
-                    options: {
-                      select: {
+                    select: {
                         id: true,
+                        productSize: true, 
+                        img: { select: { path: true } },
+                        price: true,
+                        wholesalePrice: true,
+                        counterQuantity: true,
                         translations: {
-                          select: {
-                            language: true,
-                            optionInfo: true 
-                          }
+                            select: {
+                                language: true,
+                                title: true,
+                                productDescription: true,
+                                wholesaleDescription: true,
+                                groupPackage: true,
+                                productColor: true,
+                                productMaterial: true
+                            }
+                        },
+                        options: {
+                            select: {
+                                id: true,
+                                translations: { select: { language: true, optionInfo: true } }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
-        })
-        console.timeEnd("DB Query");
+            }
+        });
 
-        console.time("Redis Set");
         await redisClient.set(cacheKey, JSON.stringify(categoryWithProducts), "EX", 3600);
-        console.timeEnd("Redis Set");
 
-        return {
-            data: categoryWithProducts,
-            message: 'Data added to cache'
-        }
+        return { data: categoryWithProducts, message: 'Data added to cache' };
     } catch (error) {
-
-        console.log('something went wrong', error);
-
-        return {
-            message: 'Something went wrong',
-            error: error
-        }
+        return { message: 'Something went wrong', error };
     }
-    
-        
-}
+};
 
 export default getCategoriesWithProducts;

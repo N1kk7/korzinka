@@ -41,6 +41,9 @@ const redisClient = new Redis({
   port: 12405,
   username: 'default',
   password: redisPass,
+  connectTimeout: 3000,
+  retryStrategy: (times) => Math.min(times * 50, 2000),
+
 });
 
 export default redisClient;
