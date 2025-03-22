@@ -282,6 +282,10 @@ const observer = new IntersectionObserver(
             color: var(--dark-font-color);
 
         }
+        @media screen and (max-width: 1024px) {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgb(0, 0, 0) 100%);
+            
+        }
         
 
     }
