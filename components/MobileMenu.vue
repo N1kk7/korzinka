@@ -187,6 +187,9 @@
             {{ $t("mobile-menu.profile-btn") }}
           </span>
         </div>
+        <div class="btn theme-btn" @click="themeStore.toggleTheme">
+          <img class="w-5 h-5" src="/public/light-mode.png" alt="theme">
+        </div>
         <div class="btn cancel-btn" @click="showMenu(false)">
           <span>
             {{ $t("mobile-menu.close-btn") }}
@@ -204,7 +207,8 @@ import SvgIcon from "@/shared/SvgIcon.vue";
 import gsap from "gsap";
 import { ref, onMounted } from "vue";
 
-import { useIndexStore, useModalStore, useCartStore } from "#imports";
+import { useIndexStore, useModalStore, useCartStore, useThemeStore } from "#imports";
+import { theme } from "#tailwind-config";
 
 let openMenu = ref(false);
 
@@ -219,6 +223,7 @@ const localePath = useLocalePath();
 const indexStore = useIndexStore();
 const modalStore = useModalStore();
 const cartStore = useCartStore();
+const themeStore = useThemeStore();
 
 const cartCounter = computed(() => cartStore.cart.length);
 
