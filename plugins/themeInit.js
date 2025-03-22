@@ -14,7 +14,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       document.documentElement.classList.add('dark');
   } else {
     console.log('light init theme')
-      themeStore.darkMode = false;
+
+    // 
+      themeStore.darkMode = true;
       document.documentElement.classList.add('light');
   }
 });
