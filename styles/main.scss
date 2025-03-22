@@ -1,4 +1,4 @@
-// Пример глобальных стилей SCSS
+
 $primary-color: #3490dc;
 @use './/styles/mixins.scss' as mixins;
 
@@ -37,6 +37,15 @@ $primary-color: #3490dc;
 
   // --text-color: ;
 
+  // FOR DARK THEME
+
+--dark-light-grey: #222222;
+--dark-grey: rgb(20 20 20);
+--dark-bright-grey: rgb(130 130 130);
+--dark-font-color: rgb(226 227 230);
+--dark-component-color: rgb(34 34 34);
+--dark-border-color: #363738;
+
   // Fonts
   $font-size-base: 1rem; // Базовый размер шрифта
   $font-size-small: 0.8rem;
@@ -61,6 +70,12 @@ $primary-color: #3490dc;
   $breakpoint-xl: 1440px;
   
 }
+
+
+
+
+
+
 
 // *{
 //   border: 1px solid black;

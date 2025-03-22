@@ -266,6 +266,31 @@ const observer = new IntersectionObserver(
     }
 }
 
+.dark .main{
+    background: var(--dark-component-color);
+
+    .title-text{
+        background: var(--dark-component-color);
+        h1{
+            color: var(--dark-font-color);
+        }
+        svg{
+            fill: var(--dark-font-color);
+       
+        }
+        .promo-block li span{
+            color: var(--dark-font-color);
+
+        }
+        
+
+    }
+    .gallery .wrapper{
+        background: var(--dark-grey);
+
+    }
+}
+
 
 
     .main{

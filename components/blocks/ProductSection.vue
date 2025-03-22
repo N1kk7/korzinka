@@ -106,6 +106,30 @@
 <style lang="scss">
 
 @use ".//styles/mixins.scss" as mixins;
+
+.dark {
+    h1{
+        color: var(--dark-font-color);  
+    }
+    .product-list .product-card {
+        box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+        background: var(--dark-component-color);
+        span{
+            color: var(--dark-font-color);
+        }
+        span::before{
+            background: var(--dark-border-color);
+        }
+        &:hover{
+            display: none;
+        }
+
+    }
+}
+
+
+
+
     h1{
         position: relative;
         z-index: 1;

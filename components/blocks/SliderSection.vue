@@ -3,7 +3,7 @@
         <div class="container">
           <div class="title ">
             <h1
-              class="border-b-[1px] border-[var(--border-color)] pb-5"
+              class="border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-5"
             >{{ $t('index-page.news')}}</h1>
 
           </div>
@@ -130,6 +130,16 @@
 </script>
 
 <style lang="scss">
+
+.dark .slider-section{
+  .title{
+    h1{
+      color: var(--dark-font-color);
+      
+    }
+  }
+
+}
 
     .slider-section{
         .swiper{

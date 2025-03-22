@@ -147,6 +147,30 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+
+.dark .Stats {
+  .title{
+    border-bottom-color: var(--dark-border-color);
+    h3{
+      color: var(--dark-font-color);
+
+    }
+  }
+  .wrapper .item{
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--dark-border-color);
+    span{
+      color: var(--dark-font-color);
+    }
+    .num-wrapper{
+      border-bottom-color: var(--dark-border-color);
+    }
+  }
+}
+
+
+
+
 .Stats {
   .title {
     border-bottom: 1px solid var(--border-color);
@@ -168,11 +192,20 @@ onMounted(() => {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
       flex: 1;
       border-radius: 10px;
       box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
       padding: 20px;
       gap: 1em;
+      .num-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--border-color);
+
+      }
       .num {
         display: flex;
         align-items: center;

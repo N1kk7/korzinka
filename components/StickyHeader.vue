@@ -53,6 +53,7 @@
       </div>
     </div>
     <div class="right-button-group">
+      <ThemeSwitch />
       <NuxtLink to="/cart" class="cart">
         <div class="relative">
           <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)" />
@@ -81,6 +82,7 @@ import { useModalStore, useIndexStore, useCartStore } from "#imports";
 
 import LangBtn from "@/components/shared/LangBtn.vue";
 import SvgIcon from "./shared/SvgIcon.vue";
+import ThemeSwitch from "./ThemeSwitch.vue";
 
 const modalStore = useModalStore();
 const indexStore = useIndexStore();
@@ -105,6 +107,11 @@ onMounted(() => {
 
 <style lang="scss">
 @use ".//styles/mixins.scss" as mixins;
+
+.dark .main-header {
+  background-color: var(--dark-grey);
+  border-bottom: 1px solid var(--dark-border-color);
+}
 
 .main-header {
   display: flex;
@@ -274,7 +281,8 @@ onMounted(() => {
     display: flex;
     justify-content: flex-end;
     margin-right: 2vw;
-    align-items: center;
+    align-items: stretch;
+    position: relative;
     flex: 1;
     gap: 1.5vw;
     @media screen and (max-width: 374px) {

@@ -89,6 +89,14 @@ const localePath = useLocalePath();
 <style lang="scss" scoped>
 @use ".//styles/mixins.scss" as mixins;
 
+.dark .header .sub-header{
+  background-color: var(--dark-light-grey);
+  .links nav a{
+    color: var(--dark-font-color)
+
+  }
+}
+
 .header {
   height: 100%;
   overflow: visible;
@@ -195,5 +203,6 @@ const localePath = useLocalePath();
       }
     }
   }
+  
 }
 </style>

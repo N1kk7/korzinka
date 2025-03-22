@@ -242,6 +242,81 @@
 
 <style lang="scss">
 @use ".//styles/mixins.scss" as mixins;
+
+.dark {
+  .seo-section {
+    .seo-block{
+      h2 {
+        color: var(--dark-font-color);
+      }
+    }
+    .seo-text{
+      color: var(--dark-font-color);
+      box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+      background: var(--dark-component-color);
+    }
+    .seo-wrapper{
+      .info-block{
+        .seo-list li::marker{
+          color: var(--dark-font-color);
+        }
+        .seo-list span{
+          color: var(--dark-font-color);
+        }
+        .seo-list strong{
+          color: var(--dark-font-color);
+        }
+        .seo-list .sub-seo-list li{
+          box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+          background: var(--dark-component-color);
+          strong{
+            color: var(--dark-font-color);
+          }
+          span{
+            color: var(--dark-font-color);
+          }
+
+
+        }
+        .bottom-row{
+          box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+
+          background: var(--dark-component-color);
+          span{
+            color: var(--dark-font-color);
+          }
+
+        }
+
+      } 
+      .shadow-block{
+        background: var(--dark-component-color);
+        box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+
+      }
+      .description{
+        p{
+          color: var(--dark-font-color);
+
+        }
+      }
+      .dark-block{
+        box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+      }
+    } 
+    .summary{
+      p{
+        color: var(--dark-font-color);
+      }
+    }
+    
+    
+  }
+  
+}
+
+
+
 .seo-section {
   p {
     @include mixins.cardText;

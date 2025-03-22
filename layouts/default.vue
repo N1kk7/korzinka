@@ -58,6 +58,10 @@
 </script>
 
 <style scoped>
+
+.dark .layout{
+  background-color: var(--dark-component-color);
+}
 .layout {
   display: flex;
   flex-direction: column;
