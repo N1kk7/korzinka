@@ -1,10 +1,28 @@
 <template>
 
-    <div class="link-block pb-2 border-b-[1px] border-[#d9dbe0]">
-        <SvgIcon name="home-icon" size="small" fill="var(--dark-color)"/>
-        <NuxtLink :to="localePath('/')"> Головна </NuxtLink>
-        <SvgIcon name="arrow-right" size="micro" fill="var(--dark-color)"/>
-        <span>{{ pageName }}</span>
+    <div class="link-block pb-2 border-b-[1px] dark:border-[var(--dark-border-color)] border-[#d9dbe0]">
+        <SvgIcon 
+            name="home-icon" 
+            size="small" 
+            :fill="iconFill ? 'var(--dark-font-color)' : 'var(--dark-color)' "
+        />
+        <NuxtLink 
+            :to="localePath('/')"
+            class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
+        > 
+            Головна 
+        </NuxtLink>
+        <SvgIcon 
+            name="arrow-right" 
+            size="micro" 
+            :fill="iconFill ? 'var(--dark-font-color)' : 'var(--dark-color)' "
+
+        />
+        <span
+            class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
+        >
+            {{ pageName }}
+        </span>
     </div>
     
 
@@ -14,7 +32,22 @@
 
 
 <script lang="ts" setup>
-    import SvgIcon from '@/components/shared/SvgIcon.vue';
+    // import SvgIcon from '@/components/shared/SvgIcon.vue';
+    import SvgIcon from './SvgIcon.vue';
+    import { useThemeStore } from "../../stores/theme-store";
+    import { onMounted, watch } from "vue";
+
+    const themeStore = useThemeStore();
+    const isClient = ref(false);
+
+    const iconFill = computed(() => {
+    if (!isClient.value) return "";
+    return themeStore.darkMode
+    });
+
+    onMounted(() => {
+    isClient.value = true;
+    });
 
     const localePath = useLocalePath();
 
@@ -48,6 +81,7 @@
             @include mixins.descriptionText(400, var(--dark-color));
         }
     }
+
 
 
 </style>

@@ -2,12 +2,12 @@
   <div class="section contact-section max-md:mt-12">
     <div class="container">
       <LinkBlock pageName="Контакти" />
-      <div class="page-title border-b-[1px] border-[#d9dbe0] py-2">
-        <h1 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
+      <div class="page-title border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] py-2">
+        <h1 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-2xl mb-5">
           <!-- Контакти -->
           {{ $t("contacts-page.title") }}
         </h1>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
           <!-- Ми завжди раді допомогти вам! Зв'яжіться з нами зручним для вас
           способом. -->
           {{ $t("contacts-page.description") }}
@@ -18,7 +18,7 @@
         class="contact-section grid grid-cols-[1fr_3fr] gap-5 mt-10 max-md:flex max-md:flex-col-reverse"
       >
         <div
-          class="info-section border-r-[1px] border-[#d9dbe0] pr-4 py-2 max-md:flex max-md:flex-wrap max-md:gap-5"
+          class="info-section border-r-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] pr-4 py-2 max-md:flex max-md:flex-wrap max-md:gap-5"
         >
           <div class="contact-block payment">
             <div class="text-block">
@@ -26,12 +26,12 @@
                 class="contact-title flex items-center justify-start gap-3 mb-2"
               >
                 <SvgIcon name="location" size="small" fill="red" />
-                <h2 class="text-[var(--dark-color)] font-bold text-lg">
+                <h2 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-lg">
                   <!-- Адреса: -->
                   {{ $t("contacts-page.address.title") }}
                 </h2>
               </div>
-              <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                 <!-- Наш головний магазин розташований за адресою: -->
                 {{ $t("contacts-page.address.description") }}
               </p>
@@ -42,7 +42,7 @@
                   </span>
                 </li>
                 <li>
-                  <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                     <!-- Місто: Харків, -->
                     {{ $t("contacts-page.address.city") }}
                     <br />
@@ -59,23 +59,23 @@
                 class="contact-title flex items-center justify-start gap-3 mb-2"
               >
                 <SvgIcon name="time-icon" size="micro" fill="green" />
-                <h2 class="text-[var(--dark-color)] font-bold text-lg">
+                <h2 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-lg">
                   <!-- Час роботи магазину: -->
                   {{ $t("contacts-page.work-hours.title") }}
                 </h2>
               </div>
-              <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                 <!-- Наш магазин працює щодня з: -->
                 {{ $t("contacts-page.work-hours.description") }}
               </p>
               <ul class="block-list">
                 <li>
-                  <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                     9:00 - 18:00
                   </p>
                 </li>
                 <li>
-                  <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                     <strong>
                       <!-- Вихідні -->
                       {{ $t("contacts-page.days-off.title") }} </strong
@@ -93,14 +93,14 @@
                 class="contact-title flex items-center justify-start gap-3 mb-2"
               >
                 <SvgIcon name="phone-icon" size="small" fill="blue" />
-                <h2 class="text-[var(--dark-color)] font-bold text-lg">
+                <h2 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-lg">
                   <!-- Телефони: -->
                   {{ $t("contacts-page.phones.title") }}
                 </h2>
               </div>
               <ul class="block-list">
                 <li>
-                  <p class="text-[var(--dark-color)] font-medium text-sm mb-2">
+                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                     <!-- Відділ продажу:  -->
                     {{ $t("contacts-page.phones.sales-department") }}
                     ,<br />
@@ -113,7 +113,7 @@
 
           <div class="contact-block condition-delivery">
             <div class="text-block">
-              <p class="text-[var(--dark-color)] font-medium text-sm">
+              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm">
                 <strong>
                   <!-- Електронні замовлення: -->
                   {{ $t("contacts-page.online-service.title") }}
@@ -150,7 +150,7 @@
         <div class="flex justify-center mt-12">
           <div class="text-center md:max-w-xl lg:max-w-3xl">
             <h2
-              class="mb-12 max-md:mb-[3vw] px-6 text-3xl font-bold text-[var(--dark-color)]"
+              class="mb-12 max-md:mb-[3vw] px-6 text-3xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
             >
               <!-- Зв'яжіться з нами -->
               {{ $t("contacts-page.contact-us.title") }}
@@ -164,13 +164,13 @@
           >
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
                     <!-- padding: 1vw 0.5vw; -->
                     <div
-                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]"
+                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@
                     </div>
                   </div>
                   <div class="ml-0.5 text-center grow">
-                    <p class="mb-2 font-bold text-[var(--dark-color)]">
+                    <p class="mb-2 font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       <!-- Technical support -->
                       {{ $t("contacts-page.contact-us.content1") }}
                     </p>
@@ -202,12 +202,12 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
                     <div
-                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]"
+                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +227,7 @@
                     </div>
                   </div>
                   <div class="ml-0.5 text-center grow">
-                    <p class="mb-2 font-bold text-[var(--dark-color)]">
+                    <p class="mb-2 font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       <!-- Technical support -->
                       {{ $t("contacts-page.contact-us.content2") }}
                     </p>
@@ -239,12 +239,12 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
                     <div
-                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]"
+                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -264,7 +264,7 @@
                     </div>
                   </div>
                   <div class="ml-0.5 text-center grow">
-                    <p class="mb-2 font-bold text-[var(--dark-color)]">
+                    <p class="mb-2 font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       <!-- Technical support -->
                       {{ $t("contacts-page.contact-us.content3") }}
                     </p>
@@ -276,12 +276,12 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
                     <div
-                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)]"
+                      class="inline-block rounded-md bg-teal-400-100 py-[1vw] px-[0.5vw] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,7 @@
                     </div>
                   </div>
                   <div class="ml-0.5 text-center grow">
-                    <p class="mb-2 font-bold text-[var(--dark-color)]">
+                    <p class="mb-2 font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       <!-- Technical support -->
                       {{ $t("contacts-page.contact-us.content4") }}
                     </p>
@@ -323,7 +323,7 @@
           >
             <div class="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-[var(--dark-color)]"
+                class="block font-medium mb-[5px] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] "
                 htmlFor="exampleInput90"
               >
                 <!-- Ім'я -->
@@ -331,7 +331,7 @@
               </label>
               <input
                 type="text"
-                class="px-2 py-2 border w-full outline-none rounded-md bg-white text-[var(--dark-color)]"
+                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 id="exampleInput90"
                 placeholder="Ім'я і прізвище"
               />
@@ -339,14 +339,14 @@
 
             <div class="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-[var(--dark-color)]"
+                class="block font-medium mb-[5px] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                 htmlFor="exampleInput90"
               >
                 Email
               </label>
               <input
                 type="email"
-                class="px-2 py-2 border w-full outline-none rounded-md bg-white text-[var(--dark-color)]"
+                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 id="exampleInput90"
                 placeholder="Введіть вашу електронну пошту"
               />
@@ -354,14 +354,14 @@
 
             <div class="mb-3 w-full">
               <label
-                class="block font-medium mb-[2px] text-[var(--dark-color)]"
+                class="block font-medium mb-[5px] text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                 htmlFor="exampleInput90"
               >
                 <!-- Повідомлення -->
                 {{ $t("contacts-page.contact-us.form.message") }}
               </label>
               <textarea
-                class="px-2 py-2 border rounded-[5px] w-full outline-none bg-white text-[var(--dark-color)] min-h-36"
+                class="px-2 py-2 border rounded-[5px] w-full outline-none bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] min-h-36 dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 name=""
                 id=""
               ></textarea>
@@ -369,7 +369,7 @@
 
             <button
               type="button"
-              class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md"
+              class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md dark:bg-[var(--main-dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-solid dark:border-[var(--dark-border-color)]"
             >
               <!-- Відправити -->
               {{ $t("contacts-page.contact-us.form.btn") }}
@@ -379,7 +379,7 @@
       </section>
 
       <section class="summary mb-12">
-        <div class="text-block font-bold text-center text-[var(--dark-color)]">
+        <div class="text-block font-bold text-center text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
           <p class="text-lg">
             <!-- Ми цінуємо вашу думку і завжди готові зробити Ваш досвід взаємодії з
             нами краще! -->

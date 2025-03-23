@@ -2,40 +2,40 @@
   <section>
     <div class="container">
       <LinkBlock pageName="Про компанію" />
-      <div class="page-title border-b-[1px] border-[#d9dbe0] py-2">
+      <div class="page-title border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] py-2">
         <h1 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
           {{ $t("about-page.title") }}
         </h1>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
           {{ $t("about-page.description") }}
         </p>
       </div>
       <FadeSlider />
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] py-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.about-us.title") }}
         </h2>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
           {{ $t("about-page.about-us.text") }}
         </p>
       </div>
 
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] py-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.our-mission.title") }}
         </h2>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
           {{ $t("about-page.our-mission.text") }}
         </p>
       </div>
 
       <div class="values-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] py-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.our-values.title") }}
         </h2>
@@ -102,12 +102,12 @@
 
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] pb-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.our-advantages.title") }}
         </h2>
         <ul
-          class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
         >
           <li>
             <strong>
@@ -144,12 +144,12 @@
 
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] pb-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.why-us.title") }}
         </h2>
         <p
-          class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
         >
           {{ $t("about-page.why-us.text") }}
         </p>
@@ -157,12 +157,12 @@
 
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] pb-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.our-clients.title") }}
         </h2>
         <p
-          class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
         >
           {{ $t("about-page.our-clients.text") }}
         </p>
@@ -170,15 +170,15 @@
 
       <div class="text-block mb-5">
         <h2
-          class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] pb-2 dark:border-[var(--dark-border-color)]"
         >
           {{ $t("about-page.contact-us.title") }}
         </h2>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
           {{ $t("about-page.contact-us.text") }}
         </p>
         <p
-          class="text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+          class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
         >
           <strong>korzinka.in.ua</strong> —
           {{ $t("about-page.contact-us.summary") }}
@@ -195,42 +195,58 @@ import FadeSlider from "~/components/blocks/FadeSlider.vue";
 </script>
 
 <style lang="scss" scoped>
-.values-block {
-  ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 2vw;
-    margin-top: 2vw;
-    li {
+  .values-block {
+    ul {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      background: white;
-      border: 1px solid var(--dark-color);
-      position: relative;
-      overflow: hidden;
-      flex: 1;
-
-      .card-img {
-        background: var(--dark-color);
-        width: 100%;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 2vw;
+      margin-top: 2vw;
+      li {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
-        padding: 10px;
-        img {
-          width: 10vw;
+        background: white;
+        border: 1px solid var(--dark-color);
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+
+        .card-img {
+          background: var(--dark-color);
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          img {
+            width: 10vw;
+          }
         }
-      }
-      .description {
-        padding: 0.5vw 1vw;
-        p {
-          padding-top: 20px;
+        .description {
+          padding: 0.5vw 1vw;
+          p {
+            padding-top: 20px;
+          }
         }
       }
     }
   }
-}
+  .dark .values-block{
+    ul{
+      li{
+       
+        background: var(--dark-grey);
+        border: var(--dark-border-color);
+        .card-img{
+          background: #0d161f;
+          border-bottom: 1px solid var(--dark-border-color);
+        }
+        .description{
+          color: var(--dark-font-color);
+        }
+      }
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-16 pb-7 bg-[var(--dark-color)]">
+  <section class="pt-16 pb-7 bg-[var(--dark-color)] dark:bg-[#0d161f] dark:border-t dark:border-[var(--main-accent)]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row items-center justify-between pb-14 border-b border-gray-500 gap-8">
         <div class="main-logo flex items-end h-auto  gap-5 bg-[var(--base-dark-color)] border-[1px] border-[var(--main-accent)] rounded-lg p-6 w-auto">

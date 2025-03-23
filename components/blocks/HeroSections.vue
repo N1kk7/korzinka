@@ -268,6 +268,7 @@ const observer = new IntersectionObserver(
 
 .dark .main{
     background: var(--dark-component-color);
+    border-bottom: 1px solid var(--dark-border-color);
 
     .title-text{
         background: var(--dark-component-color);

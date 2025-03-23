@@ -2,20 +2,20 @@
   <div>
     <section class="py-8 antialiased md:py-10 max-md:mt-6">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-      <h2 class="text-xl font-semibold text-[var(--dark-color)] sm:text-2xl mb-4">
+      <h2 class="text-xl font-semibold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] sm:text-2xl mb-4">
         {{ $t("cart.title") }}
       </h2>
-      <p class="text-xl font-sm text-[var(--dark-color)] sm:text-2xl">
+      <p class="text-xl font-sm text-[var(--dark-color)] dark:text-[var(--dark-font-color)] sm:text-2xl">
         {{ $t("cart.description") }}
       </p>
 
-      <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+      <div class="mt-4 sm:mt-6 md:gap-6 lg:flex lg:items-start xl:gap-8">
         <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
           <div class="space-y-6">
             <div
               v-if="cartProducts.length === 0"
             >
-              <h2 class="text-xl text-semibold sm:text-2xl relative z-10 mb-8 text-red-700">
+              <h2 class="text-xl text-semibold sm:text-2xl relative z-10 mb-12 text-red-700">
                 Нажаль в кошику ще немає товарів!
                 
               </h2>
@@ -26,7 +26,7 @@
               </NuxtLink>
             </div>
             <div
-              class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6 relative"
+              class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-[var(--main-accent)] dark:bg-[#0d161f] md:p-6 relative"
               v-for="(product, idx) in cartProducts"
               :key="idx"
 
@@ -36,7 +36,7 @@
               >
                 <div class="shrink-0 md:order-1">
                   <img
-                    class="h-20 w-20 dark:hidden"
+                    class="h-20 w-20 "
                     :src="product.img[0].path"
                     alt="image"
                   />
@@ -100,10 +100,10 @@
                         />
                       </svg>
                     </button>
-                    <h2 class="absolute -top-8 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap text-[var(--dark-color)]">
+                    <h2 class="absolute -top-8 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       Кількість товару
                     </h2>
-                    <span class="text-sm font-medium text-[var(--dark-color)] absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <span class="text-sm font-medium text-[var(--dark-color)] absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap dark:text-[var(--dark-font-color)]">
                       {{ product.translations.find((t) => t.language === $i18n.locale).groupPackage }}
                     </span>
                   </div>
@@ -116,7 +116,7 @@
                         type="button"
                         @click="removeProduct(product)"
                         class="
-                          inline-flex items-center text-sm font-medium text-white lg:hover:bg-red-700 dark:text-red-500 absolute top-2 right-2
+                          inline-flex items-center text-sm font-medium text-white lg:hover:bg-red-700 dark:text-[var(--dark-font-color)] absolute top-2 right-2
                           bg-red-500 px-2 py-1 rounded-md 
                           "
                       >
@@ -135,11 +135,11 @@
                   class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md "
                 >
                   <h4
-                    class="text-base font-medium text-[var(--dark-color)]"
+                    class="text-base font-medium text-[var(--dark-color)] dark:text-[var(--dark-font-color)]"
                   >
                     {{ product.translations.find((t) => t.language === $i18n.locale).title }}
                   </h4>
-                  <span class="text-sm font-medium text-[var(--dark-color)]">
+                  <span class="text-sm font-medium text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                     {{ product.translations.find((t) => t.language === $i18n.locale).productDescription }}
                   </span>
 
@@ -148,9 +148,9 @@
               </div>
             </div>
           </div>
-          <div class="mt-8 xl:block">
+          <div class="mt-12 xl:block">
             <h3
-              class="text-2xl font-semibold text-gray-900 dark:text-[var(--dark-color)]"
+              class="text-2xl font-semibold text-gray-900 dark:text-[var(--dark-font-color)]"
             >
               {{ $t("cart.also-buy") }}
             </h3>
@@ -158,7 +158,7 @@
               class="mt-6 grid grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 sm:mt-8"
             >
               <div
-                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-[var(--main-accent)] dark:bg-[var(--dark-accent-color)]"
               >
                 <div class="overflow-hidden rounded">
                   <img
@@ -194,7 +194,7 @@
                   <button
                     data-tooltip-target="favourites-tooltip-1"
                     type="button"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-[var(--dark-accent-color)] dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
                     <svg
                       class="h-5 w-5"
@@ -246,7 +246,7 @@
                 </div>
               </div>
               <div
-                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-[var(--main-accent)] dark:bg-[var(--dark-accent-color)]"
               >
                 <a href="#" class="overflow-hidden rounded">
                   <img
@@ -281,7 +281,7 @@
                   <button
                     data-tooltip-target="favourites-tooltip-2"
                     type="button"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-[var(--dark-accent-color)] dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
                     <svg
                       class="h-5 w-5"
@@ -333,7 +333,7 @@
                 </div>
               </div>
               <div
-                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-[var(--main-accent)] dark:bg-[var(--dark-accent-color)]"
               >
                 <a href="#" class="overflow-hidden rounded">
                   <!-- <img class="mx-auto h-44 w-44 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg" alt="imac image" />
@@ -370,7 +370,7 @@
                   <button
                     data-tooltip-target="favourites-tooltip-3"
                     type="button"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white p-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-[var(--dark-accent-color)] dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
                     <svg
                       class="h-5 w-5"
@@ -428,10 +428,10 @@
 
         <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full md:sticky md:top-[80px]">
           <div
-            class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-white sm:p-6"
+            class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-[var(--main-accent)] dark:bg-[var(--dark-accent-color)] sm:p-6"
           >
             <p
-              class="text-xl font-semibold text-gray-900 dark:text-var(--dark-color)"
+              class="text-xl font-semibold text-gray-900 dark:text-[var(--dark-font-color)]"
             >
               <!-- Підсумок замовлення -->
               {{ $t("cart.summary.title") }}
@@ -447,7 +447,7 @@
                     {{ $t("cart.summary.full-price") }}
                   </dt>
                   <dd
-                    class="text-base font-medium text-gray-900 dark:text-gray-700"
+                    class="text-base font-medium text-gray-900 dark:text-[var(--dark-font-color)]"
                   >
                     ₴ 0
                   </dd>
@@ -469,13 +469,13 @@
                 class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700"
               >
                 <dt
-                  class="text-base font-bold text-gray-900 dark:var(--primary-color)"
+                  class="text-base font-bold dark:text-[var(--dark-font-color)] text-[var(--primary-color)]"
                 >
                   <!-- Всього -->
                   {{ $t("cart.summary.total") }}
                 </dt>
                 <dd
-                  class="text-base font-bold text-gray-900 dark:var(--dark-color)"
+                  class="text-base font-bold text-gray-900 dark:text-[var(--dark-font-color)]"
                 >
                   ₴ {{ totalPrice }}
                 </dd>
@@ -531,6 +531,7 @@
   import { onMounted, ref } from "vue";
   import { useRouter } from 'vue-router';
   import Tooltips from "~/components/shared/Tooltips.vue";
+  import Swiper from "swiper";
 
   import { useCartStore } from '#imports';
 
@@ -625,6 +626,15 @@
       padding: unset;
       padding-block: 1rem;
       cursor: pointer;
+    }
+
+    .dark .process-order{
+      box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+
+    }
+
+    .dark .go-back-btn{
+      box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
     }
 
 </style>

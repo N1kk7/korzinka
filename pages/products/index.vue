@@ -7,10 +7,9 @@
         :key="index"
         class="group-title mb-10"
       >
-      {{ console.log(item, "item") }}
 
         <h2
-          class="text-2xl font-bold text-[var(--dark-color)] mb-4 z-10 relative"
+          class="text-2xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] mb-4 z-10 relative"
         >
           {{ item.translations.find((t) => t.language === $i18n.locale).title }}
         </h2>
@@ -43,7 +42,7 @@
     <main class="flex-grow p-1 mt-5" v-else>
       <div class="group-title mb-10">
         <h2
-          class="text-2xl font-bold text-[var(--dark-color)] mb-4 z-10 relative"
+          class="text-2xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] mb-4 z-10 relative"
         >
           Завантаження
         </h2>
@@ -52,7 +51,7 @@
       <div class="cards-content mb-10">
         <div 
           class="card-wrapper w-fit"
-          v-for="i in 10"
+          v-for="i in 6"
           :key="i"
         >
           <div class="h-full">

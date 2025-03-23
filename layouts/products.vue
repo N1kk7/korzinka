@@ -7,11 +7,11 @@
       <div class="section page products-section">
         <div class="product-container">
           <LinkBlock pageName="Товари" />
-          <div class="page-title border-b-[1px] border-[#d9dbe0] py-2">
+          <div class="page-title border-b-[1px] border-[#d9dbe0] border-[var(--dark-border-color)] py-2">
             <h1 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
               {{ $t("products-page.title") }}
             </h1>
-            <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+            <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
               {{ $t("products-page.description") }}
             </p>
           </div>
@@ -93,15 +93,17 @@
         class="products-main grid grid-cols-[1fr_3fr] gap-5 w-[92vw] mx-auto"
       >
         <!-- SIDEBAR -->
-        <div class="categories border-r-[1px] border-[#d9dbe0] pr-4 py-2">
+        <div class="categories border-r-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] pr-4 py-2">
           <ul class="mt-5 main-list">
-            <li class="border-b-[1px] border-t-[1px] border-[#d9dbe0]">
+            <li class="">
               <div class="icon">
                 <img src="/public/img/icons/products.png" alt="products" />
               </div>
               <!-- @click="showCategory('showAll')" -->
 
-              <span>Всі товари</span>
+              <span 
+                class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg"
+              >Всі товари</span>
             </li>
             <li>
               <div class="icon">
@@ -110,7 +112,9 @@
                   alt="products"
                 />
               </div>
-              <span>Категорії товарів</span>
+              <span
+                class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg"
+              >Категорії товарів</span>
               <SvgIcon name="arrow-right" size="micro" fill="red" />
             </li>
             <li v-for="(category, index) in fetchedAllCategories" :key="index">
@@ -123,7 +127,9 @@
                 <div class="icon">
                   <img :src="category.categoryImg" alt="icon" />
                 </div>
-                <span>{{
+                <span
+                  class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg"
+                >{{
                   category.translations.find(
                     (tr) => tr.language === $i18n.locale
                   ).title
@@ -218,14 +224,14 @@
                         <span>Рукавички</span>
                         </li>
                     </ul> -->
-            <li @click="listControl(1)">
+            <!-- <li @click="listControl(1)">
               <div class="icon">
                 <img src="/public/img/icons/filters.png" alt="filters" />
               </div>
               <span>Фільтри</span>
               <SvgIcon name="arrow-right" size="micro" fill="red" />
-            </li>
-            <ul class="sub-list ml-5" v-show="filters">
+            </li> -->
+            <!-- <ul class="sub-list ml-5" v-show="filters">
               <li>
                 <span>Фільтр</span>
               </li>
@@ -235,8 +241,8 @@
               <li>
                 <span>Фільтр</span>
               </li>
-            </ul>
-            <li @click="listControl(2)">
+            </ul> -->
+            <!-- <li @click="listControl(2)">
               <div class="icon">
                 <img src="/public/img/icons/search-color.png" alt="search" />
               </div>
@@ -247,7 +253,7 @@
               <li>
                 <input type="text" placeholder="Пошук" />
               </li>
-            </ul>
+            </ul> -->
           </ul>
         </div>
 
@@ -470,5 +476,9 @@ ul {
       width: 100%;
     }
   }
+}
+
+.dark .layout{
+  background-color: var(--dark-component-color);
 }
 </style>

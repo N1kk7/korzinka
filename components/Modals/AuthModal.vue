@@ -7,23 +7,35 @@
 
             <div class="form login">
                 <h2
-                    class="mb-2 text-2xl font-bold text-[var(--primary-color)]"
+                    class="mb-2 text-2xl font-bold text-[var(--primary-color)] dark:text-[var(--dark-font-color)]"
                 >Вход в аккаунт</h2>
                 <p
-                    class="mb-5"
+                    class="mb-5 dark:text-[var(--dark-font-color)]"
                 >Войдите, чтобы продолжить. Если у вас ещё нет аккаунта, зарегистрируйтесь!</p>
                 <form>
-                    <label for="login-email">Email</label>
+                    <label 
+                        for="login-email "
+                        class="dark:text-[var(--dark-font-color)]"
+                    >
+                        Email
+                    </label>
                     <input 
                         type="email" 
                         id="login-email" 
                         placeholder="Введіть вашу електронну пошту"
                         maxlength="40"
                         v-model="mail"
+                        class="dark:border dark:border-[var(--dark-border-color)] "
                         required 
                     />
 
-                    <label for="login-password">Пароль</label>
+                    <label 
+                        for="login-password"
+                        class="dark:text-[var(--dark-font-color)]"
+
+                    >
+                        Пароль
+                    </label>
                     <input 
                         type="password"
                         id="login-password" 
@@ -63,19 +75,19 @@
             </div>
             <div class="form auth" v-if="!supabaseConfirmState">
                 <h2
-                    class="mb-2 text-2xl font-bold text-[var(--primary-color)]"
+                    class="mb-2 text-2xl font-bold text-[var(--primary-color)] dark:text-[var(--dark-font-color)]"
                 >
                     Создайте аккаунт
                 </h2>
                 <p
-                    class="mb-5"
+                    class="mb-5 dark:text-[var(--dark-font-color)]"
                 >
                     Зарегистрируйтесь, чтобы получить доступ ко всем возможностям. Это быстро и просто!
                 </p>
                 <form class="flex flex-col gap-1">
                     <div class="name-wrapper flex justify-center items-center gap-5">
                         <div class="basis-1/2 flex-1">
-                            <label for="register-name">Имя</label>
+                            <label for="register-name dark:text" class="dark:text-[var(--dark-font-color)]">Имя</label>
                             <input 
                                 type="text" 
                                 id="register-name" 
@@ -85,7 +97,7 @@
                         </div>
                         
                         <div class="basis-1/2 flex-1">
-                            <label for="register-surname">Отчество</label>
+                            <label for="register-surname" class="dark:text-[var(--dark-font-color)]">Отчество</label>
                             <input 
                                 type="text" 
                                 id="register-surname"
@@ -94,7 +106,7 @@
                         </div>
                        
                         <div class="basis-1/2 flex-1">
-                            <label for="register-family">Фамилия</label>
+                            <label for="register-family" class="dark:text-[var(--dark-font-color)]">Фамилия</label>
                             <input 
                                 type="text" 
                                 id="register-family" 
@@ -106,7 +118,7 @@
                     </div>
                     
 
-                    <label for="register-email">Email</label>
+                    <label for="register-email" class="dark:text-[var(--dark-font-color)]">Email</label>
                     <input 
                         type="email" 
                         id="register-email" 
@@ -114,7 +126,7 @@
                         required 
                     />
 
-                    <label for="phone-number">Номер телефона</label>
+                    <label for="phone-number" class="dark:text-[var(--dark-font-color)]">Номер телефона</label>
                     <input 
                         type="tel" 
                         id="phone-number" 
@@ -124,7 +136,7 @@
 
                     <div class="pass-wrapper flex justify-center items-center gap-5">
                         <div class="w-full flex flex-col ">
-                            <label for="register-password">Пароль</label>
+                            <label for="register-password" class="dark:text-[var(--dark-font-color)]">Пароль</label>
                             <input 
                                 type="password" 
                                 id="register-password" 
@@ -135,7 +147,7 @@
                      
 
                         <div class="w-full flex flex-col">
-                            <label for="register-password-confirm">Повторите пароль</label>
+                            <label for="register-password-confirm" class="dark:text-[var(--dark-font-color)]">Повторите пароль</label>
                             <input 
                                 type="password" 
                                 id="register-password-confirm" 
@@ -149,37 +161,37 @@
                     
 
                     <button
-                        class="register-btn"
+                        class="register-btn "
                         @click="handleRegister"  
                         type="button"              
                     >
                         Зарегистрироваться
                     </button>
                     
-                    <p>Уже есть аккаунт? 
+                    <p class="dark:text-[var(--dark-font-color)]">Уже есть аккаунт? 
                         <button 
-                            class="switch-tab"
+                            class="switch-tab dark:text-[var(--dark-font-color)]"
                             @click="loginWindow = false"
                         >
                         Войти
                         </button>
                     </p>
 
-                    <small>Регистрируясь, вы соглашаетесь с <span >условиями использования</span> и <span >политикой конфиденциальности</span>.</small>
+                    <small class="dark:text-[var(--dark-font-color)]">Регистрируясь, вы соглашаетесь с <span >условиями использования</span> и <span >политикой конфиденциальности</span>.</small>
                 </form>
 
             </div>
             <div class="form auth relative" v-else>
-                <button @click="supabaseConfirmState = false">
+                <button @click="supabaseConfirmState = false" class="dark:text-[var(--dark-font-color)]">
                     Повернутись назад
                 </button>
                 <h2
-                    class="mb-2 text-2xl font-bold text-[var(--primary-color)]"
+                    class="mb-2 text-2xl font-bold text-[var(--primary-color)] dark:text-[var(--dark-font-color)]"
                 >
                     Введіть пароль отриманий на email
                 </h2>
                 <p
-                    class="mb-5"
+                    class="mb-5 dark:text-[var(--dark-font-color)]"
                 >
                     Якщо ви не отримували пароль, перевірте правильність введених даних та спробуйте ще.
                 </p>
@@ -290,11 +302,11 @@
                     maxlength="1"
                     @input="handleInput(index, $event)"
                     @keydown="handleBackspace(index, $event)"
-                    class="w-12 h-12 text-center text-xl border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                    class="w-12 h-12 text-center text-xl border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 dark:border-[var(--dark-border-color)]"
                 />
                 </div>
                 <button
-                    class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+                    class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition dark:bg-[--dark-color] dark:border dark:border-[var(--dark-border-color)]"
                     @click="handleConfirmRegister"
                 >
                 Подтвердить
@@ -836,6 +848,18 @@ const handleBackspace = (index, event) => {
         background: var(--primary-color);
         color: var(--bg-color);
         cursor: pointer;
+    }
+
+    .dark .modal-wrapper{
+        background: var(--dark-light-grey);
+    }
+    .dark input {
+        background: var(--dark-grey);
+        color: var(--dark-font-color)
+    }
+
+    .dark .background{
+        background: var(--dark-color);
     }
 
 

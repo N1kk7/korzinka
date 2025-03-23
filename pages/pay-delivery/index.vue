@@ -2,11 +2,11 @@
   <div class="section page pay-delivery-section">
     <div class="container">
       <LinkBlock pageName="Оплата і доставка" />
-      <div class="page-title border-b-[1px] border-[#d9dbe0] py-2">
+      <div class="page-title border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] py-2">
         <h1 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
           {{ $t("pay-delivery.title") }}
         </h1>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
           {{ $t("pay-delivery.description") }}
         </p>
       </div>
@@ -37,16 +37,16 @@
         <div class="info-blocks">
           <div class="text-block mb-5">
             <h2
-              class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+              class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] pb-2 font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)]"
             >
               {{ $t("pay-delivery.payment.title") }}
             </h2>
-            <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+            <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
               {{ $t("pay-delivery.payment.text") }}
             </p>
 
             <div
-              class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+              class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
             >
               <p>
                 <span class="font-semibold">
@@ -76,16 +76,16 @@
           </div>
           <div class="text-block mb-5">
             <h2
-              class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+              class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] pb-2 font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)]"
             >
               {{ $t("pay-delivery.delivery.title") }}
             </h2>
-            <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+            <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
               {{ $t("pay-delivery.delivery.text") }}
             </p>
 
             <div
-              class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+              class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
             >
               <p>
                 <span class="font-semibold">
@@ -137,15 +137,15 @@
           </div>
           <div class="text-block mb-5">
             <h2
-              class="text-[var(--dark-color)] font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0]"
+              class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] p-2 font-bold text-xl mb-4 border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)]"
             >
               {{ $t("pay-delivery.delivery-condition.title") }}
             </h2>
-            <p class="text-[var(--dark-color)] font-medium text-lg mb-3">
+            <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3">
               {{ $t("pay-delivery.delivery-condition.text") }}
             </p>
             <div
-              class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed ml-2"
+              class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
             >
               <p>
                 <span class="font-semibold">
@@ -174,7 +174,7 @@
             </div>
           </div>
           <div
-            class="block-paragraph text-[var(--dark-color)] font-normal text-base leading-relaxed"
+            class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
           >
             <p>
               {{ $t("pay-delivery.summary") }}
@@ -186,48 +186,50 @@
           class="links sticky top-[75px] w-full h-fit pb-8 flex flex-col gap-5 max-md:hidden"
         >
           <ul
-            class="links-block border-[1px] bg-white border-[var(--dark-color)] py-8 px-5 rounded-xl flex flex-col gap-5"
+            class="links-block border-[1px] bg-white dark:bg-[var(--dark-grey)] border-[var(--dark-color)] dark:border-[var(--dark-border-color)] py-8 px-5 rounded-xl flex flex-col gap-5"
           >
             <li
-              class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
+              class="border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
             >
               <span
-                class="text-[var(--dark-color)] font-normal text-base leading-relaxed"
+                class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
               >
                 {{ $t("pay-delivery.payment.title") }}
               </span>
               <SvgIcon
                 name="arrow-right"
                 size="micro"
-                fill="var(--dark-color)"
+                :fill="iconFill ? 'var(--dark-font-color)' : 'var(--dark-color)' "
               />
             </li>
             <li
-              class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
+              class="border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
             >
               <span
-                class="text-[var(--dark-color)] font-normal text-base leading-relaxed"
+                class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
               >
                 {{ $t("pay-delivery.delivery.title") }}
               </span>
               <SvgIcon
                 name="arrow-right"
                 size="micro"
-                fill="var(--dark-color)"
+                :fill="iconFill ? 'var(--dark-font-color)' : 'var(--dark-color)' "
+
               />
             </li>
             <li
-              class="border-b-[1px] border-[#d9dbe0] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
+              class="border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] cursor-pointer flex justify-between items-center hover:bg-[var(--light-color)] py-2 px-4 hover:rounded-xl transition-all hover:transition-all duration-300 hover:duration-300"
             >
               <span
-                class="text-[var(--dark-color)] font-normal text-base leading-relaxed"
+                class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
               >
                 {{ $t("pay-delivery.delivery-condition.title") }}
               </span>
               <SvgIcon
                 name="arrow-right"
                 size="micro"
-                fill="var(--dark-color)"
+                :fill="iconFill ? 'var(--dark-font-color)' : 'var(--dark-color)' "
+
               />
             </li>
           </ul>
@@ -243,12 +245,38 @@
 
 <script setup>
 // components
-import LinkBlock from "@/components/shared/LinkBlock.vue";
-import SvgIcon from "@/components/shared/SvgIcon.vue";
+  import LinkBlock from "@/components/shared/LinkBlock.vue";
+  import SvgIcon from "@/components/shared/SvgIcon.vue";
+
+  import { useThemeStore } from "#imports";
+  import { onMounted, watch } from "vue";
+
+  const themeStore = useThemeStore();
+  const isClient = ref(false);
+
+const iconFill = computed(() => {
+  if (!isClient.value) return "";
+  return themeStore.darkMode
+});
+
+  onMounted(() => {
+  isClient.value = true;
+});
+
+
+
+
+
 </script>
 
 <style scoped lang="scss">
-@use ".//styles/mixins.scss" as mixins;
+  @use ".//styles/mixins.scss" as mixins;
 
-@include mixins.mobileBar(768px);
+  @include mixins.mobileBar(768px);
+
+  .dark .links-block{
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+
+  }
+
 </style>

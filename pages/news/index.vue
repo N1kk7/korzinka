@@ -1,15 +1,15 @@
 <template>
   <div class="section page">
     <div
-      class="max-w-screen-xl mx-auto pb-5 pt-2 px-5 sm:pb-10 sm:px-10 md:px-16 md:pb-16 relative border-b-[1px] border-[#d9dbe0]"
+      class="max-w-screen-xl mx-auto pb-5 pt-2 px-5 sm:pb-10 sm:px-10 md:px-16 md:pb-16 relative border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)]"
     >
       <LinkBlock pageName="Новини" />
-      <div class="page-title border-b-[1px] border-[#d9dbe0] py-2 mb-5">
+      <div class="page-title border-b-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] py-2 mb-5">
         <h1 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
           <!-- Новини -->
           {{ $t("news-page.title") }}
         </h1>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
           <!-- Будьте в курсі останніх подій! Тут ви знайдете всю важливу інформацію про новинки, акції,
                     заходи та інші події, пов'язані з нашою компанією. -->
           {{ $t("news-page.description") }}
@@ -49,16 +49,16 @@
                 ></div>
               </a>
               <div
-                class="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal"
+                class="mt-3 bg-white dark:bg-[var(--dark-grey)] rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal"
               >
                 <div class="px-4 py-2">
                   <a
                     href="#"
-                    class="block text-gray-900 font-bold text-2xl mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                    class="block text-gray-900 dark:text-[var(--dark-font-color)] font-bold text-2xl mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
                   >
                     {{ item.title }}
                   </a>
-                  <p class="text-gray-700 text-base mt-2">
+                  <p class="text-gray-700 dark:text-gray-500 text-base mt-2">
                     {{ item.description }}
                   </p>
                 </div>
@@ -72,25 +72,25 @@
           class="cards-wrapper sm:col-span-7 grid grid-cols-2 lg:grid-cols-3 gap-5"
         >
           <div
-            class="news-card relative flex justify-between flex-col"
+            class="news-card relative flex justify-between flex-col dark:border dark:border-[var(--dark-border-color)] dark:rounded-tl-[5px] dark:rounded-tr-[5px]"
             v-for="(item, index) in showedArr"
             :key="index"
           >
             <div
-              class="img-wrapper flex-1 bg-cover text-center relative overflow-hidden bg-[var(--dark-color)] w-full rounded-tl-[5px] rounded-tr-[5px]"
+              class="img-wrapper flex-1 bg-cover text-center relative overflow-hidden bg-[var(--dark-color)] dark:bg-[#0d161f]  dark:border-b dark:border-[var(--dark-border-color)] w-full rounded-tl-[5px] rounded-tr-[5px] "
             >
               <img :src="item.img" class="w-full h-full" alt="img" />
             </div>
             <div
-              class="content-block flex-1 px-2 pb-2 border-l-[1px] border-r-[1px] border-b-[1px] border-[var(--primary-color)] flex flex-col justify-between h-full"
+              class="content-block flex-1 px-2 pb-2 border-l-[1px] border-r-[1px] border-b-[1px] border-[var(--primary-color)] dark:border-hidden dark:bg-[var(--dark-grey)] flex flex-col justify-between h-full"
             >
               <h4
-                class="text-gray-900 inline-block font-semibold text-md my-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                class="text-gray-900 dark:text-[var(--dark-font-color)] inline-block font-semibold text-md my-2 hover:text-indigo-600 transition duration-500 ease-in-out"
               >
                 {{ item.title }}
               </h4>
               <p
-                class="card-description text-gray-700 text-sm line-clamp-2 text-ellipsis"
+                class="card-description text-gray-700 dark:text-gray-500 text-sm line-clamp-2 text-ellipsis"
               >
                 {{ item.description }}
               </p>
@@ -140,11 +140,11 @@
 
     <div class="summary-block">
       <div class="container">
-        <h2 class="text-[var(--dark-color)] font-bold text-2xl mb-5">
+        <h2 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-2xl mb-5">
           <!-- Будьте з нами на хвилі новин! -->
           {{ $t("news-page.summary.title") }}
         </h2>
-        <p class="text-[var(--dark-color)] font-medium text-lg mb-2">
+        <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-2">
           <!-- Не пропустіть жодної важливої події — слідкуйте за нашими оновленнями, щоб завжди бути в курсі останніх новин, акцій та новинок.
                     Ми постійно працюємо, щоб запропонувати вам найактуальнішу інформацію про наші товари, послуги та соціальні ініціативи.
                     Долучайтеся до нашої спільноти, отримуйте вигідні пропозиції першими та будьте частиною важливих змін! -->
@@ -152,7 +152,7 @@
         </p>
 
         <div
-          class="newsletter-form relative bg-[var(--dark-color)] mx-auto p-5 rounded-lg flex items-center justify-center mt-10 mb-5 h-auto"
+          class="newsletter-form relative bg-[var(--dark-color)] dark:bg-[#0d161f] dark:border dark:border-[var(--dark-border-color)] mx-auto p-5 rounded-lg flex items-center justify-center mt-10 mb-5 h-auto"
         >
           <div class="img-block relative w-32 h-auto bottom-10">
             <img class="dog" src="/public/img/only-dog.png" alt="dog" />
@@ -204,7 +204,7 @@
           </div>
         </div>
 
-        <h2 class="text-[var(--dark-color)] font-bold text-2xl mt-16 mb-20">
+        <h2 class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-2xl mt-16 mb-20">
           <!-- Дякуємо що обрали  -->
           {{ $t("news-page.summary.text") }}
           <strong> www.korzinka.in.ua ! </strong>

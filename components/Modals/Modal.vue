@@ -35,9 +35,7 @@ const modalStore = useModalStore();
 const isVisible = computed(() => modalStore.isVisible);
 const currentModal = computed(() => modalStore.currentModal);
 const modalProps = computed(() => modalStore.modalProps);
-// const { modalProps } = toRefs(modalStore);
 
-// console.log(modalProps, 'from modal')
 
 const emit = defineEmits(['addNewItem', 'tooltip']);
 

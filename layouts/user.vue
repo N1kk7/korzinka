@@ -19,7 +19,7 @@
     <main >
       
       <div
-        class="m-0 font-sans h-[100%] relative contain-layout  text-base antialiased font-normal leading-default bg-gray-50 text-slate-500"
+        class="m-0 font-sans h-[100%] relative contain-layout  text-base antialiased font-normal leading-default bg-gray-50 dark:bg-[var(--dark-component-color)] text-slate-500"
       >
         <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
 

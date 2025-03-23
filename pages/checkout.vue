@@ -1,5 +1,7 @@
 <template>
-  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-10">
+  <!-- <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-10"> -->
+  <section class="bg-white py-8 antialiased dark:bg-[var(--dark-alter-color)] md:py-10">
+
     <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <div
         class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16 gap-5"
@@ -656,7 +658,7 @@
               <label
                 class="rounded-lg border p-4 ps-4 bg-gray-50 dark:bg-gray-800 cursor-pointer"
                 :class="{
-                  'border-[var(--dark-color)]': deliveryMethod === 'nova-post',
+                  'border-[var(--dark-color)] dark:border-[var(--main-accent)]' : deliveryMethod === 'nova-post',
                   'border-gray-200 dark:border-gray-700':
                     deliveryMethod !== 'nova-post',
                 }"
@@ -668,15 +670,17 @@
                   v-model="deliveryMethod"
                   class="hidden"
                 />
-                <div class="flex items-center">
-                  <div class="text-sm">
-                    <img src="@/public/img/nova-post.png" alt="new-post" />
-                    <span class="text-[var(--dark-color)]">
+                <div class="flex items-center h-full">
+                  <div class="text-sm flex flex-col justify-between items-start gap-2 relative h-full">
+                    <img src="@/public/img/nova-post.png" alt="new-post" class="dark:bg-white dark:rounded-lg p-2"/>
+                    <span class="text-[var(--dark-color)] text-base dark:text-[var(--dark-font-color)]">
                       Оріентована дата доставки: <br />
-                      {{ day + 1 <= 9 ? "0" + (day + 1) : day + 1 }} -
-                      {{ day + 3 <= 9 ? "0" + (day + 3) : day + 3 }} .
-                      {{ month + 1 <= 9 ? "0" + (month + 1) : month + 1 }} .
-                      {{ year }}
+                      <span class="dark:text-[var(--main-accent)]">
+                        {{ day + 1 <= 9 ? "0" + (day + 1) : day + 1 }} -
+                        {{ day + 3 <= 9 ? "0" + (day + 3) : day + 3 }} .
+                        {{ month + 1 <= 9 ? "0" + (month + 1) : month + 1 }} .
+                        {{ year }}
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -685,7 +689,7 @@
               <label
                 class="rounded-lg border p-4 ps-4 bg-gray-50 dark:bg-gray-800 cursor-pointer"
                 :class="{
-                  'border-[var(--dark-color)]': deliveryMethod === 'ukrpost',
+                  'border-[var(--dark-color)] dark:border-[var(--main-accent)]': deliveryMethod === 'ukrpost',
                   'border-gray-200 dark:border-gray-700':
                     deliveryMethod !== 'ukrpost',
                 }"
@@ -697,15 +701,19 @@
                   v-model="deliveryMethod"
                   class="hidden"
                 />
-                <div class="flex items-center">
-                  <div class="text-sm">
-                    <img src="@/public/img/ukrpost.png" alt="ukrpost" />
-                    <span class="text-[var(--dark-color)]">
+                <div class="flex items-center h-full">
+                  <div class="text-sm flex flex-col justify-between items-start gap-2 relative h-full">
+                    <img src="@/public/img/ukrpost.png" alt="ukrpost" class="dark:bg-white dark:rounded-lg p-2"/>
+                    <span class="text-[var(--dark-color)] text-base dark:text-[var(--dark-font-color)]">
                       Оріентована дата доставки: <br />
-                      {{ day + 3 <= 9 ? "0" + (day + 3) : day + 3 }} -
-                      {{ day + 5 <= 9 ? "0" + (day + 5) : day + 5 }} .
-                      {{ month + 1 <= 9 ? "0" + (month + 1) : month + 1 }} .
-                      {{ year }}
+                      <span class="dark:text-[var(--main-accent)]">
+
+                        {{ day + 3 <= 9 ? "0" + (day + 3) : day + 3 }} -
+                        {{ day + 5 <= 9 ? "0" + (day + 5) : day + 5 }} .
+                        {{ month + 1 <= 9 ? "0" + (month + 1) : month + 1 }} .
+                        {{ year }}
+                      </span>
+
                     </span>
                   </div>
                 </div>
@@ -714,7 +722,7 @@
               <label
                 class="rounded-lg border p-4 ps-4 bg-gray-50 dark:bg-gray-800 cursor-pointer"
                 :class="{
-                  'border-[var(--dark-color)]': deliveryMethod === 'express',
+                  'border-[var(--dark-color)] dark:border-[var(--main-accent)]': deliveryMethod === 'express',
                   'border-gray-200 dark:border-gray-700':
                     deliveryMethod !== 'express',
                 }"
@@ -726,30 +734,33 @@
                   v-model="deliveryMethod"
                   class="hidden"
                 />
-                <div class="flex items-start">
-                  <div class="text-sm">
+                <div class="flex items-start h-full">
+                  <div class="text-sm flex flex-col justify-between items-start gap-2 relative h-full">
                     <span
-                      class="font-medium leading-none text-gray-900 dark:text-white"
+                      class="font-medium text-2xl leading-none text-gray-900 dark:text-white"
                     >
                       Самовивіз (Харків)
                     </span>
-                    <p
-                      class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400"
-                    >
-                      Час готовності замовлення
-                    </p>
-                    <p
-                      class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400"
-                    >
-                      {{ deliveryTime }}:00
-                    </p>
+                    <div class="info">
+                      <p
+                        class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400"
+                      >
+                        Час готовності замовлення
+                      </p>
+                      <p
+                        class="mt-1 text-base font-normal text-gray-500 dark:text-[var(--main-accent)]"
+                      >
+                        {{ deliveryTime }}:00
+                      </p>
+                    </div>
+                  
                   </div>
                 </div>
               </label>
               <label
                 class="rounded-lg border p-4 ps-4 bg-gray-50 dark:bg-gray-800 cursor-pointer"
                 :class="{
-                  'border-[var(--dark-color)]':
+                  'border-[var(--dark-color)] dark:border-[var(--main-accent)]':
                     deliveryMethod === 'courier-delivery',
                   'border-gray-200 dark:border-gray-700':
                     deliveryMethod !== 'courier-delivery',
@@ -762,23 +773,26 @@
                   v-model="deliveryMethod"
                   class="hidden"
                 />
-                <div class="flex items-start">
-                  <div class="text-sm">
+                <div class="flex items-start h-full">
+                  <div class="text-sm flex flex-col justify-between items-start gap-2 relative h-full">
                     <span
-                      class="font-medium leading-none text-gray-900 dark:text-white"
+                      class="font-medium text-xl leading-none text-gray-900 dark:text-white"
                     >
                       Кур'єрська доставка по м. Харків.
                     </span>
-                    <p
-                      class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400"
-                    >
-                      Час готовності замовлення
-                    </p>
-                    <p
-                      class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400"
-                    >
-                      {{ deliveryTime }}:00
-                    </p>
+                    <div class="info">
+                      <p
+                        class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400"
+                      >
+                        Час готовності замовлення
+                      </p>
+                      <p
+                        class="mt-1 text-base font-normal text-gray-500 dark:text-[var(--main-accent)]"
+                      >
+                        {{ deliveryTime }}:00
+                      </p>
+                    </div>
+                  
                   </div>
                 </div>
               </label>
@@ -1197,7 +1211,8 @@
                   checked
                 />
                 <div
-                  class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 peer-checked:border-[var(--dark-color)]"
+                  class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 peer-checked:border-[var(--dark-color)] peer-checked:dark:border-[var(--main-accent)] peer-checked:dark:bg-[var(--dark-color)]"
+
                 >
                   <div class="text-sm">
                     <span
@@ -1223,7 +1238,7 @@
                   class="peer hidden"
                 />
                 <div
-                  class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 peer-checked:border-[var(--dark-color)]"
+                  class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 peer-checked:border-[var(--dark-color)] peer-checked:dark:border-[var(--main-accent)] peer-checked:dark:bg-[var(--dark-color)]"
                 >
                   <div class="text-sm">
                     <span
@@ -1244,7 +1259,7 @@
         </div>
 
         <div
-          class="mt-6 space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md sticky top-20 bg-gray-50 p-4 rounded-lg"
+          class="mt-6 space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md sticky top-20 bg-gray-50 dark:bg-[var(--dark-accent-color)] dark:border dark:border-solid dark:border-[var(--main-accent)] p-4 rounded-lg"
         >
           <div class="flow-root">
             <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
@@ -1267,6 +1282,20 @@
                 </dt>
                 <dd class="text-base font-medium text-gray-900 dark:text-white">
                   {{ checkout.totalProducts }} грн.
+                </dd>
+              </dl>
+
+              <dl 
+                class="flex items-center justify-between gap-4 py-3"
+                v-if="checkout.totalPrice < 2000"
+              >
+                <dt
+                  class="text-base font-normal text-gray-500 dark:text-gray-400"
+                >
+                  Вартість доставки
+                </dt>
+                <dd class="text-base font-medium text-gray-900 dark:text-white">
+                  200 грн.
                 </dd>
               </dl>
 

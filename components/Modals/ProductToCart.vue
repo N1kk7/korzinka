@@ -1,7 +1,7 @@
 <template>
     <section class="modal product-to-cart">
         <div class="modal-wrapper">
-            <div class="title flex justify-between items-end w-full bg-[var(--primary-color)] relative">
+            <div class="title flex justify-between items-end w-full bg-[var(--primary-color)] dark:bg-[var(--dark-grey)] dark:border-b dark:border-[var(--dark-border-color)] relative">
                 <h2
                     class="text-white"
                 >
@@ -17,10 +17,10 @@
                 />
                 </button>
             </div>
-            <hr>
+          <div class="separator"></div>
             <div class="content text-[var(--dark-color)] pb-5 flex flex-col gap-5 p-5 pt-0 relative">
                     <div class="">
-                        <h2 class="text-lg">
+                        <h2 class="text-lg dark:text-[var(--dark-font-color)]">
                             Товар:
                         </h2>
                         <div class="flex items-center justify-between gap-5">
@@ -29,53 +29,53 @@
                                 :src="modalProps.img[0].path" 
                                 alt="product"
                             >
-                             <span>
+                             <span class="dark:text-[var(--dark-font-color)]">
                                 {{ modalProps.translations.find((t) => t.language === $i18n.locale).title }}
                                 <!-- {{ modalProps.value.translations.find((t) => t.lang === $i18n.locale).title }} -->
                              </span>
                         </div>
                     </div>
                     <div>
-                        <h2 class="mb-2 z-10 relative">
+                        <h2 class="mb-2 z-10 relative dark:text-[var(--dark-font-color)]">
                             Характеристики товару
                         </h2>
                         <div class="flex flex-wrap items-stretch justify-start gap-5">
-                            <div class="option">
-                                <h5>
+                            <div class="option dark:border dark:border-[var(--dark-border-color)]">
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Розмір товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.productSize }}
                                 </span>
                             </div>
-                            <div class="option">
-                                <h5>
+                            <div class="option dark:border dark:border-[var(--dark-border-color)]">
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Щильність товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.productDensity }}
                                 </span>
                                 
                             </div>
-                            <div class="option"> 
-                                <h5>
+                            <div class="option dark:border dark:border-[var(--dark-border-color)]"> 
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Вага товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.productWeight }}
 
                                 </span>
                                 
                             </div>
-                            <div class="option">
-                                <h5>
+                            <div class="option dark:border dark:border-[var(--dark-border-color)]">
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Колір товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.translations.find((t) => t.language === $i18n.locale).productColor }}
                                 </span>
                                 
@@ -85,46 +85,46 @@
 
                     </div>
                     <div>
-                        <h2 class="mb-2 z-10 relative">
+                        <h2 class="mb-2 z-10 relative dark:text-[var(--dark-font-color)]">
                             Ціни на товар
                         </h2>
                         <div class="flex flex-wrap items-stretch justify-start gap-5">
                             <div class="option border-sky-500 border">
-                                <h5>
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Ціна товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.price }} грн.
                                 </span>
                             </div>
                             <div class="option border-lime-500 border">
-                                <h5>
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Оптова ціна
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.wholesalePrice }} грн.
                                 </span>
                                 
                             </div>
                             <div class="option" v-if="modalProps.wholesaleFrom"> 
-                                <h5>
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Опт. від:
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.productWeight }}
 
                                 </span>
                                 
                             </div>
                             <div class="option border-red-500 border">
-                                <h5>
+                                <h5 class="dark:text-[--dark-font-color]">
                                     Колір товару
                                 </h5>
-                                <hr>
-                                <span>
+                              <div class="separator"></div>
+                                <span class="dark:text-[var(--dark-font-color)]">
                                     {{ modalProps.translations.find((t) => t.language === $i18n.locale).productColor }}
                                 </span>
                                 
@@ -133,12 +133,12 @@
                         </div>
 
                     </div>
-                    <div>
-                        <h2 class="mb-2 z-10 relative">
+                    <div class="pb-2">
+                        <h2 class="mb-2 z-10 relative dark:text-[var(--dark-font-color)]">
                             Оберіть кількість товару: 
                         </h2>
                         <div class="flex items-center justify-start gap-5">
-                            <div class=" counter-buttons bg-white text-gray-500 p rounded-lg border-[1px] border-[var(--secondary-color)] flex justify-between items-center overflow-hidden min-w-16 w-fit">                            
+                            <div class=" counter-buttons bg-white dark:bg-[var(--dark-component-color)] text-gray-500 p rounded-lg border-[1px] border-[var(--secondary-color)] flex justify-between items-center overflow-hidden min-w-16 w-fit">                            
                             <button 
                                 class="hover:bg-red-400 hover:text-white w-full h-full"
                                 @click="counterControl('-', modalProps.price, modalProps.wholesalePrice, modalProps.discountPercent, modalProps.counterQuantity)"
@@ -147,11 +147,11 @@
 
                                 -
                             </button>
-                            <div class="w-[1px] h-full bg-[var(--dark-color)]"/>
+                            <div class="w-[1px] h-full bg-[var(--dark-color)] dark:bg-[var(--dark-border-color)]"/>
                             <span class="w-full h-full flex items-center justify-center">
                                 {{ counter }}
                             </span>
-                            <div class="w-[1px] h-full bg-[var(--dark-color)]"/>
+                            <div class="w-[1px] h-full bg-[var(--dark-color)] dark:bg-[var(--dark-border-color)]"/>
                             <button 
                                 class="hover:bg-green-500 hover:text-white w-full h-full"
                                 @click="counterControl('+', modalProps.price, modalProps.wholesalePrice, modalProps.discountPercent, modalProps.counterQuantity)"
@@ -163,7 +163,7 @@
                             </button>
                         
                         </div>
-                        <span>
+                        <span class="dark:text-[var(--dark-font-color)]">
                             {{ counter }} {{ modalProps.translations.find((t) => t.language === $i18n.locale).groupPackage }}
                         </span>
 
@@ -171,15 +171,17 @@
                         
 
                     </div>
-                    <hr>
-                    <div>
-                        <h2>
+
+                    <div class="pt-2 border-t dark:border-t-[var(--dark-border-color)]">
+                        <h2
+                            class="dark:text-[var(--dark-font-color)]"
+                        >
                             Загальна сума: {{ totalPrice }} грн.
                         </h2>
                     </div>
                     <div class="flex gap-2 items-center justify-center">
                         <button 
-                            class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
+                            class="bg-[var(--dark-color)] text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
                             @click="resetForm"
                             >
                             <!-- <SvgIcon name="cart-icon" fill="white" size="micro"/> -->
@@ -189,7 +191,7 @@
                             Скинути
                         </button>
                         <button 
-                            class="bg-blue-500 text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
+                            class="bg-[var(--main-accent)] text-white text-[clamp(8px, 0.8vw, 12px)] py-1 px-2 rounded-lg hover:bg-blue-700 flex-1 flex justify-center items-center gap-1 whitespace-nowrap"
                             @click="addToCart"
                         >
                             <SvgIcon name="cart-icon" fill="white" size="micro"/>
@@ -360,9 +362,20 @@
         @include mixins.cardShadow;
         flex: 1 1 120px;
         height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        gap: 10px;
         span{
             white-space: nowrap;
 
+        }
+        .separator{
+            width: 100%;
+            height: 1px;
+            background: var(--bg-color);
         }
         @media screen and (max-width: 1024px) {
             &{
@@ -370,6 +383,7 @@
             }
         }
     }
+
     h5{
         white-space: nowrap;
     }
@@ -381,4 +395,14 @@
         backdrop-filter: blur(5px);
     }
 
+    .dark .modal-wrapper{
+        background: var(--dark-component-color);
+    }
+    .dark .option {
+        background: var(--dark-grey);
+        box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+        .separator{
+            background: var(--dark-border-color);
+        }
+    }
 </style>
