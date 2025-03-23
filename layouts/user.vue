@@ -21,10 +21,10 @@
       <div
         class="m-0 font-sans h-[100%] relative contain-layout  text-base antialiased font-normal leading-default bg-gray-50 dark:bg-[var(--dark-component-color)] text-slate-500"
       >
-        <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
+        <div class="absolute w-full bg-[var(--primary-color)] dark:bg-[var(--dark-alter-color)] min-h-72"></div>
 
         <aside
-          class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full max-h-[85%] p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
+          class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full max-h-[85%] p-0 mb-4 mt-6 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white dark:bg-[var(--dark-grey)] dark:border dark:border-[var(--dark-border-color)] shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
           :aria-expanded="isSidebarOpen"
           :class="{
             '-translate-x-full z-50': !isSidebarOpen,
@@ -57,7 +57,7 @@
             </div>
             <!-- dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent -->
             <hr
-              class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent"
+              class="h-px mt-0 dark:bg-[var(--dark-border-color)]"
             />
 
             <div
@@ -70,9 +70,9 @@
                 >
                   <NuxtLink :to="`/user/:${authStore.user.id}`">
                     <div
-                      class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                      class="py-[0.675rem] bg-blue-500/13 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 dark:text-[var(--dark-bright-grey)] transition-colors"
                       :class="{
-                        'text-white bg-[var(--primary-color)]':
+                        'text-white bg-[var(--primary-color)] dark:text-[var(--dark-font-color)] dark:bg-[var(--dark-border-color)] dark:border dark:border-solid dark:border-[var(--dark-bright-grey)]':
                           activePage === 'index',
                       }"
                     >
@@ -96,9 +96,9 @@
                 >
                   <NuxtLink :to="`/user/:${authStore.user.id}/notifications`">
                     <div
-                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700 dark:text-[var(--dark-bright-grey)]"
                       :class="{
-                        'text-white bg-[var(--primary-color)]':
+                        'text-white bg-[var(--primary-color)] dark:text-[var(--dark-font-color)] dark:bg-[var(--dark-border-color)] dark:border dark:border-solid dark:border-[var(--dark-bright-grey)]':
                           activePage === 'notifications',
                       }"
                     >
@@ -125,9 +125,9 @@
                 >
                   <NuxtLink :to="`/user/:${authStore.user.id}/orders`">
                     <div
-                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700 dark:text-[var(--dark-bright-grey)]"
                       :class="{
-                        'text-white bg-[var(--primary-color)]':
+                        'text-white bg-[var(--primary-color)] dark:text-[var(--dark-font-color)] dark:bg-[var(--dark-border-color)] dark:border dark:border-solid dark:border-[var(--dark-bright-grey)]':
                           activePage === 'orders',
                       }"
                     >
@@ -151,9 +151,9 @@
                 >
                   <NuxtLink :to="`/user/:${authStore.user.id}/settings`">
                     <div
-                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700"
+                      class="py-[0.675rem] text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors rounded-lg font-semibold text-slate-700 dark:text-[var(--dark-bright-grey)]"
                       :class="{
-                        'text-white bg-[var(--primary-color)]':
+                        'text-white bg-[var(--primary-color)] dark:text-[var(--dark-font-color)] dark:bg-[var(--dark-border-color)] dark:border dark:border-solid dark:border-[var(--dark-bright-grey)]':
                           activePage === 'settings',
                       }"
                     >
@@ -226,7 +226,8 @@
         <div
           class="relative h-full min-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
         >
-          <slot />
+          <!-- <slot /> -->
+           <NuxtPage />
         </div>
       </div>
     </main>
@@ -247,7 +248,7 @@
     <AppFooter />
 
     </div>
-    <NuxtPage />
+
   </div>
   
 </template>

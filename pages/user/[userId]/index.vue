@@ -2,7 +2,7 @@
   <div v-if="!loadingState">
 
   </div>
-  <div class="mx-6 pt-12 pb-28" v-else>
+  <section class="mx-6 pt-2 pb-28" v-else>
     <div class="head flex items-center justify-between px-5 py-5">
       <h1
         class="text-2xl font-semibold text-[var(--bg-color)] dark:text-white sm:text-3xl"
@@ -12,7 +12,7 @@
       <DashBurger />
     </div>
 
-    <div class="flex flex-col pt-5">
+    <div class="flex flex-col ">
       <div class="mx-auto w-full pl-5 flex items-center justify-start">
         <div v-if="!authStore.user.userAvatar">
           <SvgIcon name="default-user-icon" size="large" />
@@ -39,8 +39,8 @@
       </div>
     </div>
 
-    <section
-      class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 border border-[var(--bg-color)]"
+    <div
+      class="bg-white rounded-lg py-8 mt-5 antialiased dark:bg-[var(--dark-grey)] border border-[var(--bg-color)] dark:border-[var(--dark-border-color)]"
     >
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -57,18 +57,18 @@
           <div
             v-for="(value, key) in userDataObj"
             :key="key"
-            class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow relative"
+            class="p-6 bg-gray-100 dark:bg-[var(--dark-light-grey)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow relative"
           >
             <div
-              class="font-bold text-lg mb-0 p-2 pl-0 bg-gray-100 dark:bg-gray-800 sticky top-0 z-10"
+              class="font-bold text-lg mb-0 p-2 pl-0 sticky top-0 z-10 dark:text-[var(--dark-font-color)]"
               
             >
 
               {{ value.tr.find((tr) =>  tr[$i18n.locale])?.[$i18n.locale] }}
 
             </div>
-            <div class="flex justify-between items-center border-b pb-3">
-              <dd class="text-base font-normal">
+            <div class="flex justify-between items-center border-b pb-3 dark:border-[var(--dark-border-color)]">
+              <dd class="text-base font-normal dark:text-[var(--light-color)]">
                 
                 <span>{{ value.value }}</span>
               </dd>
@@ -115,8 +115,8 @@
           </button>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script setup>

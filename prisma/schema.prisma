@@ -351,13 +351,17 @@ model User {
 }
 
 model Adress {
-  id        Int    @id @default(autoincrement())
-  userId    Int
-  street    String
-  city      String
-  country   String
-  postalCode String?
-  postIndex String 
+  id          Int    @id @default(autoincrement())
+  userId      Int
+  street      String
+  city        String
+  country     String
+  homeAdress  String
+  postCompany String
+  postOffice  String
+  postomat    String
+  postalCode  String?
+  postIndex   String 
   user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -378,7 +382,7 @@ model Notification {
   id        Int      @id @default(autoincrement())
   userId    Int
   message   String
-  read      Boolean  @default(false)
+  isReaded  Boolean  @default(false)
   createdAt DateTime @default(now())
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

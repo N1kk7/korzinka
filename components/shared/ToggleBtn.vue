@@ -59,4 +59,38 @@
     .toggle-state:checked ~ .indicator {
     transform: translate3d(25%, 0, 0);
     }
+
+ .dark .label {
+    color: #e2e3e6;
+}
+
+.dark .toggle {
+    background: var(--dark-grey);
+    border: 1px solid var(--dark-border-color);
+    box-shadow: inset -4px -4px 6px rgba(255, 255, 255, 0.1),
+                inset 4px 4px 6px rgba(0, 0, 0, 0.6),
+                -4px -4px 8px rgba(255, 255, 255, 0.05),
+                4px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.dark .indicator {
+    background: #828282;
+    box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.1),
+                2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+}
+
+.dark .toggle-state:checked ~ .indicator {
+    background: #e2e3e6;
+    box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.2),
+                2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+
+
+
+
+
+
 </style>
