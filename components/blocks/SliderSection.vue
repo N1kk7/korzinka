@@ -189,17 +189,13 @@ const modules = [Pagination, Autoplay];
           &{
             .content-wrapper{
               .info-content{
-                // background: linear-gradient();
                 background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.1) 100%);
 
                 h3{
-                  // font-size: clamp(12px, 1.5vw, 20px);
                   mix-blend-mode: hard-light;
                 
                 }
                 p{
-                  // background-color: rgba(0, 0, 0, 0.7);
-                  // backdrop-filter: blur(1px);
                   background: transparent;
                   box-shadow: unset;
 
@@ -218,7 +214,6 @@ const modules = [Pagination, Autoplay];
 
           
         }
-                  // border: 1px solid var(--dark-border-color);
 
 
                 }
@@ -231,7 +226,6 @@ const modules = [Pagination, Autoplay];
   width: 100%;
   height: 100%;
  
-  // overflow: visible !important;
 }
 
 .swiper-slide {
@@ -244,8 +238,6 @@ const modules = [Pagination, Autoplay];
     }
     
   }
-
-
     
   .slide-wrapper {
     border-radius: 10px;
@@ -254,7 +246,6 @@ const modules = [Pagination, Autoplay];
         4px 4px 4px 0px #d1d9e6 inset,
         -4px -4px 4px 0px #ffffff inset;
 
-    // padding-bottom: 50px;
 
     .card-content {
       display: flex;
@@ -291,11 +282,6 @@ const modules = [Pagination, Autoplay];
                 padding: 5px;
                 justify-content: flex-end;
                 gap: 10px;
-
-                // background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(255, 255, 255, 0.1) 100%);
-
-                // background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 70%), rgba(255, 255, 255, 0) 100%;
-
                 h3{
                   font-size: clamp(12px, 1.3vw, 16px);
                   white-space: nowrap;
@@ -306,14 +292,7 @@ const modules = [Pagination, Autoplay];
                 }
                 p{
                   background-color: rgba(255, 255, 255, 0.8);
-                  // position: relative;
-
-                  // backdrop-filter: blur(1px);
-                 
-                  padding: 2px;
-
-
-                  // background: transparent
+                  padding: 5px;
                 }
                 .bottom-content{
                   .date{

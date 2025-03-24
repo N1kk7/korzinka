@@ -222,4 +222,9 @@ definePageMeta({
     }
   }
 }
+
+.products-section{
+  margin-top: 0;
+}
+
 </style>

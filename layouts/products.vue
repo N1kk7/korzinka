@@ -1,8 +1,10 @@
 <template>
-  <div class="layout">
+  <div class="layout relative">
     <AppHeader />
     <StickyHeader />
     <MobileMenu />
+    <DashBurger class="absolute right-12" @click="mobileCategory()"/>
+
     <main>
       <div class="section page products-section">
         <div class="product-container">
@@ -16,7 +18,7 @@
             </p>
           </div>
         </div>
-        <div class="mobile-bar">
+        <!-- <div class="mobile-bar">
           <ul>
             <li @click="showCategory('showAll')">
               <span> Всі товари </span>
@@ -87,15 +89,21 @@
               <span> Пакети фасувальні в рулоні </span>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <section
         class="products-main grid grid-cols-[1fr_3fr] gap-5 w-[92vw] mx-auto"
       >
         <!-- SIDEBAR -->
-        <div class="categories border-r-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] pr-4 py-2">
+        <div 
+          class="categories border-r-[1px] border-[#d9dbe0] dark:border-[var(--dark-border-color)] pr-4 py-2"
+          :class="{'active-mobile-categories': mobileCategoryState}"
+        >
           <ul class="mt-5 main-list">
-            <li class="">
+            <li class=""
+              @click="showCategory('showAll'); mobileCategory()"
+
+            >
               <div class="icon">
                 <img src="/public/img/icons/products.png" alt="products" />
               </div>
@@ -117,7 +125,9 @@
               >Категорії товарів</span>
               <SvgIcon name="arrow-right" size="micro" fill="red" />
             </li>
-            <li v-for="(category, index) in fetchedAllCategories" :key="index">
+            <li v-for="(category, index) in fetchedAllCategories" :key="index"
+              @click="mobileCategory()"
+            >
               <NuxtLink
                 :to="`/products/${category.group
                   .replaceAll(' ', '-')
@@ -262,6 +272,7 @@
           <slot />
           <KorzinkaBg />
         </div>
+
       </section>
     </main>
     <Modal>
@@ -288,6 +299,7 @@ import LinkBlock from "@/components/shared/LinkBlock.vue";
 import SvgIcon from "@/components/shared/SvgIcon.vue";
 import KorzinkaBg from "@/components/KorzinkaBg.vue";
 import ItemCard from "@/components/ItemCard.vue";
+import DashBurger from "~/components/shared/DashBurger.vue";
 
 const modalStore = useModalStore();
 const indexStore = useIndexStore();
@@ -307,6 +319,13 @@ const search = ref(true);
 
 const mobileBags = ref(false);
 const mobilePackages = ref(false);
+
+const mobileCategoryState = ref(false);
+
+const mobileCategory = () => {
+  mobileCategoryState.value = !mobileCategoryState.value;
+
+}
 
 let activeCategory = ref([]);
 
@@ -383,7 +402,7 @@ main {
 .product-container {
   width: 92vw;
   margin: 0 auto;
-  padding-block: 20px;
+  padding-top: 20px;
 }
 .page-title {
   p {
@@ -480,5 +499,55 @@ ul {
 
 .dark .layout{
   background-color: var(--dark-component-color);
+}
+
+
+@media screen and (max-width: 768px) {
+
+.page-title, .mobile-bar{
+  display: none;
+}
+
+}
+
+.dash-burger{
+  @media screen and (min-width: 1024px) {
+    &{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    &{
+      top: 155px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    &{
+      top: 80px;
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 1024px) {
+  .categories{
+    position: fixed;
+    left: -50%;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 95vh;
+    width: 50%;
+    background-color: var(--dark-grey);
+    z-index: 100;
+    border-radius: 20px;
+    overflow: scroll;
+    transition: all ease 0.3s;
+
+  }
+  .active-mobile-categories{
+    left: 0;
+    transition: all ease 0.3s;
+  }
 }
 </style>

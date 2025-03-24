@@ -119,11 +119,12 @@
           <SvgIcon name="arrow-down" size="micro" fill="var(--dark-color)" />
         </li>
         <ul class="sub-menu" v-if="productList">
-          <li v-for="(category, index) in fetchedAllCategories" :key="index">
+          <li v-for="(category, index) in fetchedAllCategories" :key="index" >
             <NuxtLink
               :to="`/products/${category.group
                 .replaceAll(' ', '-')
                 .toLowerCase()}`"
+                class="w-full flex items-center justify-between"
             >
               <span>
                 {{
@@ -187,8 +188,10 @@
             {{ $t("mobile-menu.profile-btn") }}
           </span>
         </div>
-        <div class="btn theme-btn" @click="themeStore.toggleTheme">
-          <img class="w-5 h-5" src="/public/light-mode.png" alt="theme">
+        <div class="btn theme-btn" @click="toggleTheme()">
+          <img class="w-5 h-5" src="/public/light-mode.png" alt="theme" v-if="themeStore.darkMode">
+          <img class="w-5 h-5" src="/public/dark-mode.png" alt="theme" v-else>
+
         </div>
         <div class="btn cancel-btn" @click="showMenu(false)">
           <span>
@@ -238,6 +241,11 @@ const showMenu = (value) => {
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "unset");
 };
+
+const toggleTheme = () => {
+  themeStore.toggleTheme();
+  showMenu(false);
+}
 
 const toggleToShowLangModal = () => {
   showMenu(false);

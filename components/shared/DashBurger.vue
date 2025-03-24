@@ -1,6 +1,6 @@
 <template>
      <button 
-                  class="flex items-center justify-center w-[30px] border border-solid rounded-lg border-[var(--light-color)] p-2"
+                  class="dash-burger flex items-center justify-center w-[30px] border border-solid rounded-lg border-[var(--light-color)] p-2"
                   @click="toggleSidebar"
                 >
                  <div class="flex items-end justify-between flex-col gap-1">

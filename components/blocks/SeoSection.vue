@@ -20,7 +20,7 @@
             <div class="top-row">
               <ul class="seo-list">
                 <li>
-                  <strong>
+                  <strong class="">
                     {{ $t("index-page.why-us.category.title") }}
                   </strong>
                   <ul class="sub-seo-list pt-5">
@@ -113,7 +113,7 @@
       <div class="seo-block">
         <div class="seo-wrapper">
           <div class="title">
-            <h1>
+            <h1 class=" mb-[30px]">
               {{ $t("index-page.our-products.title") }}
             </h1>
             <div class="info-block shadow-block">
@@ -169,7 +169,7 @@
                 alt="img"
               />
             </div>
-            <ul class="seo-list">
+            <ul class="seo-list pl-5">
               <li>
                 <span>
                   {{ $t("index-page.our-advantages.content1") }}
@@ -242,6 +242,10 @@
 
 <style lang="scss">
 @use ".//styles/mixins.scss" as mixins;
+
+// .title{
+//   margin-bottom: 30px;
+// }
 
 .dark {
   .seo-section {
@@ -361,9 +365,9 @@
         list-style-type: decimal;
         color: var(--dark-color);
         flex: 1;
-        @media screen and (max-width: 640px) {
-          padding-left: 3vw;
-        }
+        // @media screen and (max-width: 640px) {
+        //   padding-left: 3vw;
+        // }
         li {
           padding-block: 1vw;
         }
@@ -409,6 +413,9 @@
     .shadow-block {
       @include mixins.cardShadow;
       padding: 20px 40px;
+      @media screen and (max-width: 640px) {
+        padding: 20px;
+      }
     }
 
     .dark-block {

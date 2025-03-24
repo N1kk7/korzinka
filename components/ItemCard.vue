@@ -30,9 +30,9 @@
                 </div>
         </div> -->
 
-  <div class="badge-labels flex h-6 max-h-6 items-center overflow-hidden absolute left-0 top-0 rounded-tl-[16px]">
+  <div class="badge-labels z-10 -translate-x-1 flex h-6 max-h-6 items-center overflow-hidden absolute left-0 top-0 rounded-tl-[16px]">
     <!-- skew(-12deg) translateX(-4px) -->
-    <div class="badge relative -skew-x-12 rounded-br-lg py-1.5 text-[13px] leading-3 text-white bg-[var(--dark-color)] z-[3] -translate-x-1">
+    <div class="badge relative -skew-x-12 rounded-br-lg py-1.5 pl-2 text-[13px] leading-3 text-white bg-[var(--dark-color)] z-[3] -translate-x-1">
       <span class="skew-x-[12] whitespace-nowrap">Новинка</span>
     </div>
 

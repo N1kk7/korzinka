@@ -91,6 +91,11 @@ const localePath = useLocalePath();
 
 .dark .header .sub-header{
   background-color: var(--dark-light-grey);
+  @media screen and (max-width: 768px) {
+    &{
+      background-color: transparent;
+    }
+  }
   .links nav a{
     color: var(--dark-font-color)
 

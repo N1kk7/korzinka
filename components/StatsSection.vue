@@ -172,6 +172,7 @@ onMounted(() => {
 
 
 .Stats {
+  padding-bottom: 30px;
   .title {
     border-bottom: 1px solid var(--border-color);
     h3 {
@@ -185,7 +186,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 30px;
     gap: 2em;
     .item {
       display: flex;
