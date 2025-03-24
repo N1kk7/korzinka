@@ -94,7 +94,7 @@
                     <!-- <p class="">{{ card.description }}</p> -->
                   </div>
                
-                  <div class="bottom-content flex items-center justify-between">
+                  <div class="bottom-content flex items-end justify-between">
                     <span class="date text-sm font-normal text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       {{ card.date }}
                     </span>
@@ -189,12 +189,17 @@ const modules = [Pagination, Autoplay];
           &{
             .content-wrapper{
               .info-content{
+                // background: linear-gradient();
+                background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.1) 100%);
+
                 h3{
-                  font-size: clamp(12px, 1.5vw, 20px);
+                  // font-size: clamp(12px, 1.5vw, 20px);
+                  mix-blend-mode: hard-light;
+                
                 }
                 p{
-                  background-color: rgba(0, 0, 0, 0.7);
-                  backdrop-filter: blur(1px);
+                  // background-color: rgba(0, 0, 0, 0.7);
+                  // backdrop-filter: blur(1px);
 
                 }
               }
@@ -280,12 +285,24 @@ const modules = [Pagination, Autoplay];
             .content-wrapper{
               .info-content{
                 padding: 10px;
+                justify-content: flex-end;
+                gap: 14px;
+                // background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 70%), rgba(255, 255, 255, 0) 100%;
+
                 h3{
-                  font-size: clamp(12px, 1.5vw, 20px);
+                  font-size: clamp(14px, 1.5vw, 20px);
+                  mix-blend-mode: multiply;
+                  position: absolute;
+                  top: 2px;
+                  left: 3%;
                 }
                 p{
                   background-color: rgba(255, 255, 255, 0.8);
+                  // position: relative;
+
                   backdrop-filter: blur(1px);
+
+                  // background: transparent
                 }
                 .bottom-content{
                   .date{
@@ -297,7 +314,7 @@ const modules = [Pagination, Autoplay];
                 position: absolute;
                 top: 0;
                 left: 0;
-                transform: translate(20%, 50%);
+                transform: translate(20%, 20%);
                 height: 50%;
                 width: 70%;
                 z-index: -1;
