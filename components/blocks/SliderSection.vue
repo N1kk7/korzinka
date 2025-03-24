@@ -95,7 +95,7 @@
                   </div>
                
                   <div class="bottom-content flex items-center justify-between">
-                    <span class="text-sm font-normal text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
+                    <span class="date text-sm font-normal text-[var(--dark-color)] dark:text-[var(--dark-font-color)]">
                       {{ card.date }}
                     </span>
                     <ShadowBtn>
@@ -150,8 +150,8 @@ const cards = Array.from({ length: 10 });
 
 
 const swiperBreakpoints = {
-  200: { slidesPerView: 1, spaceBetween: 10 },
-  600: { slidesPerView: 2, spaceBetween: 10 },
+  200: { slidesPerView: 1, spaceBetween: 0 },
+  400: { slidesPerView: 2, spaceBetween: 0 },
   1024: { slidesPerView: 3, spaceBetween: 10 },
 };
 
@@ -183,10 +183,33 @@ const modules = [Pagination, Autoplay];
                 4px 4px 8px rgba(0, 0, 0, 0.6);
 
                 .card-content{
-                  .content-wrapper{
-                    background: var(--dark-grey);
+                  background: var(--darkgrey);
+                
+                  @media screen and (max-width: 768px) {
+          &{
+            .content-wrapper{
+              .info-content{
+                h3{
+                  font-size: clamp(12px, 1.5vw, 20px);
+                }
+                p{
+                  background-color: rgba(0, 0, 0, 0.5);
+                  backdrop-filter: blur(1px);
 
-                  }
+                }
+              }
+              .card-img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+              }
+            }
+            
+          }
+
+          
+        }
                   // border: 1px solid var(--dark-border-color);
 
 
@@ -205,6 +228,14 @@ const modules = [Pagination, Autoplay];
 
 .swiper-slide {
   padding: 30px 15px 50px;
+
+  @media screen and (max-width: 768px) {
+    &{
+      padding: 30px 7px 50px;
+
+    }
+    
+  }
 
 
     
@@ -241,7 +272,46 @@ const modules = [Pagination, Autoplay];
           height: 50%;
 
         }
+        
       }
+      @media screen and (max-width: 768px) {
+          &{
+            height: 250px;
+            .content-wrapper{
+              .info-content{
+                padding: 10px;
+                h3{
+                  font-size: clamp(12px, 1.5vw, 20px);
+                }
+                p{
+                  background-color: rgba(255, 255, 255, 0.5);
+                  backdrop-filter: blur(1px);
+                }
+                .bottom-content{
+                  .date{
+                    font-size: clamp(10px, 1.5vw, 16px);
+                  }
+                }
+              }
+              .card-img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translate(20%, 50%);
+                height: 50%;
+                width: 70%;
+                z-index: -1;
+                img{
+                border-radius: 10px;
+
+                }
+              }
+            }
+            
+          }
+
+          
+        }
 
 
     }

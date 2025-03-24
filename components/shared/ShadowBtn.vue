@@ -1,7 +1,8 @@
 <template>
     <button
+    
     @click.stop
-    class="flex items-center justify-center px-4 py-2 rounded-md font-semibold cursor-pointer 
+    class="shadow-btn flex items-center justify-center px-4 py-2 rounded-md font-semibold cursor-pointer 
     text-gray-700 bg-[#ecf0f3] border border-[#d1d9e6] 
     shadow-[-8px_-4px_8px_#ffffff,8px_4px_12px_#d1d9e6,4px_4px_4px_#d1d9e6_inset,-4px_-4px_4px_#ffffff_inset] 
     transition-all duration-300
@@ -15,3 +16,9 @@
     <slot></slot>
     </button>
 </template>
+
+<style scoped>
+    .shadow-btn{
+        font-size: clamp(12px, 1.5vw, 20px)
+    }
+</style>
