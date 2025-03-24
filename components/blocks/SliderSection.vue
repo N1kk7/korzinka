@@ -201,6 +201,8 @@ const modules = [Pagination, Autoplay];
                   // background-color: rgba(0, 0, 0, 0.7);
                   // backdrop-filter: blur(1px);
                   background: transparent;
+                  box-shadow: unset;
+
 
                 }
               }
@@ -288,7 +290,10 @@ const modules = [Pagination, Autoplay];
               .info-content{
                 padding: 5px;
                 justify-content: flex-end;
-                gap: 14px;
+                gap: 10px;
+
+                // background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(255, 255, 255, 0.1) 100%);
+
                 // background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 70%), rgba(255, 255, 255, 0) 100%;
 
                 h3{
@@ -303,7 +308,10 @@ const modules = [Pagination, Autoplay];
                   background-color: rgba(255, 255, 255, 0.8);
                   // position: relative;
 
-                  backdrop-filter: blur(1px);
+                  // backdrop-filter: blur(1px);
+                 
+                  padding: 2px;
+
 
                   // background: transparent
                 }
