@@ -88,7 +88,7 @@
                     <!-- <p class="text-base font-normal px-2 py-1 rounded-md h-full shadow-inset-neumorphism dark:shadow-inset-neumorphism-dark bg-[var(--dark-border-color)] text-[var(--light-color)] dark:text-[var(--bg-color)]">
                       {{ card.description }}
                     </p> -->
-                    <p class="text-[13px] leading-4 font-normal px-2 py-2 rounded-md h-fit shadow-inset-neumorphism dark:shadow-inset-neumorphism-dark bg-[var(--border-color)] dark:bg-[var(--dark-border-color)] text-[var(--primary-color)] dark:text-[var(--bg-color)]">
+                    <p class="text-[13px] text-[var(--dark-color)] leading-4 font-normal px-2 py-2 rounded-md h-fit shadow-inset-neumorphism dark:shadow-inset-neumorphism-dark bg-[var(--border-color)] dark:bg-[var(--dark-border-color)] dark:text-[var(--bg-color)]">
                       {{ card.description }}
                     </p>
                     <!-- <p class="">{{ card.description }}</p> -->
@@ -200,6 +200,7 @@ const modules = [Pagination, Autoplay];
                 p{
                   // background-color: rgba(0, 0, 0, 0.7);
                   // backdrop-filter: blur(1px);
+                  background: transparent;
 
                 }
               }
@@ -282,15 +283,17 @@ const modules = [Pagination, Autoplay];
       @media screen and (max-width: 768px) {
           &{
             height: 270px;
+            padding: 5px;
             .content-wrapper{
               .info-content{
-                padding: 10px;
+                padding: 5px;
                 justify-content: flex-end;
                 gap: 14px;
                 // background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 70%), rgba(255, 255, 255, 0) 100%;
 
                 h3{
-                  font-size: clamp(14px, 1.5vw, 20px);
+                  font-size: clamp(12px, 1.3vw, 16px);
+                  white-space: nowrap;
                   mix-blend-mode: multiply;
                   position: absolute;
                   top: 2px;
