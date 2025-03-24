@@ -280,7 +280,7 @@ const controlShowedArr = (method) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .swiper-pagination {
   display: none;
 }

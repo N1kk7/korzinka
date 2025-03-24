@@ -1,6 +1,6 @@
 
 
-import type { INews } from "@/types/News/INews";
+import type { INews } from "../../types/News/INews";
 
 import banerImg from '@/public/img/news/baner.png'
 import baner1 from '@/public/img/news/baner1.png'
@@ -13,7 +13,7 @@ import social from '@/public/img/news/social.jpg'
 export const newsData: INews[] = [
     {
         id: 1,
-        title: "Новинки та оновлення товарів",
+        title: "Новинки та оновлення",
         img: banerImg,
         description: "Ми раді представити нову колекцію [назва колекції], яка вже є у каталозі. Оцініть сучасні дизайни та покращені характеристики!",
         date: "01.01.2025",
@@ -21,7 +21,7 @@ export const newsData: INews[] = [
     },
     {
         id: 2,
-        title: "Новинки та оновлення товарів",
+        title: "Новинки та оновлення",
         img: baner1,
         description: "У розділі [назва розділу] з'явилися [опис новинок], що ідеально підходять для [сфера застосування].",
         date: "01.01.2025",
