@@ -19,6 +19,6 @@
 
 <style scoped>
     .shadow-btn{
-        font-size: clamp(12px, 1.5vw, 20px)
+        font-size: clamp(10px, 1.5vw, 16px)
     }
 </style>

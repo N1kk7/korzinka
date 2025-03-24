@@ -193,7 +193,7 @@ const modules = [Pagination, Autoplay];
                   font-size: clamp(12px, 1.5vw, 20px);
                 }
                 p{
-                  background-color: rgba(0, 0, 0, 0.5);
+                  background-color: rgba(0, 0, 0, 0.7);
                   backdrop-filter: blur(1px);
 
                 }
@@ -276,7 +276,7 @@ const modules = [Pagination, Autoplay];
       }
       @media screen and (max-width: 768px) {
           &{
-            height: 250px;
+            height: 270px;
             .content-wrapper{
               .info-content{
                 padding: 10px;
@@ -284,7 +284,7 @@ const modules = [Pagination, Autoplay];
                   font-size: clamp(12px, 1.5vw, 20px);
                 }
                 p{
-                  background-color: rgba(255, 255, 255, 0.5);
+                  background-color: rgba(255, 255, 255, 0.8);
                   backdrop-filter: blur(1px);
                 }
                 .bottom-content{
