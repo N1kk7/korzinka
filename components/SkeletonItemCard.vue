@@ -32,12 +32,34 @@
     }
 }
 
+.dark .skeleton-card {
+    background: var(--dark-grey);
+    border: 1px solid var(--dark-border-color);
+}
+
 .skeleton-img {
     width: 100%;
     height: 150px;
     background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+.dark .skeleton-img {
+    background: var(--dark-bright-grey);
+}
+
+.dark .skeleton-img {
+    background: linear-gradient(
+        90deg, 
+        var(--dark-bright-grey) 25%, 
+        rgb(104, 101, 101) 50%, 
+        var(--dark-bright-grey) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border: 1px solid var(--dark-border-color);
 }
 
 .skeleton-content {
@@ -62,6 +84,21 @@
     border-radius: 4px;
 }
 
+.dark .skeleton-title {
+    background: var(--dark-bright-grey);
+}
+.dark .skeleton-title {
+    background: linear-gradient(
+        90deg, 
+        var(--dark-bright-grey) 25%, 
+        rgb(104, 101, 101) 50%, 
+        var(--dark-bright-grey) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border: 1px solid var(--dark-border-color);
+}
+
 .skeleton-price {
     width: 70%;
     height: 18px;
@@ -69,6 +106,22 @@
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
     border-radius: 4px;
+}
+
+.dark .skeleton-price {
+    background: var(--dark-bright-grey);
+}
+
+.dark .skeleton-price {
+    background: linear-gradient(
+        90deg, 
+        var(--dark-bright-grey) 25%, 
+        rgb(104, 101, 101) 50%, 
+        var(--dark-bright-grey) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border: 1px solid var(--dark-border-color);
 }
 
 .skeleton-buttons {
@@ -85,6 +138,18 @@
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
     border-radius: 6px;
+}
+
+.dark .skeleton-button {
+    background: linear-gradient(
+        90deg, 
+        var(--dark-bright-grey) 25%, 
+        rgb(104, 101, 101) 50%, 
+        var(--dark-bright-grey) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border: 1px solid var(--dark-border-color);
 }
 
 @keyframes loading {
