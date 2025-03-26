@@ -1,8 +1,10 @@
 <template>
     <section class="section product-section">
         <div class="container">
-            <div class="title">
-                <h1>Популярні товари</h1>
+            <div class="title ">
+                <h1
+                    class="border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+                >Популярні товари</h1>
             </div>
 
             <ul class="product-list">
@@ -66,7 +68,9 @@
 
             <div class="manufacture">
                 <div class="title">
-                    <h1>{{ $t('index-page.manufacture') }}</h1>
+                    <h1
+                        class="border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+                    >{{ $t('index-page.manufacture') }}</h1>
                 </div>
                 <ul>
                     <li>
@@ -127,11 +131,6 @@
     }
 }
 
-
-
-    .title{
-        margin-bottom: 30px;
-    }
     h1{
         position: relative;
         z-index: 1;
@@ -139,6 +138,7 @@
     .product-list{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        margin-top: 30px;
         margin-bottom: 50px;
         gap: 20px;
         .product-card{
@@ -178,29 +178,6 @@
                     border-radius: 50px;
                 }
             }
-            // &:hover {
-            //     transform: scale(0.97);
-            //     // box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
-            //     box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff,
-            //         0px 0px 15px rgba(0, 0, 0, 0.2);
-            // }
-            // &:hover::after {
-            //     content: '';
-            //     position: absolute;
-            //     top: 50%;
-            //     left: 50%;
-            //     width: 200px;
-            //     height: 200px;
-            //     transform: translate(-50%, -50%);
-            //     border-radius: 50%;
-            //     background: radial-gradient(circle, rgba(0, 0, 0, 0.1), transparent 80%);
-            //     pointer-events: none;
-            // }
-
-            // &:active {
-            //     transform: scale(0.95);
-            //     box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
-            // }
         }
         @media screen and (max-width: 1024px) {
             grid-template-columns: repeat(2, 1fr);
@@ -211,6 +188,10 @@
         }
     }
     .manufacture{
+
+        .title{
+            margin-bottom: 30px;
+        }
         ul{
             display: flex;
             align-items: center;

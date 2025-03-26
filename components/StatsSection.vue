@@ -1,7 +1,7 @@
 <template>
   <section class="Stats">
     <div class="container">
-      <div class="title">
+      <div class="title relative z-10">
         <h3>{{ $t("index-page.stats.title") }}</h3>
       </div>
       <div class="wrapper" ref="statsWrapper">

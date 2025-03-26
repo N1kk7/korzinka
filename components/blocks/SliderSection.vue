@@ -15,7 +15,7 @@
           clickable: true,
         }"
         :autoplay="{
-          delay: 1555500,
+          delay: 3500,
           disableOnInteraction: false,
         }"
         :breakpoints="swiperBreakpoints"
@@ -163,7 +163,8 @@ const modules = [Pagination, Autoplay];
 
 .title{
   h1{
-    margin-bottom: 0;
+  margin-bottom: 0;
+
   }
 }
 
@@ -183,7 +184,7 @@ const modules = [Pagination, Autoplay];
                 4px 4px 8px rgba(0, 0, 0, 0.6);
 
                 .card-content{
-                  background: var(--darkgrey);
+                  background: var(--dark-grey);
                 
                   @media screen and (max-width: 768px) {
           &{

@@ -2,20 +2,26 @@
   <section class="seo-section">
     <div class="container">
       <div class="title">
-        <h1>
+        <h1
+          class="border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+        >
+          
           {{ $t("index-page.main-seo.main-title") }}
         </h1>
       </div>
-      <p class="seo-text">
+      <p class="seo-text mt-[25px]">
         {{ $t("index-page.main-seo.main-text") }}
       </p>
       <div class="seo-block">
         <div class="seo-wrapper">
-          <h2 class="title">
+          <h2 
+            class="title mb-[25px] border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+
+          >
             {{ $t("index-page.why-us.title") }}
           </h2>
           <div
-            class="info-block shadow-block light-block flex flex-col justify-start gap-5 items-center"
+            class="info-block shadow-block light-block flex flex-col justify-start gap-5 items-center mt-[25px]"
           >
             <div class="top-row">
               <ul class="seo-list">
@@ -113,10 +119,14 @@
       <div class="seo-block">
         <div class="seo-wrapper">
           <div class="title">
-            <h1 class=" mb-[30px]">
+            <h1 
+              class="mb-[25px] border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+
+            >
+              <!-- Наші продукти -->
               {{ $t("index-page.our-products.title") }}
             </h1>
-            <div class="info-block shadow-block">
+            <div class="info-block shadow-block mt-[25px]">
               <ul class="seo-list pl-5">
                 <li>
                   <span>
@@ -156,12 +166,16 @@
       </div>
       <div class="seo-block">
         <div class="seo-wrapper">
-          <div class="title">
-            <h1>
+          <div class="title"
+          >
+            <h1
+              class="mb-[25px] border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+            
+            >
               {{ $t("index-page.our-advantages.title") }}
             </h1>
           </div>
-          <div class="info-block light-block shadow-block">
+          <div class="info-block light-block shadow-block mt-[25px]">
             <div class="img-wrapper">
               <img
                 class="w-full h-full object-cover bg-[var(--dark-color)] rounded-lg"
@@ -191,7 +205,10 @@
       </div>
       <div class="seo-block">
         <div class="title mt-10">
-          <h1>
+          <h1
+            class="mb-[25px] border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
+
+          >
             <!-- Як оформити замовлення? -->
             {{ $t("index-page.how-to-delivery.title") }}
           </h1>
@@ -244,7 +261,7 @@
 @use ".//styles/mixins.scss" as mixins;
 
 // .title{
-//   margin-bottom: 30px;
+//   margin-bottom: 25px;
 // }
 
 .dark {
@@ -348,7 +365,7 @@
     z-index: 1;
   }
   .seo-wrapper {
-    margin-top: 4vw;
+    margin-top: 25px;
     .info-block {
       display: flex;
       align-items: flex-start;
