@@ -294,8 +294,8 @@ const observer = new IntersectionObserver(
 
     }
     .gallery .wrapper{
-        background: var(--main-accent);
-        padding: 5px;
+        background: var(--dark-border-color);
+        // padding: 5px;
         .col-wrapper{
             background: rgb(12 22 31);
             // border: 1px solid var(--main-accent);
@@ -303,8 +303,9 @@ const observer = new IntersectionObserver(
 
     }
     .mobile-gallery .wrapper{
-        background: var(--main-accent);
-        padding: 5px;
+        background: var(--dark-border-color);
+
+        // padding: 5px;
         .col-wrapper{
             background: rgb(12 22 31);
             // border: 1px solid var(--main-accent);
