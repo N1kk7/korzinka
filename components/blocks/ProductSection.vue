@@ -4,19 +4,44 @@
             <div class="title ">
                 <h1
                     class="border-b-[1px] dark:border-[var(--dark-border-color)] border-[var(--border-color)] pb-2"
-                >Популярні товари</h1>
+                >Категорії товарів</h1>
             </div>
 
             <ul class="product-list">
-                <li class="product-card">
+
+                <li 
+                    class=""
+                    v-for="(category, index) in fetchedCategories"
+                    :key="index"
+                >
+                    <NuxtLink
+                        :to="`/products/${category.group
+                        .replaceAll(' ', '-')
+                        .toLowerCase()}`"
+                        class="product-card"
+                    >
+                        <span>
+                            {{
+                                category?.translations?.find(
+                                    (tr) => tr.language === $i18n.locale
+                                ).title
+                            }}
+                        </span>
+                        <div class="img-wrapper">
+                            <img :src="category.categoryImg" alt="plastic-bag">
+                        </div>
+                    </NuxtLink>
+                    
+                </li>
+                <!-- <li class="product-card">
                     <span>
                         Пакет майка
                     </span>
                     <div class="img-wrapper">
                         <img src="~/public/icon-pack/plasticBag.png" alt="plastic-bag">
                     </div>
-                </li>
-                <li class="product-card">
+                </li> -->
+                <!-- <li class="product-card">
                     <span>
                         Пакет для сміття
                     </span>
@@ -63,7 +88,7 @@
                     <div class="img-wrapper">
                         <img src="~/public/icon-pack/plasticBag.png" alt="plastic-bag">    
                     </div>
-                </li>
+                </li> -->
             </ul>
 
             <div class="manufacture">
@@ -106,6 +131,23 @@
 
     </section>
 </template>
+
+<script setup>
+
+    import { ref, onMounted } from 'vue';
+
+    import { useIndexStore } from '#imports';
+
+    const indexStore = useIndexStore();
+
+    const fetchedCategories = computed(() => indexStore.fetchedCategories)
+
+
+    console.log(fetchedCategories, 'fetchedCategories')
+
+
+
+</script>
 
 <style lang="scss">
 
@@ -176,6 +218,7 @@
                 img{
                     width: 100px;
                     border-radius: 50px;
+                    padding-bottom: 10px;
                 }
             }
         }

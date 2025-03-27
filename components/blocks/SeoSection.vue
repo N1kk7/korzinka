@@ -219,7 +219,7 @@
               {{ $t("index-page.how-to-delivery.description") }}
             </p>
           </div>
-          <div class="info-block dark-block bg-[var(--dark-color)]">
+          <div class="info-block dark-block bg-[var(--dark-color)] overflow-hidden">
             <ul class="seo-list px-5">
               <li>
                 <span>

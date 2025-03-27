@@ -153,6 +153,7 @@ const swiperBreakpoints = {
   200: { slidesPerView: 1, spaceBetween: 0 },
   400: { slidesPerView: 2, spaceBetween: 0 },
   1024: { slidesPerView: 3, spaceBetween: 10 },
+  1440: { slidesPerView: 4, spaceBetween: 10 }
 };
 
 const modules = [Pagination, Autoplay];
