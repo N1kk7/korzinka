@@ -1,7 +1,8 @@
 <template>
     <section class="main">
         <div class="title-text">
-            <h1 ref="titleRef">
+            <div class="text-wrapper">
+                <h1 ref="titleRef">
                 <strong>{{ $t('index-page.hero.title-strong') }}</strong>
                 <br>
                 {{ $t('index-page.hero.title') }}
@@ -34,6 +35,8 @@
                     </span>
                 </li>
             </ul>
+            </div>
+          
         </div>
 
         <div class="gallery">
@@ -291,8 +294,21 @@ const observer = new IntersectionObserver(
 
     }
     .gallery .wrapper{
-        background: var(--dark-grey);
+        background: var(--main-accent);
+        padding: 5px;
+        .col-wrapper{
+            background: rgb(12 22 31);
+            // border: 1px solid var(--main-accent);
+        }
 
+    }
+    .mobile-gallery .wrapper{
+        background: var(--main-accent);
+        padding: 5px;
+        .col-wrapper{
+            background: rgb(12 22 31);
+            // border: 1px solid var(--main-accent);
+        }
     }
 }
 
@@ -311,8 +327,7 @@ const observer = new IntersectionObserver(
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            // justify-content: center;
-            margin-top: 10vw;
+            justify-content: flex-end;
             background-color: var(--light-color);
             padding-inline: 2rem;
             gap: 2rem;
@@ -320,12 +335,15 @@ const observer = new IntersectionObserver(
             height: 100%;
             min-width: 50%;
             flex: 1;
+            .text-wrapper{
+                margin-bottom: 10vw;
+
+            }
             @media screen and (max-width: 1024px) {
                 margin-top: unset;
                 justify-content: flex-end;
                 padding-bottom: 25px;
                 z-index: 10;
-                // background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 100%);
                 background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.5) 50%, rgba(0,0,0,1) 100%);
                 svg{
                     fill: var(--light-color);
@@ -334,6 +352,9 @@ const observer = new IntersectionObserver(
                 }
                 &{
                     padding-inline: 5vw;
+                }
+                .text-wrapper{
+                    margin-bottom: 2vw;
                 }
             }
         
@@ -347,10 +368,10 @@ const observer = new IntersectionObserver(
                 text-align: start;
 
                 @media screen and (max-width: 1024px) {
-                    font-size: clamp(1.3em, 7vw, 2.1em);
-                    margin-bottom: 10px;
+                    font-size: clamp(1.2em, 6vw, 1.9em);
+                    line-height: normal;
+                    margin-bottom: 5px;
                     position: relative;
-                    top: 10%;
                     color: var(--bg-color) !important
                 }
 

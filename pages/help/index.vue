@@ -46,7 +46,7 @@
     </div>
     <div class="container">
       <div
-        class="content-wrapper grid grid-cols-[1fr_2fr] mt-0 mb-14 w-full gap-5 max-md:block"
+        class="content-wrapper grid grid-cols-[1fr_2fr] mt-0 mb-14 w-full gap-7 max-md:block"
       >
         <div
           class="links sticky top-[75px] w-full h-fit pb-8 flex flex-col gap-5 max-md:hidden"
@@ -257,11 +257,17 @@
             >
               {{ $t("buyers-page.order-tracking.title") }}
             </h2>
+            <div
+              class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
+            >
             <p
               class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-lg mb-3"
             >
               {{ $t("buyers-page.order-tracking.text") }}
             </p>
+          
+          </div>
+           
           </div>
           <div class="text-block mb-5">
             <h2
@@ -314,7 +320,7 @@
         </p>
       </div>
       <div
-        class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed mt-10 mb-14 text-center"
+        class=" text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed mt-10 mb-14 text-center"
       >
         <p>
           <span class="font-semibold">
@@ -347,7 +353,17 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@use ".//styles/mixins.scss" as mixins;
+  @use ".//styles/mixins.scss" as mixins;
 
-@include mixins.mobileBar(768px);
+  @include mixins.mobileBar(768px);
+
+  .block-paragraph{
+    @include mixins.cardShadow;
+
+  }
+
+  .dark .block-paragraph{
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+    background: var(--dark-component-color);
+  }
 </style>

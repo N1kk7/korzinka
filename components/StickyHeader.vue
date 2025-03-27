@@ -1,7 +1,7 @@
 <template>
   <div class="main-header">
     <div class="main-buttons">
-      <button class="items-btn">
+      <button class="items-btn catalog-btn">
         {{ $t("common-btns.catalog-btn") }}
         <div class="arrow-down">
           <div class="line line1"></div>
@@ -321,5 +321,14 @@ onMounted(() => {
     transform: scale(0.95);
     cursor: pointer;
   }
+}
+
+.dark .main-header .main-buttons  .catalog-btn{
+  background: rgb(12 22 31);
+
+}
+.dark .main-header .main-buttons  .phone-btn{
+  background: rgb(13, 24, 34);
+
 }
 </style>

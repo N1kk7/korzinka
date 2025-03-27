@@ -31,26 +31,29 @@
                   {{ $t("contacts-page.address.title") }}
                 </h2>
               </div>
-              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
-                <!-- Наш головний магазин розташований за адресою: -->
-                {{ $t("contacts-page.address.description") }}
-              </p>
-              <ul class="block-list">
-                <li>
-                  <span class="text-[#4b839f] font-semibold text-sm mb-2">
-                    korzinka.in.ua
-                  </span>
-                </li>
-                <li>
-                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
-                    <!-- Місто: Харків, -->
-                    {{ $t("contacts-page.address.city") }}
-                    <br />
-                    <!-- ринок Барабашово -->
-                    {{ $t("contacts-page.address.market") }}
-                  </p>
-                </li>
-              </ul>
+              <div class="shadow-block">
+                <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
+                  <!-- Наш головний магазин розташований за адресою: -->
+                  {{ $t("contacts-page.address.description") }}
+                </p>
+                <ul class="block-list">
+                  <li>
+                    <span class="text-[#4b839f] font-semibold text-sm mb-2">
+                      korzinka.in.ua
+                    </span>
+                  </li>
+                  <li>
+                    <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
+                      <!-- Місто: Харків, -->
+                      {{ $t("contacts-page.address.city") }}
+                      <br />
+                      <!-- ринок Барабашово -->
+                      {{ $t("contacts-page.address.market") }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            
             </div>
           </div>
           <div class="contact-block payment">
@@ -64,27 +67,30 @@
                   {{ $t("contacts-page.work-hours.title") }}
                 </h2>
               </div>
-              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
-                <!-- Наш магазин працює щодня з: -->
-                {{ $t("contacts-page.work-hours.description") }}
-              </p>
-              <ul class="block-list">
-                <li>
-                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
-                    9:00 - 18:00
-                  </p>
-                </li>
-                <li>
-                  <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
-                    <strong>
-                      <!-- Вихідні -->
-                      {{ $t("contacts-page.days-off.title") }} </strong
-                    ><br />
-                    <!-- Неділя, Понеділок -->
-                    {{ $t("contacts-page.days-off.days") }}
-                  </p>
-                </li>
-              </ul>
+              <div class="shadow-block">
+                <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
+                  <!-- Наш магазин працює щодня з: -->
+                  {{ $t("contacts-page.work-hours.description") }}
+                </p>
+                <ul class="block-list">
+                  <li>
+                    <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
+                      9:00 - 18:00
+                    </p>
+                  </li>
+                  <li>
+                    <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
+                      <strong>
+                        <!-- Вихідні -->
+                        {{ $t("contacts-page.days-off.title") }} </strong
+                      ><br />
+                      <!-- Неділя, Понеділок -->
+                      {{ $t("contacts-page.days-off.days") }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+             
             </div>
           </div>
           <div class="contact-block delivery">
@@ -98,7 +104,8 @@
                   {{ $t("contacts-page.phones.title") }}
                 </h2>
               </div>
-              <ul class="block-list">
+              <div class="shadow-block">
+                <ul class="block-list">
                 <li>
                   <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mb-2">
                     <!-- Відділ продажу:  -->
@@ -108,12 +115,14 @@
                   </p>
                 </li>
               </ul>
+              </div>
+           
             </div>
           </div>
 
           <div class="contact-block condition-delivery">
             <div class="text-block">
-              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm">
+              <p class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-medium text-sm mt-6">
                 <strong>
                   <!-- Електронні замовлення: -->
                   {{ $t("contacts-page.online-service.title") }}
@@ -126,27 +135,12 @@
           </div>
         </div>
         <div class="map flex items-start justify-center">
-          <!-- <GoogleMap
-
-
-            api-key="AIzaSyAuzTR9g-8CFF-vieFvZ6akRU5CYhdLxo8"
-            :center="{ lat: 50.00321326656911, lng: 36.30118217658963 }"
-            :zoom="15"
-            style="width: 100%; height: 400px;"
-
-          >
-            <Marker :options="markerOptions">
-              <InfoWindow v-model="infowindow">
-                <div id="content">This is the infowindow content</div>
-              </InfoWindow>
-            </Marker>
-        
-          </GoogleMap> -->
+          
           <div id="map" style="height: 500px; width: 100%"></div>
         </div>
       </section>
 
-      <section class="mb-32 max-md:mb-8">
+      <section class="mb-10 max-md:mb-8">
         <div class="flex justify-center mt-12">
           <div class="text-center md:max-w-xl lg:max-w-3xl">
             <h2
@@ -164,7 +158,7 @@
           >
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
+                class="shadow-block mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
@@ -202,7 +196,7 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 shadow-block"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
@@ -239,7 +233,7 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 shadow-block"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
@@ -276,7 +270,7 @@
                 </div>
               </div>
               <div
-                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 bg-white dark:bg-[#0d161f] bg-opacity-85 blur-5 rounded-lg border-[1px] border-[var(--light-color)] dark:border-[var(--dark-border-color)]"
+                class="mb-12 max-md:mb-[2vw] px-2 py-1 w-full shrink-0 grow-0 basis-auto md:px-3 lg:px-[1vw] z-10 shadow-block"
               >
                 <div class="flex items-start">
                   <div class="shrink-0">
@@ -331,7 +325,7 @@
               </label>
               <input
                 type="text"
-                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
+                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[var(--dark-grey)] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 id="exampleInput90"
                 placeholder="Ім'я і прізвище"
               />
@@ -346,7 +340,7 @@
               </label>
               <input
                 type="email"
-                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
+                class="px-2 py-2 border w-full outline-none rounded-md bg-white dark:bg-[var(--dark-grey)] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 id="exampleInput90"
                 placeholder="Введіть вашу електронну пошту"
               />
@@ -361,15 +355,16 @@
                 {{ $t("contacts-page.contact-us.form.message") }}
               </label>
               <textarea
-                class="px-2 py-2 border rounded-[5px] w-full outline-none bg-white dark:bg-[#0d161f] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] min-h-36 dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
+                class="px-2 resize-none py-2 border rounded-[5px] w-full outline-none bg-white dark:bg-[var(--dark-grey)] text-[var(--dark-color)] dark:text-[var(--dark-font-color)] min-h-36 dark:border dark:border-[var(--dark-border-color)] dark:border-solid"
                 name=""
                 id=""
+                
               ></textarea>
             </div>
 
             <button
               type="button"
-              class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md dark:bg-[var(--main-dark-color)] dark:text-[var(--dark-font-color)] dark:border dark:border-solid dark:border-[var(--dark-border-color)]"
+              class="mb-6 inline-block w-full rounded bg-[var(--dark-color)] hover:bg-rose-600 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md dark:bg-[var(--dark-grey)] dark:text-[var(--dark-font-color)] dark:border dark:border-solid dark:border-[var(--main-accent)]"
             >
               <!-- Відправити -->
               {{ $t("contacts-page.contact-us.form.btn") }}
@@ -458,11 +453,36 @@ const initMap = () => {
 </script>
 
 <style lang="scss" scoped>
-.contact-section {
-  font-family: "Montserrat", sans-serif;
-}
-.contact-block {
-  flex: 1;
-  flex-basis: 250px;
-}
+
+@use ".//styles/mixins.scss" as mixins;
+
+
+  .contact-section {
+    font-family: "Montserrat", sans-serif;
+  }
+  .contact-block {
+    flex: 1;
+    flex-basis: 250px;
+  }
+  .contact-title{
+    position: relative;
+    z-index: 1;
+  }
+
+  .shadow-block{
+    @include mixins.cardShadow;
+    margin-block: 10px;
+    height: auto;
+    background: rgba(224, 224, 224, 0.92);
+    border: 1px solid var(--dark-color);
+    backdrop-filter: blur(3px);
+
+
+  }
+
+  .dark .shadow-block{
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+    background: rgba(20, 20, 20, 0.92);
+    border: 1px solid var(--dark-border-color);
+  }
 </style>

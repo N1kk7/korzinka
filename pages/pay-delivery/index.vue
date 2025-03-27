@@ -32,7 +32,7 @@
     </div>
     <div class="container">
       <div
-        class="content-wrapper grid grid-cols-[2fr_1fr] mt-10 mb-14 w-full gap-5 max-md:block"
+        class="content-wrapper grid grid-cols-[2fr_1fr] mt-10 mb-14 w-full gap-7 max-md:block"
       >
         <div class="info-blocks">
           <div class="text-block mb-5">
@@ -174,7 +174,7 @@
             </div>
           </div>
           <div
-            class="block-paragraph text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
+            class=" text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
           >
             <p>
               {{ $t("pay-delivery.summary") }}
@@ -277,6 +277,16 @@ const iconFill = computed(() => {
   .dark .links-block{
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
 
+  }
+
+  .block-paragraph{
+    @include mixins.cardShadow;
+
+  }
+
+  .dark .block-paragraph{
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+    background: var(--dark-component-color);
   }
 
 </style>
