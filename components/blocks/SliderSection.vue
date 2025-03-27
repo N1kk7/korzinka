@@ -191,7 +191,7 @@ const modules = [Pagination, Autoplay];
             .content-wrapper{
               .info-content{
                 background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.1) 100%);
-
+                
                 h3{
                   mix-blend-mode: hard-light;
                 
@@ -207,7 +207,7 @@ const modules = [Pagination, Autoplay];
                 position: absolute;
                 top: 0;
                 left: 0;
-                z-index: -1;
+                // z-index: -1;
               }
             }
             
@@ -283,6 +283,7 @@ const modules = [Pagination, Autoplay];
                 padding: 5px;
                 justify-content: flex-end;
                 gap: 10px;
+                z-index: 1;
                 h3{
                   font-size: clamp(12px, 1.3vw, 16px);
                   white-space: nowrap;
@@ -308,7 +309,7 @@ const modules = [Pagination, Autoplay];
                 transform: translate(20%, 20%);
                 height: 50%;
                 width: 70%;
-                z-index: -1;
+                // z-index: -1;
                 img{
                 border-radius: 10px;
 
