@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="section page">
     <div class="container">
       <LinkBlock pageName="Про компанію" />
       <div
@@ -78,12 +78,12 @@
               </div>
               <div class="description p-4">
                 <strong
-                  class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-bold text-xl"
+                  class="text-[var(--dark-font-color)] dark:text-[var(--dark-font-color)] font-bold text-lg"
                 >
                   {{ $t(`${card.title}`) }}
                 </strong>
                 <p
-                  class=" text-[var(--primary-color)] dark:text-[var(--dark-font-color)] font-normal text-lg leading-relaxed"
+                  class=" text-[var(--dark-font-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed"
                 >
                   {{ $t(`${card.text}`) }}
                 </p>
@@ -269,13 +269,53 @@ const modules = [Pagination, Autoplay];
   height: auto;
 
   .slide-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
     height: 100%;
+    position: relative;
     border-radius: 10px;
+    overflow: hidden;
+    background: var(--dark-color);
+
     box-shadow: -8px -4px 8px 0px #ffffff, 8px 4px 12px 0px #d1d9e6,
       4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #ffffff inset;
+      .card-img{
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        img{
+          padding: 2%;
+          object-fit: scale-down;
+        }
+      }
+      .description{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        position: relative;
+        z-index: 5;
+        box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.2),
+        inset -4px -4px 6px rgba(255, 255, 255, 0.1);
+
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0) 100%);
+
+     
+        @media screen and (max-width: 1440px) {
+          &{
+            padding-top: 30%;
+
+          }
+        }
+     
+
+      }
+
   }
 
   @media screen and (max-width: 768px) {
@@ -299,6 +339,10 @@ const modules = [Pagination, Autoplay];
       inset 4px 4px 6px rgba(0, 0, 0, 0.6),
       -4px -4px 8px rgba(255, 255, 255, 0.05), 4px 4px 8px rgba(0, 0, 0, 0.6);
     background: var(--dark-grey);
+    .description{
+      background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.1) 100%);
+
+    }
   }
 }
 
