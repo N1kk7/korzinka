@@ -38,6 +38,12 @@
           </div>
         </div>
       </div>
+      <button
+        v-if="showMoreBtn"
+        @click="getOffsetProducts"
+      >
+        Завантажити ще
+      </button>
     </main>
     <main class="flex-grow p-1 mt-5" v-else>
       <div class="group-title mb-10">
@@ -74,12 +80,14 @@ import ItemCard from "@/components/ItemCard.vue";
 import SkeletonItemCard from "~/components/SkeletonItemCard.vue";
 
 const fetchedAllProducts = ref([]);
+const showMoreBtn = ref(false);
+const offset = (0);
 
 const loader = ref(false);
 
-onMounted(async () => {
+const getOffsetProducts = async () => {
   try {
-    const fetchProducts = await $fetch("/api/category?category=all");
+    const fetchProducts = await $fetch(`/api/category?category=all?offset=${offset}`);
 
 
     fetchProducts.data.forEach((item) => {
@@ -89,7 +97,13 @@ onMounted(async () => {
       }
     });
 
+    offset.value += fetchProducts.data.length;
+
+    fetchProducts.hasMore ? showMoreBtn.value = true : showMoreBtn.value = false;
+
+
     loader.value = true;
+
 
     // if (fetchProducts.data.products.length > 0) {
     //   fetchedAllProducts.value = fetchProducts.data.products;
@@ -98,7 +112,14 @@ onMounted(async () => {
     console.error("Error fetching data зкщв:", error);
   }
 
-  console.log(fetchedAllProducts.value, "fetchedAllProducts");
+}
+
+onMounted(() => {
+
+  getOffsetProducts();
+ 
+
+  // console.log(fetchedAllProducts.value, "fetchedAllProducts");
 
   // console.log(fetchedAllProducts.value, 'fetchedAllProducts')
 });

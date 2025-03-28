@@ -15,12 +15,15 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event);
 
     // console.log(query.category, 'query');
+
+    const offset = query.offset;
     
  
     switch (method) {
         case 'GET': 
             if (query.category === 'all') {
-                return await getCategoriesWithProducts();
+                console.log(offset, 'offset from controller')
+                return await getCategoriesWithProducts(offset);
             } else if (query.categoryId) {
                 // console.log(query.category, 'query.id' );
                 return await getCategoryWithProducts(Number(query.categoryId));

@@ -3,8 +3,10 @@ import prisma from "../../../../prisma/prisma";
 import { encode, decode } from "@msgpack/msgpack";
 import redisClient from "../../../../utils/redisClient";
 
-const getCategoriesWithProducts = async () => {
+const getCategoriesWithProducts = async (offset: any) => {
     const cacheKey = 'all_categories';
+
+    console.log(offset, 'offset from sever')
 
     try {
         const pipeline = redisClient.pipeline();
@@ -52,14 +54,25 @@ const getCategoriesWithProducts = async () => {
                                 translations: { select: { language: true, optionInfo: true } }
                             }
                         }
-                    }
+                    },
+                    skip: offset
                 }
             }
         });
 
+        const totalProducts = await prisma.product.count();
+
+        console.log(totalProducts, 'totalProducts from server')
+
+        console.log(offset + categoryWithProducts.length < totalProducts, 'offset state')
+
         await redisClient.set(cacheKey, JSON.stringify(categoryWithProducts), "EX", 3600);
 
-        return { data: categoryWithProducts, message: 'Data added to cache' };
+        return { 
+            data: categoryWithProducts,
+            message: 'Data added to cache',
+            hasMore: offset + categoryWithProducts.length < totalProducts
+        };
     } catch (error) {
         return { message: 'Something went wrong', error };
     }
