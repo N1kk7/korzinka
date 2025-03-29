@@ -4,7 +4,7 @@ import { encode, decode } from "@msgpack/msgpack";
 import redisClient from "../../../../utils/redisClient";
 
 const getCategoriesWithProducts = async (offset: any) => {
-    const cacheKey = `categories_ofset_${offset}`;
+    const cacheKey = `categories_offset_${offset}`;
 
     console.log(offset, 'offset from sever')
 
