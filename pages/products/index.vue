@@ -5,12 +5,14 @@
       <div
         v-for="(item, index) in fetchedAllProducts"
         :key="index"
-        class="group-title mb-10"
+        class="group-title mb-3"
       >
 
         <h2
           class="text-2xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] mb-4 z-10 relative"
+   v-if="categoryTitles[index]"
         >
+
           {{ item.translations.find((t) => t.language === $i18n.locale).title }}
         </h2>
 
@@ -38,12 +40,17 @@
           </div>
         </div>
       </div>
-      <button
+      <div 
+        class="button-wrapper my-10 flex items-center justify-center"
         v-if="showMoreBtn"
-        @click="getOffsetProducts"
       >
-        Завантажити ще
-      </button>
+        <ShadowBtn
+          @click="getOffsetProducts"
+        >
+          Завантажити ще
+        </ShadowBtn>
+      </div>
+      
     </main>
     <main class="flex-grow p-1 mt-5" v-else>
       <div class="group-title mb-10">
@@ -76,28 +83,50 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
+
+import { useI18n } from "vue-i18n";
 import ItemCard from "@/components/ItemCard.vue";
 import SkeletonItemCard from "~/components/SkeletonItemCard.vue";
+import ShadowBtn from "~/components/shared/ShadowBtn.vue";
 
 const fetchedAllProducts = ref([]);
 const showMoreBtn = ref(false);
-const offset = (0);
+const categoryTitles = ref([]);
+const offset = ref(0);
+
+const { locale } = useI18n()
 
 const loader = ref(false);
 
 const getOffsetProducts = async () => {
   try {
-    const fetchProducts = await $fetch(`/api/category?category=all?offset=${offset}`);
+    const fetchProducts = await $fetch(`/api/category?category=all&offset=${offset.value}`);
+
+
 
 
     fetchProducts.data.forEach((item) => {
       // return item.products.length > 0
       if (item.products.length > 0) {
+
+
+        // const categoryTitle = item.translations.find((t) => t.language === $i18n.locale).title;
+        const categoryTitle = item.translations.find((t) => t.language === locale.value)?.title;
+
+        console.log(categoryTitle, 'categoryTitle')
+        if (!categoryTitles.value.includes(categoryTitle)) {
+          categoryTitles.value.push(categoryTitle);
+        }
+        
         fetchedAllProducts.value.push(item);
       }
     });
 
-    offset.value += fetchProducts.data.length;
+    console.log(fetchProducts, 'fetchProducts')
+
+
+
+    offset.value += 10;
 
     fetchProducts.hasMore ? showMoreBtn.value = true : showMoreBtn.value = false;
 
@@ -123,6 +152,7 @@ onMounted(() => {
 
   // console.log(fetchedAllProducts.value, 'fetchedAllProducts')
 });
+
 
 definePageMeta({
   layout: "products",
