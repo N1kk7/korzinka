@@ -218,7 +218,7 @@
                 <span class="font-semibold">
                   {{ $t("buyers-page.change-order.warranty.content3.strong") }}
                 </span>
-                {{ $t("buyers-page..change-orderwarranty.content3.text") }}
+                {{ $t("buyers-page.change-order.warranty.content3.text") }}
               </p>
             </div>
           </div>

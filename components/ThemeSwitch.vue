@@ -1,8 +1,9 @@
 <template>
-    <label  class="label" @click="themeStore.toggleTheme">
-        <div class="toggle " v-if="isLoaded">
-            <img :src="DarkModeIcon" alt="theme" v-if="!themeState">
-            <img :src="LightModeIcon" alt="theme" v-else>
+    <label  class="label" @click="toggleTheme">
+        <div class="toggle ">
+            <!-- <img :src="DarkModeIcon" alt="theme" v-if="!themeState">
+            <img :src="LightModeIcon" alt="theme" v-else> -->
+            <img :src="themeIcon" alt="theme">
 
             <!-- <input class="toggle-state" type="checkbox" name="check" value="check" @click.stop> -->
             <!-- <div class="indicator"></div> -->
@@ -16,24 +17,35 @@
     import DarkModeIcon from '../public/dark-mode.png'
     import { ref, watch, onMounted } from "vue";
 
-    const themeState = ref();
+    // const themeState = ref();
     const isLoaded = ref(false)
+    // const themeIcon = ref('')
 
     import { useThemeStore } from "#imports";
 
     const themeStore = useThemeStore();
 
-    watch(themeStore, () => {
-        themeState.value = themeStore.darkMode;
-    console.log(themeState.value, 'themeState');
+    // watch(themeStore, () => {
+    //     themeIcon.value = themeStore.darkMode ? '../public/light-mode.png' : '../public/dark-mode.png';
+    //     themeState.value = themeStore.darkMode;
 
-    });
+    // console.log(themeState.value, 'themeState');
 
-    onMounted(() => {
-        themeState.value = themeStore.darkMode;
-        isLoaded.value = true;
-    })
+    // });
 
+    // const themeIcon = computed(() =>
+    //   themeStore.darkMode ? "/light-mode.png" : "/dark-mode.png"
+    // );
+
+    const themeIcon = computed(() =>
+      themeStore.darkMode ? "/light-mode.png" : "/dark-mode.png"
+    );
+
+    const toggleTheme = () => {
+
+      themeStore.toggleTheme();
+
+    }
 
 
 

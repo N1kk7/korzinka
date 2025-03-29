@@ -10,10 +10,10 @@
 
         <h2
           class="text-2xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] mb-4 z-10 relative"
-   v-if="categoryTitles[index]"
+          v-if="categoryTitles[index]"
         >
 
-          {{ item.translations.find((t) => t.language === $i18n.locale).title }}
+          {{ item.translations.find((t) => t.language === $i18n.locale).title  }}
         </h2>
 
         <div class="cards-content">
@@ -47,18 +47,22 @@
         <ShadowBtn
           @click="getOffsetProducts"
         >
-          Завантажити ще
+          {{ $t('products-page.loadMoreBtn') }}
+
         </ShadowBtn>
       </div>
       
     </main>
     <main class="flex-grow p-1 mt-5" v-else>
       <div class="group-title mb-10">
-        <h2
+        <client-only>
+          <h2
           class="text-2xl font-bold text-[var(--dark-color)] dark:text-[var(--dark-font-color)] mb-4 z-10 relative"
         >
-          Завантаження
+          {{ $t('products-page.loadState') }}
         </h2>
+        </client-only>
+       
       </div>
 
       <div class="cards-content mb-10">

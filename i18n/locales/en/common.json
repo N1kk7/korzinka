@@ -126,7 +126,9 @@
     },
     "products-page": {
         "title": "Goods",
-        "description": "Welcome to our store! Here you will find a wide range of products for packaging and household needs: garbage bags, packaging bags, stretch film, zip bags and cellophane gloves. Product quality and ease of use are guaranteed!"
+        "description": "Welcome to our store! Here you will find a wide range of products for packaging and household needs: garbage bags, packaging bags, stretch film, zip bags and cellophane gloves. Product quality and ease of use are guaranteed!",
+        "loadState": "Loading",
+        "loadMoreBtn": "Load more"
     },
     "about-page": {
         "title": "About the company",

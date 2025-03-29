@@ -35,14 +35,15 @@ class="flex-1 max-w-fit"
           >
           <div class="slide-content w-1/2 flex flex-col items-start justify-start gap-2 p-5">
             <h2 class="title  text-[var(--dark-font-color)] text-6xl font-bold border-b border-[var(--main-accent)] pb-3">
-              {{ card.title }}
+              {{ card.translations[$i18n.locale].title }}
+              
             </h2>
             <p class="description text-[var(--dark-font-color)] text-3xl">
-              {{ card.description }}
+              {{  card.translations[$i18n.locale].description  }}
             </p>
             <span class="value text-[var(--dark-font-color)] text-2xl">
 
-              {{ card.value }}
+              {{ card.translations[$i18n.locale].value }}
             </span>
           </div>
 
@@ -99,13 +100,29 @@ const themeStore = useThemeStore();
 const cards = [
   {
     id: 1,
-    title: 'Доставка',
-    description: 'В кожний куточок України (за виключенням тимчасово окупованих територій)',
-    value: 'Відправляємо кожен день',
+  
     imgLight: lightMap,
     imgDark: darkMap,
     direction: true,
     bg: 'linear-gradient(135deg, rgb(20, 30, 48), rgb(36, 59, 85))',
+    translations: {
+      en: {
+        title: 'Delivery',
+        description: 'To every city of Ukraine (except for temporarily occupied territories)',
+        value: 'We ship every day'
+      },
+      ru: {
+        title: 'Доставка',
+        description: 'В каждый уголок Украины (за исключением временно оккупированных территорий)',
+        value: 'Отправляем каждый день'
+
+      },
+      uk: {
+        title: 'Доставка',
+        description: 'В кожний куточок України (за виключенням тимчасово окупованих територій)',
+        value: 'Відправляємо кожен день'
+      }
+    },
   },
   {
     id: 2,
@@ -117,6 +134,24 @@ const cards = [
     imgDark: vanImg,
     direction: false,
     bg: 'linear-gradient(135deg, rgb(30, 42, 34), rgb(58, 63, 50))',
+    translations: {
+      en: {
+        title: 'About us',
+        description: '20 years of successful work',
+        value: 'Thousands of satisfied customers'
+      },
+      ru: {
+        title: 'О нас',
+        description: '20 лет успешной работы',
+        value: 'Тысячи довольных клиентов'
+
+      },
+      uk: {
+        title: 'Про нас',
+        description: '20 Років успішної роботи',
+        value: 'Тисячі задоволених клієнтів'
+      }
+    },
   },
   {
     id: 3,
@@ -127,6 +162,24 @@ const cards = [
     imgDark: productStore,
     direction: true,
     bg: 'linear-gradient(135deg, rgb(40, 32, 56), rgb(80, 55, 75))',
+    translations: {
+      en: {
+        title: 'Store',
+        description: 'More than 100 products in the assortment',
+        value: 'Nice prices'
+      },
+      ru: {
+        title: 'Магазин',
+        description: 'Более 100 товаров в ассортименте',
+        value: 'Приятные цены'
+
+      },
+      uk: {
+        title: 'Магазин',
+        description: 'Більше 100 товарів в асортименті',
+        value: 'Приємні ціни'
+      }
+    },
   },
 ]
 

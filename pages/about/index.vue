@@ -55,7 +55,7 @@
             clickable: true,
           }"
           :autoplay="{
-            delay: 113500,
+            delay: 3000,
             disableOnInteraction: false,
           }"
           :breakpoints="{
@@ -176,7 +176,7 @@
           class="text-[var(--dark-color)] dark:text-[var(--dark-font-color)] font-normal text-base leading-relaxed ml-2"
         >
           <strong>korzinka.in.ua</strong> —
-          {{ $t("about-page.contact-us.summary") }}
+          {{ $t("about-page.summary") }}
         </p>
       </div>
     </div>
@@ -269,9 +269,7 @@ const modules = [Pagination, Autoplay];
   height: auto;
 
   .slide-wrapper {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
+
     height: 100%;
     position: relative;
     border-radius: 10px;
