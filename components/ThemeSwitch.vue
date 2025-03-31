@@ -1,12 +1,9 @@
 <template>
     <label  class="label" @click="toggleTheme">
         <div class="toggle ">
-            <!-- <img :src="DarkModeIcon" alt="theme" v-if="!themeState">
-            <img :src="LightModeIcon" alt="theme" v-else> -->
+     
             <img :src="themeIcon" alt="theme">
 
-            <!-- <input class="toggle-state" type="checkbox" name="check" value="check" @click.stop> -->
-            <!-- <div class="indicator"></div> -->
         </div>
     </label>
 </template>
@@ -19,23 +16,11 @@
 
     // const themeState = ref();
     const isLoaded = ref(false)
-    // const themeIcon = ref('')
+
 
     import { useThemeStore } from "#imports";
 
     const themeStore = useThemeStore();
-
-    // watch(themeStore, () => {
-    //     themeIcon.value = themeStore.darkMode ? '../public/light-mode.png' : '../public/dark-mode.png';
-    //     themeState.value = themeStore.darkMode;
-
-    // console.log(themeState.value, 'themeState');
-
-    // });
-
-    // const themeIcon = computed(() =>
-    //   themeStore.darkMode ? "/light-mode.png" : "/dark-mode.png"
-    // );
 
     const themeIcon = computed(() =>
       themeStore.darkMode ? "/light-mode.png" : "/dark-mode.png"
@@ -53,6 +38,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+  // .dark .label{
+  //   background: var(--dark-light-grey);
+  // }
 
   .label {
     display: flex;
@@ -83,7 +72,7 @@
   }
 
   .dark .label{
-    background: var(--dark-grey);
+    background: var(--dark-border-color);
     border: 1px solid var(--main-accent);
     box-shadow: unset;
   }

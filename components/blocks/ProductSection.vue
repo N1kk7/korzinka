@@ -216,7 +216,7 @@
             .img-wrapper{
                 flex: 1;
                 img{
-                    width: 100px;
+                    width: 60px;
                     border-radius: 50px;
                     padding-bottom: 10px;
                 }

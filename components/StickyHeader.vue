@@ -110,7 +110,7 @@ onMounted(() => {
 
 .dark .main-header {
   background-color: var(--dark-grey);
-  border-bottom: 1px solid var(--dark-border-color);
+  // border-bottom: 1px solid var(--dark-border-color);
 }
 
 .main-header {
