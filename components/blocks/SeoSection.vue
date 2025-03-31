@@ -310,6 +310,8 @@
       .shadow-block{
         background: var(--dark-component-color);
         box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3), -6px -6px 20px rgba(0, 0, 0, 0.4);
+        border-left: 5px solid var(--main-accent);
+
 
       }
       .description{
@@ -455,7 +457,7 @@
     .dark-block {
       box-shadow: 40px 40px 80px #bebebe,
                 -20px -20px 60px #ffffff;
-      border-left: 5px solid var(--secondary-color);
+      border-left: 5px solid;
       .seo-list {
         color: var(--light-color);
         padding: 20px 40px;

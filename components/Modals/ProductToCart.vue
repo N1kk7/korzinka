@@ -207,10 +207,10 @@
                         v-if="overlayStatus"
                     >
                         <img class="w-32 h-25 " src="/public/img/only-dog.png" alt="logo">
-                        <h2>
+                        <h2 class="dark:text-[var(--dark-font-color)]">
                             Товар доданий у кошик!
                         </h2>
-                        <span>
+                        <span class="dark:text-[var(--main-accent)] text-xl">
                             Дякуємо!
                         </span>
                     </div>
@@ -294,6 +294,13 @@
             resetForm();
         }, 2000);
     }
+
+    useHead({
+        meta: [
+            { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+        ]
+    });
+
 
 
 

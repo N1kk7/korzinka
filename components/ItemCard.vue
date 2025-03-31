@@ -178,12 +178,24 @@
 
 
 .card-img{
-    img{
-        @media screen and (max-width: 1024px) {
-            max-width: 70%;
-            transform: translateY(10%)
+    @media screen and (max-width: 1024px) {
+        border-right: unset;
+        &{
+            img{
+                    max-width: 70%;
+                    transform: translateY(10%);
+            }
         }
+    //         max-width: 70%;
+    //         transform: translateY(10%);
+    //     }
+    // img{
+    //     @media screen and (max-width: 1024px) {
+    //         max-width: 70%;
+    //         transform: translateY(10%);
+    //     }
     }
+
    
 }
 
