@@ -181,11 +181,25 @@
         </NuxtLink>
       </ul>
       <div class="bottom-section">
-        <div class="btn profile-btn">
+        <div 
+            @click="modalStore.showModal('AuthModal')"
+            class="btn profile-btn"
+            v-if="!logUser"
+        >
           <SvgIcon name="default-user" size="micro" fill="var(--main-accent)" />
           <div class="separator"></div>
           <span>
             {{ $t("mobile-menu.profile-btn") }}
+          </span>
+        </div>
+        <div 
+          class="btn profile-btn"
+          v-else
+        >
+          <SvgIcon name="default-user" size="micro" fill="var(--main-accent)" />
+          <div class="separator"></div>
+          <span>
+            {{ logUser.username }}
           </span>
         </div>
         <div class="btn theme-btn" @click="toggleTheme()">
@@ -210,7 +224,7 @@ import SvgIcon from "@/shared/SvgIcon.vue";
 import gsap from "gsap";
 import { ref, onMounted } from "vue";
 
-import { useIndexStore, useModalStore, useCartStore, useThemeStore } from "#imports";
+import { useIndexStore, useModalStore, useCartStore, useAuthStore, useThemeStore } from "#imports";
 import { theme } from "#tailwind-config";
 
 let openMenu = ref(false);
@@ -219,6 +233,9 @@ const productList = ref(false);
 const bagList = ref(false);
 const packList = ref(false);
 const searchBlock = ref(false);
+const authStore = useAuthStore();
+
+const logUser = computed(() => authStore.user);
 // const cartCounter = ref(0);
 
 const localePath = useLocalePath();

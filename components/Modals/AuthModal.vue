@@ -5,7 +5,7 @@
             >
             <!-- :style="{'flex-direction': loginWindow ? 'row-reverse' : 'row'}" -->
 
-            <div class="form login">
+            <div class="form login" v-if="!loginWindow">
                 <h2
                     class="mb-2 text-2xl font-bold text-[var(--primary-color)] dark:text-[var(--dark-font-color)]"
                 >Вход в аккаунт</h2>
@@ -73,7 +73,7 @@
                 </form>
 
             </div>
-            <div class="form auth" v-if="!supabaseConfirmState">
+            <div class="form auth" v-else-if="!supabaseConfirmState && loginWindow">
                 <h2
                     class="mb-2 text-2xl font-bold text-[var(--primary-color)] dark:text-[var(--dark-font-color)]"
                 >
@@ -349,7 +349,6 @@
     const loginWindow = ref(false);
     const code = ref(['', '', '', '', '', ''])
     const inputs = ref([]);
-    const supabaseConfirmPass = ref('');
     const supabaseConfirmState = ref(false);
 
     const modalStore = useModalStore();
@@ -818,6 +817,11 @@ const handleBackspace = (index, event) => {
         h2{
             width: 70%;
             text-align: center;
+        }
+        @media screen and (max-width: 768px) {
+            &{
+                display: none;
+            }
         }
     }
 
