@@ -41,7 +41,7 @@
 </script>
 
 
-<style lang="scss">
+<style lang="scss" >
 
     .modal{
         position: fixed;
@@ -61,7 +61,7 @@
             border-radius: 1em;
             padding: 2em;
             display: flex;
-            flex-direction: column;
+            // flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 1em;

@@ -1,7 +1,10 @@
 <template>
 
     <section class="modal auth-modal">
-        <div class="modal-wrapper" 
+        <div 
+            class="modal-wrapper" 
+            :class="{'flex-row-reverse': loginWindow, 'flex-row': !loginWindow}"
+            ref="modalWrapper"
             >
             <!-- :style="{'flex-direction': loginWindow ? 'row-reverse' : 'row'}" -->
 
@@ -313,10 +316,21 @@
                 </button>
             </div>
             </div>
-            <div class="background" :style="{'left': loginWindow ? '0' : '50%' }">
+            <div class="background" 
+                ref="background"
+                >
+                <!-- :style="{'left': loginWindow ? '0' : '50%' }"  -->
 
-                <img src="/public/img/only-dog.png" alt="logo">
-                <h2>Добро пожаловать в интернет-магазин korzinka.in.ua</h2>
+                <div 
+                    class="absolute top-0 h-full bg-[var(--primary-color)] w-1/2 flex items-center justify-center flex-col"
+                >
+                <!-- :class="{'left-0': loginWindow, 'right-0': !loginWindow}" -->
+
+                    <img src="/public/img/only-dog.png" alt="logo">
+                    <h2>Добро пожаловать в интернет-магазин korzinka.in.ua</h2>
+            
+                </div>
+               
 
             </div>
             <button 
@@ -338,6 +352,7 @@
     import SvgIcon from "../shared/SvgIcon.vue";
     import { ref, onMounted, onUnmounted, defineEmits, watch } from "vue";
     import { useModalStore, useAuthStore } from "#imports";
+    import gsap from "gsap";
 
     const userName = ref("");
     const userSurname = ref("");
@@ -351,11 +366,29 @@
     const inputs = ref([]);
     const supabaseConfirmState = ref(false);
 
+    const modalWrapper = ref(null);
+    const background = ref(null);
+
     const modalStore = useModalStore();
 
     const authStore = useAuthStore();
 
     const emit = defineEmits();
+
+
+
+    const animateModalHeight = () => {
+
+    gsap.to(modalWrapper.value, {
+        duration: 0.5,
+        height: loginWindow.value ? "650px" : "500px", // Подстрой размеры под реальный контент
+        ease: "power2.out"
+    });
+    };
+
+    const animateBackground =  () => {
+        gsap.to(background.value, { left: loginWindow.value ? "0%" : "50%", duration: 0.6, ease: "power2.inOut" });
+    };
 
     watch(loginWindow, () => {
         userName.value = "";
@@ -365,6 +398,8 @@
         mail.value = "";
         password.value = "";
         confirmedPass.value = "";
+        animateModalHeight();
+        animateBackground();
     })
 
 
@@ -746,6 +781,9 @@ const handleBackspace = (index, event) => {
 
     onMounted(() => {
         document.addEventListener("invalid", handleInvalid, true);
+
+        gsap.set(modalWrapper.value, { height: loginWindow.value ? "650px" : "500px" });
+        gsap.set(background.value, { x: loginWindow.value ? "0%" : "100%" });
     })
 
     onUnmounted(() => {
@@ -767,12 +805,13 @@ const handleBackspace = (index, event) => {
         justify-content: space-between;
         overflow: hidden;
         position: relative;
-        flex-direction: row;
+        // flex-direction: row;
         gap: 50px;
     }
 
     .form{
         flex: 1;
+        // flex-basis: 40%
     }
 
     label{
@@ -790,11 +829,12 @@ const handleBackspace = (index, event) => {
     }
 
     .background{
-        position: absolute;
-        width: 50%;
+        // position: absolute;
+        // width: 50%;
         height: 100%;
+        flex: 1;
 
-        background-color: var(--primary-color);
+        // background-color: var(--primary-color);
         top: 0;
         display: flex;
         justify-content: center;
