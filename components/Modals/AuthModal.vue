@@ -381,7 +381,7 @@
 
     gsap.to(modalWrapper.value, {
         duration: 0.5,
-        height: loginWindow.value ? "650px" : "500px", // Подстрой размеры под реальный контент
+        height: loginWindow.value ? "650px" : "500px",
         ease: "power2.out"
     });
     };
