@@ -224,6 +224,32 @@ datasource db {
   url = env("NUXT_API_SECRET_PATH")
 }
 
+model Admin {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  visits            Int                 @default(0) // текущие
+  sales             Int                 @default(0)
+  avgCheck          Int                 @default(0)
+  popularProducts   PopularProduct[]   
+  promotedProducts  PromotedProduct[]  
+  metrics           AdminMetric[]     
+}
+
+
+
+
+
+model AdminMetric {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @default(now()) // когда записана метрика
+  visits    Int
+  sales     Int
+  avgCheck  Int
+
+  adminId   Int
+  admin     Admin    @relation(fields: [adminId], references: [id])
+}
+
 model Category {
   id           Int                  @id @default(autoincrement())
   group        String               @unique
@@ -274,6 +300,8 @@ model Product {
   groupPackQuantity  String
   options            ProductOptions[]     
   translations       ProductTranslation[] 
+   popularProducts    PopularProduct[]
+  promotedProducts   PromotedProduct[]
   category           Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   orderItems        OrderItem[]
 
@@ -326,6 +354,26 @@ model ProductOptionsTranslation {
 
   @@index([optionId])
   @@index([language])
+}
+
+model PopularProduct {
+  id        Int     @id @default(autoincrement())
+  admin     Admin   @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  adminId   Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+
+  addedAt   DateTime @default(now())
+}
+
+model PromotedProduct {
+  id        Int     @id @default(autoincrement())
+  admin     Admin   @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  adminId   Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+
+  addedAt   DateTime @default(now())
 }
 
 model User {

@@ -22,6 +22,7 @@
     "@splidejs/splide": "^4.1.4",
     "@supabase/supabase-js": "^2.47.11",
     "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.8",
     "express": "^4.21.2",
     "formidable": "^3.5.2",
     "gsap": "^3.12.5",
@@ -33,6 +34,7 @@
     "swiper": "^11.1.15",
     "typescript": "^5.7.2",
     "vue": "latest",
+    "vue-chartjs": "^5.3.2",
     "vue-i18n": "^10.0.5",
     "vue-router": "latest",
     "vue3-google-map": "^0.21.0"
