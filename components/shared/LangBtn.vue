@@ -1,7 +1,7 @@
 <template>
     <div class="language-component">
         <button>
-                <SvgIcon name="lang-icon" size="micro" fill="var(--dark-color)"/>
+                <SvgIcon name="lang-icon" size="micro" :fill="!themeStore.darkMode ? 'var(--dark-color)' : 'var(--main-accent)'  "/>
             <div class="separator"></div>
             <div class="text">
                 <p>
@@ -12,9 +12,12 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-    import SvgIcon from '@/components/shared/SvgIcon.vue';
-import { I18N } from '@splidejs/splide/src/js/constants/i18n';
+<script setup>
+    import SvgIcon from './SvgIcon.vue';
+// import { I18N } from '@splidejs/splide/src/js/constants/i18n';
+    import { useThemeStore } from "#imports";
+
+    const themeStore = useThemeStore();
 
 </script>
 
@@ -48,6 +51,15 @@ import { I18N } from '@splidejs/splide/src/js/constants/i18n';
                 cursor: pointer;
             }
 
+        }
+    }
+    .dark .language-component button{
+        background: var(--dark-border-color);
+        border: 1px solid var(--main-accent);
+        box-shadow: unset;
+        color: var(--border-color);
+        .separator {
+        background: var(--border-color);
         }
     }
 

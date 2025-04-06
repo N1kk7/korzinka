@@ -8,7 +8,7 @@
           }"
           :modules="modules"
           :autoplay="{
-            delay: 111500,
+            delay: 3500,
           }"
           class="mySwiper relative w-full mt-5"
         >

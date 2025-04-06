@@ -47,6 +47,8 @@
         >
           {{ $t("about-page.our-values.title") }}
         </h2>
+        <!-- disableOnInteraction: false, -->
+
 
         <swiper
           :slidesPerView="3"
@@ -56,7 +58,6 @@
           }"
           :autoplay="{
             delay: 3000,
-            disableOnInteraction: false,
           }"
           :breakpoints="{
             320: { slidesPerView: 1, spaceBetween: 10 },

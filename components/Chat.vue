@@ -1,14 +1,16 @@
 <template>
     <div 
         class="chat-wrapper"
-        :style="{'right': chat ? '30px' : '-220px'}"
+        :class="chat ? 'chat-wrapper-active' : ''"
     >
+    <!-- :style="{'right': chat ? '30px' : '-300px'}" -->
 
         <div 
             class="top-element" 
             @click="openChat"
-            :style="{'bottom': chat ? '80%' : '20%'}"
         >
+        <!-- :style="{'bottom': chat ? '80%' : '20%'}" -->
+
             <div class="img-wrapper">
                 <div class="img"></div>
                 <div class="circle"></div>
@@ -20,14 +22,27 @@
                 </h3>
             </div> -->
         </div>
+        
         <div class="chat-area">
-            <div class="close-btn">
+            <div 
+                class="close-btn cursor-pointer"
+                @click="chat = false"
+            >
                 <SvgIcon name="close-btn" size="micro" fill="var(--dark-color)"/>
 
             </div>
             <h3>
                     Я тут щоб допомгти!
                 </h3>
+            <div class="messages-area">
+                <div class="message owner">
+                    ololo1
+                </div>
+                <div class="message client">
+                    ololo2
+                </div>
+
+            </div>
             <div class="form">
                 <textarea v-model="message" placeholder="Введіть Ваше запитання"></textarea>
             </div>
@@ -92,6 +107,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         z-index: 50;
+        right: -300px;
         h3{
             white-space: nowrap;
             background: var(--bg-color);
@@ -105,6 +121,7 @@
             position: absolute;
             transition: all ease-in-out 0.3s;
             gap: 20px;
+            bottom: 20%;
             // top: 5px;
             left: -80px;
             .img-wrapper{
@@ -155,7 +172,8 @@
         }
         .chat-area{
             background: var(--dark-color);
-            height: 300px;
+            // height: 300px;
+            width: 300px;
             padding: 10px 10px 15px;
             display: flex;
             justify-content: space-between;
@@ -183,6 +201,17 @@
                 border: 1px solid var(--active-btn);
 
             }
+            .messages-area{
+                width: 100%;
+                height: 200px;
+                margin-top: 15px;
+                background: var(--bg-color);
+                border-radius: 10px;
+                border: 1px solid var(--main-accent);
+                padding: 10px;
+
+
+            }
             .form {
                 width: 100%;
                 height: -webkit-fill-available;
@@ -190,12 +219,13 @@
 
                 textarea{
                     background: var(--bg-color);
-                    height: -webkit-fill-available;
+                    height: fit-content;
                     border-radius: 10px;
                     padding: 10px;
                     resize: none;
                     color: var(--dark-color);
                     border: 1px solid transparent;
+                    width: 100%;
 
                     &::placeholder{
                         color: var(--secondary-color);
@@ -223,6 +253,50 @@
                 padding-inline: 5px;
             }
         }
+        @media screen and (max-width: 768px) {
+            &{
+                right: 0;
+                bottom: -80vh;
+                .top-element{
+                    left: unset;
+                    right: 30px;
+                    bottom: 120%;
+                }
+
+                .chat-area{
+                    width: 100vw;
+                    height: 80vh;
+                }
+            }
+            
+        }
+    }
+    .chat-wrapper-active{
+
+        right: 30px;
+        .top-element{
+            bottom: 80%;
+            
+        }
+    @media screen and (max-width: 768px) {
+            &{
+                bottom: 0;
+                right: 0;
+                .top-element{
+                    bottom: 92%;
+                }
+                .messages-area{
+                    height: -webkit-fill-available;
+                }
+                .chat-area{
+                    .form{
+                    height: auto;
+                }
+                }
+               
+
+            }
+        }
     }
     
 
@@ -243,6 +317,17 @@
         100% {
             transform: rotate(0) scale(1.3) skew(1deg);
             opacity: 0
+        }
+    }
+
+    .dark .chat-wrapper .chat-area{
+        background: var(--dark-grey);
+        border: 1px solid var(--main-accent);
+        .messages-area,
+        .form textarea{
+            border: 1px solid var(--dark-border-color);
+            background: var(--dark-component-color);
+            color: var(--dark-font-color);
         }
     }
 

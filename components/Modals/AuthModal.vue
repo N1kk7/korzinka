@@ -50,7 +50,7 @@
 
                     <div class="button-wrapper flex items-center justify-center gap-5">
                         <button 
-                            class="forgot-password"
+                            class="forgot-password whitespace-nowrap"
                         >
                             Забыли пароль?
                         </button>
@@ -87,9 +87,9 @@
                 >
                     Зарегистрируйтесь, чтобы получить доступ ко всем возможностям. Это быстро и просто!
                 </p>
-                <form class="flex flex-col gap-1">
-                    <div class="name-wrapper flex justify-center items-center gap-5">
-                        <div class="basis-1/2 flex-1">
+                <form class="flex flex-col gap-1 max-sm:gap-0">
+                    <div class="name-wrapper flex justify-center items-center gap-5 max-sm:flex-col max-sm:gap-0">
+                        <div class="basis-1/2 flex-1 max-sm:flex-1 max-sm:w-full">
                             <label for="register-name dark:text" class="dark:text-[var(--dark-font-color)]">Имя</label>
                             <input 
                                 type="text" 
@@ -99,7 +99,7 @@
                             />
                         </div>
                         
-                        <div class="basis-1/2 flex-1">
+                        <div class="basis-1/2 flex-1 max-sm:flex-1 max-sm:w-full">
                             <label for="register-surname" class="dark:text-[var(--dark-font-color)]">Отчество</label>
                             <input 
                                 type="text" 
@@ -108,7 +108,7 @@
                             />
                         </div>
                        
-                        <div class="basis-1/2 flex-1">
+                        <div class="basis-1/2 flex-1 max-sm:flex-1 max-sm:w-full">
                             <label for="register-family" class="dark:text-[var(--dark-font-color)]">Фамилия</label>
                             <input 
                                 type="text" 
@@ -137,7 +137,7 @@
                         required 
                     />
 
-                    <div class="pass-wrapper flex justify-center items-center gap-5">
+                    <div class="pass-wrapper flex justify-center items-center gap-5 max-sm:flex-col max-sm:gap-0">
                         <div class="w-full flex flex-col ">
                             <label for="register-password" class="dark:text-[var(--dark-font-color)]">Пароль</label>
                             <input 
@@ -171,7 +171,7 @@
                         Зарегистрироваться
                     </button>
                     
-                    <p class="dark:text-[var(--dark-font-color)]">Уже есть аккаунт? 
+                    <p class="dark:text-[var(--dark-font-color)] max-sm:mt-6">Уже есть аккаунт? 
                         <button 
                             class="switch-tab dark:text-[var(--dark-font-color)]"
                             @click="loginWindow = false"
@@ -180,7 +180,7 @@
                         </button>
                     </p>
 
-                    <small class="dark:text-[var(--dark-font-color)]">Регистрируясь, вы соглашаетесь с <span >условиями использования</span> и <span >политикой конфиденциальности</span>.</small>
+                    <small class="dark:text-[var(--dark-font-color)] max-sm:mt-2">Регистрируясь, вы соглашаетесь с <span >условиями использования</span> и <span >политикой конфиденциальности</span>.</small>
                 </form>
 
             </div>
@@ -322,7 +322,7 @@
                 <!-- :style="{'left': loginWindow ? '0' : '50%' }"  -->
 
                 <div 
-                    class="absolute top-0 h-full bg-[var(--primary-color)] w-1/2 flex items-center justify-center flex-col"
+                    class="absolute top-0 h-full bg-[var(--primary-color)] w-full flex items-center justify-center flex-col"
                 >
                 <!-- :class="{'left-0': loginWindow, 'right-0': !loginWindow}" -->
 
@@ -381,13 +381,13 @@
 
     gsap.to(modalWrapper.value, {
         duration: 0.5,
-        height: loginWindow.value ? "650px" : "500px",
+        height: loginWindow.value ? "650" : "550",
         ease: "power2.out"
     });
     };
 
     const animateBackground =  () => {
-        gsap.to(background.value, { left: loginWindow.value ? "0%" : "50%", duration: 0.6, ease: "power2.inOut" });
+        gsap.to(background.value, { left: loginWindow.value ? "0%" : "-100%", duration: 0.6, ease: "power2.inOut" });
     };
 
     watch(loginWindow, () => {
@@ -783,7 +783,7 @@ const handleBackspace = (index, event) => {
         document.addEventListener("invalid", handleInvalid, true);
 
         gsap.set(modalWrapper.value, { height: loginWindow.value ? "650px" : "500px" });
-        gsap.set(background.value, { x: loginWindow.value ? "0%" : "100%" });
+        gsap.set(background.value, { x: loginWindow.value ? "0%" : "0%" });
     })
 
     onUnmounted(() => {
@@ -797,6 +797,33 @@ const handleBackspace = (index, event) => {
 
 <style lang="scss" scoped>
 
+    .modal{
+        @media screen and (max-width: 768px) {
+            &{
+                padding: 0;
+                .modal-wrapper{
+                    width: 100vw;
+                    height: 100vh !important;
+                  
+                    border-radius: 0;
+                    overflow: scroll;
+                    form{
+                        padding-bottom: 4em;
+
+                    }
+                    .form{
+                        padding: 2em;
+
+                        // display: flex;
+                        // justify-content: center;
+                        // align-items: center;
+                        // flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+
     .auth-modal{
         color: var(--primary-color)
     }
@@ -806,12 +833,25 @@ const handleBackspace = (index, event) => {
         overflow: hidden;
         position: relative;
         // flex-direction: row;
-        gap: 50px;
+        padding: 0;
+        // gap: 50px;
+        // height: auto;
     }
 
     .form{
         flex: 1;
+        padding: 2em;
+        height: 100%;
         // flex-basis: 40%
+    }
+
+    .login{
+        padding-right: 0;
+    }
+
+    .auth{
+        padding-left: 0;
+        
     }
 
     label{
@@ -866,7 +906,7 @@ const handleBackspace = (index, event) => {
     }
 
     .button-wrapper{
-        margin: 50px 50px 30px;
+        margin: 50px 0 30px;
         button{
             flex: 1;
             padding: 10px 15px;

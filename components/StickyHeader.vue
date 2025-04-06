@@ -56,7 +56,7 @@
       <ThemeSwitch />
       <NuxtLink to="/cart" class="cart">
         <div class="relative">
-          <SvgIcon name="cart-icon" size="micro" fill="var(--dark-color)" />
+          <SvgIcon name="cart-icon" size="micro" :fill="!themeStore.darkMode ? 'var(--dark-color)' : 'var(--main-accent)'  " />
           <client-only>
             <span
               class="cart-count absolute -top-3 -right-3 w-4 h-4 flex justify-center items-center text-xs font-semibold text-white bg-red-600 rounded-full dark:bg-red-600"
@@ -78,7 +78,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useModalStore, useIndexStore, useCartStore } from "#imports";
+import { useModalStore, useIndexStore, useCartStore, useThemeStore } from "#imports";
 
 import LangBtn from "@/components/shared/LangBtn.vue";
 import SvgIcon from "./shared/SvgIcon.vue";
@@ -87,6 +87,7 @@ import ThemeSwitch from "./ThemeSwitch.vue";
 const modalStore = useModalStore();
 const indexStore = useIndexStore();
 const cartStore = useCartStore();
+const themeStore = useThemeStore();
 
 const cartCounter = computed(() => cartStore.cart.length);
 
@@ -330,5 +331,14 @@ onMounted(() => {
 .dark .main-header .main-buttons  .phone-btn{
   background: rgb(13, 24, 34);
 
+}
+.dark .main-header .right-button-group .cart{
+  background: var(--dark-border-color);
+    border: 1px solid var(--main-accent);
+    box-shadow: unset;
+    color: var(--border-color);
+    .separator {
+      background: var(--border-color);
+    }
 }
 </style>

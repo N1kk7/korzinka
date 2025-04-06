@@ -153,6 +153,7 @@ const localePath = useLocalePath();
           border-bottom: 1px solid var(--base-dark-color);
           transition: all ease 0.2s;
         }
+       
       }
       @media screen and (max-width: 768px) {
         & {
@@ -210,4 +211,9 @@ const localePath = useLocalePath();
   }
   
 }
+
+.dark .header .sub-header .links nav a:hover{
+          border-bottom: 1px solid var(--main-accent);
+
+        }
 </style>
