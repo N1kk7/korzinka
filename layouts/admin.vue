@@ -1,11 +1,11 @@
 <template>
   <div
-    class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500"
+    class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500 dark:bg-[var(--dark-component-color)] dark:text-slate-400"
   >
-    <div class="absolute w-full bg-[var(--primary-color)] min-h-72"></div>
+    <div class="absolute w-full bg-[var(--primary-color)] dark:bg-[var(--main-dark-color)] min-h-72"></div>
 
     <aside
-      class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full h-auto p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
+      class="fixed inset-y-0 gap-10 flex flex-col justify-between items-center w-full h-auto p-0 my-4 overflow-y-scroll antialiased transition-transform duration-200 -translate-x-full bg-white dark:bg-[var(--dark-grey)] border-0 dark:border dark:border-[var(--dark-border-color)] shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
       :aria-expanded="isSidebarOpen"
       :class="{
         '-translate-x-full z-50': !isSidebarOpen,

@@ -102,15 +102,21 @@
   </script>
   
   <style scoped>
-  .chart-wrapper {
-    width: 98%;
-    height: 350px;
-    background: white;
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: 1rem;
-    padding-bottom: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  }
+    .chart-wrapper {
+      width: 98%;
+      height: 350px;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      margin: 0 auto;
+      padding: 1rem;
+      padding-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .dark .chart-wrapper {
+      background: var(--dark-color);
+      border-color: var(--dark-border-color);
+    }
   </style>
   

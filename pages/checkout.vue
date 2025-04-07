@@ -1267,12 +1267,43 @@
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
                   Ваше замовлення:
                 </h2>
+                
                 <NuxtLink
                   to="/cart"
                   class="text-sm font-semibold text-red-600 hover:text-red-700 dark:text-gray-400 dark:hover:text-gray-300"
                 >
                   Змінити
                 </NuxtLink>
+              </dl>
+              <dl class="products-slide">
+                <Swiper
+                  :slidesPerView="3"
+                  :spaceBetween="0"
+                  :pagination="{
+                    clickable: true,
+                  }"
+                  :autoplay="{
+                    delay: 3500,
+                    disableOnInteraction: false,
+                  }"
+                >
+                  <SwiperSlide 
+                    v-for="product in cartStore.cart" 
+                    :key="product.id"
+                    class="flex flex-col items-center justify-center gap-2 p-0"
+                  >
+                    <img 
+                      :src="product.img[0].path" 
+                      alt="product"
+                      class="w-20 h-20"
+                    >
+                    <span>
+                      {{ product.totalPrice }}
+                      грн.
+                    </span>
+                  </SwiperSlide>
+                </Swiper>
+
               </dl>
               <dl class="flex items-center justify-between gap-4 py-3">
                 <dt
@@ -1368,6 +1399,8 @@
 <script setup>
 import { ref, watch, computed, onMounted } from "vue";
 import { useCartStore, useAuthStore } from "#imports";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
 import { navigateTo } from "nuxt/app";
 import ToggleBtn from "@/components/shared/ToggleBtn.vue";
 import Tooltips from "@/components/shared/Tooltips.vue";
@@ -1392,6 +1425,8 @@ const contactInfoState = ref(false);
 const deliveryAddressState = ref(false);
 const courierDeliveryState = ref(false);
 const saveDeliveryAddress = ref(false);
+
+const checkoutProducts = ref([]);
 
 
 
@@ -1981,4 +2016,9 @@ useHead({
 
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.swiper-slide{
+  display: flex;
+}
+
+</style>
