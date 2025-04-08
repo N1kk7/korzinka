@@ -653,8 +653,9 @@
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
               Спосіб доставки
             </h3>
+            <DeliverySelector v-model="deliveryMethod"/>
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
               <label
                 class="rounded-lg border p-4 ps-4 bg-gray-50 dark:bg-gray-800 cursor-pointer"
                 :class="{
@@ -796,7 +797,7 @@
                   </div>
                 </div>
               </label>
-            </div>
+            </div> -->
 
           </div>
           <div class="space-y-4" v-if="!deliveryAddressState && authStore.user && authStore.user.adresses > 0">
@@ -1286,18 +1287,21 @@
                     delay: 3500,
                     disableOnInteraction: false,
                   }"
+                   class="mySwiper"
                 >
                   <SwiperSlide 
                     v-for="product in cartStore.cart" 
                     :key="product.id"
-                    class="flex flex-col items-center justify-center gap-2 p-0"
+                    class="flex flex-col items-center justify-center gap-1 p-0"
                   >
                     <img 
                       :src="product.img[0].path" 
                       alt="product"
-                      class="w-20 h-20"
+                      class="w-20 h-20 object-contain"
                     >
-                    <span>
+                    <span
+                      class="text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap" 
+                    >
                       {{ product.totalPrice }}
                       грн.
                     </span>
@@ -1404,7 +1408,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { navigateTo } from "nuxt/app";
 import ToggleBtn from "@/components/shared/ToggleBtn.vue";
 import Tooltips from "@/components/shared/Tooltips.vue";
-import { prevent } from "@splidejs/splide/src/js/utils";
+import DeliverySelector from "~/components/DeliverySelector.vue";
 
 
 const cityRef = ref("");
@@ -2019,6 +2023,7 @@ useHead({
 <style scoped lang="scss">
 .swiper-slide{
   display: flex;
+  padding: 0 0 15px;
 }
 
 </style>
