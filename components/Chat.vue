@@ -201,7 +201,18 @@
                 border: 1px solid var(--active-btn);
 
             }
-            .messages-area{
+            // .messages-area{
+            //     width: 100%;
+            //     height: 200px;
+            //     margin-top: 15px;
+            //     background: var(--bg-color);
+            //     border-radius: 10px;
+            //     border: 1px solid var(--main-accent);
+            //     padding: 10px;
+
+
+            // }
+            .messages-area {
                 width: 100%;
                 height: 200px;
                 margin-top: 15px;
@@ -209,9 +220,36 @@
                 border-radius: 10px;
                 border: 1px solid var(--main-accent);
                 padding: 10px;
-
-
+                display: flex;
+                flex-direction: column-reverse;
+                overflow-y: auto;
+                gap: 10px;
             }
+
+            .message {
+                max-width: 70%;
+                padding: 10px;
+                border-radius: 10px;
+                word-break: break-word;
+                position: relative;
+                background: var(--light-color);
+                color: var(--dark-color);
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .message.owner {
+                align-self: flex-start;
+                background: var(--light-color);
+                border: 1px solid var(--main-accent);
+            }
+
+            .message.client {
+                align-self: flex-end;
+                background: var(--main-accent);
+                color: var(--bg-color);
+            }
+
             .form {
                 width: 100%;
                 height: -webkit-fill-available;
