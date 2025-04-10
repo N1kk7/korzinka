@@ -523,6 +523,37 @@
           </div>
         </div>
 
+        <!-- cards row 4 -->
+
+        <div class="flex flex-wrap mt-6 -mx-3">
+          
+          <div class="w-full max-w-full px-3 mt-0 lg:w-5/12 lg:flex-none">
+            <div class="border-black/12.5 shadow-xl dark:bg-gray-950 dark:border-[var(--dark-border-color)] dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+              <div class="p-4 pb-0 rounded-t-4">
+                <h6 class="mb-0 dark:text-white">Рейтинг товарів</h6>
+              </div>
+              <div class="flex-auto p-4">
+                <ProductPieChart/>
+               
+              </div>
+            </div>
+          </div>
+          <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-7/12 lg:flex-none">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 dark:border dark:border-[var(--dark-border-color)] border-solid shadow-xl dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-2xl bg-clip-border">
+              <div class="p-4 pb-0 mb-0 rounded-t-4">
+                <div class="flex justify-between">
+                  <h6 class="mb-2 dark:text-white">Активність на сайті</h6>
+                </div>
+              </div>
+              <div class="overflow-x-auto px-4 py-6">
+                <ActiveUsersChart/>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <footer class="pt-4 ">
           <div class="w-full px-6 mx-auto">
             <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
@@ -568,6 +599,9 @@
     import { ref } from 'vue'
     import DashBurger from '@/components/shared/DashBurger.vue';
     import SalesChart from '@/components/SalesChart.vue';
+    import ProductPieChart from '@/components/charts/ProductPieChart.vue';
+    import ActiveUsersChart from '@/components/charts/ActiveUsersChart.vue';
+
 
     const burgerActive = ref(false);
   

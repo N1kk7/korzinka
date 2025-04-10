@@ -304,7 +304,7 @@
 
     <!-- <main class="page-layout"> -->
     <main
-      class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
+      class="relative h-full transition-all duration-200 ease-in-out xl:ml-72 rounded-xl"
     >
       <!-- <div class="mobile-burger py-2 ">
           <button 
