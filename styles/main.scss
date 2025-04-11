@@ -93,6 +93,9 @@ body {
   background-color: #E3E8EB;
   color: $primary-color;
 }
+.dark body{
+  background-color: var(--dark-component-color);
+}
 
 .container {
   // width: 1200px;

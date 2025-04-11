@@ -7,7 +7,7 @@
       <DashBurger />
     </div>
     <section
-      class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-gray-900 md:py-16"
+      class="bg-white rounded-lg py-8 mt-20 antialiased dark:bg-[var(--dark-grey)] dark:border dark:border-[var(--dark-border-color)] md:py-16"
     >
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="mx-auto max-w-5xl">
