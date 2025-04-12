@@ -1,5 +1,5 @@
 import { defineEventHandler } from "#imports";
-import { updateUser } from "../services/userServices";
+import { updateUser, getUsers } from "../services/userServices";
 
 
 export default defineEventHandler(async (event) => {
@@ -10,12 +10,11 @@ export default defineEventHandler(async (event) => {
 
     switch (method) {
         case 'GET': 
+            return await getUsers();
            
         break;
         case 'POST':
            
-
-        // return await addUser();
         break;
         case 'PATCH':
             return await updateUser(event);

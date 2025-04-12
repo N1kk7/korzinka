@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">📦 Товары</h2>
-  
-      <div>
+    <div class="top-row flex justify-between items-start gap-2">
+        <div>
         <h3 class="text-lg font-medium mb-2">Топ продаваемых товаров</h3>
         <canvas ref="topProductsChart" class="w-full h-64"></canvas>
       </div>
@@ -15,6 +15,9 @@
           </li>
         </ul>
       </div>
+
+    </div>
+    
   
       <div>
         <h3 class="text-lg font-medium mb-2">Товары в избранном</h3>
@@ -22,7 +25,7 @@
           <div
             v-for="item in favorites"
             :key="item.id"
-            class="bg-gray-100 p-4 rounded shadow w-full sm:w-48 text-center"
+            class="bg-gray-100 dark:bg-[var(--dark-component-color)] p-4 rounded shadow w-full sm:w-48 text-center"
             ref="favoriteRefs"
           >
             <p class="font-semibold text-sm">{{ item.name }}</p>

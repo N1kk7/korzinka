@@ -64,14 +64,16 @@
             </div>
           </div>
 
-          <!-- <div class="mt-6 flow-root sm:mt-8">
-            <div class="divide-y divide-gray-200 dark:divide-gray-700">
+          <div class="mt-6 flow-root sm:mt-8">
+            <div class="divide-y divide-gray-200 dark:divide-gray-700" v-if="loaded">
  
               <div 
                 class="flex flex-wrap items-center gap-y-4 py-6"
-                v-for="(order, index) in orderList"
+                v-for="(user, index) in users"
                 :key="index"
               >
+
+                {{ console.log(user, 'mapped user') }}
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt
                     class="text-base font-medium text-gray-500 dark:text-gray-400"
@@ -81,7 +83,7 @@
                   <dd
                     class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   >
-                    <a href="#" class="hover:underline">{{ order.id }}</a>
+                    <a href="#" class="hover:underline">{{ user.id }}</a>
                   </dd>
                 </dl>
 
@@ -94,7 +96,7 @@
                   <dd
                     class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   >
-                    {{ order.createdAt.slice(0, 10) }}
+                    {{ user.username }}
                   </dd>
                 </dl>
 
@@ -107,7 +109,7 @@
                   <dd
                     class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   >
-                    {{ order.totalPrice }} грн.
+                    {{ user.userSurname }} грн.
                   </dd>
                 </dl>
 
@@ -137,7 +139,7 @@
                         d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
                       />
                     </svg>
-                    {{ order.status }}
+                    {{ user.email }}
                   </dd>
                 </dl>
 
@@ -158,7 +160,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
           <nav
             class="mt-6 flex items-center justify-end sm:mt-8"
@@ -263,9 +265,40 @@
 </template>
 
 <script setup>
+    import { ref, onMounted, onUnmounted } from 'vue'
     import DashBurger from '@/components/shared/DashBurger.vue';
+
+    const users = ref([]);
+    const loaded = ref(false);
+
+
+
+
+
     definePageMeta({
         layout: 'admin'
     })
+
+
+    onMounted(async() => {
+
+        const getUsers = await $fetch('/api/users', {
+            method: 'GET'
+        })
+
+        // getUsers.map(user => {
+        //     console.log(user, 'get user');
+        //     users.value.push(user)
+        // })
+
+        console.log(getUsers, 'get users');
+
+        users.value = getUsers.data
+
+        loaded.value = true
+
+    })
+
+    // console.log(users.value, 'users value');
 
 </script>

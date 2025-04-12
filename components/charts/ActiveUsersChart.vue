@@ -2,7 +2,7 @@
 <template>
  
   <div
-    class="p-4 rounded-2xl shadow-lg transition-colors duration-300 bg-white dark:bg-[var(--dark-component-color)]"
+    class="p-4 rounded-2xl shadow-lg transition-colors duration-300 bg-white dark:bg-[var(--dark-alter-color)]"
   >
     <canvas ref="lineChart" class="w-full h-64" />
   </div>

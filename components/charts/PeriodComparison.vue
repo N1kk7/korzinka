@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">📅 Сравнение периодов</h2>
   
       <canvas ref="comparisonChart" class="w-full h-64"></canvas>
@@ -8,7 +8,7 @@
         <div
           v-for="metric in comparison"
           :key="metric.label"
-          class="bg-gray-100 rounded p-4 text-center shadow-sm"
+          class="bg-gray-100 dark:bg-[var(--dark-component-color)] rounded p-4 text-center shadow-sm"
           ref="metricRefs"
         >
           <p class="text-lg font-semibold">{{ metric.current }}</p>

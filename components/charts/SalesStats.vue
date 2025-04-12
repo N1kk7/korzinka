@@ -1,11 +1,11 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">🛒 Продажи и Заказы</h2>
   
       <canvas ref="salesChart" class="w-full h-64"></canvas>
   
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-        <div v-for="stat in stats" :key="stat.label" class="bg-gray-100 p-4 rounded shadow-md">
+        <div v-for="stat in stats" :key="stat.label" class="bg-gray-100 dark:bg-[var(--dark-component-color)] p-4 rounded shadow-md">
           <div class="text-lg font-bold">{{ stat.value }}</div>
           <div class="text-sm text-gray-600">{{ stat.label }}</div>
         </div>

@@ -1,12 +1,12 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">👤 Пользователи</h2>
   
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
         <div
           v-for="stat in userStats"
           :key="stat.label"
-          class="bg-gray-100 p-4 rounded shadow-md"
+          class="bg-gray-100 dark:bg-[var(--dark-component-color)] p-4 rounded shadow-md"
           ref="statRefs"
         >
           <div class="text-lg font-bold">{{ stat.value }}</div>

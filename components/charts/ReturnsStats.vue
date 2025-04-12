@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">📦 Возвраты / Отмены</h2>
   
       <canvas ref="returnsChart" class="w-full h-64"></canvas>
@@ -8,7 +8,7 @@
         <li
           v-for="reason in cancelReasons"
           :key="reason.label"
-          class="flex justify-between bg-gray-100 rounded px-4 py-2 shadow-sm"
+          class="flex justify-between bg-gray-100 dark:bg-[var(--dark-component-color)] rounded px-4 py-2 shadow-sm"
           ref="reasonRefs"
         >
           <span class="text-sm">{{ reason.label }}</span>

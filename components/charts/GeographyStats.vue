@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+    <div class="bg-white dark:bg-[var(--dark-alter-color)] dark:border dark:border-[var(--dark-border-color)] rounded-lg shadow p-6 space-y-6">
       <h2 class="text-xl font-semibold">📍 География</h2>
   
       <div class="flex flex-col md:flex-row gap-6">
@@ -11,7 +11,7 @@
             <li
               v-for="(item, index) in regions"
               :key="item.name"
-              class="flex justify-between bg-gray-100 p-3 rounded shadow-sm"
+              class="flex justify-between bg-gray-100 dark:bg-[var(--dark-component-color)] p-3 rounded shadow-sm"
               ref="regionRefs"
             >
               <span class="text-sm font-medium">{{ index + 1 }}. {{ item.name }}</span>
