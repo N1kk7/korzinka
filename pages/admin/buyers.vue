@@ -286,19 +286,10 @@
             method: 'GET'
         })
 
-        // getUsers.map(user => {
-        //     console.log(user, 'get user');
-        //     users.value.push(user)
-        // })
-
-        console.log(getUsers, 'get users');
-
         users.value = getUsers.data
 
         loaded.value = true
 
     })
-
-    // console.log(users.value, 'users value');
 
 </script>

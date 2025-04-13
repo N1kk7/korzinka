@@ -341,4 +341,7 @@ onMounted(() => {
       background: var(--border-color);
     }
 }
+.dark .main-header .search-block input{
+  background: var(--dark-component-color)
+}
 </style>
