@@ -14,7 +14,6 @@
     import DarkModeIcon from '../public/dark-mode.png'
     import { ref, watch, onMounted } from "vue";
 
-    // const themeState = ref();
     const isLoaded = ref(false)
 
 

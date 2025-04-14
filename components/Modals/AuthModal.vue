@@ -439,9 +439,7 @@ const handleBackspace = (index, event) => {
         static regPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
         validateEmail() {
-            console.log(this.mail, 'mail');
             const validMail = Auth.regEmail.test(this.mail.trim());
-            console.log(validMail, 'validEmail');
             if (!validMail) {
                 emit('tooltip', {
                     status: 'error',    
@@ -479,7 +477,6 @@ const handleBackspace = (index, event) => {
                 body: verifyData
             })
 
-            console.log(processVerify, 'processVerify');
 
             if (processVerify.status === 200) {
                 supabaseConfirmState.value = true;
@@ -524,7 +521,6 @@ const handleBackspace = (index, event) => {
                     password: password.value,
                 });
 
-                console.log(registerUser, 'registerUser');
 
 
                 if (registerUser.status === 200) {
@@ -564,12 +560,9 @@ const handleBackspace = (index, event) => {
                 })
             }
 
-            console.log(processVerify, 'processVerify');
         }
 
         async fetchRequest(link, method, data = {}) {
-
-            console.log(link, 'link', method, 'method', data , 'data');
 
             const formData = new FormData();
 
@@ -595,19 +588,6 @@ const handleBackspace = (index, event) => {
             return response;
             
 
-            // if (response.success) {
-            //     // console.log('success');
-            //     return response.data[0].filePath
-            // } else {
-            //     emit('tooltip', {
-            //         status: 'error',
-            //         message: 'Помилка при реестрації'
-            //     })
-            // }
-
-            // console.log(formData, 'form data');
-            // console.log(link, method, data);
-
 
         }
 
@@ -624,7 +604,6 @@ const handleBackspace = (index, event) => {
 
     const handleLogin = async () => {
 
-        // console.log(mail.value, password.value);
 
         const loginAuth = new Auth(mail.value, password.value);
 
@@ -726,7 +705,6 @@ const handleBackspace = (index, event) => {
 
         // }
 
-        // console.log(sendVerifyPass());
 
         
 
@@ -752,8 +730,6 @@ const handleBackspace = (index, event) => {
 
             return;
         }
-
-        console.log('codevalue', codeValue, 'codeValue');
 
         registerAuth.checkVerifyPass('auth?auth=checkVerifyPass', 'POST', {
             email: mail.value,

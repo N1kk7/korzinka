@@ -143,7 +143,6 @@
     const fetchedCategories = computed(() => indexStore.fetchedCategories)
 
 
-    console.log(fetchedCategories, 'fetchedCategories')
 
 
 

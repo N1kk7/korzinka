@@ -150,7 +150,6 @@
 
     const selectProduct = (product) => {
         productStore.setSelectedProducts(product);
-        console.log(productStore.selectedProducts)
     }
     
 
@@ -166,7 +165,6 @@
 
     const addToCart = (event, props) => {
         event.preventDefault();
-        // console.log(props, 'item props')
         modalStore.showModal("ProductToCart", props );
 
     }
