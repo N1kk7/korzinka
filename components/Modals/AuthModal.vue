@@ -738,10 +738,6 @@ const handleBackspace = (index, event) => {
 
 
 
-        // Check verify password
-
-
-        //register
 
        
 

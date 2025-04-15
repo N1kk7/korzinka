@@ -296,7 +296,6 @@
         }, 1000);
     }
 
-    // console.log(categoryName, 'category name')
 
     const addNewCategory = () => {
         if (categoryNameUk.value.length < 1 
@@ -369,16 +368,13 @@
 
             try{
                 formData.append(`category-icon/${categoryName}`, file.value);
-                console.log(file.value, 'file value');
                 
 
                 const response = await $fetch('/api/upload', {
                     method: 'POST',
                     body: formData
                 })
-                console.log(response);
                 if (response.success) {
-                    // console.log('success');
                     return response.data[0].filePath
                 } else {
                     emit('tooltip', {
@@ -395,7 +391,6 @@
 
         const uploadData = async (categoryIconPath) => {
 
-            console.log(categoryIconPath, 'categoryIconPath');
 
             const formData = new FormData();
 
@@ -428,14 +423,12 @@
             try {
 
 
-                console.log(formData);
 
                 const response = await $fetch('/api/category', {
                     method: 'POST',
                     body: formData
                 })
 
-                console.log(response);
                 return response
 
             } catch (error) {
@@ -465,7 +458,6 @@
                 resetForm();
                 // resetTextFields();
             } catch (error) {
-                console.log(error)
                 emit('tooltip', {
                     status: 'error',
                     message: `Помилка при додаванні категорії ${error}`
@@ -523,7 +515,6 @@
 
 
         const formData = new FormData();
-        console.log(file.value, 'file value')
         formData.append('image', file.value);
         formData.append('group', translitString.toLowerCase());
         formData.append('titleUk', categoryNameUk.value.toLowerCase());

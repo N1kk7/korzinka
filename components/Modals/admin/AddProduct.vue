@@ -608,24 +608,16 @@
                                                 :key="index"
                                                 class="bg-[var(--bg-color)] rounded-lg w-fit flex items-center justify-between p-2 gap-2">
                                                 <img :src="option.fileImg" alt="img" width="25px">
-                                                <!-- <img v-else :src="optionFileState.optionFilePreview" alt="preview"> -->
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span >
                                                     {{ option.translations[0].optionInfo }}
-                                                    <!-- {{ option.translation.forEach((elem) => {
-                                                        if (elem.language === 'uk') {
-                                                            return optionInfo
-                                                        }
-                                                    }) }} -->
 
-                                                    <!-- {{ console.log(option.file) }} -->
                                                 </span>
                                                 <div class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
                                                 <span v-if="option.optionPrice !== 0">
                                                     {{ option.optionPrice }}
                                                     UAH
 
-                                                    <!-- {{ console.log(option.file) }} -->
                                                 </span>
                                                 <div v-if="option.optionPrice !== 0" class="separator w-[1px] h-[25px] bg-[var(--light-color)]"></div>
 
@@ -814,8 +806,6 @@
 
     const addNewOption = () => {
 
-        // if ()
-        // console.log(addOptionsRef.value.length)
         if (addOptionsRef.value.length > 9) {
             emit('tooltip', {
                 status: 'error',
@@ -824,7 +814,6 @@
             return
         }
 
-        console.log(optionFileState.optionFiles.value, 'optionFiles')
 
         if (optionFileState.optionFilesPreview.value.length > 0) {
 
@@ -902,8 +891,6 @@
 
 
             // UPLOAD PRODUCT FILE
-
-            // const uploadProduct = async () => {
             const uploadProductFiles = async () => {
 
                 const formData = new FormData();
@@ -947,7 +934,6 @@
 
                 try {
                     toRaw(addOptionsRef.value).map((elem) => {
-                        console.log(elem.file);
                         
                         const rawFile = elem.file[0];
 
@@ -965,7 +951,6 @@
                         body: formData,
                     })
 
-                    console.log(optionFileUpload, 'option file upload');
 
                     if (optionFileUpload && Array.isArray(optionFileUpload.data)) {
 
@@ -1076,7 +1061,6 @@
                         productImgPath, 
                         optionImgPath);
 
-                    console.log('Все данные успешно загружены:', result);
                     clearModal();
 
                     emit('tooltip', {
@@ -1098,20 +1082,6 @@
 
             uploadAllData();
 
-            //UPLOAD PRODUCT INFORMATION
-
-            // const formData = new FormData();
-            // formData.append('files', mediaArray);
-            // formData.append('productNameUk', productNameUk.value.toLowerCase());
-            // formData.append('productNameEn', productNameEn.value.toLowerCase());
-            // formData.append('productNameRu', productNameRu.value.toLowerCase());
-            // formData.append('productDescriptionUk', productDescriptionUk.value.toLowerCase());
-            // formData.append('productDescriptionEn', productDescriptionEn.value.toLowerCase());
-            // formData.append('productDescriptionRu', productDescriptionRu.value.toLowerCase());
-            // formData.append('quantityProduct', quantityProduct.value.toLowerCase());
-            // formData.append('retailPrice', retailPrice.value);
-            // formData.append('wholesalePrice', wholesalePrice.value);
-            // formData.append('wholesalePriceFrom', wholesalePriceFrom);
           
   
     };
