@@ -1035,7 +1035,6 @@
                 })
 
 
-                console.log(res, 'jsonData')
                 return {
                     data: res
                 }
@@ -1089,7 +1088,6 @@
     onMounted(async() => {
             try{
                 const getData = await $fetch('/api/category')
-                console.log(getData.data);
                 
                 if (getData.data.length > 0) {
                     fetchedCategories.value = getData.data.map((item) => 
@@ -1106,7 +1104,6 @@
             }
 
     })
-    console.log(fetchedCategories.value, 'fetchedCategories');
 
 
 

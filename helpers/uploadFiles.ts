@@ -2,7 +2,6 @@ import { toRaw } from "vue";
 
 export const useFileUpload = (emit: any) => {
     const handleFileUpload = (event: any, type: any, state: any, length?: number) => {
-    //   console.log(event.target.files, type, "handleFileUpload");
       
       const accessedFormat = ["svg", "png"];
       const files = Array.from(event.target.files);
@@ -15,7 +14,6 @@ export const useFileUpload = (emit: any) => {
         return;
       }
 
-    //   console.log(type, state, 'uploadThype')
   
 
       const typeFiles = state[`${type}Files`];
@@ -32,7 +30,6 @@ export const useFileUpload = (emit: any) => {
   
       files.forEach((file: any) => {
 
-        // console.log(file)
         const fileExtension = file.name.split(".").pop().toLowerCase();
         if (!accessedFormat.includes(fileExtension)) {
           emit("tooltip", {
@@ -47,14 +44,11 @@ export const useFileUpload = (emit: any) => {
 
         typeFiles.value = [...toRaw(typeFiles.value), rawFile]
   
-        // typeFiles.value.push(file);
   
         const reader = new FileReader();
         reader.onload = () => {
-        //   typePreview.value.push(reader.result); 
             typePreview.value = [...toRaw(typePreview.value), reader.result];
         };
-        // reader.readAsDataURL(file);
         reader.readAsDataURL(rawFile);
       });
   
@@ -64,6 +58,4 @@ export const useFileUpload = (emit: any) => {
     return { handleFileUpload };
   };
 
-
-//   export default useFileUpload;
   

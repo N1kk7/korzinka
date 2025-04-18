@@ -1508,7 +1508,6 @@ const clearForm = () => {
 
 onMounted(() => {
   if (authStore.user) {
-    console.log("user exist");
     name.value = authStore.user.username;
     surname.value = authStore.user.userSurname;
     familyName.value = authStore.user.userFamily;
