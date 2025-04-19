@@ -7,7 +7,6 @@ import supabase from '../../../../utils/supabase'
 async function addProduct(event: any) {
     try{
 
-        // console.log('ololo')
 
         const formData = await readMultipartFormData(event);
 
@@ -15,19 +14,6 @@ async function addProduct(event: any) {
             return { message: 'No data received!' };
         }
 
-        // let jsonData = {}
-        // const textFields: Record<string, string> = {};
-        // const uploadedFiles = [];
-        // files.forEach(file => {
-        //     if (file.name === 'data') {
-        //         jsonData = JSON.parse(file.data.toString());
-        //     } else {
-        //         // uploadedFiles.push(file);
-        //         return {
-        //             message: 'Server get unknown data'
-        //         }
-        //     }
-        // });
 
         const textField = formData.find((field) => field.name === 'data');
 
@@ -83,14 +69,10 @@ async function addProduct(event: any) {
                 options: {
 
                     create: productData.options.map((option: any) => (
-                        // console.log(option.fileImg[0], 'logOption')
                         {
                         
                         optionImg: option.fileImg[0],
-                        // optionDescription: 'test string',
                         optionPrice: Number(option.optionPrice),
-                        // optionWholesale: Number(option.optionWholesale),
-                        // wholesaleOnly: true,
 
                         translations: {
                             create: option.translations.map((tr: any) => ({

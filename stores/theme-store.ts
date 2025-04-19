@@ -19,31 +19,7 @@ export const useThemeStore = defineStore('theme', {
             }
         }
     }
-    
-    // actions: {
-    //     setTheme(theme: ITheme) {
-            
-    //         this.currentTheme = theme.name;
-
-    //         Object.keys(theme.colors).forEach((elem, idx) => {
-
-    //             // console.log(elem, )
-
-    //             document.documentElement.style.setProperty(
-    //                 `--${elem}-color`,
-    //                 Object.values(theme.colors)[idx]
-    //             )
-                
-    //         })
-
-    //     },
-    //     // loadTheme() {
-    //     //     const savedTheme = localStorage.getItem('theme');
-    //     //     if (savedTheme) {
-    //     //         this.currentTheme = savedTheme;
-    //     //     }
-    //     // },
-    // },
+  
 
 
 })

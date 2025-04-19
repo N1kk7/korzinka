@@ -45,9 +45,6 @@ const redisClient = new Redis({
   retryStrategy: (times) => Math.min(times * 50, 2000),
 
 });
-// const redisClient = new Redis(process.env.REDIS_URL, {
-//   tls: false // Отключаем TLS
-// });
 
 redisClient.on('error', (err) => {
   console.error('❌ Redis Error:', err);

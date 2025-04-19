@@ -1561,7 +1561,6 @@ watch(deliveryMethod, () => {
   }
 
   deliveryMethod.value === 'courier-delivery' ? courierDeliveryState.value = true : courierDeliveryState.value = false;
-  // console.log(deliveryAddressState.value, deliveryMethod.value, 'deliveryMethod')
 });
 
 const processCheckout = async () => {
@@ -1581,7 +1580,6 @@ const processCheckout = async () => {
       status: "error",
       message: "Всі поля повинні бути заповнені",
     })
-    // console.log('something went wrong check all fields');
     return;
   }
 
@@ -1591,7 +1589,6 @@ const processCheckout = async () => {
         status: "error",
         message: "Введіть коректну електронну адресу",
       })
-      // console.log('please enter valid email')
       return;
     }
 
@@ -1602,7 +1599,6 @@ const processCheckout = async () => {
         status: "error",
         message: "Введіть коректний номер телефону",
       })
-      // console.log('phone ok')
       return;
     }
   }
@@ -1946,7 +1942,6 @@ const getCitiesNp = debounce(cityRef.value, async () => {
 
 const getPostomatsNp = async (event, state) => {
 
-  // console.log(event ,'reload', reload)
 
 
   if (state === 'reload') {

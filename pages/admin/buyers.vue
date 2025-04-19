@@ -73,7 +73,6 @@
                 :key="index"
               >
 
-                {{ console.log(user, 'mapped user') }}
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt
                     class="text-base font-medium text-gray-500 dark:text-gray-400"
