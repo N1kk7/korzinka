@@ -13,11 +13,9 @@ async function checkVerifyPass(event: any) {
 
     const parsedData = JSON.parse(data[0].data.toString());
 
-    console.log(parsedData, 'parsedData');
 
     const {email, token} = JSON.parse(data[0].data.toString());
 
-    console.log( email, 'email', token, 'token');
 
     try{
 

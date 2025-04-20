@@ -22,21 +22,14 @@ async function me(event: any) {
         maxAge: 3600,
       });
     } catch (error) {
-      console.log(error, "error access token");
-      console.error("Refresh token invalid:", error);
       throw createError({
         statusCode: 401,
         statusMessage: "Invalid refresh token",
       });
     }
   }
-  // if (!accessToken) {
-  //   console.error("No valid tokens found");
-  //   throw createError({ statusCode: 401, statusMessage: "Auth is required" });
-  // }
   if (accessToken) {
     try {
-      console.log("Verifying access token");
       const decoded = jwt.verify(accessToken, JWT_SECRET) as { id: number };
   
       const user = await prisma.user.findUnique({
