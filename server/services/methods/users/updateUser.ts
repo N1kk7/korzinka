@@ -25,7 +25,6 @@ async function updateUser(event: any) {
             };
         }
 
-        console.log(id, 'userId', field, 'field', newValue , 'value');
 
         const fetchUpdate = await prisma.user.update({
             where: { id: id },

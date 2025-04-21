@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event);
 
-    // console.log(query.category, 'query');
 
     const offset = query.offset;
     
@@ -25,7 +24,6 @@ export default defineEventHandler(async (event) => {
                 console.log(offset, 'offset from controller')
                 return await getCategoriesWithProducts(offset);
             } else if (query.categoryId) {
-                // console.log(query.category, 'query.id' );
                 return await getCategoryWithProducts(Number(query.categoryId));
             } else {
                 return await getAllCategories();

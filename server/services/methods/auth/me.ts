@@ -70,7 +70,6 @@ async function me(event: any) {
       });
   
       if (!user) {
-        console.error("User not found");
         throw createError({ statusCode: 401, statusMessage: "User not found" });
       }
   

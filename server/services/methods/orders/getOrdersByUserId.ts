@@ -12,7 +12,6 @@ async function getOrdersByUserId(id: number) {
             }
         })
 
-        console.log(ordersByUserId, 'orderId');
 
         return {
             status: 'ok',

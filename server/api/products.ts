@@ -1,11 +1,7 @@
 import { defineEventHandler, readBody, readMultipartFormData } from "#imports";
-import { error } from "@splidejs/splide/src/js/utils";
 import { addProduct, getProducts } from "../services/productsServices"
-// import prisma from "../../prisma/prisma";
-import prisma from "../../prisma/prisma";
-import supabase from "../../utils/supabase";
 
-// console.log('products log');
+
 
 export default defineEventHandler((event) => {
 
@@ -14,7 +10,7 @@ export default defineEventHandler((event) => {
 
     switch (method) {
         case 'GET': 
-            return getProducts()
+            return getProducts(event)
         break;
         case 'POST':
             return addProduct(event)
