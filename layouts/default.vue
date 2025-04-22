@@ -53,7 +53,6 @@
 
   onMounted(() => {
     authStore.fetchUser();
-    console.log(authStore.user);
   })
 </script>
 

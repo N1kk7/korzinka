@@ -369,7 +369,6 @@ watch(burgerBtn, () => {
 });
 
 const tooltip = (obj) => {
-  console.log(obj);
   const { status, message } = obj;
 
   tooltipStatus.value = status;
@@ -381,7 +380,6 @@ const tooltip = (obj) => {
 };
 
 const closeSidebar = () => {
-  console.log(isSidebarOpen.value, "log");
 
   if (isSidebarOpen.value) {
     setTimeout(() => {

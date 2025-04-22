@@ -450,7 +450,6 @@
                 }
                 const resultUpload = await uploadData(categoryIconPath);
 
-                console.log('Все дані успішно додано:', resultUpload);  
                 emit('tooltip', {
                     status: 'success',
                     message: 'Категорія успішно додана'
@@ -539,7 +538,6 @@
             message: `Категорія ${res.message} успішно створена`
         })
 
-        console.log(res, 'res from client');
 
 
 
